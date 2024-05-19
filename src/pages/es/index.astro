@@ -1,0 +1,13 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Bienvenido a Astro.">
+  <main>
+    <h1>{t('common.hello')}</h1>
+  </main>
+</Layout>

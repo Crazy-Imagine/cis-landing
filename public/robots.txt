@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://crazyimagine.com
+
+# Sitemaps
+Sitemap: https://crazyimagine.com/sitemap-index.xml
