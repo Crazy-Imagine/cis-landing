@@ -6,8 +6,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Bienvenido a Astro.">
-  <main>
-    <h1>{t('common.hello')}</h1>
-  </main>
+<Layout
+  title="Bienvenido a Astro."
+  heroTitle={t('cis.slogan')}
+  heroSubtitle={t('hero.home-subtitle')}
+  scheduleCall
+>
+  <h5>{t('common.hello')}</h5>
 </Layout>
