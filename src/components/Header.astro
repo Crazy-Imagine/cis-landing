@@ -9,9 +9,9 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<div class="sticky left-0 right-0 top-0 z-20 max-h-screen max-w-screen-2xl bg-primary">
-  <header>
-    <nav class="mx-auto flex h-[90px] items-center justify-between gap-[105px] px-10">
+<div class="sticky left-0 right-0 top-0 z-20 max-h-screen bg-primary">
+  <header class="container mx-auto">
+    <nav class="flex h-[90px] items-center justify-between gap-[105px]">
       <a href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
         <CISLogo />
       </a>
