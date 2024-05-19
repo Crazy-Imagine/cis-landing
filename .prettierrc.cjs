@@ -12,9 +12,10 @@ module.exports = {
   arrowParens: 'always',
   plugins: [
     'prettier-plugin-astro',
-    'prettier-plugin-tailwindcss',
     'prettier-plugin-astro-organize-imports',
+    'prettier-plugin-tailwindcss',
   ],
+  tailwindConfig: './tailwind.config.mjs',
   overrides: [
     {
       files: ['*.json', '*.md', '*.toml', '*.yml'],

@@ -1,6 +1,7 @@
 ---
+import Header from '@/components/Header.astro';
+import Hero from '@/sections/Hero.astro';
 import '@fontsource/roboto';
-import Header from '../components/Header.astro';
 
 interface Props {
   title: string;
@@ -22,6 +23,7 @@ const { title } = Astro.props;
   </head>
   <body class="w-full overflow-x-hidden">
     <Header />
+    <Hero />
     <slot />
   </body>
 </html>
@@ -34,6 +36,7 @@ const { title } = Astro.props;
     --color-grayish: #a4a4a6;
     --color-periwinkle: #888dff;
     --color-sky-blue: #a7e4f5;
+    --header-height: 90px;
   }
 
   @font-face {

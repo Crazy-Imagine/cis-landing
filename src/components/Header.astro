@@ -9,9 +9,9 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<div class="sticky left-0 right-0 top-0 z-20 max-h-screen bg-primary">
+<div class="sticky left-0 right-0 top-0 z-20 max-h-screen bg-transparent">
   <header class="container mx-auto">
-    <nav class="flex h-[90px] items-center justify-between gap-[105px]">
+    <nav class="flex h-[var(--header-height)] items-center justify-between">
       <a href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
         <CISLogo />
       </a>
@@ -21,7 +21,7 @@ const translatePath = useTranslatedPath(lang);
       <SocialIcons />
 
       <a
-        class="rounded-full border-2 px-6 py-2.5 font-body text-xs uppercase text-white transition hover:bg-white hover:text-primary"
+        class="rounded-full border-2 px-6 py-2.5 font-roboto text-xs uppercase text-white transition hover:bg-white hover:text-primary"
         href={translatePath('/contact-us', lang)}
         aria-label={t('aria.contact-us-link')}
       >

@@ -26,9 +26,19 @@ export const ui = {
     'aria.upwork-link': "Crazy Imagine Software's Upwork, it will open in a new tab",
     'aria.youtube-link': "Crazy Imagine Software's Youtube, it will open in a new tab",
 
+    // Img Alt Keys
+    'alt.home-hero': "Flag with Crazy Imagine Software's logo",
+
     // Common Keys
     'common.hello': 'Hello',
     'common.contact-us': 'Contact Us',
+
+    // CIS Keys
+    'cis.slogan': 'Ideas beyond your imagination',
+
+    // Hero Keys
+    'hero.home-subtitle': 'Teamwork is the heart of everything we do',
+    'hero.home-button': 'Schedule a call',
 
     // Nav Keys
     'nav.about': 'About',
@@ -55,9 +65,19 @@ export const ui = {
     'aria.upwork-link': 'Upwork de Crazy Imagine Software, se abrirá en una nueva pestaña',
     'aria.youtube-link': 'Youtube de Crazy Imagine Software, se abrirá en una nueva pestaña',
 
+    // Img Alt Keys
+    'alt.home-hero': 'Bandera con el logo de Crazy Imagine Software',
+
     // Common Keys
     'common.hello': 'Hola',
     'common.contact-us': 'Contáctanos',
+
+    // CIS Keys
+    'cis.slogan': 'Ideas más allá de tu imaginación',
+
+    // Hero Keys
+    'hero.home-subtitle': 'El trabajo en equipo es el corazón de todo lo que hacemos',
+    'hero.home-button': 'Programar una llamada',
 
     // Nav Keys
     'nav.about': 'Sobre nosotros',

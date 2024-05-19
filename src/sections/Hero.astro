@@ -1,7 +1,40 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section>
-  <div></div>
+<section
+  class="relative -mt-[var(--header-height)] h-[680px] w-full bg-cover bg-center bg-no-repeat px-[60px] py-20"
+>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary"></div>
+
+  <div
+    class="container relative z-10 mx-auto flex h-full w-full items-center rounded-xl bg-secondary text-white"
+  >
+    <div class="gap-4 pl-[100px]">
+      <h1 class="font-nexaBold text-h1 font-bold capitalize">
+        {t('cis.slogan')}
+      </h1>
+
+      <p class="my-10 font-nexaLight text-body1 uppercase tracking-widest">
+        {t('hero.home-subtitle')}
+      </p>
+
+      <button class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight text-button uppercase">
+        {t('hero.home-button')}
+      </button>
+    </div>
+
+    <div class="self-end">
+      <img src="/img/ui/home-hero.webp" alt={t('alt.home-hero')} />
+    </div>
+  </div>
 </section>
+
+<style>
+  section {
+    background-image: url('/img/ui/hero-background.webp');
+  }
+</style>
