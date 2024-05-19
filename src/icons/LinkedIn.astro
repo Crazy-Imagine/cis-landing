@@ -1,0 +1,20 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<svg
+  width="23"
+  height="22"
+  fill="currentColor"
+  class:list={Astro.props.class}
+  role="img"
+  aria-label={t('aria.linkedin')}
+  ><path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M21.297.063H2.537A1.57 1.57 0 0 0 .98 1.64v18.72c0 .87.698 1.578 1.558 1.578h18.76c.859 0 1.562-.708 1.562-1.578V1.64c0-.87-.703-1.577-1.563-1.577ZM7.593 18.813H4.35V8.373h3.248v10.44h-.005ZM5.97 6.947a1.88 1.88 0 0 1 0-3.76c1.036 0 1.88.845 1.88 1.88 0 1.04-.84 1.88-1.88 1.88ZM19.75 18.813h-3.243v-5.079c0-1.21-.024-2.768-1.685-2.768-1.69 0-1.949 1.318-1.949 2.68v5.166H9.63V8.373h3.112v1.426h.043c.435-.82 1.495-1.685 3.072-1.685 3.282 0 3.893 2.163 3.893 4.976v5.723Z"
+  ></path></svg
+>

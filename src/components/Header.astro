@@ -1,0 +1,32 @@
+---
+import NavLinks from '@/components/NavLinks.astro';
+import SocialIcons from '@/components/SocialIcons.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import CISLogo from '@/icons/CIS.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<div class="sticky left-0 right-0 top-0 z-20 max-h-screen max-w-screen-2xl bg-primary">
+  <header>
+    <nav class="mx-auto flex h-[90px] items-center justify-between gap-[105px] px-10">
+      <a href="/" aria-label={t('aria.home-link')}>
+        <CISLogo />
+      </a>
+
+      <NavLinks />
+
+      <SocialIcons />
+
+      <a
+        class="rounded-full border-2 px-6 py-2.5 font-body text-xs uppercase text-white transition hover:bg-white hover:text-primary"
+        href={translatePath('/contact-us', lang)}
+        aria-label={t('aria.contact-us-link')}
+      >
+        {t('common.contact-us')}
+      </a>
+    </nav>
+  </header>
+</div>

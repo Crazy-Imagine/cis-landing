@@ -1,0 +1,48 @@
+---
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const pages = [
+  { name: t('nav.about'), href: '#' },
+  { name: t('nav.projects'), href: '#' },
+  { name: t('nav.services'), href: '#' },
+  { name: t('nav.blog'), href: '#' },
+  { name: t('nav.work-with-us'), href: '#' },
+];
+---
+
+<ul class="flex items-center gap-5">
+  {
+    pages.map(({ name, href }) => (
+      <li>
+        <a
+          class="relative whitespace-nowrap font-title text-xs uppercase tracking-widest text-white"
+          target="_blank"
+          href={translatePath(href, lang)}
+          rel="noopener"
+          aria-label="Facebook de Crazy Imagine Software, se abrirá en una nueva pestaña"
+        >
+          {name}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  a {
+    position: relative;
+
+    &::before {
+      @apply absolute -bottom-0.5 -left-0.5 h-0.5 w-full scale-0 bg-white text-white transition-transform duration-500 ease-in-out;
+      content: '';
+    }
+
+    &:hover::before {
+      @apply scale-100;
+    }
+  }
+</style>
