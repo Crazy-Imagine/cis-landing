@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import { HERO_SECTION } from '@/consts/hero-sections';
 import type { PageWithHero } from '@/types/Hero';
 
@@ -38,7 +38,7 @@ const hero = HERO_SECTION[page];
       {
         scheduleCall && (
           <button class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase">
-            {t('hero.home-button')}
+            {t(`hero.${page}-button` as const)}
           </button>
         )
       }
@@ -68,7 +68,7 @@ const hero = HERO_SECTION[page];
       {
         scheduleCall && (
           <button class="flex-shrink-0 rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase">
-            {t('hero.home-button')}
+            {t(`hero.${page}-button` as const)}
           </button>
         )
       }

@@ -1,3 +1,85 @@
 ---
+import Building from '@/icons/Building.astro';
+import CISLogo from '@/icons/CIS.astro';
+import NavLinks from '@/components/NavLinks.astro';
+import OpenEnvelope from '@/icons/OpenEnvelope.astro';
+import Phone from '@/icons/Phone.astro';
+import SocialIcons from '@/components/SocialIcons.astro';
+import { CIS_INFORMATION } from '@/utils/cis-information';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
+
+<section class="w-full bg-primary">
+  <footer
+    class="mx-auto flex h-max flex-col justify-between px-4 py-6 text-white 2xl:container md:flex-row md:flex-wrap md:gap-x-2.5 md:px-10 md:py-20 2xl:px-0"
+  >
+    <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
+      <CISLogo class="mb-5" />
+
+      <p
+        class="mb-2.5 flex items-center gap-2 whitespace-normal text-wrap font-roboto text-sm leading-6 tracking-wide"
+      >
+        {t('footer.text')}
+      </p>
+
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-xs leading-6 tracking-wide">
+        {t('footer.all-rights-reserved')}
+      </p>
+
+      <p class="font-roboto text-xs">
+        <a href={translatePath('#', lang)} class="underline">
+          {t('common.terms-and-conditions')}
+        </a>
+        &nbsp;|&nbsp;
+        <a href={translatePath('#', lang)} class="underline">
+          {t('common:privacy-policy')}
+        </a>
+      </p>
+    </div>
+
+    <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
+      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+        {t('footer.location')}
+      </p>
+
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+        <Building />
+        {CIS_INFORMATION.location}
+      </p>
+
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+        <OpenEnvelope />
+        <a href={`mailto:${CIS_INFORMATION.contactEmail}`} aria-label={t('aria.contact-email')}>
+          {CIS_INFORMATION.contactEmail}
+        </a>
+      </p>
+
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+        <Phone />
+        <a href={`tel:${CIS_INFORMATION.plainPhoneNumber}`}>
+          {CIS_INFORMATION.phoneNumber}
+        </a>
+      </p>
+    </div>
+
+    <div class="mb-10 md:mb-0 md:basis-[calc(50%-10px)] lg:basis-[calc(25%-10px)]">
+      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+        {t('footer.social-links')}
+      </p>
+
+      <SocialIcons class="!flex !gap-3" />
+    </div>
+
+    <div class="mb-10 md:mb-0 md:basis-[calc(50%-10px)] lg:basis-[calc(25%-10px)]">
+      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+        {t('footer.links')}
+      </p>
+
+      <NavLinks class="!flex flex-col !items-start justify-start text-left" />
+    </div>
+  </footer>
+</section>

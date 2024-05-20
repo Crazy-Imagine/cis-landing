@@ -14,7 +14,7 @@ const pages = [
 ];
 ---
 
-<ul class="hidden items-center gap-3 lg:flex xl:gap-5">
+<ul class:list={['hidden items-center gap-3 lg:flex xl:gap-5', Astro.props.class]}>
   {
     pages.map(({ name, href }) => (
       <li>
