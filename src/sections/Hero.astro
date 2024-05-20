@@ -1,51 +1,93 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { HERO_SECTION } from '@/consts/hero-sections';
+import type { PageWithHero } from '@/types/Hero';
 
 interface Props {
-  heroTitle: string;
-  heroSubtitle: string;
-  scheduleCall: boolean;
+  page: PageWithHero;
+  scheduleCall?: boolean;
 }
 
-const { heroTitle, heroSubtitle, scheduleCall } = Astro.props;
+const { page, scheduleCall = false } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const hero = HERO_SECTION[page];
 ---
 
 <section
-  class="relative -mt-[var(--header-height)] h-[680px] w-full bg-cover bg-center bg-no-repeat px-[60px] py-20"
+  class="relative -mt-[var(--header-height)] h-fit w-full bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white sm:h-[680px] md:px-10 2xl:px-0"
 >
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary"></div>
+  <div class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary"></div>
 
   <div
-    class="container relative z-10 mx-auto flex h-full w-full items-center rounded-xl bg-secondary text-white"
+    class="relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:bg-secondary"
   >
-    <div class="gap-4 pl-[100px]">
-      <h1 class="font-nexaBold text-h1 font-bold capitalize">
-        {heroTitle}
+    <div class="gap-4 sm:pl-8 lg:pl-14 xl:pl-[100px]">
+      <h1
+        class="font-nexaBold text-2xl font-bold capitalize leading-7 sm:text-4xl sm:leading-10 lg:text-[90px] lg:leading-[80px]"
+      >
+        {t(`hero.${page}-title` as const)}
       </h1>
 
-      <p class="my-10 font-nexaLight text-body1 uppercase tracking-widest">
-        {heroSubtitle}
+      <p class="my-10 font-nexaLight text-xs uppercase tracking-widest lg:text-sm">
+        {t(`hero.${page}-subtitle` as const)}
       </p>
 
       {
         scheduleCall && (
-          <button class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight text-button uppercase">
+          <button class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase">
             {t('hero.home-button')}
           </button>
         )
       }
     </div>
 
-    <div class="flex-shrink-0 basis-[350px] place-self-end">
+    <div class="flex-shrink basis-[350px] place-self-end lg:flex-shrink-0">
       <img
         class="h-auto w-full max-w-[349px]"
-        width="349"
-        height="459"
-        src="/img/ui/home-hero.webp"
-        alt={t('alt.home-hero')}
+        width={hero.width}
+        height={hero.height}
+        src={hero.img}
+        alt={t(`hero.${page}-img-alt` as const)}
+      />
+    </div>
+  </div>
+
+  <h1 class="relative z-20 font-nexaBold text-2xl font-bold capitalize leading-7 sm:hidden">
+    {t(`hero.${page}-title` as const)}
+  </h1>
+
+  <p class="relative z-20 my-10 font-nexaLight text-xs uppercase tracking-widest sm:hidden">
+    {t(`hero.${page}-subtitle` as const)}
+  </p>
+
+  <div class="relative z-20 flex items-center sm:hidden">
+    <div class="flex flex-shrink-0 flex-grow place-content-center">
+      {
+        scheduleCall && (
+          <button class="flex-shrink-0 rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase">
+            {t('hero.home-button')}
+          </button>
+        )
+      }
+    </div>
+
+    <div
+      class:list={[
+        'flex place-content-end',
+        {
+          'flex-shrink flex-grow-0': scheduleCall,
+          'basis-1/2': !scheduleCall,
+        },
+      ]}
+    >
+      <img
+        width={hero.width}
+        height={hero.height}
+        src={hero.img}
+        alt={t(`hero.${page}-img-alt` as const)}
       />
     </div>
   </div>

@@ -1,16 +1,12 @@
 ---
 import Header from '@/components/Header.astro';
-import Hero from '@/sections/Hero.astro';
 import '@fontsource/roboto';
 
 interface Props {
   title: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  scheduleCall?: boolean;
 }
 
-const { title, heroTitle, heroSubtitle, scheduleCall = false } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,7 +23,6 @@ const { title, heroTitle, heroSubtitle, scheduleCall = false } = Astro.props;
   <body class="w-full overflow-x-hidden">
     <main>
       <Header />
-      <Hero heroTitle={heroTitle} heroSubtitle={heroSubtitle} scheduleCall={scheduleCall} />
       <slot />
     </main>
   </body>

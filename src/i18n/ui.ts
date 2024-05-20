@@ -25,20 +25,20 @@ export const ui = {
     'aria.twitter-link': "Crazy Imagine Software's X, it will open in a new tab",
     'aria.upwork-link': "Crazy Imagine Software's Upwork, it will open in a new tab",
     'aria.youtube-link': "Crazy Imagine Software's Youtube, it will open in a new tab",
+    'aria.menu-icon': 'Icon to open the menu on mobile',
 
     // Img Alt Keys
-    'alt.home-hero': "Flag with Crazy Imagine Software's logo",
+    'alt.logo': 'Crazy Imagine Software Logo',
 
     // Common Keys
     'common.hello': 'Hello',
     'common.contact-us': 'Contact Us',
 
-    // CIS Keys
-    'cis.slogan': 'Ideas beyond your imagination',
-
     // Hero Keys
+    'hero.home-title': 'Ideas beyond your imagination',
     'hero.home-subtitle': 'Teamwork is the heart of everything we do',
     'hero.home-button': 'Schedule a call',
+    'hero.home-img-alt': "Flag with Crazy Imagine Software's logo",
 
     // Nav Keys
     'nav.about': 'About',
@@ -64,20 +64,20 @@ export const ui = {
     'aria.twitter-link': 'X de Crazy Imagine Software, se abrirá en una nueva pestaña',
     'aria.upwork-link': 'Upwork de Crazy Imagine Software, se abrirá en una nueva pestaña',
     'aria.youtube-link': 'Youtube de Crazy Imagine Software, se abrirá en una nueva pestaña',
+    'aria.menu-icon': 'Ícono para abrir el menú en móvil',
 
-    // Img Alt Keys
-    'alt.home-hero': 'Bandera con el logo de Crazy Imagine Software',
+    // Various Img Alt Keys
+    'alt.logo': 'Logo de Crazy Imagine Software',
 
     // Common Keys
     'common.hello': 'Hola',
     'common.contact-us': 'Contáctanos',
 
-    // CIS Keys
-    'cis.slogan': 'Ideas más allá de tu imaginación',
-
     // Hero Keys
+    'hero.home-title': 'Ideas más allá de tu imaginación',
     'hero.home-subtitle': 'El trabajo en equipo es el corazón de todo lo que hacemos',
     'hero.home-button': 'Programar una llamada',
+    'hero.home-img-alt': 'Bandera con el logo de Crazy Imagine Software',
 
     // Nav Keys
     'nav.about': 'Sobre nosotros',

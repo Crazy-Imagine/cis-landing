@@ -1,4 +1,5 @@
 ---
+import Hero from '@/sections/Hero.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -6,11 +7,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout
-  title="Bienvenido a Astro."
-  heroTitle={t('cis.slogan')}
-  heroSubtitle={t('hero.home-subtitle')}
-  scheduleCall
->
+<Layout title="Bienvenido a Astro.">
+  <Hero page="home" scheduleCall />
   <h5>{t('common.hello')}</h5>
 </Layout>

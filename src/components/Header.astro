@@ -1,4 +1,5 @@
 ---
+import Menu from '../icons/Menu.astro';
 import NavLinks from '@/components/NavLinks.astro';
 import SocialIcons from '@/components/SocialIcons.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
@@ -10,10 +11,14 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <div class="sticky left-0 right-0 top-0 z-20 max-h-screen bg-transparent">
-  <header class="container mx-auto">
+  <header class="mx-auto px-4 2xl:container md:px-10 2xl:px-0">
     <nav class="flex h-[var(--header-height)] items-center justify-between">
-      <a href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+      <a class="hidden md:inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
         <CISLogo />
+      </a>
+
+      <a class="md:hidden" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+        <img src="/img/logo/cis-logo-white.webp" alt={t('alt.logo')} height="35" width="30" />
       </a>
 
       <NavLinks />
@@ -21,12 +26,14 @@ const translatePath = useTranslatedPath(lang);
       <SocialIcons />
 
       <a
-        class="rounded-full border-2 px-6 py-2.5 font-roboto text-xs uppercase text-white transition hover:bg-white hover:text-primary"
+        class="hidden rounded-full border-2 px-6 py-2.5 font-roboto text-xs uppercase text-white transition hover:bg-white hover:text-primary lg:inline"
         href={translatePath('/contact-us', lang)}
         aria-label={t('aria.contact-us-link')}
       >
         {t('common.contact-us')}
       </a>
+
+      <Menu class="h-12 w-12 text-white lg:hidden" />
     </nav>
   </header>
 </div>

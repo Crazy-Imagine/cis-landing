@@ -1,0 +1,22 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<svg
+  class:list={Astro.props.class}
+  role="img"
+  aria-label={t('aria.menu-icon')}
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="currentColor"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4 6l16 0"></path><path
+    d="M4 12l16 0"></path><path d="M4 18l16 0"></path></svg
+>
