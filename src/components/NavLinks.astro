@@ -6,7 +6,7 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
 const pages = [
-  { name: t('nav.about'), href: '#' },
+  { name: t('nav.about'), href: '/about' },
   { name: t('nav.projects'), href: '#' },
   { name: t('nav.services'), href: '#' },
   { name: t('nav.blog'), href: '#' },
@@ -20,7 +20,6 @@ const pages = [
       <li>
         <a
           class="relative whitespace-nowrap font-nexaLight text-xs uppercase tracking-widest text-white"
-          target="_blank"
           href={translatePath(href, lang)}
           rel="noopener"
           aria-label="Facebook de Crazy Imagine Software, se abrirá en una nueva pestaña"
