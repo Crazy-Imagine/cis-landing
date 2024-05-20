@@ -13,6 +13,10 @@ export default defineConfig({
     },
   },
   site: 'https://crazyimagine.com',
+  build: {
+    inlineStylesheets: 'always',
+  },
+  compressHTML: true,
   integrations: [
     tailwind(),
     sitemap({

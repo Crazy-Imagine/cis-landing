@@ -32,6 +32,8 @@
 		"husky": "9.0.11",
 		"lightningcss": "1.25.0",
 		"lint-staged": "15.2.2",
+		"postcss-import": "16.1.0",
+		"postcss-nesting": "12.1.4",
 		"prettier": "3.2.5",
 		"prettier-plugin-astro": "0.13.0",
 		"prettier-plugin-astro-organize-imports": "0.4.8",
