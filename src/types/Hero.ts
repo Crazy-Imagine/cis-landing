@@ -4,6 +4,6 @@ export interface Hero {
   height: number;
 }
 
-export type PageWithHero = 'home';
+export type PageWithHero = 'home' | 'about';
 
 export type HeroSection = Record<PageWithHero, Hero>;

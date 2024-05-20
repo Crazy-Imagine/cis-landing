@@ -46,6 +46,10 @@ export const ui = {
     'hero.home-subtitle': 'Teamwork is the heart of everything we do',
     'hero.home-button': 'Schedule a call',
     'hero.home-img-alt': "Flag with Crazy Imagine Software's logo",
+    'hero.about-title': 'Our Team is Your Greatest Resource',
+    'hero.about-subtitle': 'Leading a team of world-class engineers, developers and designers',
+    'hero.about-button': 'Contact us',
+    'hero.about-img-alt': 'Rocket image',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -97,6 +101,10 @@ export const ui = {
     'hero.home-subtitle': 'El trabajo en equipo es el corazón de todo lo que hacemos',
     'hero.home-button': 'Programar una llamada',
     'hero.home-img-alt': 'Bandera con el logo de Crazy Imagine Software',
+    'hero.about-title': 'Nuestro Equipo es tu mejor recurso',
+    'hero.about-subtitle': 'Nuestro equipo excepcional está distribuido en toda América Latina',
+    'hero.about-button': 'Contáctanos',
+    'hero.about-img-alt': 'Imagen de un cohete',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,

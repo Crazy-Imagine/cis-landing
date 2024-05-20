@@ -6,4 +6,9 @@ export const HERO_SECTION: HeroSection = {
     width: 349,
     height: 459,
   },
+  about: {
+    img: '/img/ui/rocket.webp',
+    width: 223,
+    height: 432,
+  },
 };
