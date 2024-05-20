@@ -1,0 +1,58 @@
+---
+import 'swiper/css';
+import 'swiper/css/keyboard';
+import 'swiper/css/pagination';
+import CarouselCard from './CarouselCard.astro';
+---
+
+<div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper text-white">
+    <!-- Slides -->
+    <div class="swiper-slide">
+      <CarouselCard />
+    </div>
+    <div class="swiper-slide">
+      <CarouselCard />
+    </div>
+    <div class="swiper-slide">
+      <CarouselCard />
+    </div>
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Keyboard, Pagination } from 'swiper/modules';
+
+  const swiper = new Swiper('.swiper', {
+    modules: [Keyboard, Pagination],
+    spaceBetween: 50,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      600: {
+        slidesPerView: 2,
+      },
+      960: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+      1920: {
+        slidesPerView: 4,
+      },
+    },
+    grabCursor: true,
+    pagination: {
+      clickable: true,
+    },
+    keyboard: {
+      enabled: true,
+    },
+  });
+</script>

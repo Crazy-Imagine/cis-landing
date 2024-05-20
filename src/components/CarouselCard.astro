@@ -1,0 +1,28 @@
+---
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
+
+const lang = getLangFromUrl(Astro.url);
+// const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<article class:list={['my-2 w-[300px] rounded-xl bg-white', Astro.props.class]}>
+  <picture class="rounded-t-xl">
+    <img class="rounded-t-xl" src="/img/test/article-test.webp" alt="" />
+  </picture>
+
+  <div class="p-5 text-center">
+    <h5 class="line-clamp-2 font-nexaBold text-base text-primary">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiae
+      odio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eum
+      harum perferendis sint sit.
+    </h5>
+
+    <p class="mt-2.5 font-nexaBold text-sm text-periwinkle">
+      <a href={translatePath('#', lang)} class="flex items-center justify-center">
+        Read More <ArrowNarrowRight class="text-periwinkle" />
+      </a>
+    </p>
+  </div>
+</article>
