@@ -102,7 +102,7 @@ export const ui = {
     'hero.home-button': 'Programar una llamada',
     'hero.home-img-alt': 'Bandera con el logo de Crazy Imagine Software',
     'hero.about-title': 'Nuestro Equipo es tu mejor recurso',
-    'hero.about-subtitle': 'Leading a team of world-class engineers, developers and designers',
+    'hero.about-subtitle': 'Nuestro equipo excepcional está distribuido en toda América Latina',
     'hero.about-button': 'Contáctanos',
     'hero.about-img-alt': 'Imagen de un cohete',
 
