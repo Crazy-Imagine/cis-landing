@@ -1,0 +1,41 @@
+---
+import type { CarouselCardData } from '@/types/Carousel';
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
+
+interface Props extends CarouselCardData {
+  linkText: string;
+  class?: string;
+}
+
+const { title, img, imgAlt = '', linkText } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+// const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<article class:list={['swiper-slide my-2 rounded-xl bg-white', Astro.props.class]}>
+  <picture class="rounded-t-xl">
+    <img class="h-auto w-full rounded-t-xl" src={img} alt={imgAlt} loading="lazy" />
+    <div class="swiper-lazy-preloader"></div>
+  </picture>
+
+  <div class="p-5 text-center">
+    <h5 class="line-clamp-2 font-nexaBold text-base text-primary">
+      {title}
+    </h5>
+
+    <p class="mt-2.5 inline-block font-nexaBold text-periwinkle">
+      <a
+        href={translatePath('#', lang)}
+        class="group relative flex items-end justify-center
+        after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
+        hover:after:origin-bottom-left hover:after:scale-100"
+      >
+        <span class="text-sm">{linkText}</span>
+        <ArrowNarrowRight class="group-hover:animate-wiggle" />
+      </a>
+    </p>
+  </div>
+</article>

@@ -1,0 +1,50 @@
+---
+import 'swiper/css';
+import 'swiper/css/keyboard';
+import 'swiper/css/pagination';
+---
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <slot />
+  </div>
+
+  <div class="swiper-pagination"></div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Keyboard, Pagination } from 'swiper/modules';
+  import type { SwiperOptions } from 'swiper/types';
+
+  const swiper = new Swiper('.mySwiper', {
+    modules: [Keyboard, Pagination],
+    // loop: true,
+    spaceBetween: 50,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      600: {
+        slidesPerView: 2,
+      },
+      960: {
+        slidesPerView: 3,
+      },
+      1280: {
+        slidesPerView: 4,
+      },
+      1920: {
+        slidesPerView: 4,
+      },
+    },
+    grabCursor: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    keyboard: {
+      enabled: true,
+    },
+  } as SwiperOptions);
+</script>

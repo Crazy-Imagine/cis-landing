@@ -1,8 +1,12 @@
 ---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<Layout title="About Us">
+<Layout title={t('SEO.about-title')}>
   <Hero page="about" />
 </Layout>

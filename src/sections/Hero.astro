@@ -17,9 +17,9 @@ const hero = HERO_SECTION[page];
 ---
 
 <section
-  class="relative -mt-[var(--header-height)] h-fit w-full bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white sm:h-[680px] md:px-10 2xl:px-0"
+  class="relative -mt-[var(--header-height)] h-fit w-full bg-hero bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white sm:h-[680px] md:px-10 lg:pb-[var(--header-height)] 2xl:px-0"
 >
-  <div class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary"></div>
+  <div class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-custom-primary"></div>
 
   <div
     class="relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:bg-secondary"
@@ -92,9 +92,3 @@ const hero = HERO_SECTION[page];
     </div>
   </div>
 </section>
-
-<style>
-  section {
-    background-image: url('/img/ui/hero-background.webp');
-  }
-</style>

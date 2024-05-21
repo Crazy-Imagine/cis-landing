@@ -1,4 +1,5 @@
 ---
+import ResponsiveContainer from '../components/ResponsiveContainer.astro';
 import Building from '@/icons/Building.astro';
 import CISLogo from '@/icons/CIS.astro';
 import NavLinks from '@/components/NavLinks.astro';
@@ -14,8 +15,9 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <section class="w-full bg-primary">
-  <footer
-    class="mx-auto flex h-max flex-col justify-between px-4 py-6 text-white 2xl:container md:flex-row md:flex-wrap md:gap-x-2.5 md:px-10 md:py-20 2xl:px-0"
+  <ResponsiveContainer
+    class="flex h-max flex-col justify-between py-6 text-white md:flex-row md:flex-wrap md:gap-x-2.5 md:py-20"
+    as="footer"
   >
     <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
       <CISLogo class="mb-5" />
@@ -81,5 +83,5 @@ const translatePath = useTranslatedPath(lang);
 
       <NavLinks class="!flex flex-col !items-start justify-start text-left" />
     </div>
-  </footer>
+  </ResponsiveContainer>
 </section>

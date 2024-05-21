@@ -1,0 +1,70 @@
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Carousel from '@/components/Carousel.astro';
+import CarouselCard from '@/components/CarouselCard.astro';
+import type { CarouselCardData } from '@/types/Carousel';
+
+interface Props {
+  type: 'blue' | 'white';
+  class?: string;
+  cardClass?: string;
+  title: string;
+  data: CarouselCardData[];
+  linkText: string;
+}
+
+const { title, data, type, linkText } = Astro.props;
+
+const isWhite = type === 'white';
+---
+
+<section
+  class:list={[
+    'relative w-full py-14',
+    {
+      'bg-white': isWhite,
+      'bg-primary bg-light-bulbs bg-repeat': !isWhite,
+    },
+    Astro.props.class,
+  ]}
+>
+  <div
+    class:list={[
+      'absolute inset-0 z-10 bg-gradient-to-r from-custom-primary to-transparent',
+      { hidden: isWhite },
+    ]}
+  >
+  </div>
+
+  <ResponsiveContainer class="relative z-50" as="div">
+    <h3
+      class:list={[
+        'mb-10 text-center font-nexaBold text-6xl capitalize',
+        {
+          'text-primary': isWhite,
+          'text-white': !isWhite,
+        },
+      ]}
+    >
+      {title}
+    </h3>
+
+    <Carousel>
+      {
+        data.map((value) => (
+          <CarouselCard
+            {...value}
+            class:list={[
+              {
+                'shadow-md': isWhite,
+              },
+            ]}
+            linkText={linkText}
+          />
+        ))
+      }
+    </Carousel>
+
+    <slot />
+  </ResponsiveContainer>
+</section>
