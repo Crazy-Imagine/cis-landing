@@ -19,6 +19,15 @@ export default {
         'periwinkle': 'var(--color-periwinkle)',
         'sky-blue': 'var(--color-sky-blue)',
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(10px)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 0.5s ease-in-out',
+      },
     },
   },
   plugins: [],

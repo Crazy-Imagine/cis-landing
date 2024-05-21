@@ -2,26 +2,39 @@
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
 
+interface Props {
+  title: string;
+  img: string;
+  imgAlt?: string;
+  class?: string;
+}
+
+const { title, img, imgAlt = '' } = Astro.props;
+
 const lang = getLangFromUrl(Astro.url);
 // const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<article class:list={['my-2 w-[300px] rounded-xl bg-white', Astro.props.class]}>
+<article class:list={['swiper-slide my-2 rounded-xl bg-white', Astro.props.class]}>
   <picture class="rounded-t-xl">
-    <img class="rounded-t-xl" src="/img/test/article-test.webp" alt="" />
+    <img class="h-auto w-full rounded-t-xl" src={img} alt={imgAlt} />
   </picture>
 
   <div class="p-5 text-center">
     <h5 class="line-clamp-2 font-nexaBold text-base text-primary">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiae
-      odio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eum
-      harum perferendis sint sit.
+      {title}
     </h5>
 
-    <p class="mt-2.5 font-nexaBold text-sm text-periwinkle">
-      <a href={translatePath('#', lang)} class="flex items-center justify-center">
-        Read More <ArrowNarrowRight class="text-periwinkle" />
+    <p class="mt-2.5 inline-block font-nexaBold text-periwinkle">
+      <a
+        href={translatePath('#', lang)}
+        class="group relative flex items-end justify-center
+        after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
+        hover:after:origin-bottom-left hover:after:scale-100"
+      >
+        <span class="text-sm">Read More</span>
+        <ArrowNarrowRight class="group-hover:animate-wiggle" />
       </a>
     </p>
   </div>

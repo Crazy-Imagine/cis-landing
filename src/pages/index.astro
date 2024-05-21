@@ -1,4 +1,5 @@
 ---
+import CarouselCard from '@/components/CarouselCard.astro';
 import Carousel from '@/components/Carousel.astro';
 
 import Hero from '@/sections/Hero.astro';
@@ -8,5 +9,16 @@ import Layout from '@/layouts/Layout.astro';
 <Layout title="Welcome to Astro.">
   <Hero page="home" scheduleCall />
 
-  <Carousel />
+  <Carousel>
+    {
+      [0, 1, 2, 4, 5].map(() => (
+        <CarouselCard
+          title={`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiae
+      odio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eum
+      harum perferendis sint sit.`}
+          img="/img/test/article-test.webp"
+        />
+      ))
+    }
+  </Carousel>
 </Layout>

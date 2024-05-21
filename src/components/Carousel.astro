@@ -2,22 +2,12 @@
 import 'swiper/css';
 import 'swiper/css/keyboard';
 import 'swiper/css/pagination';
-import CarouselCard from './CarouselCard.astro';
 ---
 
 <div class="swiper">
   <!-- Additional required wrapper -->
-  <div class="swiper-wrapper text-white">
-    <!-- Slides -->
-    <div class="swiper-slide">
-      <CarouselCard />
-    </div>
-    <div class="swiper-slide">
-      <CarouselCard />
-    </div>
-    <div class="swiper-slide">
-      <CarouselCard />
-    </div>
+  <div class="swiper-wrapper">
+    <slot />
   </div>
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
