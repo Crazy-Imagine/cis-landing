@@ -11,8 +11,10 @@ const year = new Date().getFullYear();
 
 export const ui = {
   en: {
-    // Aria Keys
+    'SEO.home-title': 'Ideas beyond your imagination',
+    'SEO.about-title': 'Our Team is Your Greatest Resource',
 
+    // Aria Keys
     'aria.home-link': 'Link to home page',
     'aria.contact-us-link': 'Link to contact us page',
     'aria.logo': 'Logo de Crazy Imagine Software',
@@ -40,6 +42,11 @@ export const ui = {
     'common.contact-us': 'Contact Us',
     'common.terms-and-conditions': 'Terms & Conditions',
     'common:privacy-policy': 'Privacy Policy',
+    'common.previous-projects': 'Previous Projects',
+    'common.view-project': 'View Project',
+    'common.read-more': 'Read More',
+    'common.latest-in-tech-talk': 'The latest in tech talk',
+    'common.all-projects': 'All Projects',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -67,6 +74,8 @@ export const ui = {
     'nav.work-with-us': 'Work with us',
   },
   es: {
+    'SEO.home-title': 'Ideas más allá de tu imaginación',
+    'SEO.about-title': 'Nuestro equipo es su mejor recurso',
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
     'aria.contact-us-link': 'Enlace a la página de contáctanos',
@@ -95,6 +104,11 @@ export const ui = {
     'common.contact-us': 'Contáctanos',
     'common.terms-and-conditions': 'Términos y Condiciones',
     'common:privacy-policy': 'Política de Privacidad',
+    'common.previous-projects': 'Proyectos Anteriores',
+    'common.view-project': 'Ver Proyecto',
+    'common.read-more': 'Leer más',
+    'common.latest-in-tech-talk': 'Lo último en tecnología',
+    'common.all-projects': 'Todos los proyectos',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',

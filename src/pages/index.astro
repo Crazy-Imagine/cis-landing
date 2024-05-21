@@ -1,24 +1,39 @@
 ---
-import CarouselCard from '@/components/CarouselCard.astro';
-import Carousel from '@/components/Carousel.astro';
-
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import { carouselData } from '@/utils/test/carousel-data';
+import CarouselSection from '@/sections/CarouselSection.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={t('SEO.home-title')}>
   <Hero page="home" scheduleCall />
 
-  <Carousel>
-    {
-      [0, 1, 2, 4, 5].map(() => (
-        <CarouselCard
-          title={`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiae
-      odio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eum
-      harum perferendis sint sit.`}
-          img="/img/test/article-test.webp"
-        />
-      ))
-    }
-  </Carousel>
+  <CarouselSection
+    type="white"
+    title={t('common.previous-projects')}
+    data={carouselData}
+    linkText={t('common.view-project')}
+  >
+    <div class="mt-10 text-center">
+      <a
+        class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase text-white"
+        href={translatePath('#', lang)}
+      >
+        {t('common.all-projects')}
+      </a>
+    </div>
+  </CarouselSection>
+
+  <CarouselSection
+    type="blue"
+    title={t('common.latest-in-tech-talk')}
+    data={carouselData}
+    linkText={t('common.read-more')}
+  />
 </Layout>

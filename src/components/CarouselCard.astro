@@ -1,15 +1,14 @@
 ---
+import type { CarouselCardData } from '@/types/Carousel';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
 
-interface Props {
-  title: string;
-  img: string;
-  imgAlt?: string;
+interface Props extends CarouselCardData {
+  linkText: string;
   class?: string;
 }
 
-const { title, img, imgAlt = '' } = Astro.props;
+const { title, img, imgAlt = '', linkText } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 // const t = useTranslations(lang);
@@ -34,7 +33,7 @@ const translatePath = useTranslatedPath(lang);
         after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
         hover:after:origin-bottom-left hover:after:scale-100"
       >
-        <span class="text-sm">Read More</span>
+        <span class="text-sm">{linkText}</span>
         <ArrowNarrowRight class="group-hover:animate-wiggle" />
       </a>
     </p>
