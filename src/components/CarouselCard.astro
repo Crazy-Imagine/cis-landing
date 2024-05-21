@@ -18,7 +18,8 @@ const translatePath = useTranslatedPath(lang);
 
 <article class:list={['swiper-slide my-2 rounded-xl bg-white', Astro.props.class]}>
   <picture class="rounded-t-xl">
-    <img class="h-auto w-full rounded-t-xl" src={img} alt={imgAlt} />
+    <img class="h-auto w-full rounded-t-xl" src={img} alt={imgAlt} loading="lazy" />
+    <div class="swiper-lazy-preloader"></div>
   </picture>
 
   <div class="p-5 text-center">
