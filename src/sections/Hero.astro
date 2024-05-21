@@ -1,7 +1,8 @@
 ---
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-import { HERO_SECTION } from '@/consts/hero-sections';
+import Typography from '@/components/Typography.astro';
 import type { PageWithHero } from '@/types/Hero';
+import { HERO_SECTION } from '@/consts/hero-sections';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   page: PageWithHero;
@@ -25,15 +26,13 @@ const hero = HERO_SECTION[page];
     class="relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:bg-secondary"
   >
     <div class="gap-4 sm:pl-8 lg:pl-14 xl:pl-[100px]">
-      <h1
-        class="font-nexaBold text-2xl font-bold capitalize leading-7 sm:text-4xl sm:leading-10 lg:text-[90px] lg:leading-[80px]"
-      >
+      <Typography class="font-bold capitalize" as="h1" variant="h1">
         {t(`hero.${page}-title` as const)}
-      </h1>
+      </Typography>
 
-      <p class="my-10 font-nexaLight text-xs uppercase tracking-widest lg:text-sm">
+      <Typography class="my-10 uppercase" as="p" variant="h6">
         {t(`hero.${page}-subtitle` as const)}
-      </p>
+      </Typography>
 
       {
         scheduleCall && (
@@ -55,13 +54,13 @@ const hero = HERO_SECTION[page];
     </div>
   </div>
 
-  <h1 class="relative z-20 font-nexaBold text-2xl font-bold capitalize leading-7 sm:hidden">
+  <Typography class="relative z-20 font-bold capitalize sm:hidden" as="h1" variant="h1">
     {t(`hero.${page}-title` as const)}
-  </h1>
+  </Typography>
 
-  <p class="relative z-20 my-10 font-nexaLight text-xs uppercase tracking-widest sm:hidden">
+  <Typography class="relative z-20 my-10 uppercase" as="p" variant="h6">
     {t(`hero.${page}-subtitle` as const)}
-  </p>
+  </Typography>
 
   <div class="relative z-20 flex items-center sm:hidden">
     <div class="flex flex-shrink-0 flex-grow place-content-center">

@@ -1,7 +1,8 @@
 ---
-import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Carousel from '@/components/Carousel.astro';
 import CarouselCard from '@/components/CarouselCard.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
 import type { CarouselCardData } from '@/types/Carousel';
 
 interface Props {
@@ -37,17 +38,19 @@ const isWhite = type === 'white';
   </div>
 
   <ResponsiveContainer class="relative z-50" as="div">
-    <h3
+    <Typography
       class:list={[
-        'mb-10 text-center font-nexaBold text-6xl capitalize',
+        'mb-10 text-center capitalize',
         {
           'text-primary': isWhite,
           'text-white': !isWhite,
         },
       ]}
+      as="h3"
+      variant="h2"
     >
       {title}
-    </h3>
+    </Typography>
 
     <Carousel>
       {

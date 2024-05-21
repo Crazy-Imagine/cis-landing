@@ -1,4 +1,5 @@
 ---
+import Typography from './Typography.astro';
 import type { CarouselCardData } from '@/types/Carousel';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
@@ -22,11 +23,11 @@ const translatePath = useTranslatedPath(lang);
   </picture>
 
   <div class="p-5 text-center">
-    <h5 class="line-clamp-2 font-nexaBold text-base text-primary">
+    <Typography class="line-clamp-2 text-primary" as="h5" variant="accent">
       {title}
-    </h5>
+    </Typography>
 
-    <p class="mt-2.5 inline-block font-nexaBold text-periwinkle">
+    <Typography class="mt-2.5 inline-block text-periwinkle" as="p" variant="accent">
       <a
         href={translatePath('#', lang)}
         class="group relative flex items-end justify-center
@@ -36,6 +37,6 @@ const translatePath = useTranslatedPath(lang);
         <span class="text-sm">{linkText}</span>
         <ArrowNarrowRight class="group-hover:animate-wiggle" />
       </a>
-    </p>
+    </Typography>
   </div>
 </article>
