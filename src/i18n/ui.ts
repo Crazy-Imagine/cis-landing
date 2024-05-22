@@ -79,7 +79,7 @@ export const ui = {
     'hero.services-subtitle': '',
     'hero.services-button': '',
     'hero.services-img-alt': 'Image of a explorer vehicle',
-    'hero.mision-title': 'Mision & Vision',
+    'hero.mision-title': 'Mission & Vision',
     'hero.mision-subtitle':
       'What we want to accomplish and provide, and what we see in he future for our agency',
     'hero.mision-button': '',
