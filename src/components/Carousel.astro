@@ -1,6 +1,5 @@
 ---
 import 'swiper/css';
-import 'swiper/css/autoplay';
 import 'swiper/css/keyboard';
 import 'swiper/css/pagination';
 ---
@@ -10,17 +9,17 @@ import 'swiper/css/pagination';
     <slot />
   </div>
 
-  <div class="swiper-pagination"></div>
+  <div class="swiper-pagination !relative !bottom-0"></div>
 </div>
 
 <script>
   import Swiper from 'swiper';
-  import { Autoplay, Keyboard, Pagination } from 'swiper/modules';
+  import { Keyboard, Pagination } from 'swiper/modules';
   import type { SwiperOptions } from 'swiper/types';
 
   document.addEventListener('astro:page-load', () => {
     const swiper = new Swiper('.mySwiper', {
-      modules: [Autoplay, Keyboard, Pagination],
+      modules: [Keyboard, Pagination],
       // loop: true,
       spaceBetween: 50,
       breakpoints: {
