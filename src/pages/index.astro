@@ -1,9 +1,10 @@
 ---
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import { carouselData } from '@/utils/test/carousel-data';
 import CarouselSection from '@/sections/CarouselSection.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import Partners from '@/sections/Partners.astro';
+import { carouselData } from '@/utils/test/carousel-data';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -29,6 +30,8 @@ const translatePath = useTranslatedPath(lang);
       </a>
     </div>
   </CarouselSection>
+
+  <Partners />
 
   <CarouselSection
     type="blue"

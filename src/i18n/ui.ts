@@ -47,6 +47,7 @@ export const ui = {
     'common.read-more': 'Read More',
     'common.latest-in-tech-talk': 'The latest in tech talk',
     'common.all-projects': 'All Projects',
+    'common.partners': 'Partners',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -109,6 +110,7 @@ export const ui = {
     'common.read-more': 'Leer más',
     'common.latest-in-tech-talk': 'Lo último en tecnología',
     'common.all-projects': 'Todos los proyectos',
+    'common.partners': 'Socios Comerciales',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',

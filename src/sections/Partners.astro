@@ -1,0 +1,63 @@
+---
+import 'swiper/css';
+import 'swiper/css/autoplay';
+
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import { PARTNERS } from '@/consts/partners';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer class="py-2 lg:py-20" as="section">
+  <Typography class="mb-20 text-center capitalize text-primary" as="h3" variant="h2">
+    {t('common.partners')}
+  </Typography>
+
+  <div class="swiper partners" id="partners">
+    <div class="swiper-wrapper !h-max items-center">
+      {
+        PARTNERS.map((partner) => (
+          <div class="swiper-slide">
+            <img src={partner.src} alt={partner.alt} loading="lazy" />
+            <div class="swiper-lazy-preloader" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</ResponsiveContainer>
+
+<script>
+  import Swiper from 'swiper';
+  import { Autoplay } from 'swiper/modules';
+  import type { SwiperOptions } from 'swiper/types';
+
+  document.addEventListener('astro:page-load', () => {
+    const swiper = new Swiper('.partners', {
+      modules: [Autoplay],
+      loop: true,
+      breakpoints: {
+        0: {
+          slidesPerView: 2,
+        },
+        600: {
+          slidesPerView: 2,
+        },
+        960: {
+          slidesPerView: 3,
+        },
+        1280: {
+          slidesPerView: 5,
+        },
+      },
+      spaceBetween: 200,
+      grabCursor: true,
+      autoplay: {
+        delay: 1000,
+      },
+    } as SwiperOptions);
+  });
+</script>
