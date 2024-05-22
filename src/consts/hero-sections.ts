@@ -11,4 +11,24 @@ export const HERO_SECTION: HeroSection = {
     width: 223,
     height: 432,
   },
+  blog: {
+    img: '/img/ui/rocket.webp',
+    width: 223,
+    height: 432,
+  },
+  references: {
+    img: '/img/ui/rocket.webp',
+    width: 223,
+    height: 432,
+  },
+  services: {
+    img: '/img/ui/rocket.webp',
+    width: 223,
+    height: 432,
+  },
+  mision: {
+    img: '/img/ui/rocket.webp',
+    width: 223,
+    height: 432,
+  },
 };

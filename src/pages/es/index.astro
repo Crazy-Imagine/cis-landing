@@ -6,6 +6,7 @@ import LinkPill from '@/components/LinkPill.astro';
 import Partners from '@/sections/Partners.astro';
 import { carouselData } from '@/utils/test/carousel-data';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -36,6 +37,8 @@ const translatePath = useTranslatedPath(lang);
       </LinkPill>
     </div>
   </CarouselSection>
+
+  <NewsAndUpdates />
 
   <Partners />
 
