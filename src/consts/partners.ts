@@ -50,8 +50,8 @@ export const PARTNERS = [
   {
     src: '/img/partners/o-connell-group.svg',
     alt: "O'Connel Group",
-    width: 404,
-    height: 381,
+    width: 320,
+    height: 286,
   },
   {
     src: '/img/partners/ordering.svg',
