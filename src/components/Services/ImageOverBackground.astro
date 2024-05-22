@@ -1,0 +1,12 @@
+---
+interface Props {
+  img: string;
+  alt: string;
+}
+---
+
+<div class="relative flex h-[275px] w-max">
+  <div class="inset-0 bottom-0 mt-auto h-full w-[315px] rounded-[20px] bg-blue-purple"></div>
+
+  <img class="absolute inset-x-0 bottom-0 mx-auto" src={Astro.props.img} alt={Astro.props.alt} />
+</div>

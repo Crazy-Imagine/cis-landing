@@ -45,6 +45,7 @@ export const ui = {
 
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
+    'alt.light-buld': 'Light Bulb Image',
 
     // Common Keys
     'common.hello': 'Hello',
@@ -57,6 +58,7 @@ export const ui = {
     'common.latest-in-tech-talk': 'The latest in tech talk',
     'common.all-projects': 'All Projects',
     'common.partners': 'Partners',
+    'common.get-started': 'Get Started',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -67,6 +69,17 @@ export const ui = {
     'hero.about-subtitle': 'Leading a team of world-class engineers, developers and designers',
     'hero.about-button': 'Contact us',
     'hero.about-img-alt': 'Rocket image',
+
+    // Services Keys
+    'services.why-should-you': 'Why Should You',
+    'services.choose-us': 'Choose Us',
+    'services.we-will-help-you-strategize':
+      'We will help you to strategize your web presence, designing and executing sitemaps and wireframes to provide a sleek, elegant, and seamless end-user experience.',
+    'services.with-deep-expertise':
+      'With deep expertise that spans across the web development spectrum, we can optimize your digital presence at any level.',
+    'services.full-stack-development': 'Full-stack Development',
+    'services.user-experience': 'User Experience',
+    'services.quality-support': 'Quality Support',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -118,6 +131,7 @@ export const ui = {
 
     // Various Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',
+    'alt.light-bulb': 'Imagen de un bombillo',
 
     // Common Keys
     'common.hello': 'Hola',
@@ -130,6 +144,7 @@ export const ui = {
     'common.latest-in-tech-talk': 'Lo último en tecnología',
     'common.all-projects': 'Todos los proyectos',
     'common.partners': 'Socios Comerciales',
+    'common.get-started': 'Get Started',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -140,6 +155,17 @@ export const ui = {
     'hero.about-subtitle': 'Nuestro equipo excepcional está distribuido en toda América Latina',
     'hero.about-button': 'Contáctanos',
     'hero.about-img-alt': 'Imagen de un cohete',
+
+    // Services
+    'services.why-should-you': 'Por qué deberías',
+    'services.choose-us': 'Elegirnos',
+    'services.we-will-help-you-strategize':
+      'Te ayudaremos a crear una estrategia para su presencia en la web, diseñando y ejecutando mapas de sitio y esquemas para proporcionar una experiencia de usuario final elegante y fluida.',
+    'services.with-deep-expertise':
+      'Con una profunda experiencia que abarca todo el espectro del desarrollo web, podemos optimizar tu presencia digital a cualquier nivel.',
+    'services.full-stack-development': 'Desarrollo',
+    'services.user-experience': 'Experiencia de Usuario',
+    'services.quality-support': 'Control de Calidad',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,

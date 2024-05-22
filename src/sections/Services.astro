@@ -1,0 +1,21 @@
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+---
+
+<div class="bg-[#fafafa]">
+  <ResponsiveContainer class={[Astro.props.class]} as="section">
+    <div class="flex gap-20">
+      <slot name="image" />
+
+      <div class="flex flex-col justify-center">
+        <slot name="capabilities" />
+        <slot name="main-text" />
+        <slot name="description" />
+      </div>
+    </div>
+
+    <slot name="cards" />
+
+    <slot />
+  </ResponsiveContainer>
+</div>

@@ -1,8 +1,8 @@
 ---
+import CardCTA from './CardCTA.astro';
 import Typography from './Typography.astro';
 import type { CarouselCardData } from '@/types/Carousel';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
-import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
 
 interface Props extends CarouselCardData {
   linkText: string;
@@ -27,16 +27,6 @@ const translatePath = useTranslatedPath(lang);
       {title}
     </Typography>
 
-    <Typography class="mt-2.5 inline-block text-periwinkle" as="p" variant="accent">
-      <a
-        href={translatePath('#', lang)}
-        class="group relative flex items-end justify-center
-        after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
-        hover:after:origin-bottom-left hover:after:scale-100"
-      >
-        <span class="text-sm">{linkText}</span>
-        <ArrowNarrowRight class="group-hover:animate-wiggle" />
-      </a>
-    </Typography>
+    <CardCTA class="mt-2.5" href={translatePath('#', lang)} text={linkText} />
   </div>
 </article>
