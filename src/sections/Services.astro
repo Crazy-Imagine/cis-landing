@@ -3,7 +3,7 @@ import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 ---
 
 <div class="bg-[#fafafa]">
-  <ResponsiveContainer class={[Astro.props.class]} as="section">
+  <ResponsiveContainer class={Astro.props.class} as="section">
     <div class="flex gap-20">
       <slot name="image" />
 
