@@ -1,0 +1,16 @@
+---
+import Typography from './Typography.astro';
+
+interface Props {
+  href: string;
+}
+---
+
+<Typography
+  as="a"
+  variant="link"
+  href={Astro.props.href}
+  class="rounded-full bg-blue-purple px-5 py-4 transition hover:bg-[#595dc3]"
+>
+  <slot />
+</Typography>

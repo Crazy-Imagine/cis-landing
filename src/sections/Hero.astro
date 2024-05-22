@@ -34,13 +34,7 @@ const hero = HERO_SECTION[page];
         {t(`hero.${page}-subtitle` as const)}
       </Typography>
 
-      {
-        scheduleCall && (
-          <button class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase">
-            {t(`hero.${page}-button` as const)}
-          </button>
-        )
-      }
+      <slot name="button" />
     </div>
 
     <div class="flex-shrink basis-[350px] place-self-end">
@@ -64,13 +58,7 @@ const hero = HERO_SECTION[page];
 
   <div class="relative z-20 flex items-center sm:hidden">
     <div class="flex flex-shrink-0 flex-grow place-content-center">
-      {
-        scheduleCall && (
-          <button class="flex-shrink-0 rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase">
-            {t(`hero.${page}-button` as const)}
-          </button>
-        )
-      }
+      <slot name="button" />
     </div>
 
     <div

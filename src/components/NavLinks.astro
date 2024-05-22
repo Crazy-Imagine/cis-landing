@@ -6,23 +6,26 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
 const pages = [
-  { name: t('nav.about'), href: '/about' },
-  { name: t('nav.projects'), href: '#' },
-  { name: t('nav.services'), href: '#' },
-  { name: t('nav.blog'), href: '#' },
-  { name: t('nav.work-with-us'), href: '#' },
+  { name: t('nav.about'), href: '/about', ariaLabel: t('aria.about-link') },
+  { name: t('nav.projects'), href: '#', ariaLabel: t('aria.projects-link') },
+  { name: t('nav.services'), href: '#', ariaLabel: t('aria.services-link') },
+  { name: t('nav.blog'), href: '#', ariaLabel: t('aria.blog-link') },
+  { name: t('nav.work-with-us'), href: '#', ariaLabel: t('aria.work-with-us-link') },
 ];
 ---
 
 <ul class:list={['hidden items-center gap-3 lg:flex xl:gap-5', Astro.props.class]}>
   {
-    pages.map(({ name, href }) => (
+    pages.map(({ name, href, ariaLabel }) => (
       <li>
         <a
-          class="relative whitespace-nowrap font-nexaLight text-xs uppercase tracking-widest text-white"
+          class="relative whitespace-nowrap font-nexaLight text-xs uppercase tracking-widest text-white
+          before:absolute before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white before:text-white before:transition-transform before:duration-500 before:ease-in-out
+          hover:before:scale-100
+          "
           href={translatePath(href, lang)}
           rel="noopener"
-          aria-label="Facebook de Crazy Imagine Software, se abrirá en una nueva pestaña"
+          aria-label={ariaLabel}
         >
           {name}
         </a>
@@ -30,16 +33,3 @@ const pages = [
     ))
   }
 </ul>
-
-<style>
-  a {
-    &::before {
-      @apply absolute -bottom-0.5 -left-0.5 h-0.5 w-full scale-0 bg-white text-white transition-transform duration-500 ease-in-out;
-      content: '';
-    }
-
-    &:hover::before {
-      @apply scale-100;
-    }
-  }
-</style>

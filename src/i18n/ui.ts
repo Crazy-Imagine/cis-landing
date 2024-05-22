@@ -33,6 +33,11 @@ export const ui = {
     'aria.menu-icon': 'Icon to open the menu on mobile',
     'aria.contact-email':
       "Link to open your preferred email application and send an email to Crazy Imagine Software's contact email",
+    'aria.about-link': 'Link to about page',
+    'aria.projects-link': 'Link to projects page',
+    'aria.services-link': 'Link to services page',
+    'aria.blog-link': 'Link to blog page',
+    'aria.work-with-us-link': 'Link to work with us page',
 
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
@@ -96,6 +101,11 @@ export const ui = {
     'aria.menu-icon': 'Ícono para abrir el menú en móvil',
     'aria.contact-email':
       'Enlace para enviar un correo electrónico al correo de contact de Crazy Imagine Software',
+    'aria.about-link': 'Enlace a la página de sobre nosotros',
+    'aria.projects-link': 'Enlace a la página de proyectos',
+    'aria.services-link': 'Enlace a la página de servicios',
+    'aria.blog-link': 'Enlace a la página de blog',
+    'aria.work-with-us-link': 'Enlace a la página de trabaja con nosotros',
 
     // Various Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',

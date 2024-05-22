@@ -1,4 +1,5 @@
 ---
+import LinkPill from '../components/LinkPill.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
@@ -13,7 +14,11 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout title={t('SEO.home-title')}>
-  <Hero page="home" scheduleCall />
+  <Hero page="home">
+    <LinkPill slot="button" href={translatePath('#', lang)}>
+      {t('hero.home-button')}
+    </LinkPill>
+  </Hero>
 
   <CarouselSection
     type="white"
@@ -22,12 +27,9 @@ const translatePath = useTranslatedPath(lang);
     linkText={t('common.view-project')}
   >
     <div class="mt-10 text-center">
-      <a
-        class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase text-white"
-        href={translatePath('#', lang)}
-      >
+      <LinkPill href={translatePath('#', lang)}>
         {t('common.all-projects')}
-      </a>
+      </LinkPill>
     </div>
   </CarouselSection>
 
