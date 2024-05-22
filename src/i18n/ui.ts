@@ -45,7 +45,7 @@ export const ui = {
 
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
-    'alt.light-bulb': 'Light Bulb Image',
+    'alt.light-bulb': 'Light Bulb',
 
     // Common Keys
     'common.hello': 'Hello',
@@ -131,7 +131,7 @@ export const ui = {
 
     // Various Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',
-    'alt.light-bulb': 'Imagen de un bombillo',
+    'alt.light-bulb': 'Un bombillo',
 
     // Common Keys
     'common.hello': 'Hola',

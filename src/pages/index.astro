@@ -1,17 +1,17 @@
 ---
-import Typography from '../components/Typography.astro';
-import ImageOverBackground from '../components/Services/ImageOverBackground.astro';
-import CardContainer from '../components/Services/CardContainer.astro';
-import Card from '../components/Services/Card.astro';
-import Code from '../icons/Code.astro';
-import MagnifyingGlass from '../icons/MagnifyingGlass.astro';
-import Antenna from '../icons/Antenna.astro';
+import Antenna from '@/icons/Antenna.astro';
+import Card from '@/components/Services/Card.astro';
+import CardContainer from '@/components/Services/CardContainer.astro';
+import ImageOverBackground from '@/components/Services/ImageOverBackground.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
+import Code from '@/icons/Code.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
+import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import Partners from '@/sections/Partners.astro';
 import Services from '@/sections/Services.astro';
+import Typography from '@/components/Typography.astro';
 import { carouselData } from '@/utils/test/carousel-data';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
@@ -33,7 +33,12 @@ const translatePath = useTranslatedPath(lang);
   </Hero>
 
   <Services class="py-20">
-    <ImageOverBackground slot="image" img="/img/ui/light-bulb.webp" alt={t('alt.light-bulb')} />
+    <ImageOverBackground
+      slot="image"
+      class="flex-shrink"
+      img="/img/ui/light-bulb.webp"
+      alt={t('alt.light-bulb')}
+    />
 
     <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
       {t('services.why-should-you')}
