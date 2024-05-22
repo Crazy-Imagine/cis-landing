@@ -3,26 +3,23 @@ import { ViewTransitions } from 'astro:transitions';
 
 import '@fontsource/roboto';
 import Header from '@/components/Header.astro';
+import SEO from '@/components/SEO.astro';
 import Footer from '@/sections/Footer.astro';
 
 interface Props {
   title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+const { title, description, canonical, image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={Astro.currentLocale}>
   <head>
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Crazy Imagine Software | {title}</title>
-
+    <SEO title={title} description={description} canonical={canonical} image={image} />
     <ViewTransitions />
   </head>
   <body class="w-full overflow-x-hidden">

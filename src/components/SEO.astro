@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  // TODO: CHECK ON THIS DEFAULT IMAGE
+  image = '/img/article-test.webp',
+} = Astro.props as Props;
+
+function determineCanonicalURL() {
+  if (Astro.url.host.includes('localhost')) return 'http://localhost:4321';
+  return canonical || Astro.url.pathname;
+}
+
+const canonicalURL = new URL(determineCanonicalURL(), Astro.site);
+---
+
+<title>{title}</title>
+
+<meta charset="UTF-8" />
+<meta name="description" content={description} />
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<!--{-->
+<!--  preload?.map(({ href, as, type, rel = 'preload', crossorigin }) => (-->
+<!--    <link {rel} {href} {as} {type} {crossorigin} />-->
+<!--  ))-->
+<!--}-->
+
+<link rel="canonical" href={canonicalURL} />
+<meta name="viewport" content="width=device-width" />
+<!--<meta name="theme-color" content="#fff" />-->
+
+<meta
+  name="keywords"
+  content="crazy imagine, web development services, mobile app development, Software Development Company, Web and Mobile App Development Firm, developer, software, work, Full-stack Development, programming, user Experience, quality support"
+/>
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CrazyImagineDev" />
+<meta name="twitter:creator" content="@CrazyImagineDev" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, Astro.url)} />
+
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content="Crazy Imagine Software" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={Astro.currentLocale} />
+
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+
+<link rel="icon" href="/favicon.ico" />
+<meta name="generator" content={Astro.generator} />
+<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
+<link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" />
+
+<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
+<!--<meta name="msapplication-config" content="/browserconfig.xml" />-->
+
+<link rel="manifest" href="/img/icons/site.webmanifest" />
