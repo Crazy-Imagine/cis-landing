@@ -18,34 +18,36 @@ import 'swiper/css/pagination';
   import { Autoplay, Keyboard, Pagination } from 'swiper/modules';
   import type { SwiperOptions } from 'swiper/types';
 
-  const swiper = new Swiper('.mySwiper', {
-    modules: [Autoplay, Keyboard, Pagination],
-    // loop: true,
-    spaceBetween: 50,
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
+  document.addEventListener('astro:page-load', () => {
+    const swiper = new Swiper('.mySwiper', {
+      modules: [Autoplay, Keyboard, Pagination],
+      // loop: true,
+      spaceBetween: 50,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        600: {
+          slidesPerView: 2,
+        },
+        960: {
+          slidesPerView: 3,
+        },
+        1280: {
+          slidesPerView: 4,
+        },
+        1920: {
+          slidesPerView: 4,
+        },
       },
-      600: {
-        slidesPerView: 2,
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
       },
-      960: {
-        slidesPerView: 3,
+      keyboard: {
+        enabled: true,
       },
-      1280: {
-        slidesPerView: 4,
-      },
-      1920: {
-        slidesPerView: 4,
-      },
-    },
-    grabCursor: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    keyboard: {
-      enabled: true,
-    },
-  } as SwiperOptions);
+    } as SwiperOptions);
+  });
 </script>

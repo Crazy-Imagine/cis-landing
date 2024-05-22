@@ -20,7 +20,10 @@ const t = useTranslations(lang);
     <div class="swiper-wrapper items-center">
       {
         PARTNERS.map((partner) => (
-          <img class="swiper-slide" src={partner.src} alt={partner.alt} loading="lazy" />
+          <div class="swiper-slide">
+            <img src={partner.src} alt={partner.alt} loading="lazy" />
+            <div class="swiper-lazy-preloader" />
+          </div>
         ))
       }
     </div>
@@ -32,27 +35,29 @@ const t = useTranslations(lang);
   import { Autoplay } from 'swiper/modules';
   import type { SwiperOptions } from 'swiper/types';
 
-  const swiper = new Swiper('.partners', {
-    modules: [Autoplay],
-    loop: true,
-    breakpoints: {
-      0: {
-        slidesPerView: 2,
+  document.addEventListener('astro:page-load', () => {
+    const swiper = new Swiper('.partners', {
+      modules: [Autoplay],
+      loop: true,
+      breakpoints: {
+        0: {
+          slidesPerView: 2,
+        },
+        600: {
+          slidesPerView: 2,
+        },
+        960: {
+          slidesPerView: 3,
+        },
+        1280: {
+          slidesPerView: 5,
+        },
       },
-      600: {
-        slidesPerView: 2,
+      spaceBetween: 200,
+      grabCursor: true,
+      autoplay: {
+        delay: 1000,
       },
-      960: {
-        slidesPerView: 3,
-      },
-      1280: {
-        slidesPerView: 5,
-      },
-    },
-    spaceBetween: 200,
-    grabCursor: true,
-    autoplay: {
-      delay: 1000,
-    },
-  } as SwiperOptions);
+    } as SwiperOptions);
+  });
 </script>

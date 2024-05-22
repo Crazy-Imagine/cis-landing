@@ -10,10 +10,7 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<div
-  class="sticky left-0 right-0 top-0 z-20 z-[1000] max-h-screen bg-transparent"
-  id="sticky-header"
->
+<div class="sticky left-0 right-0 top-0 z-[1000] max-h-screen bg-transparent" id="sticky-header">
   <header class="mx-auto px-4 2xl:container md:px-10 2xl:px-0">
     <nav class="flex h-[var(--header-height)] items-center justify-between">
       <a class="hidden md:inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
@@ -42,8 +39,12 @@ const translatePath = useTranslatedPath(lang);
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const header = document.getElementById('sticky-header');
+
+    if (header && window.scrollY > 0) {
+      header.classList.add('scrolled');
+    }
 
     window.addEventListener('scroll', () => {
       if (!header) return;
