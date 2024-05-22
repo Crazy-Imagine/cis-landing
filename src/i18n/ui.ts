@@ -79,11 +79,11 @@ export const ui = {
     'hero.services-subtitle': '',
     'hero.services-button': '',
     'hero.services-img-alt': 'Image of a explorer vehicle',
-    'hero.mision-title': 'Mission & Vision',
-    'hero.mision-subtitle':
+    'hero.mission-title': 'Mission & Vision',
+    'hero.mission-subtitle':
       'What we want to accomplish and provide, and what we see in he future for our agency',
-    'hero.mision-button': '',
-    'hero.mision-img-alt': 'Image of a explorer vehicle',
+    'hero.mission-button': '',
+    'hero.mission-img-alt': 'Image of a explorer vehicle',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -169,11 +169,11 @@ export const ui = {
     'hero.services-subtitle': '',
     'hero.services-button': '',
     'hero.services-img-alt': 'Image of a explorer vehicle',
-    'hero.mision-title': 'Misión Y Visión',
-    'hero.mision-subtitle':
+    'hero.mission-title': 'Misión Y Visión',
+    'hero.mission-subtitle':
       'Lo que queremos lograr, ofrecer y lo que vemos en el futuro de nuestra agencia.',
-    'hero.mision-button': '',
-    'hero.mision-img-alt': 'Image of a explorer vehicle',
+    'hero.mission-button': '',
+    'hero.mission-img-alt': 'Image of a explorer vehicle',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,

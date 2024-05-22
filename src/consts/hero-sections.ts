@@ -26,7 +26,7 @@ export const HERO_SECTION: HeroSection = {
     width: 223,
     height: 432,
   },
-  mision: {
+  mission: {
     img: '/img/ui/rocket.webp',
     width: 223,
     height: 432,
