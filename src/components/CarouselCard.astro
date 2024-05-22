@@ -9,7 +9,7 @@ interface Props extends CarouselCardData {
   class?: string;
 }
 
-const { title, img, imgAlt = '', linkText, delay = 0 } = Astro.props;
+const { title, img, imgAlt = '', linkText } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 // const t = useTranslations(lang);

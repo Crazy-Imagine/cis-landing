@@ -1,0 +1,86 @@
+export const PARTNERS = [
+  {
+    src: '/img/partners/brookstone.svg',
+    alt: 'Brookstone Logo',
+    width: 178,
+    height: 64,
+  },
+  {
+    src: '/img/partners/casino-arizona.svg',
+    alt: 'Casino Arizona Logo',
+    width: 359,
+    height: 119,
+  },
+  {
+    src: '/img/partners/clientify.svg',
+    alt: 'Clientify Logo',
+    width: 332,
+    height: 80,
+  },
+  {
+    src: '/img/partners/derma-precision.svg',
+    alt: 'Derma Precision',
+    width: 179,
+    height: 46,
+  },
+  {
+    src: '/img/partners/empower-hr.svg',
+    alt: 'Empower HR Logo',
+    width: 333,
+    height: 88,
+  },
+  {
+    src: '/img/partners/little-taller.svg',
+    alt: 'Little Taller Logo',
+    width: 179,
+    height: 108,
+  },
+  {
+    src: '/img/partners/motorenn.svg',
+    alt: 'Motorenn Logo',
+    width: 102,
+    height: 102,
+  },
+  {
+    src: '/img/partners/my-fancy-footwork.svg',
+    alt: 'My Fancy Footwork Logo',
+    width: 65,
+    height: 76,
+  },
+  {
+    src: '/img/partners/o-connell-group.svg',
+    alt: "O'Connel Group",
+    width: 404,
+    height: 381,
+  },
+  {
+    src: '/img/partners/ordering.svg',
+    alt: 'Ordering Logo',
+    width: 332,
+    height: 74,
+  },
+  {
+    src: '/img/partners/piggyback.svg',
+    alt: 'Piggyback Logo',
+    width: 85,
+    height: 102,
+  },
+  {
+    src: '/img/partners/right-toyota.svg',
+    alt: 'Right Toyota Logo',
+    width: 593,
+    height: 140,
+  },
+  {
+    src: '/img/partners/sirge.svg',
+    alt: 'Sirge Logo',
+    width: 333,
+    height: 80,
+  },
+  {
+    src: '/img/partners/wealth-strategies.svg',
+    alt: 'Wealth Strategies Logo',
+    width: 615,
+    height: 219,
+  },
+];

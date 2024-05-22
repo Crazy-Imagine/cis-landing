@@ -46,6 +46,8 @@ const translatePath = useTranslatedPath(lang);
     const header = document.getElementById('sticky-header');
 
     window.addEventListener('scroll', () => {
+      if (!header) return;
+
       if (window.scrollY > 0) {
         header.classList.add('scrolled');
         return;
