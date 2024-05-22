@@ -1,9 +1,11 @@
 ---
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import { carouselData } from '@/utils/test/carousel-data';
 import CarouselSection from '@/sections/CarouselSection.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import LinkPill from '@/components/LinkPill.astro';
+import Partners from '@/sections/Partners.astro';
+import { carouselData } from '@/utils/test/carousel-data';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -11,8 +13,16 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout title={t('SEO.home-title')}>
-  <Hero page="home" scheduleCall />
+<Layout
+  title={t('SEO.home-title')}
+  description={t('SEO.home-description')}
+  canonical="https://crazyimagine.com/es"
+>
+  <Hero page="home">
+    <LinkPill slot="button" href={translatePath('#', lang)}>
+      {t('hero.home-button')}
+    </LinkPill>
+  </Hero>
 
   <CarouselSection
     type="white"
@@ -21,14 +31,13 @@ const translatePath = useTranslatedPath(lang);
     linkText={t('common.view-project')}
   >
     <div class="mt-10 text-center">
-      <a
-        class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase text-white"
-        href={translatePath('#', lang)}
-      >
+      <LinkPill href={translatePath('#', lang)}>
         {t('common.all-projects')}
-      </a>
+      </LinkPill>
     </div>
   </CarouselSection>
+
+  <Partners />
 
   <CarouselSection
     type="blue"

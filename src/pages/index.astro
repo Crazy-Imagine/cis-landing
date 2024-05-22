@@ -1,8 +1,8 @@
 ---
-import LinkPill from '../components/LinkPill.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import LinkPill from '@/components/LinkPill.astro';
 import Partners from '@/sections/Partners.astro';
 import { carouselData } from '@/utils/test/carousel-data';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
@@ -13,7 +13,11 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout title={t('SEO.home-title')}>
+<Layout
+  title={t('SEO.home-title')}
+  description={t('SEO.home-description')}
+  canonical="https://crazyimagine.com"
+>
   <Hero page="home">
     <LinkPill slot="button" href={translatePath('#', lang)}>
       {t('hero.home-button')}

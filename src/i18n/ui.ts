@@ -11,8 +11,12 @@ const year = new Date().getFullYear();
 
 export const ui = {
   en: {
+    // SEO
     'SEO.home-title': 'Ideas beyond your imagination',
+    'SEO.home-description':
+      'We are a growing startup with more than 5 years in the market, with experience on mobile and web development, using the most popular Javascript technologies like React js, Angular js, Vue js, Node js and PHP frameworks like Laravel, Code Igniter, Prestashop, and Wordpress.',
     'SEO.about-title': 'Our Team is Your Greatest Resource',
+    'SEO.about-description': 'Description',
 
     // Aria Keys
     'aria.home-link': 'Link to home page',
@@ -80,8 +84,13 @@ export const ui = {
     'nav.work-with-us': 'Work with us',
   },
   es: {
+    // SEO
     'SEO.home-title': 'Ideas más allá de tu imaginación',
+    'SEO.home-description':
+      'Somos una startup en crecimiento con más de 5 años en el mercado, con experiencia en desarrollo móvil y web, utilizando las tecnologías Javascript más populares como React js, Angular js, Vue js, Node js y frameworks PHP como Laravel, Code Igniter, Prestashop, y Wordpress.',
     'SEO.about-title': 'Nuestro equipo es su mejor recurso',
+    'SEO.about-description': 'Description',
+
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
     'aria.contact-us-link': 'Enlace a la página de contáctanos',
