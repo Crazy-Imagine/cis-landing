@@ -17,6 +17,14 @@ export const ui = {
       'We are a growing startup with more than 5 years in the market, with experience on mobile and web development, using the most popular Javascript technologies like React js, Angular js, Vue js, Node js and PHP frameworks like Laravel, Code Igniter, Prestashop, and Wordpress.',
     'SEO.about-title': 'Crazy Imagine Software | Our Team is Your Greatest Resource',
     'SEO.about-description': 'Description',
+    'SEO.mission-title': 'Crazy Imagine Software | ',
+    'SEO.mission-description': 'Description',
+    'SEO.blog-title': 'Crazy Imagine Software | The Latest In Tech Talk From Our Team',
+    'SEO.blog-description': 'Description',
+    'SEO.references-title': 'Crazy Imagine Software | ',
+    'SEO.references-description': 'Description',
+    'SEO.services-title': 'Crazy Imagine Software | Let Your Imagination Run Wild',
+    'SEO.services-description': 'Description',
 
     // Aria Keys
     'aria.home-link': 'Link to home page',
@@ -74,16 +82,16 @@ export const ui = {
     'hero.references-title': 'Client References',
     'hero.references-subtitle': '',
     'hero.references-button': '',
-    'hero.references-img-alt': 'Image of 5 starts rating',
+    'hero.references-img-alt': '5 starts',
     'hero.services-title': 'Let Your Imagination Run Wild',
     'hero.services-subtitle': '',
     'hero.services-button': '',
     'hero.services-img-alt': 'Image of a explorer vehicle',
     'hero.mission-title': 'Mission & Vision',
     'hero.mission-subtitle':
-      'What we want to accomplish and provide, and what we see in he future for our agency',
+      'What we want to accomplish and provide, and what we see in the future for our agency',
     'hero.mission-button': '',
-    'hero.mission-img-alt': 'Image of a explorer vehicle',
+    'hero.mission-img-alt': 'Image of mars explorer vehicle',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -107,6 +115,14 @@ export const ui = {
       'Somos una startup en crecimiento con más de 5 años en el mercado, con experiencia en desarrollo móvil y web, utilizando las tecnologías Javascript más populares como React js, Angular js, Vue js, Node js y frameworks PHP como Laravel, Code Igniter, Prestashop, y Wordpress.',
     'SEO.about-title': 'Crazy Imagine Software | Nuestro equipo es su mejor recurso',
     'SEO.about-description': 'Description',
+    'SEO.mission-title': 'Crazy Imagine Software | ',
+    'SEO.mission-description': 'Description',
+    'SEO.blog-title': 'Crazy Imagine Software | Lo Último En Tecnologia Por Nuestro Equipo',
+    'SEO.blog-description': 'Description',
+    'SEO.references-title': 'Crazy Imagine Software | ',
+    'SEO.references-description': 'Description',
+    'SEO.services-title': 'Crazy Imagine Software | Deja Volar Tú Imaginación',
+    'SEO.services-description': 'Description',
 
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
@@ -164,16 +180,16 @@ export const ui = {
     'hero.references-title': 'Clientes Referencia',
     'hero.references-subtitle': '',
     'hero.references-button': '',
-    'hero.references-img-alt': 'Imagen de un rating de 5 estrellas',
+    'hero.references-img-alt': '5 estrellas',
     'hero.services-title': 'Deja Volar tu Imaginación',
     'hero.services-subtitle': '',
     'hero.services-button': '',
-    'hero.services-img-alt': 'Image of a explorer vehicle',
+    'hero.services-img-alt': 'Imagen de un vehiculo explorador',
     'hero.mission-title': 'Misión Y Visión',
     'hero.mission-subtitle':
       'Lo que queremos lograr, ofrecer y lo que vemos en el futuro de nuestra agencia.',
     'hero.mission-button': '',
-    'hero.mission-img-alt': 'Image of a explorer vehicle',
+    'hero.mission-img-alt': 'Imagen del explorador de marte',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,
