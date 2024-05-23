@@ -1,20 +1,17 @@
 ---
 import Carousel from '@/components/Carousel.astro';
-import CarouselCard from '@/components/CarouselCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
-import type { CarouselCardData } from '@/types/Carousel';
 
 interface Props {
   type: 'blue' | 'white';
   class?: string;
   cardClass?: string;
   title: string;
-  data: CarouselCardData[];
   linkText: string;
 }
 
-const { title, data, type, linkText } = Astro.props;
+const { title, type } = Astro.props;
 
 const isWhite = type === 'white';
 ---
@@ -52,19 +49,7 @@ const isWhite = type === 'white';
     </Typography>
 
     <Carousel>
-      {
-        data.map((value) => (
-          <CarouselCard
-            {...value}
-            class:list={[
-              {
-                'shadow-md': isWhite,
-              },
-            ]}
-            linkText={linkText}
-          />
-        ))
-      }
+      <slot name="items" />
     </Carousel>
 
     <slot />

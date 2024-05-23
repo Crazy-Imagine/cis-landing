@@ -1,5 +1,6 @@
 ---
 import Antenna from '@/icons/Antenna.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
 import Card from '@/components/Services/Card.astro';
 import CardContainer from '@/components/Services/CardContainer.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
@@ -73,12 +74,15 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </Services>
 
-  <CarouselSection
-    type="white"
-    title={t('common.previous-projects')}
-    data={carouselData}
-    linkText={t('common.view-project')}
-  >
+  <CarouselSection type="white" title={t('common.previous-projects')}>
+    <Fragment slot="items">
+      {
+        carouselData.map((value) => (
+          <ArticleCard {...value} class="shadow-md" linkText={t('common.view-project')} />
+        ))
+      }
+    </Fragment>
+
     <div class="mt-10 text-center">
       <LinkPill href={translatePath('#', lang)}>
         {t('common.all-projects')}
@@ -88,12 +92,11 @@ const translatePath = useTranslatedPath(lang);
 
   <Partners />
 
-  <CarouselSection
-    type="blue"
-    title={t('common.latest-in-tech-talk')}
-    data={carouselData}
-    linkText={t('common.read-more')}
-  />
+  <CarouselSection type="blue" title={t('common.latest-in-tech-talk')}>
+    <Fragment slot="items">
+      {carouselData.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}
+    </Fragment>
+  </CarouselSection>
 
   <ReachOut />
 </Layout>
