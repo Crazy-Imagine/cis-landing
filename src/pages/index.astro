@@ -12,10 +12,12 @@ import LinkPill from '@/components/LinkPill.astro';
 import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import Partners from '@/sections/Partners.astro';
 import ReachOut from '@/sections/ReachOut.astro';
+import ReferenceCard from '@/components/ReferenceCard.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
-import { carouselData } from '@/utils/test/carousel-data';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import { mockArticles } from '@/utils/mock/articles';
+import { mockReferences } from '@/utils/mock/references';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -26,7 +28,7 @@ const translatePath = useTranslatedPath(lang);
 <Layout
   title={t('SEO.home-title')}
   description={t('SEO.home-description')}
-  canonical="https://crazyimagine.com"
+  canonical="https://crazyimagine.com/es"
 >
   <Hero page="home">
     <LinkPill slot="button" href={translatePath('#', lang)}>
@@ -74,10 +76,16 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </Services>
 
+  <CarouselSection type="blue" title="People who work with us say">
+    <Fragment slot="items">
+      {mockReferences.map((reference) => <ReferenceCard {...reference} />)}
+    </Fragment>
+  </CarouselSection>
+
   <CarouselSection type="white" title={t('common.previous-projects')}>
     <Fragment slot="items">
       {
-        carouselData.map((value) => (
+        mockArticles.map((value) => (
           <ArticleCard {...value} class="shadow-md" linkText={t('common.view-project')} />
         ))
       }
@@ -94,7 +102,7 @@ const translatePath = useTranslatedPath(lang);
 
   <CarouselSection type="blue" title={t('common.latest-in-tech-talk')}>
     <Fragment slot="items">
-      {carouselData.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}
+      {mockArticles.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}
     </Fragment>
   </CarouselSection>
 
