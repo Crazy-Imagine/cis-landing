@@ -22,6 +22,7 @@ export default {
         'grayish': 'var(--color-grayish)',
         'periwinkle': 'var(--color-periwinkle)',
         'sky-blue': 'var(--color-sky-blue)',
+        'fog-white': 'var(--color-fog-white)',
         'custom-primary': 'var(--color-custom-primary)',
       },
       keyframes: {
