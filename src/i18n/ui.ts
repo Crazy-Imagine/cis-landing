@@ -61,6 +61,7 @@ export const ui = {
     'common.get-started': 'Get Started',
     'common.reach.out': 'Reach Out',
     'common.imagine-what-we-can-create': 'Imagine what we can create',
+    'common.people-who-work-with-us-say': 'People who work with us say',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -163,9 +164,10 @@ export const ui = {
     'common.latest-in-tech-talk': 'Lo último en tecnología',
     'common.all-projects': 'Todos los proyectos',
     'common.partners': 'Socios Comerciales',
-    'common.get-started': 'Get Started',
+    'common.get-started': 'Empecemos',
     'common.reach.out': 'Contáctanos', // TODO: check translation
     'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
+    'common.people-who-work-with-us-say': 'La gente que trabaja con nosotros dice',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -184,7 +186,7 @@ export const ui = {
       'Te ayudaremos a crear una estrategia para su presencia en la web, diseñando y ejecutando mapas de sitio y esquemas para proporcionar una experiencia de usuario final elegante y fluida.',
     'services.with-deep-expertise':
       'Con una profunda experiencia que abarca todo el espectro del desarrollo web, podemos optimizar tu presencia digital a cualquier nivel.',
-    'services.full-stack-development': 'Desarrollo',
+    'services.full-stack-development': 'Desarrollo Full-Stack',
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
 

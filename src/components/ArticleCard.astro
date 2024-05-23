@@ -1,10 +1,10 @@
 ---
 import CardCTA from './CardCTA.astro';
 import Typography from './Typography.astro';
-import type { CarouselCardData } from '@/types/Carousel';
+import type { Article } from '@/types/Article';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 
-interface Props extends CarouselCardData {
+interface Props extends Article {
   linkText: string;
   class?: string;
 }
