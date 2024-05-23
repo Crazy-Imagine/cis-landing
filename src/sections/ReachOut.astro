@@ -9,8 +9,11 @@ const t = useTranslations(lang);
 ---
 
 <div>
-  <ResponsiveContainer class="flex items-end gap-20" as="section">
-    <div class="basis-1/4">
+  <ResponsiveContainer
+    class="flex flex-col items-end py-10 md:flex-row md:gap-5 md:py-0 lg:gap-20"
+    as="section"
+  >
+    <div class="w-full md:basis-1/4">
       <Typography
         as="h3"
         variant="accent"
@@ -34,10 +37,11 @@ const t = useTranslations(lang);
           width="248"
           height="209"
           alt="Satellite"
+          loading="lazy"
         />
       </div>
     </div>
-    <div class="basis-3/4 py-10">
+    <div class="w-full pb-0 pt-10 md:basis-3/4 md:pb-10">
       <ContactForm url={Astro.url} client:visible />
     </div>
   </ResponsiveContainer>

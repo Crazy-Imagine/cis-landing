@@ -53,17 +53,17 @@ function ContactForm({ url }: Props) {
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-6 flex gap-5">
+      <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
         <RHFInput name="company" label={t('forms.company')} register={register} errors={errors} />
       </div>
 
-      <div className="mb-6 flex gap-5">
+      <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput name="country" label={t('forms.country')} register={register} errors={errors} />
         <RHFInput name="phone" label={t('forms.phone')} register={register} errors={errors} />
       </div>
 
-      <div className="mb-6 flex gap-5">
+      <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput
           type="email"
           name="email"
@@ -73,7 +73,7 @@ function ContactForm({ url }: Props) {
         />
       </div>
 
-      <div className="mb-6 flex gap-5">
+      <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput
           name="comments"
           label={t('forms.comments-questions-schemes')}
@@ -82,7 +82,7 @@ function ContactForm({ url }: Props) {
         />
       </div>
 
-      <div className="mb-6 flex gap-5">
+      <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput
           name="projectType"
           label={t('forms.project-type')}
@@ -105,7 +105,7 @@ function ContactForm({ url }: Props) {
         <input
           type="submit"
           value={t('forms.submit')}
-          className="rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast"
+          className="w-full rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast lg:w-auto"
         />
       </div>
     </form>
