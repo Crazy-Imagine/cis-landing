@@ -26,8 +26,8 @@ export const PARTNERS = [
   {
     src: '/img/partners/empower-hr.svg',
     alt: 'Empower HR Logo',
-    width: 333,
-    height: 88,
+    width: 408,
+    height: 108,
   },
   {
     src: '/img/partners/little-taller.svg',
@@ -62,8 +62,8 @@ export const PARTNERS = [
   {
     src: '/img/partners/piggyback.svg',
     alt: 'Piggyback Logo',
-    width: 85,
-    height: 102,
+    width: 252,
+    height: 320,
   },
   {
     src: '/img/partners/right-toyota.svg',
@@ -74,8 +74,8 @@ export const PARTNERS = [
   {
     src: '/img/partners/sirge.svg',
     alt: 'Sirge Logo',
-    width: 333,
-    height: 80,
+    width: 511,
+    height: 133,
   },
   {
     src: '/img/partners/wealth-strategies.svg',
