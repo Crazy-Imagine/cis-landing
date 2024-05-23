@@ -59,6 +59,8 @@ export const ui = {
     'common.all-projects': 'All Projects',
     'common.partners': 'Partners',
     'common.get-started': 'Get Started',
+    'common.reach.out': 'Reach Out',
+    'common.imagine-what-we-can-create': 'Imagine what we can create',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -80,6 +82,23 @@ export const ui = {
     'services.full-stack-development': 'Full-stack Development',
     'services.user-experience': 'User Experience',
     'services.quality-support': 'Quality Support',
+
+    // Contact form
+    'forms.submit': 'Submit',
+    'forms.name': 'Name',
+    'forms.company': 'Company',
+    'forms.country': 'Country',
+    'forms.email': 'Email Address',
+    'forms.phone': 'Phone',
+    'forms.comments-questions-schemes': 'Comments/Questions/Schemes',
+    'forms.project-type': 'Project Type',
+    'forms.how-did-you-find-us': 'How did you find us?',
+
+    // Forms error
+    'errors.name-required': 'Name is required',
+    'errors.email-is-not-valid': 'Email must be a valid email address',
+    'errors.email-required': 'Phone is required',
+    'errors.comments-required': 'Comments/Questions/Schemes is required',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -145,6 +164,8 @@ export const ui = {
     'common.all-projects': 'Todos los proyectos',
     'common.partners': 'Socios Comerciales',
     'common.get-started': 'Get Started',
+    'common.reach.out': 'Contáctanos', // TODO: check translation
+    'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -166,6 +187,23 @@ export const ui = {
     'services.full-stack-development': 'Desarrollo',
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
+
+    // Contact form
+    'forms.submit': 'Enviar',
+    'forms.name': 'Nombre',
+    'forms.company': 'Empresa',
+    'forms.country': 'País',
+    'forms.email': 'Dirección de correo electrónico',
+    'forms.phone': 'Teléfono',
+    'forms.comments-questions-schemes': 'Comentarios/Preguntas/Esquemas',
+    'forms.project-type': 'Tipo de proyecto',
+    'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
+
+    // Forms error
+    'errors.name-required': 'Nombre es requerido',
+    'errors.email-is-not-valid': 'Debe ser una dirección de correo válida',
+    'errors.email-required': 'Dirección de correo electrónico es requerido',
+    'errors.comments-required': 'Comentarios/Preguntas/Esquemas es requerido',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,

@@ -22,7 +22,7 @@ const { title, description, canonical, image } = Astro.props;
     <SEO title={title} description={description} canonical={canonical} image={image} />
     <ViewTransitions />
   </head>
-  <body class="w-full overflow-x-hidden">
+  <body class="w-full overflow-x-hidden bg-fog-white">
     <main>
       <Header />
       <slot />
@@ -39,7 +39,8 @@ const { title, description, canonical, image } = Astro.props;
         --color-periwinkle: #888dff;
         --color-sky-blue: #a7e4f5;
         --color-fog-white: #fafafa;
-        --color-custom-primary: rgba(25, 49, 116, 0.65);
+        --color-primary-with-transparency: rgba(25, 49, 116, 0.65);
+        --color-blue-purple-contrast: #595dc3;
         --header-height: 90px;
       }
 

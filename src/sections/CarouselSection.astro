@@ -19,25 +19,24 @@ const { title, data, type, linkText } = Astro.props;
 const isWhite = type === 'white';
 ---
 
-<section
+<div
   class:list={[
     'relative w-full py-14',
     {
-      'bg-fog-white': isWhite,
-      'bg-primary bg-light-bulbs bg-repeat': !isWhite,
+      'bg-primary bg-light-bulbs bg-center bg-repeat': !isWhite,
     },
     Astro.props.class,
   ]}
 >
   <div
     class:list={[
-      'absolute inset-0 z-10 bg-gradient-to-r from-custom-primary to-transparent',
+      'absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent',
       { hidden: isWhite },
     ]}
   >
   </div>
 
-  <ResponsiveContainer class="relative z-50" as="div">
+  <ResponsiveContainer class="relative z-50" as="section">
     <Typography
       class:list={[
         'mb-10 text-center capitalize',
@@ -70,4 +69,4 @@ const isWhite = type === 'white';
 
     <slot />
   </ResponsiveContainer>
-</section>
+</div>
