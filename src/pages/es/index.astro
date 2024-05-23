@@ -76,7 +76,7 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </Services>
 
-  <CarouselSection type="blue" title="People who work with us say">
+  <CarouselSection type="blue" title={t('common.people-who-work-with-us-say')}>
     <Fragment slot="items">
       {mockReferences.map((reference) => <ReferenceCard {...reference} />)}
     </Fragment>

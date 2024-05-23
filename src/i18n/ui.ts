@@ -61,6 +61,7 @@ export const ui = {
     'common.get-started': 'Get Started',
     'common.reach.out': 'Reach Out',
     'common.imagine-what-we-can-create': 'Imagine what we can create',
+    'common.people-who-work-with-us-say': 'People who work with us say',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -166,6 +167,7 @@ export const ui = {
     'common.get-started': 'Empecemos',
     'common.reach.out': 'Contáctanos', // TODO: check translation
     'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
+    'common.people-who-work-with-us-say': 'La gente que trabaja con nosotros dice',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
