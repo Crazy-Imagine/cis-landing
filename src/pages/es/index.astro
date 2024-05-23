@@ -10,6 +10,7 @@ import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
 import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import Partners from '@/sections/Partners.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
 import { carouselData } from '@/utils/test/carousel-data';
@@ -93,4 +94,6 @@ const translatePath = useTranslatedPath(lang);
     data={carouselData}
     linkText={t('common.read-more')}
   />
+
+  <ReachOut />
 </Layout>

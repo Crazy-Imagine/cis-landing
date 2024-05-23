@@ -1,0 +1,44 @@
+---
+import ContactForm from '@/components/react/ContactForm';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div>
+  <ResponsiveContainer class="flex items-end gap-20" as="section">
+    <div class="basis-1/4">
+      <Typography
+        as="h3"
+        variant="accent"
+        class="text-center uppercase tracking-widest text-periwinkle"
+      >
+        {t('common.reach.out')}
+      </Typography>
+      <Typography
+        as="p"
+        variant="h4"
+        class="px-16 text-center capitalize tracking-wide text-primary"
+      >
+        {t('common.imagine-what-we-can-create')}
+      </Typography>
+
+      <div class="relative text-center">
+        <div class="absolute inset-x-0 bottom-0 h-20 rounded-t-2xl bg-secondary"></div>
+        <img
+          class="relative z-10 mx-auto"
+          src="/img/ui/satellite.webp"
+          width="248"
+          height="209"
+          alt="Satellite"
+        />
+      </div>
+    </div>
+    <div class="basis-3/4 py-10">
+      <ContactForm url={Astro.url} client:visible />
+    </div>
+  </ResponsiveContainer>
+</div>

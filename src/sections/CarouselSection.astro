@@ -23,14 +23,14 @@ const isWhite = type === 'white';
   class:list={[
     'relative w-full py-14',
     {
-      'bg-primary bg-light-bulbs bg-repeat': !isWhite,
+      'bg-primary bg-light-bulbs bg-center bg-repeat': !isWhite,
     },
     Astro.props.class,
   ]}
 >
   <div
     class:list={[
-      'absolute inset-0 z-10 bg-gradient-to-r from-custom-primary to-transparent',
+      'absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent',
       { hidden: isWhite },
     ]}
   >
