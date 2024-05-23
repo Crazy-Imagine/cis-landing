@@ -1,9 +1,17 @@
 ---
+import Antenna from '@/icons/Antenna.astro';
+import Card from '@/components/Services/Card.astro';
+import CardContainer from '@/components/Services/CardContainer.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
+import Code from '@/icons/Code.astro';
 import Hero from '@/sections/Hero.astro';
+import ImageOverBackground from '@/components/Services/ImageOverBackground.astro';
 import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
+import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import Partners from '@/sections/Partners.astro';
+import Services from '@/sections/Services.astro';
+import Typography from '@/components/Typography.astro';
 import { carouselData } from '@/utils/test/carousel-data';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
@@ -16,13 +24,53 @@ const translatePath = useTranslatedPath(lang);
 <Layout
   title={t('SEO.home-title')}
   description={t('SEO.home-description')}
-  canonical="https://crazyimagine.com/es"
+  canonical="https://crazyimagine.com"
 >
   <Hero page="home">
     <LinkPill slot="button" href={translatePath('#', lang)}>
       {t('hero.home-button')}
     </LinkPill>
   </Hero>
+
+  <Services class="py-20">
+    <ImageOverBackground
+      slot="image"
+      class="flex-shrink"
+      img="/img/ui/light-bulb.webp"
+      alt={t('alt.light-bulb')}
+    />
+
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.why-should-you')}
+      <span class="text-secondary">{' '}{t('services.choose-us')}</span>
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.we-will-help-you-strategize')}
+    </Typography>
+
+    <CardContainer slot="cards">
+      <Card>
+        <Code slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.full-stack-development')}</span>
+      </Card>
+      <Card>
+        <MagnifyingGlass slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.user-experience')}</span>
+      </Card>
+      <Card>
+        <Antenna slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.quality-support')}</span>
+      </Card>
+    </CardContainer>
+
+    <Typography class="mt-16 text-wrap text-center text-primary" as="p" variant="caption">
+      {t('services.with-deep-expertise')}
+    </Typography>
+
+    <div class="mt-14 text-center">
+      <LinkPill href={translatePath('#', lang)}> {t('common.get-started')} </LinkPill>
+    </div>
+  </Services>
 
   <CarouselSection
     type="white"

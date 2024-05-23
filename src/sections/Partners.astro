@@ -21,7 +21,7 @@ const t = useTranslations(lang);
       {
         PARTNERS.map((partner) => (
           <div class="swiper-slide">
-            <img src={partner.src} alt={partner.alt} loading="lazy" />
+            <img class="mx-auto" src={partner.src} alt={partner.alt} loading="lazy" />
             <div class="swiper-lazy-preloader" />
           </div>
         ))
@@ -41,7 +41,7 @@ const t = useTranslations(lang);
       loop: true,
       breakpoints: {
         0: {
-          slidesPerView: 2,
+          slidesPerView: 1,
         },
         600: {
           slidesPerView: 2,
