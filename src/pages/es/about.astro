@@ -1,6 +1,7 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -9,4 +10,6 @@ const t = useTranslations(lang);
 
 <Layout title={t('SEO.about-title')} description={t('SEO.about-description')}>
   <Hero page="about" />
+
+  <ReachOut />
 </Layout>
