@@ -42,11 +42,11 @@ function SuscribeForm({ url }: Props) {
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-3 flex flex-col gap-5 bg-white py-2 md:flex-row">
+      <div className="mb-5 flex flex-col gap-5 bg-white md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
         <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
       </div>
-      <div className="mb-3">
+      <div className="mb-5">
         <RHFInput
           type="email"
           name="email"
@@ -55,7 +55,7 @@ function SuscribeForm({ url }: Props) {
           errors={errors}
         />
       </div>
-      <div className="text-center ">
+      <div className="text-center">
         <input
           type="submit"
           value={t('forms.submit')}

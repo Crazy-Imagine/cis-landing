@@ -113,7 +113,7 @@ function ContactForm({ url }: Props) {
         />
       </div>
 
-      <div className="flex items-center">
+      <div>
         <input
           type="submit"
           value={t('forms.submit')}

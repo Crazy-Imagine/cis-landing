@@ -100,6 +100,9 @@ export const ui = {
     'common.e-commerce': 'E-commerce',
     'common.mobile-apps': 'Mobile Apps',
     'common.customized-development': 'Customized Development',
+    'common.news-and-updates': 'News And Updates',
+    'common.news-and-updates-description':
+      'Get insight into our latest projects, news related to popular technologies, and updates on our services',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -150,9 +153,7 @@ export const ui = {
     'forms.comments-questions-schemes': 'Comments/Questions/Schemes',
     'forms.project-type': 'Project Type',
     'forms.how-did-you-find-us': 'How did you find us?',
-    'forms.title': 'News And Updates',
-    'forms.subtitle':
-      'Get insight into our latest projects, news related to popular technologies, and updates on our services',
+    'forms.subscribe': 'Subscribe',
 
     // Forms error
     'errors.name-required': 'Name is required',
@@ -266,6 +267,9 @@ export const ui = {
     'common.e-commerce': 'E-commerce',
     'common.mobile-apps': 'Aplicaciones Móviles',
     'common.customized-development': 'Desarrollo a Medida',
+    'common.news-and-updates': 'Novedades Y Actualizaciones',
+    'common.news-and-updates-description':
+      'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -316,9 +320,7 @@ export const ui = {
     'forms.comments-questions-schemes': 'Comentarios/Preguntas/Esquemas',
     'forms.project-type': 'Tipo de proyecto',
     'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
-    'forms.title': 'Novedades Y Actualizaciones',
-    'forms.subtitle':
-      'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
+    'forms.subscribe': 'Suscribir',
 
     // Forms error
     'errors.name-required': 'Nombre es requerido',
