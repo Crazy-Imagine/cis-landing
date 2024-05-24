@@ -50,7 +50,7 @@ export const ui = {
     // About Us Page
     'about.references-title': 'References',
     'about.references-description': 'In-depth testimonials from former and actual clients.',
-    'about.faq-title': 'Faq',
+    'about.faq-title': 'FAQ',
     'about.faq-description': 'Know the most frequently asked questions by our clients.',
     'about.roadmap-title': 'Roadmap',
     'about.roadmap-description': 'Our process for designing and developing branding and webflow.',
@@ -186,7 +186,7 @@ export const ui = {
     // About Us Page
     'about.references-title': 'References',
     'about.references-description': 'In-depth testimonials from former and actual clients.',
-    'about.faq-title': 'Faq',
+    'about.faq-title': 'FAQ',
     'about.faq-description': 'Know the most frequently asked questions by our clients.',
     'about.roadmap-title': 'Roadmap',
     'about.roadmap-description': 'Our process for designing and developing branding and webflow.',

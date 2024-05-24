@@ -17,16 +17,16 @@ const t = useTranslations(lang);
 
 <div>
   <ResponsiveContainer
-    class="grid grid-cols-1 gap-4 py-10 sm:grid-cols-2 md:py-20 lg:grid-cols-3"
+    class="grid grid-cols-1 gap-x-4 gap-y-10 py-10 sm:grid-cols-2 md:py-20 lg:grid-cols-3"
     as="section"
   >
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <PlanetWithFlag class="bg-primary text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.references-title')}
         </Typography>
 
@@ -36,13 +36,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Telescope class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.meet-the-team-title')}
         </Typography>
 
@@ -52,13 +52,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <PCWithRocket class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.blog-title')}
         </Typography>
 
@@ -68,13 +68,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <PCWithRocket class="text-white" />
       </div>
 
       <div>
-        <Typography class="uppercase text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.faq-title')}
         </Typography>
 
@@ -84,13 +84,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Ovni class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.mission-title')}
         </Typography>
 
@@ -100,13 +100,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <GhostAstronaut class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.who-we-are-title')}
         </Typography>
 
@@ -116,13 +116,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Atom class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.roadmap-title')}
         </Typography>
 
@@ -132,13 +132,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Rocket class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.working-together-title')}
         </Typography>
 
@@ -148,13 +148,13 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+    <div class="flex items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Planet class="text-white" />
       </div>
 
       <div>
-        <Typography class="text-primary" as="p" variant="accent">
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
           {t('about.work-with-us-title')}
         </Typography>
 
