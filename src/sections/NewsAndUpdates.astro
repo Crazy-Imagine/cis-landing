@@ -8,21 +8,23 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<ResponsiveContainer
-  class="flex w-full flex-col items-center bg-primary py-10 md:flex-row md:gap-5 md:py-10 lg:gap-5"
-  as="section"
->
-  <div class="flex-col items-center px-5 py-20">
-    <Typography class="text-center text-white" as="h1" variant="h3">
-      {t('forms.title')}
-    </Typography>
+<div class="bg-primary bg-light-bulbs bg-center bg-repeat">
+  <ResponsiveContainer
+    class="flex flex-col items-center py-10 md:flex-row md:gap-5 md:py-10 lg:gap-5"
+    as="section"
+  >
+    <div class="flex-col items-center px-5 py-20">
+      <Typography class="text-center text-white" as="h1" variant="h3">
+        {t('forms.title')}
+      </Typography>
 
-    <Typography class="text-center text-white" as="p" variant="h6">
-      {t('forms.subtitle')}
-    </Typography>
-  </div>
+      <Typography class="text-center text-white" as="p" variant="h6">
+        {t('forms.subtitle')}
+      </Typography>
+    </div>
 
-  <div class="flex-row rounded-lg bg-white px-5 py-5 shadow">
-    <SuscribeForm url={Astro.url} client:visible />
-  </div>
-</ResponsiveContainer>
+    <div class="flex-row rounded-lg bg-white px-5 py-5 shadow">
+      <SuscribeForm url={Astro.url} client:visible />
+    </div>
+  </ResponsiveContainer>
+</div>
