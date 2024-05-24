@@ -1,4 +1,5 @@
 ---
+import AboutUs from '@/sections/AboutUs.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import ReachOut from '@/sections/ReachOut.astro';
@@ -10,6 +11,8 @@ const t = useTranslations(lang);
 
 <Layout title={t('SEO.about-title')} description={t('SEO.about-description')}>
   <Hero page="about" />
+
+  <AboutUs />
 
   <ReachOut />
 </Layout>

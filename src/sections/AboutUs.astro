@@ -1,0 +1,48 @@
+---
+import Typography from '../components/Typography.astro';
+import PlanetWithFlag from '@/icons/PlanetWithFlag.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const sections = [
+  'references',
+  'faq',
+  'roadmap',
+  'meet-the-team',
+  'mission',
+  'working-together',
+  'blog',
+  'who-we-are',
+  'work-with-us',
+];
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div>
+  <ResponsiveContainer
+    class="grid grid-cols-1 gap-4 py-10 sm:grid-cols-2 md:py-20 lg:grid-cols-3"
+    as="section"
+  >
+    {
+      sections.map((section) => (
+        <div class="flex gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+          <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
+            <PlanetWithFlag class="bg-primary text-white" />
+          </div>
+
+          <div>
+            <Typography class="text-primary" as="p" variant="accent">
+              {t(`about.${section}-title` as any)}
+            </Typography>
+
+            <Typography class="text-grayish" as="p" variant="paragraph2">
+              {t(`about.${section}-description` as any)}
+            </Typography>
+          </div>
+        </div>
+      ))
+    }
+  </ResponsiveContainer>
+</div>
