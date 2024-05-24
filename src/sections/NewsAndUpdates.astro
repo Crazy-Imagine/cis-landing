@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 
 <div class="bg-primary bg-light-bulbs bg-center bg-repeat">
   <ResponsiveContainer
-    class="flex flex-col items-center py-10 md:flex-row md:gap-5 md:py-10 lg:gap-5"
+    class="flex flex-col items-end items-center py-10 md:flex-row md:gap-5 md:py-10 lg:gap-5"
     as="section"
   >
     <div class="flex-col items-center px-5 py-20">
@@ -23,7 +23,7 @@ const t = useTranslations(lang);
       </Typography>
     </div>
 
-    <div class="flex-row rounded-lg bg-white px-5 py-5 shadow">
+    <div class="flex-row items-end rounded-lg bg-white px-5 py-5 shadow">
       <SuscribeForm url={Astro.url} client:visible />
     </div>
   </ResponsiveContainer>
