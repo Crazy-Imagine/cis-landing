@@ -47,6 +47,27 @@ export const ui = {
     'alt.logo': 'Crazy Imagine Software Logo',
     'alt.light-bulb': 'Light Bulb',
 
+    // About Us Page
+    'about.references-title': 'References',
+    'about.references-description': 'In-depth testimonials from former and actual clients.',
+    'about.faq-title': 'FAQ',
+    'about.faq-description': 'Know the most frequently asked questions by our clients.',
+    'about.roadmap-title': 'Roadmap',
+    'about.roadmap-description': 'Our process for designing and developing branding and webflow.',
+    'about.meet-the-team-title': 'Meet the team',
+    'about.meet-the-team-description': 'Become acquainted with the Management Team.',
+    'about.mission-title': 'Mission',
+    'about.mission-description': 'We are dedicated to software development to provide a...',
+    'about.working-together-title': 'Working together',
+    'about.working-together-description':
+      'We have a dynamic and diverse mix of full-stack front-end...',
+    'about.blog-title': 'Blog',
+    'about.blog-description': 'The latest in tech and design tal from our team.',
+    'about.who-we-are-title': 'Who we are',
+    'about.who-we-are-description': 'We have a dynamic and diverse mix of full-stack, front-end...',
+    'about.work-with-us-title': 'Work with us',
+    'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
+
     // Common Keys
     'common.hello': 'Hello',
     'common.contact-us': 'Contact Us',
@@ -158,9 +179,30 @@ export const ui = {
     'aria.blog-link': 'Enlace a la página de blog',
     'aria.work-with-us-link': 'Enlace a la página de trabaja con nosotros',
 
-    // Various Img Alt Keys
+    // Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',
     'alt.light-bulb': 'Un bombillo',
+
+    // About Us Page
+    'about.references-title': 'References',
+    'about.references-description': 'In-depth testimonials from former and actual clients.',
+    'about.faq-title': 'FAQ',
+    'about.faq-description': 'Know the most frequently asked questions by our clients.',
+    'about.roadmap-title': 'Roadmap',
+    'about.roadmap-description': 'Our process for designing and developing branding and webflow.',
+    'about.meet-the-team-title': 'Meet the team',
+    'about.meet-the-team-description': 'Become acquainted with the Management Team.',
+    'about.mission-title': 'Mission',
+    'about.mission-description': 'We are dedicated to software development to provide a...',
+    'about.working-together-title': 'Working together',
+    'about.working-together-description':
+      'We have a dynamic and diverse mix of full-stack front-end...',
+    'about.blog-title': 'Blog',
+    'about.blog-description': 'The latest in tech and design tal from our team.',
+    'about.who-we-are-title': 'Who we are',
+    'about.who-we-are-description': 'We have a dynamic and diverse mix of full-stack, front-end...',
+    'about.work-with-us-title': 'Work with us',
+    'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
 
     // Common Keys
     'common.hello': 'Hola',
