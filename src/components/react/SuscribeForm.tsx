@@ -46,7 +46,7 @@ function SuscribeForm({ url }: Props) {
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
         <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
       </div>
-      <div className="py-5">
+      <div className="">
         <RHFInput
           type="email"
           name="email"
@@ -55,7 +55,7 @@ function SuscribeForm({ url }: Props) {
           errors={errors}
         />
       </div>
-      <div className="text-center">
+      <div className="py-4 text-center ">
         <input
           type="submit"
           value={t('forms.submit')}
