@@ -2,7 +2,8 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import RHFInput from '@/components/react/forms/RHFInput.tsx';
+import RHFInput from '@/components/react/inputs/RHFInput.tsx';
+import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
 
 interface IForm {
@@ -83,23 +84,34 @@ function ContactForm({ url }: Props) {
       </div>
 
       <div className="mb-6 flex flex-col gap-5 md:flex-row">
-        <RHFInput
+        <RHFSelect
+          options={[
+            t('common.web-development'),
+            t('common.e-commerce'),
+            t('common.mobile-apps'),
+            t('common.customized-development'),
+            t('common.other'),
+          ]}
           name="projectType"
           label={t('forms.project-type')}
-          register={register}
           errors={errors}
+          register={register}
         />
-        <RHFInput
+
+        <RHFSelect
+          options={[
+            t('common.google'),
+            t('common.rrss'),
+            t('common.linkedin'),
+            t('common.recommended'),
+            t('common.other'),
+          ]}
           name="howDidYouFindUs"
           label={t('forms.how-did-you-find-us')}
-          register={register}
           errors={errors}
+          register={register}
         />
       </div>
-
-      {/* <div className="mb-6 flex gap-5"> */}
-      {/*  <input type="checkbox" /> */}
-      {/* </div> */}
 
       <div>
         <input
