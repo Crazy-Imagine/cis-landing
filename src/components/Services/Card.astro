@@ -1,0 +1,13 @@
+---
+import Typography from '@/components/Typography.astro';
+---
+
+<div
+  class="flex min-h-[200px] w-full max-w-[300px] flex-col items-center justify-center gap-5 bg-white py-10 shadow-md"
+>
+  <slot name="icon" />
+  <Typography class="text-wrap text-primary" as="p" variant="accent">
+    <slot name="text" />
+  </Typography>
+  <slot name="link" />
+</div>

@@ -1,12 +1,27 @@
 ---
+import Antenna from '@/icons/Antenna.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import Card from '@/components/Services/Card.astro';
+import CardContainer from '@/components/Services/CardContainer.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
+import Code from '@/icons/Code.astro';
 import Hero from '@/sections/Hero.astro';
+import ImageOverBackground from '@/components/Services/ImageOverBackground.astro';
 import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
+import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import Partners from '@/sections/Partners.astro';
-import { carouselData } from '@/utils/test/carousel-data';
+import ReachOut from '@/sections/ReachOut.astro';
+import ReferenceCard from '@/components/ReferenceCard.astro';
+import Services from '@/sections/Services.astro';
+import Typography from '@/components/Typography.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+<<<<<<< HEAD
 import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
+=======
+import { mockArticles } from '@/utils/mock/articles';
+import { mockReferences } from '@/utils/mock/references';
+>>>>>>> main
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -25,12 +40,61 @@ const translatePath = useTranslatedPath(lang);
     </LinkPill>
   </Hero>
 
-  <CarouselSection
-    type="white"
-    title={t('common.previous-projects')}
-    data={carouselData}
-    linkText={t('common.view-project')}
-  >
+  <Services class="py-20">
+    <ImageOverBackground
+      slot="image"
+      class="flex-shrink"
+      img="/img/ui/light-bulb.webp"
+      alt={t('alt.light-bulb')}
+    />
+
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.why-should-you')}
+      <span class="text-secondary">{' '}{t('services.choose-us')}</span>
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.we-will-help-you-strategize')}
+    </Typography>
+
+    <CardContainer slot="cards">
+      <Card>
+        <Code slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.full-stack-development')}</span>
+      </Card>
+      <Card>
+        <MagnifyingGlass slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.user-experience')}</span>
+      </Card>
+      <Card>
+        <Antenna slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.quality-support')}</span>
+      </Card>
+    </CardContainer>
+
+    <Typography class="mt-16 text-wrap text-center text-primary" as="p" variant="caption">
+      {t('services.with-deep-expertise')}
+    </Typography>
+
+    <div class="mt-14 text-center">
+      <LinkPill href={translatePath('#', lang)}> {t('common.get-started')} </LinkPill>
+    </div>
+  </Services>
+
+  <CarouselSection type="blue" title={t('common.people-who-work-with-us-say')}>
+    <Fragment slot="items">
+      {mockReferences.map((reference) => <ReferenceCard {...reference} />)}
+    </Fragment>
+  </CarouselSection>
+
+  <CarouselSection type="white" title={t('common.previous-projects')}>
+    <Fragment slot="items">
+      {
+        mockArticles.map((value) => (
+          <ArticleCard {...value} class="shadow-md" linkText={t('common.view-project')} />
+        ))
+      }
+    </Fragment>
+
     <div class="mt-10 text-center">
       <LinkPill href={translatePath('#', lang)}>
         {t('common.all-projects')}
@@ -42,10 +106,11 @@ const translatePath = useTranslatedPath(lang);
 
   <Partners />
 
-  <CarouselSection
-    type="blue"
-    title={t('common.latest-in-tech-talk')}
-    data={carouselData}
-    linkText={t('common.read-more')}
-  />
+  <CarouselSection type="blue" title={t('common.latest-in-tech-talk')}>
+    <Fragment slot="items">
+      {mockArticles.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}
+    </Fragment>
+  </CarouselSection>
+
+  <ReachOut />
 </Layout>

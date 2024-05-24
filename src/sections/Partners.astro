@@ -1,34 +1,39 @@
 ---
 import 'swiper/css';
 import 'swiper/css/autoplay';
-
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { PARTNERS } from '@/consts/partners';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
-import { PARTNERS } from '@/consts/partners';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.svg');
 ---
 
-<ResponsiveContainer class="py-2 lg:py-20" as="section">
-  <Typography class="mb-20 text-center capitalize text-primary" as="h3" variant="h2">
-    {t('common.partners')}
-  </Typography>
+<div>
+  <ResponsiveContainer class="py-2 lg:py-20" as="section">
+    <Typography class="mb-20 text-center capitalize text-primary" as="h2" variant="h2">
+      {t('common.partners')}
+    </Typography>
 
-  <div class="swiper partners" id="partners">
-    <div class="swiper-wrapper !h-max items-center">
-      {
-        PARTNERS.map((partner) => (
-          <div class="swiper-slide">
-            <img src={partner.src} alt={partner.alt} loading="lazy" />
-            <div class="swiper-lazy-preloader" />
-          </div>
-        ))
-      }
+    <div class="swiper partners" id="partners">
+      <div class="swiper-wrapper !h-max items-center">
+        {
+          PARTNERS.map((partner) => (
+            <div class="swiper-slide">
+              <Image class="mx-auto" src={images[partner.src]()} alt={partner.alt} />
+              <div class="swiper-lazy-preloader" />
+            </div>
+          ))
+        }
+      </div>
     </div>
-  </div>
-</ResponsiveContainer>
+  </ResponsiveContainer>
+</div>
 
 <script>
   import Swiper from 'swiper';
@@ -41,7 +46,7 @@ const t = useTranslations(lang);
       loop: true,
       breakpoints: {
         0: {
-          slidesPerView: 2,
+          slidesPerView: 1,
         },
         600: {
           slidesPerView: 2,

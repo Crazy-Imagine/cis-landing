@@ -22,7 +22,9 @@ export default {
         'grayish': 'var(--color-grayish)',
         'periwinkle': 'var(--color-periwinkle)',
         'sky-blue': 'var(--color-sky-blue)',
-        'custom-primary': 'var(--color-custom-primary)',
+        'fog-white': 'var(--color-fog-white)',
+        'primary-with-transparency': 'var(--color-primary-with-transparency)',
+        'blue-purple-contrast': 'var(--color-blue-purple-contrast)',
       },
       keyframes: {
         wiggle: {
@@ -35,5 +37,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [import('@tailwindcss/forms')],
 };

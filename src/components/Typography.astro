@@ -28,6 +28,6 @@ const variantClasses: {
 const classes = [variantClasses[variant as keyof typeof variantClasses], className];
 ---
 
-<Tag class:list={classes} {...props} tabindex="0">
+<Tag class:list={classes} {...props}>
   <slot />
 </Tag>

@@ -1,0 +1,26 @@
+---
+import ArrowNarrowRight from '@/icons/ArrowNarrowRight.astro';
+import Typography from '@/components/Typography.astro';
+
+interface Props {
+  href: string;
+  text: string;
+  class?: string;
+}
+---
+
+<Typography
+  class:list={['inline-block text-periwinkle', Astro.props.class]}
+  as="p"
+  variant="accent"
+>
+  <a
+    href={Astro.props.href}
+    class="group relative flex items-end justify-center
+        after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
+        hover:after:origin-bottom-left hover:after:scale-100"
+  >
+    <span class="text-sm">{Astro.props.text}</span>
+    <ArrowNarrowRight class="group-hover:animate-wiggle" />
+  </a>
+</Typography>

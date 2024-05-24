@@ -1,29 +1,38 @@
-import type { CarouselCardData } from '@/types/Carousel.ts';
+import type { Reference } from '@/types/Reference.ts';
 
-export const carouselData: CarouselCardData[] = [
+export const mockReferences: Reference[] = [
   {
-    title:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiaeodio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eumharum perferendis sint sit.',
-    img: '/img/test/article-test.webp',
+    name: 'John Doe',
+    review: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: '/img/mock/article.webp',
+    occupation: 'CEO',
   },
   {
-    title:
+    name: 'John Doe',
+    review:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiaeodio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eumharum perferendis sint sit.',
-    img: '/img/test/article-test.webp',
+    img: '/img/mock/article.webp',
+    occupation: 'CEO',
   },
   {
-    title:
+    name: 'John Doe',
+    review:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiaeodio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eumharum perferendis sint sit.',
-    img: '/img/test/article-test.webp',
+    img: '/img/mock/article.webp',
+    occupation: 'CEO',
   },
   {
-    title:
+    name: 'John Doe',
+    review:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiaeodio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eumharum perferendis sint sit.',
-    img: '/img/test/article-test.webp',
+    img: '/img/mock/article.webp',
+    occupation: 'CEO',
   },
   {
-    title:
+    name: 'John Doe',
+    review:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque dicta minima, molestiaeodio possimus quasi rem repellendus saepe voluptatibus? Aliquam architecto at dicta eius, eumharum perferendis sint sit.',
-    img: '/img/test/article-test.webp',
+    img: '/img/mock/article.webp',
+    occupation: 'CEO',
   },
 ];

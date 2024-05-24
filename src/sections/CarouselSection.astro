@@ -1,43 +1,37 @@
 ---
 import Carousel from '@/components/Carousel.astro';
-import CarouselCard from '@/components/CarouselCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
-import type { CarouselCardData } from '@/types/Carousel';
 
 interface Props {
   type: 'blue' | 'white';
-  class?: string;
-  cardClass?: string;
   title: string;
-  data: CarouselCardData[];
-  linkText: string;
+  class?: string;
 }
 
-const { title, data, type, linkText } = Astro.props;
+const { title, type } = Astro.props;
 
 const isWhite = type === 'white';
 ---
 
-<section
+<div
   class:list={[
     'relative w-full py-14',
     {
-      'bg-white': isWhite,
-      'bg-primary bg-light-bulbs bg-repeat': !isWhite,
+      'bg-primary bg-light-bulbs bg-center bg-repeat': !isWhite,
     },
     Astro.props.class,
   ]}
 >
   <div
     class:list={[
-      'absolute inset-0 z-10 bg-gradient-to-r from-custom-primary to-transparent',
+      'absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent',
       { hidden: isWhite },
     ]}
   >
   </div>
 
-  <ResponsiveContainer class="relative z-50" as="div">
+  <ResponsiveContainer class="relative z-50" as="section">
     <Typography
       class:list={[
         'mb-10 text-center capitalize',
@@ -46,28 +40,16 @@ const isWhite = type === 'white';
           'text-white': !isWhite,
         },
       ]}
-      as="h3"
+      as="h2"
       variant="h2"
     >
       {title}
     </Typography>
 
     <Carousel>
-      {
-        data.map((value) => (
-          <CarouselCard
-            {...value}
-            class:list={[
-              {
-                'shadow-md': isWhite,
-              },
-            ]}
-            linkText={linkText}
-          />
-        ))
-      }
+      <slot name="items" />
     </Carousel>
 
     <slot />
   </ResponsiveContainer>
-</section>
+</div>

@@ -1,0 +1,32 @@
+---
+import CardCTA from './CardCTA.astro';
+import Typography from './Typography.astro';
+import type { Article } from '@/types/Article';
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+
+interface Props extends Article {
+  linkText: string;
+  class?: string;
+}
+
+const { title, img, imgAlt = '', linkText } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+// const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<article class:list={['swiper-slide my-2 rounded-xl bg-white', Astro.props.class]}>
+  <picture class="rounded-t-xl">
+    <img class="h-auto w-full rounded-t-xl" src={img} alt={imgAlt} loading="lazy" />
+    <div class="swiper-lazy-preloader"></div>
+  </picture>
+
+  <div class="p-5 text-center">
+    <Typography class="line-clamp-2 text-primary" as="h5" variant="accent">
+      {title}
+    </Typography>
+
+    <CardCTA class="mt-2.5" href={translatePath('#', lang)} text={linkText} />
+  </div>
+</article>

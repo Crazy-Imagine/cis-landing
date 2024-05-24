@@ -53,6 +53,28 @@ export const ui = {
 
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
+    'alt.light-bulb': 'Light Bulb',
+
+    // About Us Page
+    'about.references-title': 'References',
+    'about.references-description': 'In-depth testimonials from former and actual clients.',
+    'about.faq-title': 'FAQ',
+    'about.faq-description': 'Know the most frequently asked questions by our clients.',
+    'about.roadmap-title': 'Roadmap',
+    'about.roadmap-description': 'Our process for designing and developing branding and webflow.',
+    'about.meet-the-team-title': 'Meet the team',
+    'about.meet-the-team-description': 'Become acquainted with the Management Team.',
+    'about.mission-title': 'Mission',
+    'about.mission-description': 'We are dedicated to software development to provide a...',
+    'about.working-together-title': 'Working together',
+    'about.working-together-description':
+      'We have a dynamic and diverse mix of full-stack front-end...',
+    'about.blog-title': 'Blog',
+    'about.blog-description': 'The latest in tech and design tal from our team.',
+    'about.who-we-are-title': 'Who we are',
+    'about.who-we-are-description': 'We have a dynamic and diverse mix of full-stack, front-end...',
+    'about.work-with-us-title': 'Work with us',
+    'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
 
     // Common Keys
     'common.hello': 'Hello',
@@ -65,6 +87,19 @@ export const ui = {
     'common.latest-in-tech-talk': 'The latest in tech talk',
     'common.all-projects': 'All Projects',
     'common.partners': 'Partners',
+    'common.get-started': 'Get Started',
+    'common.reach.out': 'Reach Out',
+    'common.imagine-what-we-can-create': 'Imagine what we can create',
+    'common.people-who-work-with-us-say': 'People who work with us say',
+    'common.google': 'Google',
+    'common.rrss': 'RRSS',
+    'common.linkedin': 'LinkedIn',
+    'common.recommended': 'Recommended',
+    'common.other': 'Other',
+    'common.web-development': 'Web Development',
+    'common.e-commerce': 'E-commerce',
+    'common.mobile-apps': 'Mobile Apps',
+    'common.customized-development': 'Customized Development',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -92,6 +127,34 @@ export const ui = {
       'What we want to accomplish and provide, and what we see in the future for our agency',
     'hero.mission-button': '',
     'hero.mission-img-alt': 'Image of mars explorer vehicle',
+
+    // Services Keys
+    'services.why-should-you': 'Why Should You',
+    'services.choose-us': 'Choose Us',
+    'services.we-will-help-you-strategize':
+      'We will help you to strategize your web presence, designing and executing sitemaps and wireframes to provide a sleek, elegant, and seamless end-user experience.',
+    'services.with-deep-expertise':
+      'With deep expertise that spans across the web development spectrum, we can optimize your digital presence at any level.',
+    'services.full-stack-development': 'Full-stack Development',
+    'services.user-experience': 'User Experience',
+    'services.quality-support': 'Quality Support',
+
+    // Contact form
+    'forms.submit': 'Submit',
+    'forms.name': 'Name',
+    'forms.company': 'Company',
+    'forms.country': 'Country',
+    'forms.email': 'Email Address',
+    'forms.phone': 'Phone',
+    'forms.comments-questions-schemes': 'Comments/Questions/Schemes',
+    'forms.project-type': 'Project Type',
+    'forms.how-did-you-find-us': 'How did you find us?',
+
+    // Forms error
+    'errors.name-required': 'Name is required',
+    'errors.email-is-not-valid': 'Email must be a valid email address',
+    'errors.email-required': 'Phone is required',
+    'errors.comments-required': 'Comments/Questions/Schemes is required',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -149,8 +212,30 @@ export const ui = {
     'aria.blog-link': 'Enlace a la página de blog',
     'aria.work-with-us-link': 'Enlace a la página de trabaja con nosotros',
 
-    // Various Img Alt Keys
+    // Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',
+    'alt.light-bulb': 'Un bombillo',
+
+    // About Us Page
+    'about.references-title': 'References',
+    'about.references-description': 'In-depth testimonials from former and actual clients.',
+    'about.faq-title': 'FAQ',
+    'about.faq-description': 'Know the most frequently asked questions by our clients.',
+    'about.roadmap-title': 'Roadmap',
+    'about.roadmap-description': 'Our process for designing and developing branding and webflow.',
+    'about.meet-the-team-title': 'Meet the team',
+    'about.meet-the-team-description': 'Become acquainted with the Management Team.',
+    'about.mission-title': 'Mission',
+    'about.mission-description': 'We are dedicated to software development to provide a...',
+    'about.working-together-title': 'Working together',
+    'about.working-together-description':
+      'We have a dynamic and diverse mix of full-stack front-end...',
+    'about.blog-title': 'Blog',
+    'about.blog-description': 'The latest in tech and design tal from our team.',
+    'about.who-we-are-title': 'Who we are',
+    'about.who-we-are-description': 'We have a dynamic and diverse mix of full-stack, front-end...',
+    'about.work-with-us-title': 'Work with us',
+    'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
 
     // Common Keys
     'common.hello': 'Hola',
@@ -163,6 +248,19 @@ export const ui = {
     'common.latest-in-tech-talk': 'Lo último en tecnología',
     'common.all-projects': 'Todos los proyectos',
     'common.partners': 'Socios Comerciales',
+    'common.get-started': 'Empecemos',
+    'common.reach.out': 'Contáctanos', // TODO: check translation
+    'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
+    'common.people-who-work-with-us-say': 'La gente que trabaja con nosotros dice',
+    'common.google': 'Google',
+    'common.rrss': 'RRSS',
+    'common.linkedin': 'LinkedIn',
+    'common.recommended': 'Recomendado',
+    'common.other': 'Otro',
+    'common.web-development': 'Desarrollo Web',
+    'common.e-commerce': 'E-commerce',
+    'common.mobile-apps': 'Aplicaciones Móviles',
+    'common.customized-development': 'Desarrollo a Medida',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -190,6 +288,34 @@ export const ui = {
       'Lo que queremos lograr, ofrecer y lo que vemos en el futuro de nuestra agencia.',
     'hero.mission-button': '',
     'hero.mission-img-alt': 'Imagen del explorador de marte',
+
+    // Services
+    'services.why-should-you': 'Por qué deberías',
+    'services.choose-us': 'Elegirnos',
+    'services.we-will-help-you-strategize':
+      'Te ayudaremos a crear una estrategia para su presencia en la web, diseñando y ejecutando mapas de sitio y esquemas para proporcionar una experiencia de usuario final elegante y fluida.',
+    'services.with-deep-expertise':
+      'Con una profunda experiencia que abarca todo el espectro del desarrollo web, podemos optimizar tu presencia digital a cualquier nivel.',
+    'services.full-stack-development': 'Desarrollo Full-Stack',
+    'services.user-experience': 'Experiencia de Usuario',
+    'services.quality-support': 'Control de Calidad',
+
+    // Contact form
+    'forms.submit': 'Enviar',
+    'forms.name': 'Nombre',
+    'forms.company': 'Empresa',
+    'forms.country': 'País',
+    'forms.email': 'Dirección de correo electrónico',
+    'forms.phone': 'Teléfono',
+    'forms.comments-questions-schemes': 'Comentarios/Preguntas/Esquemas',
+    'forms.project-type': 'Tipo de proyecto',
+    'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
+
+    // Forms error
+    'errors.name-required': 'Nombre es requerido',
+    'errors.email-is-not-valid': 'Debe ser una dirección de correo válida',
+    'errors.email-required': 'Dirección de correo electrónico es requerido',
+    'errors.comments-required': 'Comentarios/Preguntas/Esquemas es requerido',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,
