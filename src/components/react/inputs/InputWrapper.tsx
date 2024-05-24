@@ -13,7 +13,7 @@ function InputWrapper({ children, errors, name, label }: React.PropsWithChildren
 
   return (
     <div className="w-full">
-      <div className="relative h-full">
+      <div className="relative">
         <label
           htmlFor={name}
           className="absolute -top-2 left-2 inline-block bg-fog-white px-1 text-xs font-medium capitalize text-gray-900"
