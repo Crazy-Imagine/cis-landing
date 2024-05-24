@@ -62,6 +62,15 @@ export const ui = {
     'common.reach.out': 'Reach Out',
     'common.imagine-what-we-can-create': 'Imagine what we can create',
     'common.people-who-work-with-us-say': 'People who work with us say',
+    'common.google': 'Google',
+    'common.rrss': 'RRSS',
+    'common.linkedin': 'LinkedIn',
+    'common.recommended': 'Recommended',
+    'common.other': 'Other',
+    'common.web-development': 'Web Development',
+    'common.e-commerce': 'E-commerce',
+    'common.mobile-apps': 'Mobile Apps',
+    'common.customized-development': 'Customized Development',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -168,6 +177,15 @@ export const ui = {
     'common.reach.out': 'Contáctanos', // TODO: check translation
     'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
     'common.people-who-work-with-us-say': 'La gente que trabaja con nosotros dice',
+    'common.google': 'Google',
+    'common.rrss': 'RRSS',
+    'common.linkedin': 'LinkedIn',
+    'common.recommended': 'Recomendado',
+    'common.other': 'Otro',
+    'common.web-development': 'Desarrollo Web',
+    'common.e-commerce': 'E-commerce',
+    'common.mobile-apps': 'Aplicaciones Móviles',
+    'common.customized-development': 'Desarrollo a Medida',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
