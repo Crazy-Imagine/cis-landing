@@ -142,6 +142,7 @@ export const ui = {
     // Contact form
     'forms.submit': 'Submit',
     'forms.name': 'Name',
+    'forms.lastName': 'Last Name',
     'forms.company': 'Company',
     'forms.country': 'Country',
     'forms.email': 'Email Address',
@@ -149,9 +150,13 @@ export const ui = {
     'forms.comments-questions-schemes': 'Comments/Questions/Schemes',
     'forms.project-type': 'Project Type',
     'forms.how-did-you-find-us': 'How did you find us?',
+    'forms.title': 'News And Updates',
+    'forms.subtitle':
+      'Get insight into our latest projects, news related to popular technologies, and updates on our services',
 
     // Forms error
     'errors.name-required': 'Name is required',
+    'errors.lastName-required': 'Last name is required',
     'errors.email-is-not-valid': 'Email must be a valid email address',
     'errors.email-required': 'Phone is required',
     'errors.comments-required': 'Comments/Questions/Schemes is required',
@@ -303,6 +308,7 @@ export const ui = {
     // Contact form
     'forms.submit': 'Enviar',
     'forms.name': 'Nombre',
+    'forms.lastName': 'Apellido',
     'forms.company': 'Empresa',
     'forms.country': 'País',
     'forms.email': 'Dirección de correo electrónico',
@@ -310,9 +316,13 @@ export const ui = {
     'forms.comments-questions-schemes': 'Comentarios/Preguntas/Esquemas',
     'forms.project-type': 'Tipo de proyecto',
     'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
+    'forms.title': 'Novedades Y Actualizaciones',
+    'forms.subtitle':
+      'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
 
     // Forms error
     'errors.name-required': 'Nombre es requerido',
+    'errors.lastName-required': 'Apellido es requerido',
     'errors.email-is-not-valid': 'Debe ser una dirección de correo válida',
     'errors.email-required': 'Dirección de correo electrónico es requerido',
     'errors.comments-required': 'Comentarios/Preguntas/Esquemas es requerido',

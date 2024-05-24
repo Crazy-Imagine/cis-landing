@@ -1,26 +1,28 @@
-<section class="relative w-full bg-primary py-14">
-  <div class="flex items-center py-20">
-    <div class="flex-col">
-      <h1
-        class="font-nexaBold text-xl font-bold capitalize leading-7 sm:text-xl sm:leading-5 lg:text-[30px]"
-      >
-        News and Updates
-      </h1>
-      <h2 class="my-10 items-center font-nexaLight text-xs text-black lg:text-sm">
-        Get insight into our latest projects, news related to popular technologies, and updates on
-        our services
-      </h2>
-    </div>
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import SuscribeForm from '@/components/react/SuscribeForm';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer
+  class="flex w-full flex-col items-center bg-primary py-10 md:flex-row md:gap-5 md:py-10 lg:gap-5"
+  as="section"
+>
+  <div class="flex-col items-center px-5 py-20">
+    <Typography class="text-center text-white" as="h1" variant="h3">
+      {t('forms.title')}
+    </Typography>
+
+    <Typography class="text-center text-white" as="p" variant="h6">
+      {t('forms.subtitle')}
+    </Typography>
   </div>
 
-  <div class="rounded-lg bg-white shadow">
-    <form class="flex">
-      <div class="mb-6 flex flex-col gap-5 md:flex-row">
-        <button
-          class="rounded-full bg-blue-purple px-5 py-4 font-nexaLight uppercase text-white"
-          type="submit">Suscribirse</button
-        >
-      </div>
-    </form>
+  <div class="flex-row rounded-lg bg-white px-5 py-5 shadow">
+    <SuscribeForm url={Astro.url} client:visible />
   </div>
-</section>
+</ResponsiveContainer>
