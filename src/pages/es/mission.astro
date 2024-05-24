@@ -1,0 +1,12 @@
+---
+import Hero from '@/sections/Hero.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t('SEO.mission-title')} description={t('SEO.mission-description')}>
+  <Hero page="mission" />
+</Layout>

@@ -16,6 +16,7 @@ import ReferenceCard from '@/components/ReferenceCard.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
 import { mockArticles } from '@/utils/mock/articles';
 import { mockReferences } from '@/utils/mock/references';
 
@@ -97,6 +98,8 @@ const translatePath = useTranslatedPath(lang);
       </LinkPill>
     </div>
   </CarouselSection>
+
+  <NewsAndUpdates />
 
   <Partners />
 

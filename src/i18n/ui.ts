@@ -17,6 +17,14 @@ export const ui = {
       'We are a growing startup with more than 5 years in the market, with experience on mobile and web development, using the most popular Javascript technologies like React js, Angular js, Vue js, Node js and PHP frameworks like Laravel, Code Igniter, Prestashop, and Wordpress.',
     'SEO.about-title': 'Crazy Imagine Software | Our Team is Your Greatest Resource',
     'SEO.about-description': 'Description',
+    'SEO.mission-title': 'Crazy Imagine Software | ',
+    'SEO.mission-description': 'Description',
+    'SEO.blog-title': 'Crazy Imagine Software | The Latest In Tech Talk From Our Team',
+    'SEO.blog-description': 'Description',
+    'SEO.references-title': 'Crazy Imagine Software | ',
+    'SEO.references-description': 'Description',
+    'SEO.services-title': 'Crazy Imagine Software | Let Your Imagination Run Wild',
+    'SEO.services-description': 'Description',
 
     // Aria Keys
     'aria.home-link': 'Link to home page',
@@ -92,6 +100,9 @@ export const ui = {
     'common.e-commerce': 'E-commerce',
     'common.mobile-apps': 'Mobile Apps',
     'common.customized-development': 'Customized Development',
+    'common.news-and-updates': 'News And Updates',
+    'common.news-and-updates-description':
+      'Get insight into our latest projects, news related to popular technologies, and updates on our services',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -102,6 +113,23 @@ export const ui = {
     'hero.about-subtitle': 'Leading a team of world-class engineers, developers and designers',
     'hero.about-button': 'Contact us',
     'hero.about-img-alt': 'Rocket image',
+    'hero.blog-title': 'The Latest in Tech Talk from our Team',
+    'hero.blog-subtitle': '',
+    'hero.blog-button': '',
+    'hero.blog-img-alt': 'Image of a shield',
+    'hero.references-title': 'Client References',
+    'hero.references-subtitle': '',
+    'hero.references-button': '',
+    'hero.references-img-alt': '5 starts',
+    'hero.services-title': 'Let Your Imagination Run Wild',
+    'hero.services-subtitle': '',
+    'hero.services-button': '',
+    'hero.services-img-alt': 'Image of a explorer vehicle',
+    'hero.mission-title': 'Mission & Vision',
+    'hero.mission-subtitle':
+      'What we want to accomplish and provide, and what we see in the future for our agency',
+    'hero.mission-button': '',
+    'hero.mission-img-alt': 'Image of mars explorer vehicle',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -117,6 +145,7 @@ export const ui = {
     // Contact form
     'forms.submit': 'Submit',
     'forms.name': 'Name',
+    'forms.lastName': 'Last Name',
     'forms.company': 'Company',
     'forms.country': 'Country',
     'forms.email': 'Email Address',
@@ -124,9 +153,11 @@ export const ui = {
     'forms.comments-questions-schemes': 'Comments/Questions/Schemes',
     'forms.project-type': 'Project Type',
     'forms.how-did-you-find-us': 'How did you find us?',
+    'forms.subscribe': 'Subscribe',
 
     // Forms error
     'errors.name-required': 'Name is required',
+    'errors.lastName-required': 'Last name is required',
     'errors.email-is-not-valid': 'Email must be a valid email address',
     'errors.email-required': 'Phone is required',
     'errors.comments-required': 'Comments/Questions/Schemes is required',
@@ -153,6 +184,14 @@ export const ui = {
       'Somos una startup en crecimiento con más de 5 años en el mercado, con experiencia en desarrollo móvil y web, utilizando las tecnologías Javascript más populares como React js, Angular js, Vue js, Node js y frameworks PHP como Laravel, Code Igniter, Prestashop, y Wordpress.',
     'SEO.about-title': 'Crazy Imagine Software | Nuestro equipo es su mejor recurso',
     'SEO.about-description': 'Description',
+    'SEO.mission-title': 'Crazy Imagine Software | ',
+    'SEO.mission-description': 'Description',
+    'SEO.blog-title': 'Crazy Imagine Software | Lo Último En Tecnologia Por Nuestro Equipo',
+    'SEO.blog-description': 'Description',
+    'SEO.references-title': 'Crazy Imagine Software | ',
+    'SEO.references-description': 'Description',
+    'SEO.services-title': 'Crazy Imagine Software | Deja Volar Tú Imaginación',
+    'SEO.services-description': 'Description',
 
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
@@ -228,6 +267,9 @@ export const ui = {
     'common.e-commerce': 'E-commerce',
     'common.mobile-apps': 'Aplicaciones Móviles',
     'common.customized-development': 'Desarrollo a Medida',
+    'common.news-and-updates': 'Novedades Y Actualizaciones',
+    'common.news-and-updates-description':
+      'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -238,6 +280,23 @@ export const ui = {
     'hero.about-subtitle': 'Nuestro equipo excepcional está distribuido en toda América Latina',
     'hero.about-button': 'Contáctanos',
     'hero.about-img-alt': 'Imagen de un cohete',
+    'hero.blog-title': 'Lo último En Tecnologia Por Nuestro Equipo',
+    'hero.blog-subtitle': '',
+    'hero.blog-button': '',
+    'hero.blog-img-alt': 'Imagen de un escudo',
+    'hero.references-title': 'Clientes Referencia',
+    'hero.references-subtitle': '',
+    'hero.references-button': '',
+    'hero.references-img-alt': '5 estrellas',
+    'hero.services-title': 'Deja Volar tu Imaginación',
+    'hero.services-subtitle': '',
+    'hero.services-button': '',
+    'hero.services-img-alt': 'Imagen de un vehiculo explorador',
+    'hero.mission-title': 'Misión Y Visión',
+    'hero.mission-subtitle':
+      'Lo que queremos lograr, ofrecer y lo que vemos en el futuro de nuestra agencia.',
+    'hero.mission-button': '',
+    'hero.mission-img-alt': 'Imagen del explorador de marte',
 
     // Services
     'services.why-should-you': 'Por qué deberías',
@@ -253,6 +312,7 @@ export const ui = {
     // Contact form
     'forms.submit': 'Enviar',
     'forms.name': 'Nombre',
+    'forms.lastName': 'Apellido',
     'forms.company': 'Empresa',
     'forms.country': 'País',
     'forms.email': 'Dirección de correo electrónico',
@@ -260,9 +320,11 @@ export const ui = {
     'forms.comments-questions-schemes': 'Comentarios/Preguntas/Esquemas',
     'forms.project-type': 'Tipo de proyecto',
     'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
+    'forms.subscribe': 'Suscribir',
 
     // Forms error
     'errors.name-required': 'Nombre es requerido',
+    'errors.lastName-required': 'Apellido es requerido',
     'errors.email-is-not-valid': 'Debe ser una dirección de correo válida',
     'errors.email-required': 'Dirección de correo electrónico es requerido',
     'errors.comments-required': 'Comentarios/Preguntas/Esquemas es requerido',
