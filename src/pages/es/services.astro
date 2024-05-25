@@ -13,7 +13,7 @@ import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
 import Megaphone from '@/icons/Megaphone.astro';
 import Monitor from '@/icons/Monitor.astro';
-import Services from '@/sections/Services.astro';
+import ServicesSection from '@/sections/Services.astro';
 import SrPackage from '@/icons/SrPackage.astro';
 import Typography from '@/components/Typography.astro';
 import User from '@/icons/User.astro';
@@ -28,7 +28,7 @@ const translatePath = useTranslatedPath(lang);
 <Layout title={t('SEO.services-title')} description={t('SEO.services-description')}>
   <Hero page="services" />
 
-  <Services
+  <ServicesSection
     hasCapabilities
     img={{
       src: '/img/ui/laptop.webp',
@@ -57,9 +57,9 @@ const translatePath = useTranslatedPath(lang);
         <span slot="text">{t('services.full-stack-development')}</span>
       </Card>
     </CardContainer>
-  </Services>
+  </ServicesSection>
 
-  <Services
+  <ServicesSection
     hasCapabilities
     img={{
       bgColor: 'bg-primary',
@@ -89,9 +89,9 @@ const translatePath = useTranslatedPath(lang);
         <span slot="text">{t('services.technical-support')}</span>
       </Card>
     </CardContainer>
-  </Services>
+  </ServicesSection>
 
-  <Services
+  <ServicesSection
     hasCapabilities
     img={{
       bgColor: 'bg-secondary',
@@ -106,9 +106,9 @@ const translatePath = useTranslatedPath(lang);
     <Typography slot="description" class="mt-5" variant="paragraph" as="p">
       {t('services.devops-aws-hosting-description')}
     </Typography>
-  </Services>
+  </ServicesSection>
 
-  <Services
+  <ServicesSection
     hasCapabilities
     img={{
       src: '/img/ui/laptop-with-phone.webp',
@@ -138,9 +138,9 @@ const translatePath = useTranslatedPath(lang);
         <span slot="text">{t('services.social-media-management')}</span>
       </Card>
     </CardContainer>
-  </Services>
+  </ServicesSection>
 
-  <Services
+  <ServicesSection
     hasCapabilities
     img={{
       src: '/img/ui/double-cellphone.webp',
@@ -169,7 +169,7 @@ const translatePath = useTranslatedPath(lang);
         <span slot="text">{t('services.staff-outsourcing')}</span>
       </Card>
     </CardContainer>
-  </Services>
+  </ServicesSection>
 
   <CarouselSection title={t('common.previous-projects')}>
     <Fragment slot="items">
