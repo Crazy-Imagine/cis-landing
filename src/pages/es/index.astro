@@ -37,7 +37,7 @@ const translatePath = useTranslatedPath(lang);
     </LinkPill>
   </Hero>
 
-  <Services class="py-20">
+  <Services>
     <ImageOverBackground
       slot="image"
       class="flex-shrink"
@@ -77,13 +77,13 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </Services>
 
-  <CarouselSection type="blue" title={t('common.people-who-work-with-us-say')}>
+  <CarouselSection background="bulbs" title={t('common.people-who-work-with-us-say')}>
     <Fragment slot="items">
       {mockReferences.map((reference) => <ReferenceCard {...reference} />)}
     </Fragment>
   </CarouselSection>
 
-  <CarouselSection type="white" title={t('common.previous-projects')}>
+  <CarouselSection title={t('common.previous-projects')}>
     <Fragment slot="items">
       {
         mockArticles.map((value) => (
@@ -103,7 +103,7 @@ const translatePath = useTranslatedPath(lang);
 
   <Partners />
 
-  <CarouselSection type="blue" title={t('common.latest-in-tech-talk')}>
+  <CarouselSection background="bulbs" title={t('common.latest-in-tech-talk')}>
     <Fragment slot="items">
       {mockArticles.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}
     </Fragment>
