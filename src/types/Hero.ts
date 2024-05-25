@@ -1,9 +1,10 @@
-export interface Hero {
-  img: string;
-  width: number;
-  height: number;
-}
+export type PageWithHero =
+  | 'home'
+  | 'about'
+  | 'blog'
+  | 'references'
+  | 'services'
+  | 'mission'
+  | 'meet-the-team';
 
-export type PageWithHero = 'home' | 'about' | 'blog' | 'references' | 'services' | 'mission';
-
-export type HeroSection = Record<PageWithHero, Hero>;
+export type HeroImages = Record<PageWithHero, string>;
