@@ -54,6 +54,10 @@ export const ui = {
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
     'alt.light-bulb': 'Light Bulb',
+    'alt.laptop': 'Laptop',
+    'alt.wireframe': 'Wireframe of a Mobile Application',
+    'alt.double-cellphone': 'Two mobile phones with a fingerprint',
+    'alt.laptop-with-phone': 'Laptop with a mobile and a tablet',
 
     // About Us Page
     'about.references-title': 'References',
@@ -141,6 +145,33 @@ export const ui = {
     'services.full-stack-development': 'Full-stack Development',
     'services.user-experience': 'User Experience',
     'services.quality-support': 'Quality Support',
+    'services.capabilities': 'Capabilities',
+    'services.custom-software-development': 'Custom Software Development',
+    'services.custom-software-development-description':
+      "We create tailored software solutions to meet the specific needs of your business. Whether it's a website or a mobile app, our expert development team utilizes a wide range of technologies, including:",
+    'services.wordpress-packages-maintenance': 'WordPress Packages and Maintenance',
+    'services.wordpress-packages-maintenance-description':
+      'From basic websites to complex online stores, we handle the entire lifecycle of your WordPress site. We offer:',
+    'services.devops-aws-hosting': 'DevOps and AWS Hosting',
+    'services.devops-aws-hosting-description':
+      'Optimize your development operations with agile DevOps practices. Additionally, we offer hosting services on the secure and scalable infrastructure of Amazon Web Services (AWS).',
+    'services.digital-marketing': 'Digital Marketing',
+    'services.digital-marketing-description':
+      'Our team of marketing experts can boost your online business visibility with effective strategies, including',
+    'services.support-project-management': 'Support and Project Management',
+    'services.support-project-management-description':
+      'We offer personalized support services to cover your operational needs, including',
+    'services.frontend': 'Frontend',
+    'services.backend': 'Backend',
+    'services.design-and-development': 'Design and Development',
+    'services.ongoing-maintenance': 'Ongoing Maintenance',
+    'services.technical-support': 'Technical Support',
+    'services.marketing-strategies': 'Marketing Strategies',
+    'services.online-advertising': 'Online Advertising',
+    'services.social-media-management': 'Social Media Management',
+    'services.virtual-assistant': 'Virtual Assistant',
+    'services.project-management': 'Project Management',
+    'services.staff-outsourcing': 'Staff Outsourcing',
 
     // Contact form
     'forms.submit': 'Submit',
@@ -221,6 +252,10 @@ export const ui = {
     // Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',
     'alt.light-bulb': 'Un bombillo',
+    'alt.laptop': 'Laptop',
+    'alt.wireframe': 'Wireframe de una aplicación móvil',
+    'alt.double-cellphone': 'Dos teléfonos celulares con una huella en ellos',
+    'alt.laptop-with-phone': 'Laptop con un teléfono y una table a sus lados',
 
     // About Us Page
     'about.references-title': 'References',
@@ -308,6 +343,35 @@ export const ui = {
     'services.full-stack-development': 'Desarrollo Full-Stack',
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
+    'services.capabilities': 'Capacidades',
+    // TODO: TRANSLATIONS
+    'services.custom-software-development': 'Custom Software Development',
+    'services.custom-software-development-description':
+      "We create tailored software solutions to meet the specific needs of your business. Whether it's a website or a mobile app, our expert development team utilizes a wide range of technologies, including:",
+    'services.wordpress-packages-maintenance': 'WordPress Packages Maintenance',
+    'services.wordpress-packages-maintenance-description':
+      'From basic websites to complex online stores, we handle the entire lifecycle of your WordPress site. We offer:',
+    'services.devops-aws-hosting': 'DevOps y Hosting en AWS',
+    'services.devops-aws-hosting-description':
+      'Optimize your development operations with agile DevOps practices. Additionally, we offer hosting services on the secure and scalable infrastructure of Amazon Web Services (AWS).',
+    'services.digital-marketing': 'Marketing Digital',
+    'services.digital-marketing-description':
+      'Our team of marketing experts can boost your online business visibility with effective strategies, including',
+    'services.support-project-management': 'Support and Project Management',
+    'services.support-project-management-description':
+      'We offer personalized support services to cover your operational needs, including',
+    'services.frontend': 'Frontend',
+    'services.backend': 'Backend',
+    'services.design-and-development': 'Design and Development',
+    'services.ongoing-maintenance': 'Ongoing Maintenance',
+    'services.technical-support': 'Technical Support',
+    'services.marketing-strategies': 'Marketing Strategies',
+    'services.online-advertising': 'Online Advertising',
+    'services.social-media-management': 'Social Media Management',
+    'services.virtual-assistant': 'Virtual Assistant',
+    'services.project-management': 'Project Management',
+    'services.staff-outsourcing': 'Staff Outsourcing',
+    // TODO: TRANSLATIONS END
 
     // Contact form
     'forms.submit': 'Enviar',

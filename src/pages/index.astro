@@ -6,17 +6,16 @@ import CardContainer from '@/components/Services/CardContainer.astro';
 import CarouselSection from '@/sections/CarouselSection.astro';
 import Code from '@/icons/Code.astro';
 import Hero from '@/sections/Hero.astro';
-import ImageOverBackground from '@/components/Services/ImageOverBackground.astro';
 import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
 import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
+import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
 import Partners from '@/sections/Partners.astro';
 import ReachOut from '@/sections/ReachOut.astro';
 import ReferenceCard from '@/components/ReferenceCard.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
 import { mockArticles } from '@/utils/mock/articles';
 import { mockReferences } from '@/utils/mock/references';
 
@@ -37,14 +36,12 @@ const translatePath = useTranslatedPath(lang);
     </LinkPill>
   </Hero>
 
-  <Services>
-    <ImageOverBackground
-      slot="image"
-      class="flex-shrink"
-      img="/img/ui/light-bulb.webp"
-      alt={t('alt.light-bulb')}
-    />
-
+  <Services
+    img={{
+      src: '/img/ui/light-bulb.webp',
+      alt: t('alt.light-bulb'),
+    }}
+  >
     <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
       {t('services.why-should-you')}
       <span class="text-secondary">{' '}{t('services.choose-us')}</span>
