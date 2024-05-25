@@ -1,12 +1,189 @@
 ---
+import ArticleCard from '@/components/ArticleCard.astro';
+import Books from '@/icons/Books.astro';
+import Brush from '@/icons/Brush.astro';
+import Card from '@/components/Services/Card.astro';
+import CardContainer from '@/components/Services/CardContainer.astro';
+import CarouselSection from '@/sections/CarouselSection.astro';
+import Check from '@/icons/Check.astro';
+import Code from '@/icons/Code.astro';
+import Gears from '@/icons/Gears.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import LinkPill from '@/components/LinkPill.astro';
+import Megaphone from '@/icons/Megaphone.astro';
+import Monitor from '@/icons/Monitor.astro';
+import ServicesSection from '@/sections/Services.astro';
+import SrPackage from '@/icons/SrPackage.astro';
+import Typography from '@/components/Typography.astro';
+import User from '@/icons/User.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import { mockArticles } from '@/utils/mock/articles';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout title={t('SEO.services-title')} description={t('SEO.services-description')}>
   <Hero page="services" />
+
+  <ServicesSection
+    hasCapabilities
+    img={{
+      path: '/src/assets/ui/laptop.webp',
+      alt: t('alt.laptop'),
+      class: 'w-[140px]',
+    }}
+  >
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.custom-software-development')}
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.custom-software-development-description')}
+    </Typography>
+
+    <CardContainer slot="cards">
+      <Card>
+        <Code slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.frontend')}</span>
+      </Card>
+      <Card>
+        <Check slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.backend')}</span>
+      </Card>
+      <Card>
+        <Monitor slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.full-stack-development')}</span>
+      </Card>
+    </CardContainer>
+  </ServicesSection>
+
+  <ServicesSection
+    hasCapabilities
+    img={{
+      bgColor: 'bg-primary',
+      path: '/src/assets/ui/wireframes.webp',
+      alt: t('alt.wireframe'),
+      class: 'w-[140px]',
+    }}
+  >
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.wordpress-packages-maintenance')}
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.wordpress-packages-maintenance-description')}
+    </Typography>
+
+    <CardContainer slot="cards">
+      <Card>
+        <Brush slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.design-and-development')}</span>
+      </Card>
+      <Card>
+        <Gears slot="icon" class="h-10 w-10 text-secondary" />
+        <span slot="text">{t('services.ongoing-maintenance')}</span>
+      </Card>
+      <Card>
+        <User slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.technical-support')}</span>
+      </Card>
+    </CardContainer>
+  </ServicesSection>
+
+  <ServicesSection
+    hasCapabilities
+    img={{
+      bgColor: 'bg-secondary',
+      path: '/src/assets/ui/wireframes-dark.webp',
+      alt: t('alt.wireframe'),
+      class: 'w-[120px]',
+    }}
+  >
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.devops-aws-hosting')}
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.devops-aws-hosting-description')}
+    </Typography>
+  </ServicesSection>
+
+  <ServicesSection
+    hasCapabilities
+    img={{
+      path: '/src/assets/ui/laptop-with-phone.webp',
+      alt: t('alt.laptop-with-phone'),
+      class: 'w-full',
+      bgColor: 'bg-primary',
+    }}
+  >
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.digital-marketing')}
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.digital-marketing-description')}
+    </Typography>
+
+    <CardContainer slot="cards">
+      <Card>
+        <Books slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.marketing-strategies')}</span>
+      </Card>
+      <Card>
+        <Megaphone slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.online-advertising')}</span>
+      </Card>
+      <Card>
+        <SrPackage slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.social-media-management')}</span>
+      </Card>
+    </CardContainer>
+  </ServicesSection>
+
+  <ServicesSection
+    hasCapabilities
+    img={{
+      path: '/src/assets/ui/double-cellphone.webp',
+      alt: t('alt.double-cellphone'),
+      class: 'w-[100px]',
+    }}
+  >
+    <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
+      {t('services.support-project-management')}
+    </Typography>
+    <Typography slot="description" class="mt-5" variant="paragraph" as="p">
+      {t('services.support-project-management-description')}
+    </Typography>
+
+    <CardContainer slot="cards">
+      <Card>
+        <Books slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.virtual-assistant')}</span>
+      </Card>
+      <Card>
+        <Megaphone slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.project-management')}</span>
+      </Card>
+      <Card>
+        <SrPackage slot="icon" class="text-secondary" />
+        <span slot="text">{t('services.staff-outsourcing')}</span>
+      </Card>
+    </CardContainer>
+  </ServicesSection>
+
+  <CarouselSection title={t('common.previous-projects')}>
+    <Fragment slot="items">
+      {
+        mockArticles.map((value) => (
+          <ArticleCard {...value} class="shadow-md" linkText={t('common.view-project')} />
+        ))
+      }
+    </Fragment>
+
+    <div class="mt-10 text-center">
+      <LinkPill href={translatePath('#', lang)}>
+        {t('common.all-projects')}
+      </LinkPill>
+    </div>
+  </CarouselSection>
 </Layout>

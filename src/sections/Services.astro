@@ -1,17 +1,61 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
+  hasCapabilities?: boolean;
   class?: string;
+  img: {
+    bgColor?: string;
+    class?: string;
+    path: string;
+    alt: string;
+  };
 }
+
+const { hasCapabilities = false, img } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
+if (!images[img.path])
+  throw new Error(`"${img.path}" does not exist in glob: "/src/assets/ui/*.webp"`);
 ---
 
 <ResponsiveContainer class={Astro.props.class}>
   <div class="flex flex-col gap-10 md:flex-row md:gap-20">
-    <slot name="image" />
+    <div class="relative mx-auto flex h-[100px] w-max md:mx-0 md:h-[275px]">
+      <div
+        class:list={[
+          'inset-0 bottom-0 mt-auto h-full w-40 rounded-[20px] bg-blue-purple md:w-[315px]',
+          img.bgColor,
+        ]}
+      >
+      </div>
+
+      <Image
+        class:list={['absolute inset-x-0 bottom-0 mx-auto w-20 md:w-auto', img.class]}
+        src={images[img.path]()}
+        alt={img.alt}
+      />
+    </div>
 
     <div class="flex flex-col justify-center text-center md:text-left">
-      <slot name="capabilities" />
+      {
+        hasCapabilities && (
+          <Typography
+            as="p"
+            class="mb-4 uppercase tracking-wider text-blue-purple"
+            variant="caption"
+          >
+            {t('services.capabilities')}
+          </Typography>
+        )
+      }
       <slot name="main-text" />
       <slot name="description" />
     </div>
