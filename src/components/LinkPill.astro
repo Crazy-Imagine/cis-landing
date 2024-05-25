@@ -1,10 +1,11 @@
 ---
-import type { Polymorphic } from 'astro/types';
 import Typography from './Typography.astro';
 
-type Props = Polymorphic<{
+interface Props {
+  href: string;
+  class?: string;
   variant: keyof typeof variantClasses;
-}>;
+}
 
 const variantClasses: {
   [key: string]: string;
