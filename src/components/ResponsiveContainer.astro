@@ -10,11 +10,12 @@ interface Props {
 const backgroundClasses: {
   [key: Background]: string;
 } = {
+  white: 'bg-fog-white',
   blue: 'bg-primary',
   bulbs: 'bg-primary bg-light-bulbs bg-center bg-repeat',
 };
 
-const actualBackground = backgroundClasses?.[Astro.props.background] ?? '';
+const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
 ---
 
 <div class:list={['relative py-10 md:py-20', actualBackground, Astro.props.containerClass]}>

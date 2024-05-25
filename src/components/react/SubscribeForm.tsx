@@ -15,7 +15,7 @@ interface Props {
   url: URL;
 }
 
-function SuscribeForm({ url }: Props) {
+function SubscribeForm({ url }: Props) {
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
 
@@ -65,4 +65,4 @@ function SuscribeForm({ url }: Props) {
     </form>
   );
 }
-export default SuscribeForm;
+export default SubscribeForm;

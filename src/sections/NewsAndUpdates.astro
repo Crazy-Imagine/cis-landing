@@ -1,7 +1,7 @@
 ---
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import SubscribeForm from '@/components/react/SubscribeForm';
 import Typography from '@/components/Typography.astro';
-import SuscribeForm from '@/components/react/SuscribeForm';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -23,6 +23,6 @@ const t = useTranslations(lang);
   </div>
 
   <div class="z-20 w-full rounded-lg bg-white px-10 py-10">
-    <SuscribeForm url={Astro.url} client:visible />
+    <SubscribeForm url={Astro.url} client:visible />
   </div>
 </ResponsiveContainer>
