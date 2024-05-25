@@ -14,26 +14,24 @@ const t = useTranslations(lang);
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.svg');
 ---
 
-<div>
-  <ResponsiveContainer class="py-10 lg:py-20" as="section">
-    <Typography class="mb-20 text-center capitalize text-primary" as="h2" variant="h2">
-      {t('common.partners')}
-    </Typography>
+<ResponsiveContainer>
+  <Typography class="mb-20 text-center capitalize text-primary" as="h2" variant="h2">
+    {t('common.partners')}
+  </Typography>
 
-    <div class="swiper partners" id="partners">
-      <div class="swiper-wrapper !h-max items-center">
-        {
-          PARTNERS.map((partner) => (
-            <div class="swiper-slide">
-              <Image class="mx-auto" src={images[partner.src]()} alt={partner.alt} />
-              <div class="swiper-lazy-preloader" />
-            </div>
-          ))
-        }
-      </div>
+  <div class="swiper partners" id="partners">
+    <div class="swiper-wrapper !h-max items-center">
+      {
+        PARTNERS.map((partner) => (
+          <div class="swiper-slide">
+            <Image class="mx-auto" src={images[partner.src]()} alt={partner.alt} />
+            <div class="swiper-lazy-preloader" />
+          </div>
+        ))
+      }
     </div>
-  </ResponsiveContainer>
-</div>
+  </div>
+</ResponsiveContainer>
 
 <script>
   import Swiper from 'swiper';

@@ -14,74 +14,72 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<section class="w-full bg-primary">
-  <ResponsiveContainer
-    class="flex h-max flex-col justify-between py-6 text-white md:flex-row md:flex-wrap md:gap-x-2.5 md:py-20"
-    as="footer"
-  >
-    <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
-      <CISLogo class="mb-5" />
+<ResponsiveContainer
+  background="blue"
+  class="flex h-max flex-col justify-between text-white md:flex-row md:flex-wrap md:gap-x-2.5"
+>
+  <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
+    <CISLogo class="mb-5" />
 
-      <p
-        class="mb-2.5 flex items-center gap-2 whitespace-normal text-wrap font-roboto text-sm leading-6 tracking-wide"
-      >
-        {t('footer.text')}
-      </p>
+    <p
+      class="mb-2.5 flex items-center gap-2 whitespace-normal text-wrap font-roboto text-sm leading-6 tracking-wide"
+    >
+      {t('footer.text')}
+    </p>
 
-      <p class="mb-2.5 flex items-center gap-2 font-roboto text-xs leading-6 tracking-wide">
-        {t('footer.all-rights-reserved')}
-      </p>
+    <p class="mb-2.5 flex items-center gap-2 font-roboto text-xs leading-6 tracking-wide">
+      {t('footer.all-rights-reserved')}
+    </p>
 
-      <p class="font-roboto text-xs">
-        <a href={translatePath('#', lang)} class="underline">
-          {t('common.terms-and-conditions')}
-        </a>
-        &nbsp;|&nbsp;
-        <a href={translatePath('#', lang)} class="underline">
-          {t('common:privacy-policy')}
-        </a>
-      </p>
-    </div>
+    <p class="font-roboto text-xs">
+      <a href={translatePath('#', lang)} class="underline">
+        {t('common.terms-and-conditions')}
+      </a>
+      &nbsp;|&nbsp;
+      <a href={translatePath('#', lang)} class="underline">
+        {t('common:privacy-policy')}
+      </a>
+    </p>
+  </div>
 
-    <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
-      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
-        {t('footer.location')}
-      </p>
+  <div class="mb-10 md:basis-[calc(50%-10px)] lg:mb-0 lg:basis-[calc(25%-10px)]">
+    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+      {t('footer.location')}
+    </p>
 
-      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
-        <Building />
-        {CIS_INFORMATION.location}
-      </p>
+    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+      <Building />
+      {CIS_INFORMATION.location}
+    </p>
 
-      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
-        <OpenEnvelope />
-        <a href={`mailto:${CIS_INFORMATION.contactEmail}`} aria-label={t('aria.contact-email')}>
-          {CIS_INFORMATION.contactEmail}
-        </a>
-      </p>
+    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+      <OpenEnvelope />
+      <a href={`mailto:${CIS_INFORMATION.contactEmail}`} aria-label={t('aria.contact-email')}>
+        {CIS_INFORMATION.contactEmail}
+      </a>
+    </p>
 
-      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
-        <Phone />
-        <a href={`tel:${CIS_INFORMATION.plainPhoneNumber}`}>
-          {CIS_INFORMATION.phoneNumber}
-        </a>
-      </p>
-    </div>
+    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+      <Phone />
+      <a href={`tel:${CIS_INFORMATION.plainPhoneNumber}`}>
+        {CIS_INFORMATION.phoneNumber}
+      </a>
+    </p>
+  </div>
 
-    <div class="mb-10 md:mb-0 md:basis-[calc(50%-10px)] lg:basis-[calc(25%-10px)]">
-      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
-        {t('footer.social-links')}
-      </p>
+  <div class="mb-10 md:mb-0 md:basis-[calc(50%-10px)] lg:basis-[calc(25%-10px)]">
+    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+      {t('footer.social-links')}
+    </p>
 
-      <SocialIcons class="!flex !gap-3" />
-    </div>
+    <SocialIcons class="!flex !gap-3" />
+  </div>
 
-    <div class="mb-10 md:mb-0 md:basis-[calc(50%-10px)] lg:basis-[calc(25%-10px)]">
-      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
-        {t('footer.links')}
-      </p>
+  <div class="md:basis-[calc(50%-10px)] lg:basis-[calc(25%-10px)]">
+    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+      {t('footer.links')}
+    </p>
 
-      <NavLinks class="!flex flex-col !items-start justify-start text-left" />
-    </div>
-  </ResponsiveContainer>
-</section>
+    <NavLinks class="!flex flex-col !items-start justify-start text-left" />
+  </div>
+</ResponsiveContainer>

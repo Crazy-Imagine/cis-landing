@@ -1,14 +1,30 @@
 ---
-import type { HTMLTag, Polymorphic } from 'astro/types';
+import type { Background } from '@/types/Background';
 
-type Props<Tag extends HTMLTag> = Polymorphic<{
-  as: Tag;
+interface Props {
+  containerClass?: string;
   class?: string;
-}>;
+  background?: Background;
+}
 
-const { as: Tag, class: className = '', ...props } = Astro.props;
+const backgroundClasses: {
+  [key: Background]: string;
+} = {
+  blue: 'bg-primary',
+  bulbs: 'bg-primary bg-light-bulbs bg-center bg-repeat',
+};
+
+const actualBackground = backgroundClasses?.[Astro.props.background] ?? '';
 ---
 
-<Tag class:list={['mx-auto px-4 2xl:container md:px-10 2xl:px-0', className]} {...props}>
-  <slot />
-</Tag>
+<div class:list={['relative py-10 md:py-20', actualBackground, Astro.props.containerClass]}>
+  {
+    Astro.props?.background === 'bulbs' && (
+      <div class="absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent" />
+    )
+  }
+
+  <section class:list={['mx-auto px-4 2xl:container md:px-10 2xl:px-0', Astro.props.class]}>
+    <slot />
+  </section>
+</div>

@@ -2,54 +2,37 @@
 import Carousel from '@/components/Carousel.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
+import type { Background } from '@/types/Background';
 
 interface Props {
-  type: 'blue' | 'white';
+  background?: Background;
   title: string;
   class?: string;
 }
 
-const { title, type } = Astro.props;
+const { title, type, background } = Astro.props;
 
-const isWhite = type === 'white';
+const isWhite = typeof background === 'undefined';
 ---
 
-<div
-  class:list={[
-    'relative w-full py-14',
-    {
-      'bg-primary bg-light-bulbs bg-center bg-repeat': !isWhite,
-    },
-    Astro.props.class,
-  ]}
->
-  <div
+<ResponsiveContainer background={background} class="relative z-50">
+  <Typography
     class:list={[
-      'absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent',
-      { hidden: isWhite },
+      'mb-10 text-center capitalize',
+      {
+        'text-primary': isWhite,
+        'text-white': !isWhite,
+      },
     ]}
+    as="h2"
+    variant="h2"
   >
-  </div>
+    {title}
+  </Typography>
 
-  <ResponsiveContainer class="relative z-50" as="section">
-    <Typography
-      class:list={[
-        'mb-10 text-center capitalize',
-        {
-          'text-primary': isWhite,
-          'text-white': !isWhite,
-        },
-      ]}
-      as="h2"
-      variant="h2"
-    >
-      {title}
-    </Typography>
+  <Carousel>
+    <slot name="items" />
+  </Carousel>
 
-    <Carousel>
-      <slot name="items" />
-    </Carousel>
-
-    <slot />
-  </ResponsiveContainer>
-</div>
+  <slot />
+</ResponsiveContainer>
