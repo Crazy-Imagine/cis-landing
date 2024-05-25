@@ -1,15 +1,10 @@
 ---
 import Typography from './Typography.astro';
 import type { Reference } from '@/types/Reference';
-import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 
 interface Props extends Reference {
   class?: string;
 }
-
-const lang = getLangFromUrl(Astro.url);
-// const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <article
