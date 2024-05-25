@@ -31,7 +31,7 @@ const translatePath = useTranslatedPath(lang);
   canonical="https://crazyimagine.com"
 >
   <Hero page="home">
-    <LinkPill slot="button" href={translatePath('#', lang)}>
+    <LinkPill variant="contained" slot="button" href={translatePath('#', lang)}>
       {t('hero.home-button')}
     </LinkPill>
   </Hero>
@@ -70,7 +70,9 @@ const translatePath = useTranslatedPath(lang);
     </Typography>
 
     <div class="mt-14 text-center">
-      <LinkPill href={translatePath('#', lang)}> {t('common.get-started')} </LinkPill>
+      <LinkPill variant="contained" href={translatePath('#', lang)}>
+        {t('common.get-started')}
+      </LinkPill>
     </div>
   </Services>
 
@@ -90,7 +92,7 @@ const translatePath = useTranslatedPath(lang);
     </Fragment>
 
     <div class="mt-10 text-center">
-      <LinkPill href={translatePath('#', lang)}>
+      <LinkPill variant="contained" href={translatePath('#', lang)}>
         {t('common.all-projects')}
       </LinkPill>
     </div>

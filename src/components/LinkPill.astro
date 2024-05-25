@@ -1,16 +1,28 @@
 ---
+import type { Polymorphic } from 'astro/types';
 import Typography from './Typography.astro';
 
-interface Props {
-  href: string;
-}
+type Props = Polymorphic<{
+  variant: keyof typeof variantClasses;
+}>;
+
+const variantClasses: {
+  [key: string]: string;
+} = {
+  outlined:
+    'border-2 font-roboto text-xs uppercase text-white transition hover:bg-white hover:text-primary',
+  contained: 'bg-blue-purple transition hover:cursor-pointer hover:bg-blue-purple-contrast',
+};
+
+const { class: className, variant, href, ...props } = Astro.props;
+
+const classes = [
+  'inline-block rounded-full px-6 py-2.5',
+  variantClasses[variant as keyof typeof variantClasses],
+  className,
+];
 ---
 
-<Typography
-  as="a"
-  variant="link"
-  href={Astro.props.href}
-  class="inline-block rounded-full bg-blue-purple px-5 py-4 transition hover:cursor-pointer hover:bg-blue-purple-contrast"
->
+<Typography as="a" variant="link" href={href} class:list={classes} {...props}>
   <slot />
 </Typography>
