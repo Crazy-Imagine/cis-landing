@@ -14,6 +14,9 @@ export default defineConfig({
     },
   },
   site: 'https://crazyimagine.com',
+  image: {
+    domains: ['blogadmin.s3.amazonaws.com'],
+  },
   build: {
     inlineStylesheets: 'always',
   },

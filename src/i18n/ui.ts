@@ -28,9 +28,6 @@ export const ui = {
     'SEO.services-title': 'Crazy Imagine Software | Let Your Imagination Run Wild',
     'SEO.services-description':
       'Explore our wide range of expert services designed to meet your needs.',
-    'SEO.meet-the-team-title': 'Crazy Imagine Software | Meet The Team',
-    'SEO.meet-the-team-description':
-      'Discover the talented team behind our company, meet the creative and passionate minds that bring our vision to life.',
 
     // Aria Keys
     'aria.home-link': 'Link to home page',
@@ -236,9 +233,6 @@ export const ui = {
     'SEO.services-title': 'Crazy Imagine Software | Deja Volar Tú Imaginación',
     'SEO.services-description':
       'Explora nuestra amplia gama de servicios expertos diseñados para satisfacer tus necesidades.',
-    'SEO.meet-the-team-title': 'Crazy Imagine Software | Conozca al Equipo',
-    'SEO.meet-the-team-description':
-      'Descubre al talentoso equipo detrás de nuestra empresa, conoce a las mentes creativas y apasionadas que dan vida a nuestra visión.',
 
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
