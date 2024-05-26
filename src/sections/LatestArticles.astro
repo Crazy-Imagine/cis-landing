@@ -1,0 +1,72 @@
+---
+import CarouselSection from './CarouselSection.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import fetchApi from '@/lib/strapi';
+import type { ArticleCollection } from '@/types/strapi/Article';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  title: string;
+}
+
+const articles = await fetchApi<ArticleCollection>({
+  endpoint: 'articles',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'description', 'content', 'slug'],
+    populate: {
+      category: {
+        fields: ['name'],
+      },
+      author: {
+        fields: ['name'],
+      },
+      image: {
+        fields: ['url', 'width', 'height', 'formats'],
+      },
+    },
+    filters: {
+      title: {
+        $notNull: true,
+      },
+    },
+    pagination: {
+      limit: 8,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<CarouselSection background="bulbs" title={Astro.props.title}>
+  <Fragment slot="items">
+    {
+      articles.data.map(
+        ({
+          attributes: {
+            image: {
+              data: [image],
+            },
+            ...article
+          },
+        }) => (
+          <ArticleCard
+            altText={article.title}
+            class="shadow-md"
+            href={`/blog/${article.slug}`}
+            height={image.attributes.height}
+            img={image.attributes.url}
+            linkText={t('common.read-more')}
+            title={article.title}
+            width={image.attributes.width}
+          />
+        )
+      )
+    }
+  </Fragment>
+</CarouselSection>
