@@ -1,5 +1,5 @@
 ---
-import MemberCard from '@/components/MemberCard.astro';
+import MemberCard from '@/components/react/MemberCard';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { MemberCollection } from '@/types/strapi/Member';
@@ -19,5 +19,5 @@ const members = await fetchApi<MemberCollection>({
 ---
 
 <ResponsiveContainer class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  {members.data.map((member) => <MemberCard member={member} />)}
+  {members.data.map((member) => <MemberCard client:visible member={member} />)}
 </ResponsiveContainer>
