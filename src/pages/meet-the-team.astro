@@ -1,4 +1,5 @@
 ---
+import TheTeam from '../sections/TheTeam.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
@@ -9,4 +10,6 @@ const t = useTranslations(lang);
 
 <Layout title={t('SEO.meet-the-team-title')} description={t('SEO.meet-the-team-description')}>
   <Hero page="meet-the-team" />
+
+  <TheTeam />
 </Layout>
