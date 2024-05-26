@@ -3,13 +3,24 @@ import AboutUs from '@/sections/AboutUs.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import ReachOut from '@/sections/ReachOut.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import fetchApi from '@/lib/strapi';
+import type { SEO } from '@/types/strapi/SEO';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const seo = await fetchApi<SEO>({
+  endpoint: 'about-page',
+  params: {
+    locale: Astro.currentLocale,
+    populate: {
+      seo: true,
+    },
+  },
+});
 ---
 
-<Layout title={t('SEO.about-title')} description={t('SEO.about-description')}>
+<Layout
+  title={seo.data.attributes.seo.metaTitle}
+  description={seo.data.attributes.seo.metaDescription}
+>
   <Hero page="about" />
 
   <AboutUs />
