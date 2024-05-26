@@ -17,8 +17,13 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<ResponsiveContainer class="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-  <a href={translatePath('#', lang)}>
+<ResponsiveContainer
+  class="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10"
+>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('#', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <PlanetWithFlag class="bg-primary text-white" />
@@ -36,7 +41,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('/meet-the-team', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('/meet-the-team', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Telescope class="text-white" />
@@ -54,7 +62,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('/blog', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('/blog', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <PCWithRocket class="text-white" />
@@ -72,7 +83,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('#', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('#', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Satellite class="text-white" />
@@ -90,7 +104,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('/mission', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('/mission', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Ovni class="text-white" />
@@ -108,7 +125,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('#', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('#', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <GhostAstronaut class="text-white" />
@@ -126,7 +146,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('#', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('#', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Atom class="text-white" />
@@ -144,7 +167,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('#', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('#', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Rocket class="text-white" />
@@ -162,7 +188,10 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <a href={translatePath('#', lang)}>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('#', lang)}
+  >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
         <Planet class="text-white" />
