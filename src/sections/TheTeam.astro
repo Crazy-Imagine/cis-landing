@@ -1,11 +1,23 @@
 ---
+import MemberCard from '@/components/MemberCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import FlipCard from '@/components/FlipCard.astro';
+import fetchApi from '@/lib/strapi';
+import type { MemberCollection } from '@/types/strapi/Member';
+
+const members = await fetchApi<MemberCollection>({
+  endpoint: 'members',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['name', 'role', 'cardDescription'],
+    populate: {
+      avatar: {
+        fields: ['width', 'height', 'url'],
+      },
+    },
+  },
+});
 ---
 
 <ResponsiveContainer class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  <FlipCard />
-  <FlipCard />
-  <FlipCard />
-  <FlipCard />
+  {members.data.map((member) => <MemberCard member={member} />)}
 </ResponsiveContainer>
