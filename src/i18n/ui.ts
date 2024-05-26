@@ -11,24 +11,6 @@ const year = new Date().getFullYear();
 
 export const ui = {
   en: {
-    // SEO
-    'SEO.home-title': 'Crazy Imagine Software | Ideas beyond your imagination',
-    'SEO.home-description':
-      'We are a growing startup with more than 5 years in the market, with experience on mobile and web development, using the most popular Javascript technologies like React js, Angular js, Vue js, Node js and PHP frameworks like Laravel, Code Igniter, Prestashop, and Wordpress.',
-    'SEO.about-title': 'Crazy Imagine Software | Our Team is Your Greatest Resource',
-    'SEO.about-description':
-      'At Crazy Imagine Software, our biggest strength is the quality of our team. We have a dynamic and diverse mix of full-stack, front-end, back-end, and mobile developers.',
-    'SEO.mission-title': 'Crazy Imagine Software | TODO: Title',
-    'SEO.mission-description': 'TODO: Description',
-    'SEO.blog-title': 'Crazy Imagine Software | The Latest In Tech Talk From Our Team',
-    'SEO.blog-description': 'TODO: Description',
-    'SEO.references-title': 'Crazy Imagine Software | Client References',
-    'SEO.references-description':
-      'Find concrete examples of how we have collaborated with clients to achieve exceptional results. Learn first-hand about the experiences of companies that have relied on our services.',
-    'SEO.services-title': 'Crazy Imagine Software | Let Your Imagination Run Wild',
-    'SEO.services-description':
-      'Explore our wide range of expert services designed to meet your needs.',
-
     // Aria Keys
     'aria.home-link': 'Link to home page',
     'aria.contact-us-link': 'Link to contact us page',
@@ -216,24 +198,6 @@ export const ui = {
     'nav.work-with-us': 'Work with us',
   },
   es: {
-    // SEO
-    'SEO.home-title': 'Crazy Imagine Software | Ideas más allá de tu imaginación',
-    'SEO.home-description':
-      'Somos una startup en crecimiento con más de 5 años en el mercado, con experiencia en desarrollo móvil y web, utilizando las tecnologías Javascript más populares como React js, Angular js, Vue js, Node js y frameworks PHP como Laravel, Code Igniter, Prestashop, y Wordpress.',
-    'SEO.about-title': 'Crazy Imagine Software | Nuestro equipo es su mejor recurso',
-    'SEO.about-description':
-      'En Crazy Imagine Software, nuestra mayor fortaleza es la calidad de nuestro equipo. Tenemos una mezcla dinámica y diversa de desarrolladores full-stack, front-end, back-end y móviles.',
-    'SEO.mission-title': 'Crazy Imagine Software | TODO: Title',
-    'SEO.mission-description': 'TODO: Description',
-    'SEO.blog-title': 'Crazy Imagine Software | Lo Último En Tecnologia Por Nuestro Equipo',
-    'SEO.blog-description': 'TODO: Description',
-    'SEO.references-title': 'Crazy Imagine Software | Referencias de los Clientes',
-    'SEO.references-description':
-      'Encuentra ejemplos concretos de cómo hemos colaborado con clientes para lograr resultados excepcionales. Conoce de primera mano las experiencias de empresas que confiaron en nuestros servicios.',
-    'SEO.services-title': 'Crazy Imagine Software | Deja Volar Tú Imaginación',
-    'SEO.services-description':
-      'Explora nuestra amplia gama de servicios expertos diseñados para satisfacer tus necesidades.',
-
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
     'aria.contact-us-link': 'Enlace a la página de contáctanos',
