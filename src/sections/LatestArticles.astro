@@ -3,7 +3,7 @@ import CarouselSection from './CarouselSection.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleCollection } from '@/types/strapi/Article';
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   title: string;
@@ -41,8 +41,6 @@ const articles = await fetchApi<ArticleCollection>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const translatePath = useTranslatedPath(lang);
 ---
 
 <CarouselSection background="bulbs" title={Astro.props.title}>
@@ -51,8 +49,6 @@ const translatePath = useTranslatedPath(lang);
       articles.data.map(
         ({
           attributes: {
-            author,
-            category,
             image: {
               data: [image],
             },
