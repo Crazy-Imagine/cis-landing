@@ -1,0 +1,75 @@
+---
+import CarouselSection from './CarouselSection.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import LinkPill from '@/components/LinkPill.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectCollection } from '@/types/strapi/Project';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  title: string;
+}
+
+const projects = await fetchApi<ProjectCollection>({
+  endpoint: 'projects',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'description', 'details', 'slug'],
+    populate: {
+      images: {
+        fields: ['url', 'formats', 'width', 'height'],
+      },
+    },
+    filters: {
+      title: {
+        $notNull: true,
+      },
+    },
+    pagination: {
+      limit: 8,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const translatePath = useTranslatedPath(lang);
+---
+
+<CarouselSection title={Astro.props.title}>
+  <Fragment slot="items">
+    {
+      projects.data.map(
+        ({
+          attributes: {
+            images: {
+              data: [image],
+            },
+            ...project
+          },
+        }) => (
+          <ArticleCard
+            altText={project.title}
+            class="shadow-md"
+            href={`/projects/${project.slug}`}
+            height={image.attributes.height}
+            img={image.attributes.url}
+            linkText={t('common.view-project')}
+            title={project.title}
+            width={image.attributes.width}
+          />
+        )
+      )
+    }
+  </Fragment>
+
+  <div class="mt-10 text-center">
+    <LinkPill variant="contained" href={translatePath('#', lang)}>
+      {t('common.all-projects')}
+    </LinkPill>
+  </div>
+</CarouselSection>

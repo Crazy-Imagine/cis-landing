@@ -1,9 +1,7 @@
 ---
 import Antenna from '@/icons/Antenna.astro';
-import ArticleCard from '@/components/ArticleCard.astro';
 import Card from '@/components/Services/Card.astro';
 import CardContainer from '@/components/Services/CardContainer.astro';
-import CarouselSection from '@/sections/CarouselSection.astro';
 import Code from '@/icons/Code.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
@@ -11,6 +9,7 @@ import LinkPill from '@/components/LinkPill.astro';
 import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
 import Partners from '@/sections/Partners.astro';
+import Projects from '@/sections/Projects.astro';
 import ReachOut from '@/sections/ReachOut.astro';
 import Reviews from '@/sections/Reviews.astro';
 import Services from '@/sections/Services.astro';
@@ -18,7 +17,6 @@ import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import { mockArticles } from '@/utils/mock/articles';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'home-page',
@@ -89,31 +87,17 @@ const translatePath = useTranslatedPath(lang);
 
   <Reviews />
 
-  <CarouselSection title={t('common.previous-projects')}>
-    <Fragment slot="items">
-      {
-        mockArticles.map((value) => (
-          <ArticleCard {...value} class="shadow-md" linkText={t('common.view-project')} />
-        ))
-      }
-    </Fragment>
-
-    <div class="mt-10 text-center">
-      <LinkPill variant="contained" href={translatePath('#', lang)}>
-        {t('common.all-projects')}
-      </LinkPill>
-    </div>
-  </CarouselSection>
+  <Projects title={t('common.previous-projects')} />
 
   <NewsAndUpdates />
 
   <Partners />
 
-  <CarouselSection background="bulbs" title={t('common.latest-in-tech-talk')}>
-    <Fragment slot="items">
-      {mockArticles.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}
-    </Fragment>
-  </CarouselSection>
+  <!--<CarouselSection background="bulbs" title={t('common.latest-in-tech-talk')}>-->
+  <!--  <Fragment slot="items">-->
+  <!--    {mockArticles.map((value) => <ArticleCard {...value} linkText={t('common.read-more')} />)}-->
+  <!--  </Fragment>-->
+  <!--</CarouselSection>-->
 
   <ReachOut />
 </Layout>
