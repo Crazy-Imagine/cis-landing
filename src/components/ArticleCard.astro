@@ -1,32 +1,46 @@
 ---
+import { Image } from 'astro:assets';
 import CardCTA from './CardCTA.astro';
 import Typography from './Typography.astro';
-import type { Article } from '@/types/Article';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 
-interface Props extends Article {
-  linkText: string;
+interface Props {
+  altText?: string;
   class?: string;
+  height: number;
+  href?: string;
+  img: string;
+  linkText: string;
+  title: string;
+  width: number;
 }
 
-const { title, img, imgAlt = '', linkText } = Astro.props;
+const { title, img, altText = '', linkText, href, width, height } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 // const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<article class:list={['swiper-slide my-2 rounded-xl bg-white', Astro.props.class]}>
+<article
+  class:list={['swiper-slide my-2 !flex !h-auto flex-col rounded-xl bg-white', Astro.props.class]}
+>
   <picture class="rounded-t-xl">
-    <img class="h-auto w-full rounded-t-xl" src={img} alt={imgAlt} loading="lazy" />
+    <Image
+      class="h-auto w-full rounded-t-xl"
+      src={img}
+      alt={altText}
+      width={width}
+      height={height}
+    />
     <div class="swiper-lazy-preloader"></div>
   </picture>
 
-  <div class="p-5 text-center">
+  <div class="mt-auto p-5 text-center">
     <Typography class="line-clamp-2 text-primary" as="p" variant="accent">
       {title}
     </Typography>
 
-    <CardCTA class="mt-2.5" href={translatePath('#', lang)} text={linkText} />
+    <CardCTA class="mt-2.5" href={translatePath(href, lang)} text={linkText} />
   </div>
 </article>
