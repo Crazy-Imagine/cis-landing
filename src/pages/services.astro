@@ -17,15 +17,30 @@ import ServicesSection from '@/sections/Services.astro';
 import SrPackage from '@/icons/SrPackage.astro';
 import Typography from '@/components/Typography.astro';
 import User from '@/icons/User.astro';
+import fetchApi from '@/lib/strapi';
+import type { SEO } from '@/types/strapi/SEO';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 import { mockArticles } from '@/utils/mock/articles';
+
+const seo = await fetchApi<SEO>({
+  endpoint: 'services-page',
+  params: {
+    locale: Astro.currentLocale,
+    populate: {
+      seo: true,
+    },
+  },
+});
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout title={t('SEO.services-title')} description={t('SEO.services-description')}>
+<Layout
+  title={seo.data.attributes.seo.metaTitle}
+  description={seo.data.attributes.seo.metaDescription}
+>
   <Hero page="services" />
 
   <ServicesSection
