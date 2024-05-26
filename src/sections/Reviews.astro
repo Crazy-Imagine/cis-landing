@@ -10,10 +10,8 @@ const reviews = await fetchApi<ReviewCollection>({
   params: {
     locale: Astro.currentLocale,
     fields: ['name', 'ocupation', 'review'],
-    populate: {
-      avatar: {
-        fields: ['width', 'height', 'url'],
-      },
+    sort: {
+      createdAt: 'desc',
     },
   },
 });
