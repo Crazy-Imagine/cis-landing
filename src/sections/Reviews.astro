@@ -1,0 +1,29 @@
+---
+import CarouselSection from './CarouselSection.astro';
+import ReviewCard from '@/components/ReviewCard.astro';
+import fetchApi from '@/lib/strapi';
+import type { ReviewCollection } from '@/types/strapi/Review';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const reviews = await fetchApi<ReviewCollection>({
+  endpoint: 'reviews',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['name', 'ocupation', 'review'],
+    populate: {
+      avatar: {
+        fields: ['width', 'height', 'url'],
+      },
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<CarouselSection background="bulbs" title={t('common.people-who-work-with-us-say')}>
+  <Fragment slot="items">
+    {reviews.data.map((review) => <ReviewCard review={review} />)}
+  </Fragment>
+</CarouselSection>

@@ -1,0 +1,42 @@
+---
+import Typography from './Typography.astro';
+import type { Review } from '@/types/strapi/Review';
+
+interface Props {
+  class?: string;
+  review: Review;
+}
+
+const {
+  review: { attributes },
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    'swiper-slide !flex !h-auto flex-col gap-5 rounded-xl bg-white px-5 py-10',
+    Astro.props.class,
+  ]}
+>
+  <!--<div>-->
+  <!--  <img-->
+  <!--    class="mx-auto h-[100px] w-[100px] rounded-full"-->
+  <!--    alt={Astro.props.imgAlt}-->
+  <!--    src={Astro.props.img}-->
+  <!--  />-->
+  <!--</div>-->
+
+  <Typography class="line-clamp-[10] text-center text-primary" as="p" variant="paragraph2">
+    {attributes.review}
+  </Typography>
+
+  <div class="mt-auto">
+    <Typography class="mt-auto text-center text-primary" as="p" variant="accent">
+      {attributes.name}
+    </Typography>
+
+    <Typography class="line-clamp-2 text-center tracking-wide text-grayish" as="p" variant="accent">
+      {attributes.ocupation}
+    </Typography>
+  </div>
+</article>
