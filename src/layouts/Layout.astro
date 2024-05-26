@@ -7,8 +7,8 @@ import SEO from '@/components/SEO.astro';
 import Footer from '@/sections/Footer.astro';
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonical?: string;
   image?: string;
 }
@@ -63,6 +63,25 @@ const { title, description, canonical, image } = Astro.props;
       html {
         font-family: system-ui, 'Nexa Bold', 'Nexa Light', 'Roboto', sans-serif;
         background: #fff;
+      }
+
+      .card {
+        perspective: 1000px;
+      }
+      .card-inner {
+        @apply relative flex h-full w-full flex-col transition duration-500;
+        transform-style: preserve-3d;
+      }
+      .card:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+      .card-front,
+      .card-back {
+        @apply absolute inset-0 flex h-full w-full flex-col rounded-lg bg-white shadow-md;
+        backface-visibility: hidden;
+      }
+      .card-back {
+        transform: rotateY(180deg);
       }
     </style>
   </body>

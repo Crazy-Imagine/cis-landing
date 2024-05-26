@@ -1,11 +1,12 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import TheTeam from '@/sections/TheTeam.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
 
 const seo = await fetchApi<SEO>({
-  endpoint: 'blog',
+  endpoint: 'meet-team-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
@@ -19,5 +20,7 @@ const seo = await fetchApi<SEO>({
   title={seo.data.attributes.seo.metaTitle}
   description={seo.data.attributes.seo.metaDescription}
 >
-  <Hero page="blog" />
+  <Hero page="meet-the-team" />
+
+  <TheTeam />
 </Layout>

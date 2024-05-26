@@ -1,14 +1,14 @@
 ---
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   canonical?: string;
   image?: string;
 }
 
 const {
-  title,
-  description,
+  title = 'Title',
+  description = 'Description',
   canonical,
   // TODO: CHECK ON THIS DEFAULT IMAGE
   image = '/img/mock/article.webp',
@@ -20,9 +20,11 @@ function determineCanonicalURL() {
 }
 
 const canonicalURL = new URL(determineCanonicalURL(), Astro.site);
+
+const fullTitle = `Crazy Imagine Software | ${title}`;
 ---
 
-<title>{title}</title>
+<title>{fullTitle}</title>
 
 <meta charset="UTF-8" />
 <meta name="description" content={description} />
@@ -49,12 +51,12 @@ const canonicalURL = new URL(determineCanonicalURL(), Astro.site);
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@CrazyImagineDev" />
 <meta name="twitter:creator" content="@CrazyImagineDev" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(image, Astro.url)} />
 
 <meta property="og:image" content={new URL(image, Astro.url)} />
-<meta property="og:title" content={title} />
+<meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:site_name" content="Crazy Imagine Software" />

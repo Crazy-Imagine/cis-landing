@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import ContactForm from '@/components/react/ContactForm';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Satellite from '@/assets/ui/satellite.webp';
 import Typography from '@/components/Typography.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
@@ -26,14 +28,7 @@ const t = useTranslations(lang);
 
     <div class="relative text-center">
       <div class="absolute inset-x-0 bottom-0 h-20 rounded-t-2xl bg-secondary"></div>
-      <img
-        class="relative z-10 mx-auto"
-        src="/img/ui/satellite.webp"
-        width="248"
-        height="209"
-        alt="Satellite"
-        loading="lazy"
-      />
+      <Image class="relative z-10 mx-auto" src={Satellite} alt="Satellite" />
     </div>
   </div>
   <div class="w-full pb-0 pt-10 md:basis-3/4 md:pb-10">

@@ -16,15 +16,18 @@ export const ui = {
     'SEO.home-description':
       'We are a growing startup with more than 5 years in the market, with experience on mobile and web development, using the most popular Javascript technologies like React js, Angular js, Vue js, Node js and PHP frameworks like Laravel, Code Igniter, Prestashop, and Wordpress.',
     'SEO.about-title': 'Crazy Imagine Software | Our Team is Your Greatest Resource',
-    'SEO.about-description': 'Description',
-    'SEO.mission-title': 'Crazy Imagine Software | ',
-    'SEO.mission-description': 'Description',
+    'SEO.about-description':
+      'At Crazy Imagine Software, our biggest strength is the quality of our team. We have a dynamic and diverse mix of full-stack, front-end, back-end, and mobile developers.',
+    'SEO.mission-title': 'Crazy Imagine Software | TODO: Title',
+    'SEO.mission-description': 'TODO: Description',
     'SEO.blog-title': 'Crazy Imagine Software | The Latest In Tech Talk From Our Team',
-    'SEO.blog-description': 'Description',
-    'SEO.references-title': 'Crazy Imagine Software | ',
-    'SEO.references-description': 'Description',
+    'SEO.blog-description': 'TODO: Description',
+    'SEO.references-title': 'Crazy Imagine Software | Client References',
+    'SEO.references-description':
+      'Find concrete examples of how we have collaborated with clients to achieve exceptional results. Learn first-hand about the experiences of companies that have relied on our services.',
     'SEO.services-title': 'Crazy Imagine Software | Let Your Imagination Run Wild',
-    'SEO.services-description': 'Description',
+    'SEO.services-description':
+      'Explore our wide range of expert services designed to meet your needs.',
 
     // Aria Keys
     'aria.home-link': 'Link to home page',
@@ -134,6 +137,10 @@ export const ui = {
       'What we want to accomplish and provide, and what we see in the future for our agency',
     'hero.mission-button': '',
     'hero.mission-img-alt': 'Mars explorer vehicle',
+    'hero.meet-the-team-title': 'Our Team is Your Greatest Resource',
+    'hero.meet-the-team-subtitle': 'Leading a Team World-Class Engineers, Developers and Designers',
+    'hero.meet-the-team-button': 'Contact Us',
+    'hero.meet-the-team-img-alt': 'Rocket',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -214,15 +221,18 @@ export const ui = {
     'SEO.home-description':
       'Somos una startup en crecimiento con más de 5 años en el mercado, con experiencia en desarrollo móvil y web, utilizando las tecnologías Javascript más populares como React js, Angular js, Vue js, Node js y frameworks PHP como Laravel, Code Igniter, Prestashop, y Wordpress.',
     'SEO.about-title': 'Crazy Imagine Software | Nuestro equipo es su mejor recurso',
-    'SEO.about-description': 'Description',
-    'SEO.mission-title': 'Crazy Imagine Software | ',
-    'SEO.mission-description': 'Description',
+    'SEO.about-description':
+      'En Crazy Imagine Software, nuestra mayor fortaleza es la calidad de nuestro equipo. Tenemos una mezcla dinámica y diversa de desarrolladores full-stack, front-end, back-end y móviles.',
+    'SEO.mission-title': 'Crazy Imagine Software | TODO: Title',
+    'SEO.mission-description': 'TODO: Description',
     'SEO.blog-title': 'Crazy Imagine Software | Lo Último En Tecnologia Por Nuestro Equipo',
-    'SEO.blog-description': 'Description',
-    'SEO.references-title': 'Crazy Imagine Software | ',
-    'SEO.references-description': 'Description',
+    'SEO.blog-description': 'TODO: Description',
+    'SEO.references-title': 'Crazy Imagine Software | Referencias de los Clientes',
+    'SEO.references-description':
+      'Encuentra ejemplos concretos de cómo hemos colaborado con clientes para lograr resultados excepcionales. Conoce de primera mano las experiencias de empresas que confiaron en nuestros servicios.',
     'SEO.services-title': 'Crazy Imagine Software | Deja Volar Tú Imaginación',
-    'SEO.services-description': 'Description',
+    'SEO.services-description':
+      'Explora nuestra amplia gama de servicios expertos diseñados para satisfacer tus necesidades.',
 
     // Aria keys
     'aria.home-link': 'Enlace a la página de inicio',
@@ -332,6 +342,11 @@ export const ui = {
       'Lo que queremos lograr, ofrecer y lo que vemos en el futuro de nuestra agencia.',
     'hero.mission-button': '',
     'hero.mission-img-alt': 'Explorador de Marte',
+    'hero.meet-the-team-title': 'Nuestro Equipo es su Mayor Recurso',
+    'hero.meet-the-team-subtitle':
+      'Liderando un equipo de ingenieros, desarrolladores y diseñadores de clase mundial.',
+    'hero.meet-the-team-button': 'Contáctanos',
+    'hero.meet-the-team-img-alt': 'Cohete',
 
     // Services
     'services.why-should-you': 'Por qué deberías',
