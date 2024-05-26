@@ -1,26 +1,23 @@
 ---
-import ArticleCard from '@/components/ArticleCard.astro';
 import Books from '@/icons/Books.astro';
 import Brush from '@/icons/Brush.astro';
 import Card from '@/components/Services/Card.astro';
 import CardContainer from '@/components/Services/CardContainer.astro';
-import CarouselSection from '@/sections/CarouselSection.astro';
 import Check from '@/icons/Check.astro';
 import Code from '@/icons/Code.astro';
 import Gears from '@/icons/Gears.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import LinkPill from '@/components/LinkPill.astro';
 import Megaphone from '@/icons/Megaphone.astro';
 import Monitor from '@/icons/Monitor.astro';
+import Projects from '@/sections/Projects.astro';
 import ServicesSection from '@/sections/Services.astro';
 import SrPackage from '@/icons/SrPackage.astro';
 import Typography from '@/components/Typography.astro';
 import User from '@/icons/User.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import { mockArticles } from '@/utils/mock/articles';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'services-page',
@@ -34,7 +31,6 @@ const seo = await fetchApi<SEO>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout
@@ -186,19 +182,5 @@ const translatePath = useTranslatedPath(lang);
     </CardContainer>
   </ServicesSection>
 
-  <CarouselSection title={t('common.previous-projects')}>
-    <Fragment slot="items">
-      {
-        mockArticles.map((value) => (
-          <ArticleCard {...value} class="shadow-md" linkText={t('common.view-project')} />
-        ))
-      }
-    </Fragment>
-
-    <div class="mt-10 text-center">
-      <LinkPill variant="contained" href={translatePath('#', lang)}>
-        {t('common.all-projects')}
-      </LinkPill>
-    </div>
-  </CarouselSection>
+  <Projects title={t('common.featured-projects')} />
 </Layout>
