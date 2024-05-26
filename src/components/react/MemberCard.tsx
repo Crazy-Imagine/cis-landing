@@ -11,7 +11,7 @@ function MemberCard({ member }: Props) {
 
   const imgRef = React.useRef<HTMLImageElement>(null);
   const textContainerRef = React.useRef<HTMLDivElement>(null);
-  const [cardHeight, setCardHeight] = React.useState<number | undefined>(undefined);
+  const [cardHeight, setCardHeight] = React.useState<number>();
 
   React.useEffect(() => {
     const adjustCardHeight = () => {
@@ -27,7 +27,6 @@ function MemberCard({ member }: Props) {
       window.addEventListener('resize', adjustCardHeight);
     }
 
-    // Initial adjustment
     adjustCardHeight();
 
     return () => {
