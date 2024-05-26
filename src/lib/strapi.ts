@@ -22,7 +22,6 @@ interface Props {
 
 export default async function fetchApi<T>({ endpoint, params }: Props) {
   const query = qs.stringify(params);
-  console.log(`${import.meta.env.STRAPI_URL}/api/${endpoint}?${query}`);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const response = await fetch(`${import.meta.env.STRAPI_URL}/api/${endpoint}?${query}`).then(
     (response) => response.json()
