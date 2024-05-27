@@ -1,6 +1,7 @@
 ---
 import LinkPill from './LinkPill.astro';
 import Menu from '@/icons/Menu.astro';
+import XIcon from '@/icons/XIcon.astro';
 import NavLinks from '@/components/NavLinks.astro';
 import SocialIcons from '@/components/SocialIcons.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
@@ -35,14 +36,31 @@ const translatePath = useTranslatedPath(lang);
         {t('common.contact-us')}
       </LinkPill>
 
-      <Menu class="h-12 w-12 text-white lg:hidden" />
+      <Menu id="menu-icon" class="h-12 w-12 text-white lg:hidden" />
     </nav>
   </header>
+
+  <div
+    id="drawer"
+    class="fixed inset-0 -translate-x-full transform bg-primary text-white transition-transform duration-300 md:hidden"
+  >
+    <div class="flex items-center justify-between border-b-2 px-4 py-8">
+      <CISLogo />
+      <XIcon id="close-icon" />
+    </div>
+
+    <nav class="p-4">
+      <NavLinks isDrawer class="!flex flex-col !items-start" />
+    </nav>
+  </div>
 </div>
 
 <script>
   document.addEventListener('astro:page-load', () => {
     const header = document.getElementById('sticky-header');
+    const menuIcon = document.getElementById('menu-icon');
+    const drawer = document.getElementById('drawer');
+    const closeIcon = document.getElementById('close-icon');
 
     if (header && window.scrollY > 0) {
       header.classList.add('scrolled');
@@ -57,6 +75,16 @@ const translatePath = useTranslatedPath(lang);
       }
 
       header.classList.remove('scrolled');
+    });
+
+    if (!drawer || !menuIcon || !closeIcon) return;
+
+    menuIcon.addEventListener('click', () => {
+      drawer.classList.toggle('-translate-x-full');
+    });
+
+    closeIcon.addEventListener('click', () => {
+      drawer.classList.toggle('-translate-x-full');
     });
   });
 </script>
