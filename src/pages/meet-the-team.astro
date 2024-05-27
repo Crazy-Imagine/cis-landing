@@ -1,9 +1,11 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import LinkPill from '@/components/LinkPill.astro';
 import TheTeam from '@/sections/TheTeam.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'meet-team-page',
@@ -14,13 +16,26 @@ const seo = await fetchApi<SEO>({
     },
   },
 });
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout
   title={seo.data.attributes.seo.metaTitle}
   description={seo.data.attributes.seo.metaDescription}
 >
-  <Hero page="meet-the-team" />
+  <Hero page="meet-the-team">
+    <LinkPill
+      slot="button"
+      variant="outlined"
+      href={translatePath('/contact-us', lang)}
+      aria-label={t('aria.contact-us-link')}
+    >
+      {t('common.contact-us')}
+    </LinkPill>
+  </Hero>
 
   <TheTeam />
 </Layout>
