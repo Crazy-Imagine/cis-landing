@@ -66,7 +66,7 @@ export const ui = {
     'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
 
     // Common Keys
-    'common.hello': 'Hello',
+    'common.home': 'Home',
     'common.contact-us': 'Contact Us',
     'common.terms-and-conditions': 'Terms & Conditions',
     'common:privacy-policy': 'Privacy Policy',
@@ -254,7 +254,7 @@ export const ui = {
     'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
 
     // Common Keys
-    'common.hello': 'Hola',
+    'common.home': 'Inicio',
     'common.contact-us': 'Contáctanos',
     'common.terms-and-conditions': 'Términos y Condiciones',
     'common:privacy-policy': 'Política de Privacidad',
