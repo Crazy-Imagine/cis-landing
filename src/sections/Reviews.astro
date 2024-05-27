@@ -13,6 +13,9 @@ const reviews = await fetchApi<ReviewCollection>({
     sort: {
       createdAt: 'desc',
     },
+    pagination: {
+      limit: 8,
+    },
   },
 });
 
