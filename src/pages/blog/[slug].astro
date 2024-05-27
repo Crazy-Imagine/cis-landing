@@ -1,0 +1,66 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Typography from '@/components/Typography.astro';
+import fetchApi from '@/lib/strapi';
+import type { ArticleCollection } from '@/types/strapi/Article';
+
+export async function getStaticPaths() {
+  const articles = await fetchApi<ArticleCollection>({
+    endpoint: 'articles',
+    params: {
+      locale: Astro.currentLocale,
+      fields: ['Key'],
+      filters: {
+        slug: {
+          $notNull: true,
+        },
+      },
+    },
+  });
+
+  return articles.data.map(({ attributes }) => ({ params: { slug: attributes.Key } }));
+}
+
+const { slug } = Astro.params;
+
+const articleCollection = await fetchApi<ArticleCollection>({
+  endpoint: 'articles',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'description', 'content', 'slug'],
+    populate: {
+      category: {
+        fields: ['name'],
+      },
+      author: {
+        fields: ['name'],
+      },
+      image: {
+        fields: ['url', 'width', 'height', 'formats'],
+      },
+    },
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+  },
+});
+
+const {
+  category: {
+    data: { attributes: category },
+  },
+  author: {
+    data: { attributes: author },
+  },
+  image: {
+    data: [image],
+  },
+  ...article
+} = articleCollection.data[0].attributes;
+---
+
+<Layout>
+  <Typography as="h1" variant="h1" class="text-primary">{article.title}</Typography>
+</Layout>
