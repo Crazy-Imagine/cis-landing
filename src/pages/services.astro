@@ -1,23 +1,23 @@
 ---
-import Books from '../icons/Books.astro';
-import Brush from '../icons/Brush.astro';
-import Card from '../components/Services/Card.astro';
-import CardContainer from '../components/Services/CardContainer.astro';
-import Check from '../icons/Check.astro';
-import Code from '../icons/Code.astro';
-import Gears from '../icons/Gears.astro';
-import Hero from '../sections/Hero.astro';
-import Layout from '../layouts/Layout.astro';
-import Megaphone from '../icons/Megaphone.astro';
-import Monitor from '../icons/Monitor.astro';
-import Projects from '../sections/LatestProjects.astro';
-import ServicesSection from '../sections/Services.astro';
-import SrPackage from '../icons/SrPackage.astro';
-import Typography from '../components/Typography.astro';
-import User from '../icons/User.astro';
-import fetchApi from '../lib/strapi';
-import type { SEO } from '../types/strapi/SEO';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Books from '@/icons/Books.astro';
+import Brush from '@/icons/Brush.astro';
+import Card from '@/components/Services/Card.astro';
+import CardContainer from '@/components/Services/CardContainer.astro';
+import Check from '@/icons/Check.astro';
+import Code from '@/icons/Code.astro';
+import Gears from '@/icons/Gears.astro';
+import Hero from '@/sections/Hero.astro';
+import Layout from '@/layouts/Layout.astro';
+import Megaphone from '@/icons/Megaphone.astro';
+import Monitor from '@/icons/Monitor.astro';
+import Projects from '@/sections/LatestProjects.astro';
+import ServicesSection from '@/sections/Services.astro';
+import SrPackage from '@/icons/SrPackage.astro';
+import Typography from '@/components/Typography.astro';
+import User from '@/icons/User.astro';
+import fetchApi from '@/lib/strapi';
+import type { SEO } from '@/types/strapi/SEO';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'services-page',

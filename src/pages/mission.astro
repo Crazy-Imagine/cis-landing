@@ -1,8 +1,8 @@
 ---
-import Hero from '../sections/Hero.astro';
-import Layout from '../layouts/Layout.astro';
-import fetchApi from '../lib/strapi';
-import type { SEO } from '../types/strapi/SEO';
+import Hero from '@/sections/Hero.astro';
+import Layout from '@/layouts/Layout.astro';
+import fetchApi from '@/lib/strapi';
+import type { SEO } from '@/types/strapi/SEO';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'mission-page',
