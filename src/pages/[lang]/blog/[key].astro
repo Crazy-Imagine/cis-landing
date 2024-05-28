@@ -6,7 +6,7 @@ import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
 
 export async function getStaticPaths() {
-  const englishArticles = await fetchApi<ArticleCollection>({
+  const enArticlesPromise = fetchApi<ArticleCollection>({
     endpoint: 'articles',
     params: {
       locale: 'en',
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
       },
     },
   });
-  const spanishArticles = await fetchApi<ArticleCollection>({
+  const esArticlesPromise = fetchApi<ArticleCollection>({
     endpoint: 'articles',
     params: {
       locale: 'es',
@@ -53,7 +53,9 @@ export async function getStaticPaths() {
     },
   });
 
-  return [...englishArticles.data, ...spanishArticles.data].map(({ attributes }) => ({
+  const [enArticles, esArticles] = await Promise.all([enArticlesPromise, esArticlesPromise]);
+
+  return [...enArticles.data, ...esArticles.data].map(({ attributes }) => ({
     params: { lang: attributes.locale, key: attributes.Key },
     props: { attributes },
   }));
