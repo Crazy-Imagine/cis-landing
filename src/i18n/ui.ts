@@ -67,6 +67,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Home',
+    'common.page-not-found': 'Oops, page not found',
     'common-browse-all-articles': 'Browse All Articles',
     'common.contact-us': 'Contact Us',
     'common.terms-and-conditions': 'Terms & Conditions',
@@ -256,6 +257,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Inicio',
+    'common.page-not-found': 'Vaya, página no encontrada',
     'common-browse-all-articles': 'Ver todos los artículos',
     'common.contact-us': 'Contáctanos',
     'common.terms-and-conditions': 'Términos y Condiciones',
