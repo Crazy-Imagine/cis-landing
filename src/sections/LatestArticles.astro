@@ -13,7 +13,7 @@ const articles = await fetchApi<ArticleCollection>({
   endpoint: 'articles',
   params: {
     locale: Astro.currentLocale,
-    fields: ['title', 'description', 'content', 'slug'],
+    fields: ['title', 'description', 'content', 'Key'],
     populate: {
       category: {
         fields: ['name'],
@@ -26,6 +26,9 @@ const articles = await fetchApi<ArticleCollection>({
       },
     },
     filters: {
+      status: {
+        $eq: 'published',
+      },
       title: {
         $notNull: true,
       },
@@ -58,7 +61,7 @@ const t = useTranslations(lang);
           <ArticleCard
             altText={article.title}
             class="shadow-md"
-            href={`/blog/${article.slug}`}
+            href={`/blog/${article.Key}`}
             height={image.attributes.height}
             img={image.attributes.url}
             linkText={t('common.read-more')}

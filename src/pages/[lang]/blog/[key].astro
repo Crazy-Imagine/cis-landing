@@ -1,0 +1,86 @@
+---
+import ResponsiveContainer from '../../../components/ResponsiveContainer.astro';
+import Layout from '@/layouts/Layout.astro';
+import Typography from '@/components/Typography.astro';
+import fetchApi from '@/lib/strapi';
+import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
+
+export async function getStaticPaths() {
+  const englishArticles = await fetchApi<ArticleCollection>({
+    endpoint: 'articles',
+    params: {
+      locale: 'en',
+      fields: ['title', 'description', 'content', 'Key', 'locale'],
+      populate: {
+        category: {
+          fields: ['name'],
+        },
+        author: {
+          fields: ['name'],
+        },
+        image: {
+          fields: ['url', 'width', 'height', 'formats'],
+        },
+      },
+      filters: {
+        status: {
+          $sq: 'published',
+        },
+      },
+    },
+  });
+  const spanishArticles = await fetchApi<ArticleCollection>({
+    endpoint: 'articles',
+    params: {
+      locale: 'es',
+      fields: ['title', 'description', 'content', 'Key', 'locale'],
+      populate: {
+        category: {
+          fields: ['name'],
+        },
+        author: {
+          fields: ['name'],
+        },
+        image: {
+          fields: ['url', 'width', 'height', 'formats'],
+        },
+      },
+      filters: {
+        status: {
+          $sq: 'published',
+        },
+      },
+    },
+  });
+
+  return [...englishArticles.data, ...spanishArticles.data].map(({ attributes }) => ({
+    params: { lang: attributes.locale, key: attributes.Key },
+    props: { attributes },
+  }));
+}
+
+interface Props {
+  attributes: ArticleAttributes;
+}
+
+const { attributes } = Astro.props;
+
+const {
+  category: {
+    data: { attributes: category },
+  },
+  author: {
+    data: { attributes: author },
+  },
+  image: {
+    data: [image],
+  },
+  ...article
+} = attributes;
+---
+
+<Layout>
+  <ResponsiveContainer>
+    <Typography as="h1" variant="h1" class="text-primary">{article.title}</Typography>
+  </ResponsiveContainer>
+</Layout>

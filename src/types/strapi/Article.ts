@@ -13,6 +13,7 @@ export interface ArticleAttributes {
   description: string;
   content: string;
   slug: string;
+  locale: string;
   Key: string;
   category: Category;
   author: Author;
