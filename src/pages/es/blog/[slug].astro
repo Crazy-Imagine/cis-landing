@@ -46,7 +46,7 @@ interface Props {
   attributes: ArticleAttributes;
 }
 
-const { attributes } = Astro.props;
+const { attributes } = Astro.props as Props;
 
 const {
   category: {
@@ -64,7 +64,7 @@ const {
 const content = marked(article.content);
 ---
 
-<Layout>
+<Layout title={article.title}>
   <ResponsiveContainer>
     <div class="mb-12">
       <Typography
