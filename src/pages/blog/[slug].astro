@@ -9,37 +9,11 @@ import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
 
 export async function getStaticPaths() {
-  const enArticlesPromise = fetchApi<ArticleCollection>({
+  const articleCollection = await fetchApi<ArticleCollection>({
     endpoint: 'articles',
     params: {
       locale: 'en',
-      fields: ['title', 'description', 'content', 'Key', 'locale'],
-      populate: {
-        category: {
-          fields: ['name'],
-        },
-        author: {
-          fields: ['name'],
-        },
-        image: {
-          fields: ['url', 'width', 'height', 'formats'],
-        },
-      },
-      filters: {
-        status: {
-          $sq: 'published',
-        },
-      },
-      sort: {
-        createdAt: 'desc',
-      },
-    },
-  });
-  const esArticlesPromise = fetchApi<ArticleCollection>({
-    endpoint: 'articles',
-    params: {
-      locale: 'es',
-      fields: ['title', 'description', 'content', 'Key', 'locale'],
+      fields: ['title', 'description', 'content', 'slug', 'locale'],
       populate: {
         category: {
           fields: ['name'],
@@ -62,10 +36,8 @@ export async function getStaticPaths() {
     },
   });
 
-  const [enArticles, esArticles] = await Promise.all([enArticlesPromise, esArticlesPromise]);
-
-  return [...enArticles.data, ...esArticles.data].map(({ attributes }) => ({
-    params: { lang: attributes.locale, key: attributes.Key },
+  return articleCollection.data.map(({ attributes }) => ({
+    params: { slug: attributes.slug },
     props: { attributes },
   }));
 }

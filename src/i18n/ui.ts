@@ -5,7 +5,7 @@ export const languages = {
 
 export const defaultLang = 'en';
 
-export const showDefaultLang = true;
+export const showDefaultLang = false;
 
 const year = new Date().getFullYear();
 

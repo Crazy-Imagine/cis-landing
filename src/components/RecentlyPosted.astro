@@ -47,7 +47,7 @@ const translatePath = useTranslatedPath(lang);
             </Typography>
 
             <CardCTA
-              href={translatePath(`/blog/${article.attributes.Key}`, lang)}
+              href={translatePath(`/blog/${article.attributes.slug}`, lang)}
               text={t('common.read-more')}
             />
           </li>

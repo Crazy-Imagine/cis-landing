@@ -1,11 +1,11 @@
 ---
-import Hero from '@/sections/Hero.astro';
-import Layout from '@/layouts/Layout.astro';
-import LinkPill from '@/components/LinkPill.astro';
-import TheTeam from '@/sections/TheTeam.astro';
-import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import Hero from '../sections/Hero.astro';
+import Layout from '../layouts/Layout.astro';
+import LinkPill from '../components/LinkPill.astro';
+import TheTeam from '../sections/TheTeam.astro';
+import fetchApi from '../lib/strapi';
+import type { SEO } from '../types/strapi/SEO';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '../i18n/utils';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'meet-team-page',
