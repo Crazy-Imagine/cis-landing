@@ -1,0 +1,58 @@
+---
+import CardCTA from './CardCTA.astro';
+import fetchApi from '@/lib/strapi';
+import Typography from '@/components/Typography.astro';
+import type { ArticleCollection } from '@/types/strapi/Article';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+const articles = await fetchApi<ArticleCollection>({
+  endpoint: 'articles',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'slug'],
+    filters: {
+      status: {
+        $eq: 'published',
+      },
+      title: {
+        $notNull: true,
+      },
+    },
+    pagination: {
+      limit: 4,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<aside class="min-w-[300px]">
+  <Typography as="p" variant="h5" class="mb-5 text-xl text-primary">
+    {t('common.recently-posted')}
+  </Typography>
+
+  <nav>
+    <ul>
+      {
+        articles.data.map((article) => (
+          <li class="mb-5 rounded-md bg-white p-4 shadow-md md:pr-20 lg:pr-4">
+            <Typography as="p" variant="accent" class="mb-3 text-primary">
+              {article.attributes.title}
+            </Typography>
+
+            <CardCTA
+              href={translatePath(`/blog/${article.attributes.slug}`, lang)}
+              text={t('common.read-more')}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>

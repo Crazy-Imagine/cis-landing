@@ -1,15 +1,10 @@
 ---
-import CarouselSection from './CarouselSection.astro';
-import ArticleCard from '@/components/ArticleCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleCollection } from '@/types/strapi/Article';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-
-interface Props {
-  title: string;
-  limit?: number;
-  start?: number;
-}
 
 const articles = await fetchApi<ArticleCollection>({
   endpoint: 'articles',
@@ -36,8 +31,8 @@ const articles = await fetchApi<ArticleCollection>({
       },
     },
     pagination: {
-      start: Astro.props.start ?? 0,
-      limit: Astro.props.limit ?? 8,
+      start: 0,
+      limit: 2,
     },
     sort: {
       createdAt: 'desc',
@@ -49,8 +44,12 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<CarouselSection background="bulbs" title={Astro.props.title}>
-  <Fragment slot="items">
+<ResponsiveContainer>
+  <Typography class="mb-10 text-center capitalize text-primary" as="h2" variant="h2">
+    {t('common.featured-article')}
+  </Typography>
+
+  <div class="flex flex-col gap-5 md:flex-row md:gap-10">
     {
       articles.data.map(
         ({
@@ -62,6 +61,7 @@ const t = useTranslations(lang);
           },
         }) => (
           <ArticleCard
+            isSwiperCard={false}
             altText={article.title}
             class="shadow-md"
             href={`/blog/${article.slug}`}
@@ -74,5 +74,5 @@ const t = useTranslations(lang);
         )
       )
     }
-  </Fragment>
-</CarouselSection>
+  </div>
+</ResponsiveContainer>

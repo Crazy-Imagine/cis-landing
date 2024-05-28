@@ -1,8 +1,11 @@
 ---
+import FeaturedArticles from '@/sections/FeaturedArticles.astro';
 import Hero from '@/sections/Hero.astro';
+import LatestArticles from '@/sections/LatestArticles.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'blog',
@@ -13,6 +16,9 @@ const seo = await fetchApi<SEO>({
     },
   },
 });
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout
@@ -20,4 +26,8 @@ const seo = await fetchApi<SEO>({
   description={seo.data.attributes.seo.metaDescription}
 >
   <Hero page="blog" />
+
+  <FeaturedArticles />
+
+  <LatestArticles title={t('common-browse-all-articles')} />
 </Layout>

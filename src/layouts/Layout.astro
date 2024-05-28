@@ -83,6 +83,47 @@ const { title, description, canonical, image } = Astro.props;
       .card-back {
         transform: rotateY(180deg);
       }
+
+      article.blog-content {
+        *:not(h1, h2, h3, h4, h5, h6, code, pre) {
+          @apply font-roboto text-base md:text-xl;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          @apply mb-2.5 font-nexaBold text-xl md:text-2xl;
+        }
+
+        p {
+          @apply mb-8;
+        }
+
+        pre {
+          @apply mb-8 w-full max-w-full overflow-x-hidden;
+        }
+
+        code {
+          @apply inline-block w-full max-w-full overflow-x-auto;
+        }
+
+        img {
+          @apply my-10;
+        }
+
+        ul,
+        ol {
+          @apply pl-5  md:pl-10;
+          list-style: initial;
+
+          & li {
+            @apply mb-2.5;
+          }
+        }
+      }
     </style>
   </body>
 </html>

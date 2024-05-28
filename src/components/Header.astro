@@ -12,7 +12,16 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<div class="sticky left-0 right-0 top-0 z-[1000] max-h-screen bg-transparent" id="sticky-header">
+<div
+  class:list={[
+    'sticky left-0 right-0 top-0 z-[1000] max-h-screen',
+    {
+      'bg-primary': Astro.url.pathname.includes('/blog/'),
+      'bg-transparent': !Astro.url.pathname.includes('/blog/'),
+    },
+  ]}
+  id="sticky-header"
+>
   <header class="mx-auto px-4 2xl:container md:px-10 2xl:px-0">
     <nav class="flex h-[var(--header-height)] items-center justify-between">
       <a class="hidden md:inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>

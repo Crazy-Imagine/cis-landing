@@ -21,6 +21,9 @@ const projects = await fetchApi<ProjectCollection>({
       },
     },
     filters: {
+      status: {
+        $eq: 'published',
+      },
       title: {
         $notNull: true,
       },

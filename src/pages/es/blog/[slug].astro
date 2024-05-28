@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import BlogContent from '@/sections/Blog/Content.astro';
+import BlogTitle from '@/sections/Blog/Title.astro';
+import Layout from '@/layouts/Layout.astro';
+import fetchApi from '@/lib/strapi';
+import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
+
+export async function getStaticPaths() {
+  const articleCollection = await fetchApi<ArticleCollection>({
+    endpoint: 'articles',
+    params: {
+      locale: 'es',
+      fields: ['title', 'description', 'content', 'slug', 'locale'],
+      populate: {
+        category: {
+          fields: ['name'],
+        },
+        author: {
+          fields: ['name'],
+        },
+        image: {
+          fields: ['url', 'width', 'height', 'formats'],
+        },
+      },
+      filters: {
+        status: {
+          $sq: 'published',
+        },
+      },
+      sort: {
+        createdAt: 'desc',
+      },
+    },
+  });
+
+  return articleCollection.data.map(({ attributes }) => ({
+    params: { slug: attributes.slug },
+    props: { attributes },
+  }));
+}
+
+interface Props {
+  attributes: ArticleAttributes;
+}
+
+const { attributes } = Astro.props as Props;
+
+const {
+  image: {
+    data: [image], // TODO: Image must return alt text
+  },
+  ...article
+} = attributes;
+---
+
+<Layout title={article.title}>
+  <BlogTitle attributes={attributes} />
+
+  <Image
+    src={image.attributes.url}
+    alt={article.title}
+    width={image.attributes.width}
+    height={image.attributes.height}
+  />
+
+  <BlogContent content={article.content} />
+</Layout>
