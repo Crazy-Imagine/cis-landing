@@ -9,7 +9,7 @@ const articles = await fetchApi<ArticleCollection>({
   endpoint: 'articles',
   params: {
     locale: Astro.currentLocale,
-    fields: ['title', 'Key'],
+    fields: ['title', 'slug'],
     filters: {
       status: {
         $eq: 'published',
