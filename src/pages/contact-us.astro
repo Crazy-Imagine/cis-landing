@@ -1,14 +1,12 @@
 ---
-import FeaturedArticles from '@/sections/FeaturedArticles.astro';
 import Hero from '@/sections/Hero.astro';
-import LatestArticles from '@/sections/LatestArticles.astro';
 import Layout from '@/layouts/Layout.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const seo = await fetchApi<SEO>({
-  endpoint: 'blog',
+  endpoint: 'contact-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
@@ -16,18 +14,13 @@ const seo = await fetchApi<SEO>({
     },
   },
 });
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
 <Layout
   title={seo.data.attributes.seo.metaTitle}
   description={seo.data.attributes.seo.metaDescription}
 >
-  <Hero page="blog" />
+  <Hero page="contact-us" />
 
-  <FeaturedArticles />
-
-  <LatestArticles start={2} title={t('common-browse-all-articles')} />
+  <ReachOut />
 </Layout>
