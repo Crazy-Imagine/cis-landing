@@ -1,0 +1,19 @@
+---
+import { marked } from 'marked';
+import RecentlyPosted from '@/components/RecentlyPosted.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+
+const parsedContent = marked(content);
+---
+
+<ResponsiveContainer class="flex flex-col gap-10 xl:flex-row xl:gap-40">
+  <article class="blog-content text-[#4f4f4f]" set:html={parsedContent} />
+
+  <RecentlyPosted />
+</ResponsiveContainer>
