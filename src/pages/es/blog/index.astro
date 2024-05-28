@@ -1,4 +1,5 @@
 ---
+import FeaturedArticles from '@/sections/FeaturedArticles.astro';
 import Hero from '@/sections/Hero.astro';
 import LatestArticles from '@/sections/LatestArticles.astro';
 import Layout from '@/layouts/Layout.astro';
@@ -26,5 +27,7 @@ const t = useTranslations(lang);
 >
   <Hero page="blog" />
 
-  <LatestArticles title={t('common-browse-all-articles')} />
+  <FeaturedArticles />
+
+  <LatestArticles start={2} title={t('common-browse-all-articles')} />
 </Layout>

@@ -67,6 +67,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Home',
+    'common.featured-article': 'Featured Articles',
     'common.recently-posted': 'Recently Posted',
     'common.page-not-found': 'Oops, page not found',
     'common-browse-all-articles': 'Browse All Articles',
@@ -258,6 +259,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Inicio',
+    'common.featured-article': 'Artículos destacados',
     'common.recently-posted': 'Publicados recientemente',
     'common.page-not-found': 'Vaya, página no encontrada',
     'common-browse-all-articles': 'Ver todos los artículos',

@@ -13,17 +13,32 @@ interface Props {
   linkText: string;
   title: string;
   width: number;
+  isSwiperCard?: boolean;
 }
 
-const { title, img, altText = '', linkText, href, width, height } = Astro.props;
+const {
+  title,
+  img,
+  altText = '',
+  linkText,
+  href,
+  width,
+  height,
+  isSwiperCard = true,
+} = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
-// const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
 <article
-  class:list={['swiper-slide my-2 !flex !h-auto flex-col rounded-xl bg-white', Astro.props.class]}
+  class:list={[
+    'my-2 !flex !h-auto flex-col rounded-xl bg-white',
+    Astro.props.class,
+    {
+      'swiper-slide': isSwiperCard,
+    },
+  ]}
 >
   <picture class="rounded-t-xl">
     <Image
@@ -33,7 +48,7 @@ const translatePath = useTranslatedPath(lang);
       width={width}
       height={height}
     />
-    <div class="swiper-lazy-preloader"></div>
+    {isSwiperCard && <div class="swiper-lazy-preloader" />}
   </picture>
 
   <div class="mt-auto p-5 text-center">
