@@ -41,7 +41,7 @@ const formattedFaqs: FormattedFAQs = faqs.data.reduce((previousValue, currentVal
 }, {} as FormattedFAQs);
 ---
 
-<ResponsiveContainer class="flex gap-20">
+<ResponsiveContainer class="flex flex-col gap-5 md:flex-row md:gap-20">
   {
     Object.keys(formattedFaqs).map((faqTitle) => (
       <div>
