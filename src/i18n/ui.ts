@@ -43,6 +43,8 @@ export const ui = {
     'alt.wireframe': 'Wireframe of a Mobile Application',
     'alt.double-cellphone': 'Two mobile phones with a fingerprint',
     'alt.laptop-with-phone': 'Laptop with a mobile and a tablet',
+    'alt.comet': 'Comet',
+    'alt.telescope': 'Telescope',
 
     // About Us Page
     'about.references-title': 'References',
@@ -186,6 +188,12 @@ export const ui = {
     'services.staff-outsourcing': 'Staff Outsourcing',
     'services.staff-outsourcing-description': 'Remote collaborators for your team.',
 
+    // Mission
+    'mission.our-mission': 'Our Mission',
+    'mission.what-we-want-to-achieve': 'What we want to achieve',
+    'mission.our-vision': 'Our Vision',
+    'mission.how-we-see-in-the-future': 'How we see in the future',
+
     // Contact form
     'forms.submit': 'Submit',
     'forms.name': 'Name',
@@ -254,6 +262,8 @@ export const ui = {
     'alt.wireframe': 'Wireframe de una aplicación móvil',
     'alt.double-cellphone': 'Dos teléfonos celulares con una huella en ellos',
     'alt.laptop-with-phone': 'Laptop con un teléfono y una table a sus lados',
+    'alt.comet': 'Cometa',
+    'alt.telescope': 'Telescopio',
 
     // About Us Page
     'about.references-title': 'References',
@@ -356,7 +366,6 @@ export const ui = {
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
     'services.capabilities': 'Capacidades',
-
     'services.custom-software-development': 'Desarrollo de Software a Medida',
     'services.custom-software-development-description':
       'Creamos soluciones de software a medida para satisfacer las necesidades específicas de su negocio. Ya sea un sitio web o una aplicación móvil, nuestro equipo de desarrollo experto utiliza una amplia gama de tecnologías, incluyendo:',
@@ -400,6 +409,12 @@ export const ui = {
     'services.project-management-description': 'Supervisión y dirección de proyectos.',
     'services.staff-outsourcing': 'Externalización de Personal',
     'services.staff-outsourcing-description': 'Colaboradores remotos para tu equipo.',
+
+    // Mission
+    'mission.our-mission': 'Nuestra misión',
+    'mission.what-we-want-to-achieve': 'Lo que queremos lograr',
+    'mission.our-vision': 'Nuestra visión',
+    'mission.how-we-see-in-the-future': 'Cómo nos vemos en el futuro',
 
     // Contact form
     'forms.submit': 'Enviar',

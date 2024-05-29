@@ -1,7 +1,6 @@
 ---
 import Atom from '@/icons/Atom.astro';
 import GhostAstronaut from '@/icons/GhostAstronaut.astro';
-import Ovni from '@/icons/Ovni.astro';
 import PCWithRocket from '@/icons/PCWithRocket.astro';
 import Planet from '@/icons/Planet.astro';
 import PlanetWithFlag from '@/icons/PlanetWithFlag.astro';
@@ -10,6 +9,7 @@ import Rocket from '@/icons/Rocket.astro';
 import Satellite from '@/icons/Satellite.astro';
 import Telescope from '@/icons/Telescope.astro';
 import Typography from '@/components/Typography.astro';
+import UFO from '@/icons/UFO.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -110,7 +110,7 @@ const translatePath = useTranslatedPath(lang);
   >
     <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
       <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
-        <Ovni class="text-white" />
+        <UFO class="text-white" />
       </div>
 
       <div>
