@@ -411,9 +411,9 @@ export const ui = {
     'services.staff-outsourcing-description': 'Colaboradores remotos para tu equipo.',
 
     // Mission
-    'mission.our-mission': 'Nuestra misión',
+    'mission.our-mission': 'Nuestra Misión',
     'mission.what-we-want-to-achieve': 'Lo que queremos lograr',
-    'mission.our-vision': 'Nuestra visión',
+    'mission.our-vision': 'Nuestra Visión',
     'mission.how-we-see-in-the-future': 'Cómo nos vemos en el futuro',
 
     // Contact form
