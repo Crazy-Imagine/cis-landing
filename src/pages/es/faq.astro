@@ -1,0 +1,26 @@
+---
+import FAQSection from '@/sections/FAQSection.astro';
+import Hero from '@/sections/Hero.astro';
+import Layout from '@/layouts/Layout.astro';
+import fetchApi from '@/lib/strapi';
+import type { FAQ } from '@/types/strapi/pages/FAQ';
+
+const faqPage = await fetchApi<FAQ>({
+  endpoint: 'faq-page',
+  params: {
+    locale: Astro.currentLocale,
+    populate: {
+      seo: true,
+    },
+  },
+});
+---
+
+<Layout
+  title={faqPage.data.attributes.seo.metaTitle}
+  description={faqPage.data.attributes.seo.metaDescription}
+>
+  <Hero page="about" />
+
+  <FAQSection />
+</Layout>
