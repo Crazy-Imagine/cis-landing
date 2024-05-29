@@ -25,6 +25,7 @@ export default {
         'fog-white': 'var(--color-fog-white)',
         'primary-with-transparency': 'var(--color-primary-with-transparency)',
         'blue-purple-contrast': 'var(--color-blue-purple-contrast)',
+        'smoke': 'var(--color-smoke)',
       },
       keyframes: {
         wiggle: {

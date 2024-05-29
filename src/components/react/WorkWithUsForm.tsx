@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
+import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
 
 interface IForm {
   name: string;
@@ -48,11 +49,11 @@ function WorkWithUsForm({ url }: Props) {
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-5 flex flex-col gap-5 md:flex-row">
+      <div className="mb-10 flex flex-col gap-5 md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
         <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
       </div>
-      <div className="mb-5 flex flex-col gap-5 md:flex-row">
+      <div className="mb-10 flex flex-col gap-5 md:flex-row">
         <RHFInput
           type="email"
           name="email"
@@ -63,12 +64,29 @@ function WorkWithUsForm({ url }: Props) {
         <RHFInput name="phone" label={t('forms.phone')} register={register} errors={errors} />
       </div>
 
-      <div className="mb-5">
+      <div className="mb-10">
         <RHFInput name="linkedIn" label={t('forms.linkedIn')} register={register} errors={errors} />
       </div>
 
-      <div className="mb-5">
+      <div className="mb-10">
         <RHFInput name="webSite" label={t('forms.webSite')} register={register} errors={errors} />
+      </div>
+
+      <div className="mb-10">
+        <RHFSelect
+          options={[
+            t('common.google'),
+            t('common.instagram'),
+            t('common.facebook'),
+            t('common.linkedin'),
+            t('common.recommended'),
+            t('common.other'),
+          ]}
+          name="howDidYouFindUs"
+          label={t('forms.how-did-you-find-us')}
+          errors={errors}
+          register={register}
+        />
       </div>
 
       <div className="text-center">
