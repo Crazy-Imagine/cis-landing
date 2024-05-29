@@ -4,7 +4,7 @@ import Layout from '@/layouts/Layout.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
-import type { Mission } from '@/types/strapi/Mission';
+import type { Mission } from '@/types/strapi/pages/Mission';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const mission = await fetchApi<Mission>({

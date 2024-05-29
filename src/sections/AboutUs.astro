@@ -83,26 +83,26 @@ const translatePath = useTranslatedPath(lang);
     </div>
   </a>
 
-  <!--<a-->
-  <!--  class="scale-100 transition-transform duration-300 hover:scale-105"-->
-  <!--  href={translatePath('#', lang)}-->
-  <!--&gt;-->
-  <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
-    <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
-      <Satellite class="text-white" />
-    </div>
+  <a
+    class="scale-100 transition-transform duration-300 hover:scale-105"
+    href={translatePath('/faq', lang)}
+  >
+    <div class="flex h-full items-center gap-5 bg-[#f8f8f8] p-6 shadow-lg">
+      <div class="flex h-16 w-16 items-center justify-center rounded-md bg-primary px-3">
+        <Satellite class="text-white" />
+      </div>
 
-    <div>
-      <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
-        {t('about.faq-title')}
-      </Typography>
+      <div>
+        <Typography class="text-xl leading-7 tracking-wide text-primary" as="p" variant="accent">
+          {t('about.faq-title')}
+        </Typography>
 
-      <Typography class="line-clamp-2 text-grayish" as="p" variant="paragraph2">
-        {t('about.faq-description')}
-      </Typography>
+        <Typography class="line-clamp-2 text-grayish" as="p" variant="paragraph2">
+          {t('about.faq-description')}
+        </Typography>
+      </div>
     </div>
-  </div>
-  <!--</a>-->
+  </a>
 
   <a
     class="scale-100 transition-transform duration-300 hover:scale-105"

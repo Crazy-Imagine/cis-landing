@@ -1,0 +1,57 @@
+---
+import Accordion from '@/components/Accordion.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import fetchApi from '@/lib/strapi';
+import type { FAQs } from '@/types/strapi/FAQs';
+
+const faqs = await fetchApi<FAQs>({
+  endpoint: 'faqs',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['Questions', 'Ask'],
+    populate: {
+      faq_options: {
+        fields: ['name', 'slug'],
+      },
+    },
+  },
+});
+
+interface QA {
+  question: string;
+  answer: string;
+}
+type FormattedFAQs = Record<string, QA[]>;
+
+const formattedFaqs: FormattedFAQs = faqs.data.reduce((previousValue, currentValue) => {
+  const name = currentValue.attributes.faq_options.data.attributes.name;
+  const QA: QA = {
+    question: currentValue.attributes.Questions,
+    answer: currentValue.attributes.Ask,
+  };
+
+  if (!previousValue[name]) {
+    previousValue[name] = [QA];
+    return previousValue;
+  }
+
+  previousValue[name].push(QA);
+  return previousValue;
+}, {} as FormattedFAQs);
+---
+
+<ResponsiveContainer class="flex flex-col gap-5 md:flex-row md:gap-20">
+  {
+    Object.keys(formattedFaqs).map((faqTitle) => (
+      <div>
+        <Typography as="h2" variant="h3" class="mb-5 capitalize text-primary">
+          {faqTitle}
+        </Typography>
+        {formattedFaqs[faqTitle].map((faq) => (
+          <Accordion title={faq.question} description={faq.answer} />
+        ))}
+      </div>
+    ))
+  }
+</ResponsiveContainer>
