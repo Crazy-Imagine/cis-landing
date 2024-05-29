@@ -11,6 +11,7 @@ import Layout from '@/layouts/Layout.astro';
 import Megaphone from '@/icons/Megaphone.astro';
 import Monitor from '@/icons/Monitor.astro';
 import Projects from '@/sections/LatestProjects.astro';
+import ReadMore from '@/components/Services/ReadMore.astro';
 import ServicesSection from '@/sections/Services.astro';
 import SrPackage from '@/icons/SrPackage.astro';
 import Typography from '@/components/Typography.astro';
@@ -58,14 +59,45 @@ const t = useTranslations(lang);
       <Card>
         <Code slot="icon" class="text-secondary" />
         <span slot="text">{t('services.frontend')}</span>
+        <ReadMore slot="link" id="service-read-more-1" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-1"
+        >
+          {t('services.frontend-description')}
+        </Typography>
       </Card>
       <Card>
         <Check slot="icon" class="text-secondary" />
         <span slot="text">{t('services.backend')}</span>
+
+        <ReadMore slot="link" id="service-read-more-2" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-2"
+        >
+          {t('services.backend-description')}
+        </Typography>
       </Card>
       <Card>
         <Monitor slot="icon" class="text-secondary" />
         <span slot="text">{t('services.full-stack-development')}</span>
+        <ReadMore slot="link" id="service-read-more-3" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-3"
+        >
+          {t('services.full-stack-development-description')}
+        </Typography>
       </Card>
     </CardContainer>
   </ServicesSection>
@@ -90,14 +122,44 @@ const t = useTranslations(lang);
       <Card>
         <Brush slot="icon" class="text-secondary" />
         <span slot="text">{t('services.design-and-development')}</span>
+        <ReadMore slot="link" id="service-read-more-4" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-4"
+        >
+          {t('services.design-and-development-description')}
+        </Typography>
       </Card>
       <Card>
         <Gears slot="icon" class="h-10 w-10 text-secondary" />
         <span slot="text">{t('services.ongoing-maintenance')}</span>
+        <ReadMore slot="link" id="service-read-more-5" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-5"
+        >
+          {t('services.ongoing-maintenance-description')}
+        </Typography>
       </Card>
       <Card>
         <User slot="icon" class="text-secondary" />
         <span slot="text">{t('services.technical-support')}</span>
+        <ReadMore slot="link" id="service-read-more-6" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-6"
+        >
+          {t('services.technical-support-description')}
+        </Typography>
       </Card>
     </CardContainer>
   </ServicesSection>
@@ -139,14 +201,44 @@ const t = useTranslations(lang);
       <Card>
         <Books slot="icon" class="text-secondary" />
         <span slot="text">{t('services.marketing-strategies')}</span>
+        <ReadMore slot="link" id="service-read-more-7" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-7"
+        >
+          {t('services.marketing-strategies-description')}
+        </Typography>
       </Card>
       <Card>
         <Megaphone slot="icon" class="text-secondary" />
         <span slot="text">{t('services.online-advertising')}</span>
+        <ReadMore slot="link" id="service-read-more-8" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-8"
+        >
+          {t('services.online-advertising-description')}
+        </Typography>
       </Card>
       <Card>
         <SrPackage slot="icon" class="text-secondary" />
         <span slot="text">{t('services.social-media-management')}</span>
+        <ReadMore slot="link" id="service-read-more-9" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-9"
+        >
+          {t('services.social-media-management-description')}
+        </Typography>
       </Card>
     </CardContainer>
   </ServicesSection>
@@ -170,17 +262,63 @@ const t = useTranslations(lang);
       <Card>
         <Books slot="icon" class="text-secondary" />
         <span slot="text">{t('services.virtual-assistant')}</span>
+        <ReadMore slot="link" id="service-read-more-10" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-10"
+        >
+          {t('services.virtual-assistant-description')}
+        </Typography>
       </Card>
       <Card>
         <Megaphone slot="icon" class="text-secondary" />
         <span slot="text">{t('services.project-management')}</span>
+        <ReadMore slot="link" id="service-read-more-11" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-11"
+        >
+          {t('services.project-management-description')}
+        </Typography>
       </Card>
       <Card>
         <SrPackage slot="icon" class="text-secondary" />
         <span slot="text">{t('services.staff-outsourcing')}</span>
+        <ReadMore slot="link" id="service-read-more-12" />
+        <Typography
+          slot="description"
+          as="span"
+          variant="paragraph2"
+          class="hidden text-center"
+          id="service-description-12"
+        >
+          {t('services.staff-outsourcing-description')}
+        </Typography>
       </Card>
     </CardContainer>
   </ServicesSection>
 
   <Projects title={t('common.featured-projects')} />
 </Layout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const $links = document.querySelectorAll('[id^="service-read-more"]');
+    const $descriptions = document.querySelectorAll('[id^="service-description"]');
+
+    if (!$links || !$descriptions) return;
+
+    $links.forEach(($link, index) => {
+      $link.addEventListener('click', () => {
+        $link.classList.add('hidden');
+        $descriptions[index].classList.remove('hidden');
+      });
+    });
+  });
+</script>

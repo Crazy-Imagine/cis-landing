@@ -160,16 +160,31 @@ export const ui = {
     'services.support-project-management-description':
       'We offer personalized support services to cover your operational needs, including',
     'services.frontend': 'Frontend',
+    'services.frontend-description': 'JavaScript (React.js, Angular, Vue.js)',
     'services.backend': 'Backend',
+    'services.backend-description': 'PHP (Laravel, Symfony), Python (Django), Java',
+    'services.full-stack-development-description':
+      'We implement comprehensive solutions that encompass all layers of development, from the user interface to business logic and database management.',
     'services.design-and-development': 'Design and Development',
+    'services.design-and-development-description':
+      'Creation of attractive and functional websites.',
     'services.ongoing-maintenance': 'Ongoing Maintenance',
+    'services.ongoing-maintenance-description': 'Updates, backups, and optimization.',
     'services.technical-support': 'Technical Support',
+    'services.technical-support-description': 'Troubleshooting and addressing requests.',
     'services.marketing-strategies': 'Marketing Strategies',
+    'services.marketing-strategies-description': 'Development of personalized campaigns.',
     'services.online-advertising': 'Online Advertising',
+    'services.online-advertising-description':
+      'Management of ads on Google Ads and other platforms.',
     'services.social-media-management': 'Social Media Management',
+    'services.social-media-management-description': 'Content creation and performance analysis.',
     'services.virtual-assistant': 'Virtual Assistant',
+    'services.virtual-assistant-description': 'Administrative assistance and routine tasks.',
     'services.project-management': 'Project Management',
+    'services.project-management-description': 'Supervision and direction of projects.',
     'services.staff-outsourcing': 'Staff Outsourcing',
+    'services.staff-outsourcing-description': 'Remote collaborators for your team.',
 
     // Contact form
     'forms.submit': 'Submit',
@@ -341,34 +356,50 @@ export const ui = {
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
     'services.capabilities': 'Capacidades',
-    // TODO: TRANSLATIONS
-    'services.custom-software-development': 'Custom Software Development',
+
+    'services.custom-software-development': 'Desarrollo de Software a Medida',
     'services.custom-software-development-description':
-      "We create tailored software solutions to meet the specific needs of your business. Whether it's a website or a mobile app, our expert development team utilizes a wide range of technologies, including:",
-    'services.wordpress-packages-maintenance': 'WordPress Packages Maintenance',
+      'Creamos soluciones de software a medida para satisfacer las necesidades específicas de su negocio. Ya sea un sitio web o una aplicación móvil, nuestro equipo de desarrollo experto utiliza una amplia gama de tecnologías, incluyendo:',
+    'services.wordpress-packages-maintenance': 'Mantenimiento de Paquetes de WordPress',
     'services.wordpress-packages-maintenance-description':
-      'From basic websites to complex online stores, we handle the entire lifecycle of your WordPress site. We offer:',
+      'Desde sitios web básicos hasta tiendas en línea complejas, gestionamos todo el ciclo de vida de su sitio de WordPress. Ofrecemos:',
     'services.devops-aws-hosting': 'DevOps y Hosting en AWS',
     'services.devops-aws-hosting-description':
-      'Optimize your development operations with agile DevOps practices. Additionally, we offer hosting services on the secure and scalable infrastructure of Amazon Web Services (AWS).',
+      'Optimice sus operaciones de desarrollo con prácticas ágiles de DevOps. Además, ofrecemos servicios de alojamiento en la infraestructura segura y escalable de Amazon Web Services (AWS).',
     'services.digital-marketing': 'Marketing Digital',
     'services.digital-marketing-description':
-      'Our team of marketing experts can boost your online business visibility with effective strategies, including',
-    'services.support-project-management': 'Support and Project Management',
+      'Nuestro equipo de expertos en marketing puede aumentar la visibilidad de su negocio en línea con estrategias efectivas, incluyendo:',
+    'services.support-project-management': 'Soporte y Gestión de Proyectos',
     'services.support-project-management-description':
-      'We offer personalized support services to cover your operational needs, including',
+      'Ofrecemos servicios de soporte personalizado para cubrir sus necesidades operativas, incluyendo:',
     'services.frontend': 'Frontend',
+    'services.frontend-description': 'JavaScript (React.js, Angular, Vue.js)',
     'services.backend': 'Backend',
-    'services.design-and-development': 'Design and Development',
-    'services.ongoing-maintenance': 'Ongoing Maintenance',
-    'services.technical-support': 'Technical Support',
-    'services.marketing-strategies': 'Marketing Strategies',
-    'services.online-advertising': 'Online Advertising',
-    'services.social-media-management': 'Social Media Management',
-    'services.virtual-assistant': 'Virtual Assistant',
-    'services.project-management': 'Project Management',
-    'services.staff-outsourcing': 'Staff Outsourcing',
-    // TODO: TRANSLATIONS END
+    'services.backend-description': 'PHP (Laravel, Symfony), Python (Django), Java',
+    'services.full-stack-development-description':
+      'Implementamos soluciones integrales que abarcan todas las capas del desarrollo, desde la interfaz de usuario hasta la lógica de negocio y la gestión de bases de datos.',
+    'services.design-and-development': 'Diseño y Desarrollo',
+    'services.design-and-development-description':
+      'Creación de sitios web atractivos y funcionales.',
+    'services.ongoing-maintenance': 'Mantenimiento Continuo',
+    'services.ongoing-maintenance-description':
+      'Actualizaciones, copias de seguridad y optimización.',
+    'services.technical-support': 'Soporte Técnico',
+    'services.technical-support-description': 'Resolución de problemas y atención a solicitudes.',
+    'services.marketing-strategies': 'Estrategias de Marketing',
+    'services.marketing-strategies-description': 'Desarrollo de campañas personalizadas.',
+    'services.online-advertising': 'Publicidad en Línea',
+    'services.online-advertising-description':
+      'Gestión de anuncios en Google Ads y otras plataformas.',
+    'services.social-media-management': 'Gestión de Redes Sociales',
+    'services.social-media-management-description':
+      'Creación de contenido y análisis de rendimiento.',
+    'services.virtual-assistant': 'Asistente Virtual',
+    'services.virtual-assistant-description': 'Asistencia administrativa y tareas rutinarias.',
+    'services.project-management': 'Gestión de Proyectos',
+    'services.project-management-description': 'Supervisión y dirección de proyectos.',
+    'services.staff-outsourcing': 'Externalización de Personal',
+    'services.staff-outsourcing-description': 'Colaboradores remotos para tu equipo.',
 
     // Contact form
     'forms.submit': 'Enviar',
