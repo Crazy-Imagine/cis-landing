@@ -99,6 +99,7 @@ export const ui = {
     'common.news-and-updates': 'News And Updates',
     'common.news-and-updates-description':
       'Get insight into our latest projects, news related to popular technologies, and updates on our services',
+    'common.work-with-us': 'Interested In Working With Us?',
 
     // Hero Keys
     'hero.home-title': 'Ideas beyond your imagination',
@@ -134,6 +135,10 @@ export const ui = {
     'hero.meet-the-team-subtitle': 'Leading a Team World-Class Engineers, Developers and Designers',
     'hero.meet-the-team-button': 'Contact Us',
     'hero.meet-the-team-img-alt': 'Rocket',
+    'hero.work-with-us-title': 'Work With Us At Crazy Imagine',
+    'hero.work-with-us-subtitle': '',
+    'hero.work-with-us-button': '',
+    'hero.work-with-us-img-alt': 'image of Rocket',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -206,13 +211,18 @@ export const ui = {
     'forms.project-type': 'Project Type',
     'forms.how-did-you-find-us': 'How did you find us?',
     'forms.subscribe': 'Subscribe',
+    'forms.linkedIn': 'LinkedIn',
+    'forms.webSite': 'WebSite',
 
     // Forms error
     'errors.name-required': 'Name is required',
     'errors.lastName-required': 'Last name is required',
     'errors.email-is-not-valid': 'Email must be a valid email address',
-    'errors.email-required': 'Phone is required',
+    'errors.email-required': 'Email is required',
     'errors.comments-required': 'Comments/Questions/Schemes is required',
+    'errors.linkedIn-required': 'Linkedin is required',
+    'errors.phone-required': 'Phone number is required',
+    'errors.webSite-required': 'Website is required',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -318,6 +328,7 @@ export const ui = {
     'common.news-and-updates': 'Novedades Y Actualizaciones',
     'common.news-and-updates-description':
       'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
+    'common.work-with-us': '¿Quieres Ser parte de Nuestro Equipo?',
 
     // Hero Keys
     'hero.home-title': 'Ideas más allá de tu imaginación',
@@ -354,6 +365,10 @@ export const ui = {
       'Liderando un equipo de ingenieros, desarrolladores y diseñadores de clase mundial.',
     'hero.meet-the-team-button': 'Contáctanos',
     'hero.meet-the-team-img-alt': 'Cohete',
+    'hero.work-with-us-title': 'Únete al equipo Crazy Imagine',
+    'hero.work-with-us-subtitle': '',
+    'hero.work-with-us-button': '',
+    'hero.work-with-us-img-alt': 'imagen de un cohete',
 
     // Services
     'services.why-should-you': 'Por qué deberías',
@@ -428,6 +443,8 @@ export const ui = {
     'forms.project-type': 'Tipo de proyecto',
     'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
     'forms.subscribe': 'Suscribir',
+    'forms.linkedIn': 'LinkedIn',
+    'forms.webSite': 'Sitio Web',
 
     // Forms error
     'errors.name-required': 'Nombre es requerido',
@@ -435,6 +452,9 @@ export const ui = {
     'errors.email-is-not-valid': 'Debe ser una dirección de correo válida',
     'errors.email-required': 'Dirección de correo electrónico es requerido',
     'errors.comments-required': 'Comentarios/Preguntas/Esquemas es requerido',
+    'errors.phone-required': 'Teléfono es requerido',
+    'errors.linkedIn-required': 'LinkedIn es requerido',
+    'errors.webSite-required': 'Sitio Web es Requerido',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,
