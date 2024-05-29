@@ -10,14 +10,25 @@ import CISLogo from '@/icons/CIS.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const DYNAMIC_PAGES = ['blog'];
+const pathname = Astro.url.pathname;
+
+let isTransparentBackground = true;
+
+if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
+  if (pathname.split('/').length > 2) {
+    isTransparentBackground = pathname.split('/')[2] === '';
+  }
+}
 ---
 
 <div
   class:list={[
     'sticky left-0 right-0 top-0 z-[1000] max-h-screen',
     {
-      'bg-primary': Astro.url.pathname.includes('/blog/'),
-      'bg-transparent': !Astro.url.pathname.includes('/blog/'),
+      'bg-primary': !isTransparentBackground,
+      'bg-transparent': isTransparentBackground,
     },
   ]}
   id="sticky-header"
