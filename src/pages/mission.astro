@@ -1,10 +1,13 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import Services from '@/sections/Services.astro';
+import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
+import type { Mission } from '@/types/strapi/Mission';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
-const seo = await fetchApi<SEO>({
+const mission = await fetchApi<Mission>({
   endpoint: 'mission-page',
   params: {
     locale: Astro.currentLocale,
@@ -13,11 +16,52 @@ const seo = await fetchApi<SEO>({
     },
   },
 });
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout
-  title={seo.data.attributes.seo.metaTitle}
-  description={seo.data.attributes.seo.metaDescription}
+  title={mission.data.attributes.seo.metaTitle}
+  description={mission.data.attributes.seo.metaDescription}
 >
   <Hero page="mission" />
+
+  <Services
+    img={{
+      path: '/src/assets/ui/comet.webp',
+      alt: t('alt.comet'),
+      bgColor: 'bg-primary',
+    }}
+  >
+    <Typography slot="main-text" as="h2" variant="h2" class="mb-5 text-primary">
+      {t('mission.our-mission')}:
+      <span class="text-secondary">
+        {t('mission.what-we-want-to-achieve')}
+      </span>
+    </Typography>
+
+    <Typography slot="description" as="p" variant="accent" class="text-primary">
+      {mission.data.attributes.description_mission}
+    </Typography>
+  </Services>
+
+  <Services
+    img={{
+      path: '/src/assets/ui/telescope.webp',
+      alt: t('alt.telescope'),
+      bgColor: 'bg-secondary',
+    }}
+  >
+    <Typography slot="main-text" as="h2" variant="h2" class="mb-5 text-primary">
+      {t('mission.our-vision')}:
+      <span class="text-secondary">
+        {t('mission.how-we-see-in-the-future')}
+      </span>
+    </Typography>
+
+    <Typography slot="description" as="p" variant="accent" class="text-primary">
+      {mission.data.attributes.subtitle_vission}
+    </Typography>
+  </Services>
 </Layout>
