@@ -25,23 +25,25 @@ interface Props {
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const accordionItems = document.querySelectorAll('.accordion-item');
+    const $accordionItems = document.querySelectorAll('.accordion-item');
 
-    accordionItems.forEach((item) => {
-      const button = item.querySelector('.accordion-button');
-      const content: any = item.querySelector('.accordion-content');
-      const arrows = item.querySelectorAll('.arrow');
+    $accordionItems.forEach((item) => {
+      const $button = item.querySelector('.accordion-button');
+      const $content: any = item.querySelector('.accordion-content');
+      const $arrows = item.querySelectorAll('.arrow');
 
-      button.addEventListener('click', () => {
-        const maxHeight = content.style.maxHeight;
-        arrows.forEach((arrow) => arrow.classList.toggle('hidden'));
+      if ($button || $content || $arrows) return;
+
+      $button.addEventListener('click', () => {
+        const maxHeight = $content.style.maxHeight;
+        $arrows.forEach(($arrow) => $arrow.classList.toggle('hidden'));
 
         if (maxHeight === '0px' || maxHeight === '') {
-          content.style.maxHeight = `${content.scrollHeight}px`;
+          $content.style.maxHeight = `${$content.scrollHeight}px`;
           return;
         }
 
-        content.style.maxHeight = '0px';
+        $content.style.maxHeight = '0px';
       });
     });
   });
