@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   const articleCollection = await fetchApi<ArticleCollection>({
     endpoint: 'articles',
     params: {
-      locale: 'en',
+      locale: 'es',
       fields: ['title', 'description', 'content', 'slug', 'locale'],
       populate: {
         category: {
