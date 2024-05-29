@@ -4,10 +4,11 @@ import RecentlyPosted from '@/components/RecentlyPosted.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 
 interface Props {
+  id: number;
   content: string;
 }
 
-const { content } = Astro.props;
+const { content, id } = Astro.props;
 
 const parsedContent = marked(content);
 ---
@@ -15,5 +16,5 @@ const parsedContent = marked(content);
 <ResponsiveContainer class="flex flex-col gap-10 xl:flex-row xl:gap-40">
   <article class="blog-content text-[#4f4f4f]" set:html={parsedContent} />
 
-  <RecentlyPosted />
+  <RecentlyPosted id={id} />
 </ResponsiveContainer>
