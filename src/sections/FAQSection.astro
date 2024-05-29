@@ -18,24 +18,27 @@ const faqs = await fetchApi<FAQs>({
   },
 });
 
-const formattedFaqs: Record<string, { question: string; answer: string }[]> = faqs.data.reduce(
-  (previousValue, currentValue) => {
-    const name = currentValue.attributes.faq_options.data.attributes.name;
-    const QA = {
-      question: currentValue.attributes.Questions,
-      answer: currentValue.attributes.Ask,
-    };
+interface QA {
+  question: string;
+  answer: string;
+}
+type FormattedFAQs = Record<string, QA[]>;
 
-    if (!previousValue[name]) {
-      previousValue[name] = [QA];
-      return previousValue;
-    }
+const formattedFaqs: FormattedFAQs = faqs.data.reduce((previousValue, currentValue) => {
+  const name = currentValue.attributes.faq_options.data.attributes.name;
+  const QA: QA = {
+    question: currentValue.attributes.Questions,
+    answer: currentValue.attributes.Ask,
+  };
 
-    previousValue[name].push(QA);
+  if (!previousValue[name]) {
+    previousValue[name] = [QA];
     return previousValue;
-  },
-  {}
-);
+  }
+
+  previousValue[name].push(QA);
+  return previousValue;
+}, {} as FormattedFAQs);
 ---
 
 <ResponsiveContainer class="flex gap-20">
