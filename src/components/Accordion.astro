@@ -32,11 +32,14 @@ interface Props {
       const $content: any = item.querySelector('.accordion-content');
       const $arrows = item.querySelectorAll('.arrow');
 
-      if ($button || $content || $arrows) return;
+      if (!$button || !$content || !$arrows) return;
 
       $button.addEventListener('click', () => {
         const maxHeight = $content.style.maxHeight;
-        $arrows.forEach(($arrow) => $arrow.classList.toggle('hidden'));
+        $arrows.forEach(($arrow) => {
+          if (!$arrow) return;
+          $arrow.classList.toggle('hidden');
+        });
 
         if (maxHeight === '0px' || maxHeight === '') {
           $content.style.maxHeight = `${$content.scrollHeight}px`;
