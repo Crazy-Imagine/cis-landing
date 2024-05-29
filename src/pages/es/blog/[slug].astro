@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import BlogContent from '@/sections/Blog/Content.astro';
 import BlogTitle from '@/sections/Blog/Title.astro';
 import Layout from '@/layouts/Layout.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
 
@@ -10,7 +11,7 @@ export async function getStaticPaths() {
   const articleCollection = await fetchApi<ArticleCollection>({
     endpoint: 'articles',
     params: {
-      locale: 'es',
+      locale: 'en',
       fields: ['title', 'description', 'content', 'slug', 'locale'],
       populate: {
         category: {
@@ -58,12 +59,14 @@ const {
 <Layout title={article.title}>
   <BlogTitle attributes={attributes} />
 
-  <Image
-    src={image.attributes.url}
-    alt={article.title}
-    width={image.attributes.width}
-    height={image.attributes.height}
-  />
+  <ResponsiveContainer containerClass="!py-0">
+    <Image
+      src={image.attributes.url}
+      alt={article.title}
+      width={image.attributes.width}
+      height={image.attributes.height}
+    />
+  </ResponsiveContainer>
 
   <BlogContent id={id} content={article.content} />
 </Layout>
