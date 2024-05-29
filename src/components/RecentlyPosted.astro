@@ -5,6 +5,10 @@ import Typography from '@/components/Typography.astro';
 import type { ArticleCollection } from '@/types/strapi/Article';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
+interface Props {
+  id: number;
+}
+
 const articles = await fetchApi<ArticleCollection>({
   endpoint: 'articles',
   params: {
@@ -16,6 +20,9 @@ const articles = await fetchApi<ArticleCollection>({
       },
       title: {
         $notNull: true,
+      },
+      id: {
+        $ne: Astro.props.id,
       },
     },
     pagination: {

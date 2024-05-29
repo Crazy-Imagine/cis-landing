@@ -34,17 +34,18 @@ export async function getStaticPaths() {
     },
   });
 
-  return articleCollection.data.map(({ attributes }) => ({
+  return articleCollection.data.map(({ attributes, id }) => ({
     params: { slug: attributes.slug },
-    props: { attributes },
+    props: { attributes, id },
   }));
 }
 
 interface Props {
+  id: number;
   attributes: ArticleAttributes;
 }
 
-const { attributes } = Astro.props as Props;
+const { attributes, id } = Astro.props as Props;
 
 const {
   image: {
@@ -64,5 +65,5 @@ const {
     height={image.attributes.height}
   />
 
-  <BlogContent content={article.content} />
+  <BlogContent id={id} content={article.content} />
 </Layout>
