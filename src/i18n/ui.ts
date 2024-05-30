@@ -69,7 +69,10 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Home',
+    'common.project-category': 'Project Category',
     'common.related-projects': 'Related Projects',
+    'common.comment-list': 'Comment List',
+    'common.the-reviewer': 'The reviewer',
     'common.all': 'All',
     'common.featured-article': 'Featured Articles',
     'common.recently-posted': 'Recently Posted',
@@ -290,7 +293,10 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Inicio',
+    'common.project-category': 'Categoría del Proyecto',
     'common.related-projects': 'Proyectos Relacionados',
+    'common.comment-list': 'Lista de Comentarios',
+    'common.the-reviewer': 'El revisor',
     'common.all': 'Todos',
     'common.featured-article': 'Artículos destacados',
     'common.recently-posted': 'Publicados recientemente',
@@ -340,7 +346,7 @@ export const ui = {
     'hero.contact-us-subtitle': '',
     'hero.contact-us-button': '',
     'hero.contact-us-img-alt': 'Astronauta',
-    'hero.references-title': 'Clientes Referencia',
+    'hero.references-title': 'Referencias de los Clientes',
     'hero.references-subtitle': '',
     'hero.references-button': '',
     'hero.references-img-alt': '5 estrellas',
