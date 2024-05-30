@@ -1,8 +1,70 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import ProjectsList from '@/components/react/Projects/List';
+import ProjectsTypesList from '@/components/react/Projects/TypesList';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectCollection } from '@/types/strapi/Project';
+import type { ProjectTypeCollection } from '@/types/strapi/ProjectType';
+import type { ProjectsPage } from '@/types/strapi/pages/Project';
+
+const projectsPage = await fetchApi<ProjectsPage>({
+  endpoint: 'projectspage',
+  params: {
+    locale: Astro.currentLocale,
+    populate: {
+      seo: true,
+    },
+  },
+});
+
+const projectTypes = await fetchApi<ProjectTypeCollection>({
+  endpoint: 'project-types',
+  params: {
+    locale: Astro.currentLocale,
+  },
+});
+
+const projects = await fetchApi<ProjectCollection>({
+  endpoint: 'projects',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'description', 'details', 'slug'],
+    populate: {
+      project_types: {
+        fields: ['name', 'slug'],
+      },
+      images: {
+        fields: ['url', 'formats', 'width', 'height'],
+      },
+    },
+    filters: {
+      status: {
+        $eq: 'published',
+      },
+      title: {
+        $notNull: true,
+      },
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
 ---
 
-<Layout>
+<Layout
+  title={projectsPage.data.attributes.seo.metaTitle}
+  description={projectsPage.data.attributes.seo.metaDescription}
+>
   <Hero page="blog" />
+
+  <ResponsiveContainer>
+    <ProjectsTypesList client:visible projectTypes={projectTypes} url={Astro.url} />
+  </ResponsiveContainer>
+
+  <ResponsiveContainer>
+    <ProjectsList client:visible projects={projects} url={Astro.url} />
+  </ResponsiveContainer>
 </Layout>

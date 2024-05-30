@@ -14,6 +14,7 @@ export interface ProjectAttributes {
   description: string;
   slug: string;
   images: ImagesData;
+  project_types: ProjectTypes;
 }
 
 export interface ImagesData {
@@ -49,6 +50,20 @@ export interface Large {
   size: number;
   width: number;
   height: number;
+}
+
+interface ProjectTypes {
+  data: ProjectType[];
+}
+
+interface ProjectType {
+  id: number;
+  attributes: ProjectTypeAttributes;
+}
+
+interface ProjectTypeAttributes {
+  name: string;
+  slug: string;
 }
 
 export interface Meta {
