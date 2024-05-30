@@ -1,0 +1,115 @@
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import fetchApi from '@/lib/strapi';
+import type { ReviewCollection } from '@/types/strapi/Review';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const reviews = await fetchApi<ReviewCollection>({
+  endpoint: 'reviews',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['name', 'ocupation', 'review', 'createdAt'],
+    populate: {
+      project: {
+        fields: ['title', 'description'],
+      },
+      category_reviews: {
+        fields: ['name'],
+      },
+    },
+    filters: {
+      project: {
+        id: {
+          $notNull: true,
+        },
+      },
+      category_reviews: {
+        id: {
+          $notNull: true,
+        },
+      },
+    },
+    pagination: {
+      limit: 8,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer>
+  {
+    reviews.data.map((review, index) => (
+      <div
+        class:list={[
+          'flex flex-col-reverse gap-10 md:flex-row lg:gap-40',
+          {
+            'mb-20': index !== reviews.data.length - 1,
+          },
+        ]}
+      >
+        <article class="md:basis-1/2">
+          <Typography as="h2" variant="h2" class="mb-5 text-primary md:mb-10">
+            {review.attributes?.project?.data?.attributes.title}
+          </Typography>
+
+          <Typography as="p" variant="paragraph" class="mb-10">
+            {review.attributes?.project?.data?.attributes.description}
+          </Typography>
+
+          <Typography as="p" variant="accent" class="mb-2.5 text-primary">
+            {t('common.project-category')}
+          </Typography>
+
+          <Typography
+            as="span"
+            variant="paragraph3"
+            class="inline-block rounded-full bg-primary px-5 py-1.5 text-white"
+          >
+            {review.attributes?.category_reviews?.data?.[0]?.attributes.Name}
+          </Typography>
+        </article>
+
+        <article class="md:basis-1/2">
+          <Typography as="h2" variant="h2" class="text-primary">
+            {review.attributes.name}
+          </Typography>
+
+          <Typography as="p" variant="h5" class="my-5 text-primary">
+            {t('common.comment-list')}
+          </Typography>
+
+          <Typography as="p" variant="paragraph">
+            {review.attributes.review}
+          </Typography>
+
+          <Typography as="p" variant="h5" class="my-5 text-primary">
+            {t('common.the-reviewer')}
+          </Typography>
+
+          <div class="flex items-center gap-5">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-grayish text-4xl text-white">
+              {review.attributes.name[0]}
+            </div>
+
+            <div>
+              <Typography as="p" variant="paragraph3">
+                {review.attributes.name}
+              </Typography>
+
+              <Typography as="p" variant="paragraph3">
+                {review.attributes.ocupation}
+              </Typography>
+            </div>
+          </div>
+        </article>
+      </div>
+    ))
+  }
+</ResponsiveContainer>

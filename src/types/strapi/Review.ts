@@ -12,6 +12,36 @@ export interface Attributes {
   name: string;
   ocupation: string;
   review: string;
+  createdAt: string;
+  project: Project;
+  category_reviews: CategoryReviews;
+}
+
+export interface CategoryReviews {
+  data: CategoryReviewsDatum[];
+}
+
+export interface CategoryReviewsDatum {
+  id: number;
+  attributes: CategoryReviewAttributes;
+}
+
+export interface CategoryReviewAttributes {
+  Name: string;
+}
+
+export interface Project {
+  data: Data;
+}
+
+export interface Data {
+  id: number;
+  attributes: ProjectAttributes;
+}
+
+export interface ProjectAttributes {
+  title: string;
+  description: string;
 }
 
 export interface Meta {
