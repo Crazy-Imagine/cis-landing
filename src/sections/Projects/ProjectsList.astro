@@ -1,0 +1,37 @@
+---
+import List from '@/components/react/Projects/List';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectCollection } from '@/types/strapi/Project';
+
+const projects = await fetchApi<ProjectCollection>({
+  endpoint: 'projects',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'description', 'details', 'slug'],
+    populate: {
+      project_types: {
+        fields: ['name', 'slug'],
+      },
+      images: {
+        fields: ['url', 'formats', 'width', 'height'],
+      },
+    },
+    filters: {
+      status: {
+        $eq: 'published',
+      },
+      title: {
+        $notNull: true,
+      },
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+---
+
+<ResponsiveContainer>
+  <List client:visible projects={projects} url={Astro.url} />
+</ResponsiveContainer>
