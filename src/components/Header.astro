@@ -11,7 +11,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
-const DYNAMIC_PAGES = ['blog'];
+const DYNAMIC_PAGES = ['blog', 'projects'];
 const pathname = Astro.url.pathname;
 
 let isTransparentBackground = true;

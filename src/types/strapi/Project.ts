@@ -13,8 +13,9 @@ export interface ProjectAttributes {
   details: string;
   description: string;
   slug: string;
-  images: ImagesData;
   project_types: ProjectTypes;
+  images: ImagesData;
+  galleryImages: ImagesData;
 }
 
 export interface ImagesData {

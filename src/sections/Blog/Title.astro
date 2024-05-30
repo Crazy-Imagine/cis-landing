@@ -1,23 +1,15 @@
 ---
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
-import type { ArticleAttributes } from '@/types/strapi/Article';
 
 interface Props {
-  attributes: ArticleAttributes;
+  author?: string;
+  category: string;
+  description: string;
+  title: string;
 }
 
-const {
-  attributes: {
-    category: {
-      data: { attributes: category },
-    },
-    author: {
-      data: { attributes: author },
-    },
-    ...article
-  },
-} = Astro.props;
+const { author, category, description, title } = Astro.props;
 ---
 
 <ResponsiveContainer>
@@ -27,21 +19,25 @@ const {
       variant="caption"
       class="rounded-md bg-primary px-5 py-3.5 uppercase text-white"
     >
-      {category.name}
+      {category}
     </Typography>
   </div>
 
-  <Typography as="h1" variant="blogTitle" class="text-primary">{article.title}</Typography>
+  <Typography as="h1" variant="blogTitle" class="text-primary">{title}</Typography>
 
-  <Typography
-    as="p"
-    variant="caption"
-    class="my-10 border-l-2 border-primary py-2.5 pl-5 text-primary"
-  >
-    {author.name}
-  </Typography>
+  {
+    author && (
+      <Typography
+        as="p"
+        variant="caption"
+        class="my-10 border-l-2 border-primary py-2.5 pl-5 text-primary"
+      >
+        {author}
+      </Typography>
+    )
+  }
 
   <Typography as="p" variant="paragraph" class="text-grayish">
-    {article.description}
+    {description}
   </Typography>
 </ResponsiveContainer>

@@ -43,7 +43,7 @@ function ProjectsList({ projects, url }: Props) {
                 className="group relative flex items-end justify-center
               after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
               hover:after:origin-bottom-left hover:after:scale-100"
-                href={translatePath(`/project/${project.attributes.slug}`, lang)}
+                href={translatePath(`/projects/${project.attributes.slug}`, lang)}
               >
                 <span className="text-sm">{t('common.view-project')}</span>
                 <svg
