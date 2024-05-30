@@ -41,7 +41,7 @@ export interface Data {
 
 export interface ProjectAttributes {
   title: string;
-  description: string;
+  details: string;
 }
 
 export interface Meta {

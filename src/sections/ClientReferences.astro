@@ -12,7 +12,7 @@ const reviews = await fetchApi<ReviewCollection>({
     fields: ['name', 'ocupation', 'review', 'createdAt'],
     populate: {
       project: {
-        fields: ['title', 'description'],
+        fields: ['title', 'details'],
       },
       category_reviews: {
         fields: ['name'],
@@ -60,7 +60,7 @@ const t = useTranslations(lang);
           </Typography>
 
           <Typography as="p" variant="paragraph" class="mb-10">
-            {review.attributes?.project?.data?.attributes.description}
+            {review.attributes?.project?.data?.attributes.details}
           </Typography>
 
           <Typography as="p" variant="accent" class="mb-2.5 text-primary">
