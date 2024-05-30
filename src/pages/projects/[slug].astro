@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import BlogTitle from '@/sections/Blog/Title.astro';
+import Content from '@/sections/Projects/Content.astro';
+import Layout from '@/layouts/Layout.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectAttributes, ProjectCollection } from '@/types/strapi/Project';
+
+export async function getStaticPaths() {
+  const projectCollection = await fetchApi<ProjectCollection>({
+    endpoint: 'projects',
+    params: {
+      locale: 'en',
+      fields: ['title', 'description', 'details', 'slug'],
+      populate: {
+        project_types: {
+          fields: ['name', 'slug'],
+        },
+        images: {
+          fields: ['url', 'formats', 'width', 'height'],
+        },
+        galleryImages: {
+          fields: ['url', 'formats', 'width', 'height'],
+        },
+      },
+      filters: {
+        status: {
+          $eq: 'published',
+        },
+        title: {
+          $notNull: true,
+        },
+      },
+      sort: {
+        createdAt: 'desc',
+      },
+    },
+  });
+
+  return projectCollection.data.map(({ attributes, id }) => ({
+    params: { slug: attributes.slug },
+    props: { attributes, id },
+  }));
+}
+
+interface Props {
+  id: number;
+  attributes: ProjectAttributes;
+}
+
+const { attributes } = Astro.props as Props;
+
+const {
+  images: {
+    data: [image], // TODO: Image must return alt text
+  },
+  ...project
+} = attributes;
+---
+
+<Layout title={project.title}>
+  <BlogTitle
+    category={project.project_types.data[0].attributes.name}
+    description={project.description}
+    title={project.title}
+  />
+
+  <ResponsiveContainer containerClass="!py-0">
+    <Image
+      src={image.attributes.url}
+      alt={project.title}
+      width={image.attributes.width}
+      height={image.attributes.height}
+    />
+  </ResponsiveContainer>
+
+  <Content attributes={attributes} />
+</Layout>

@@ -20,6 +20,7 @@ export default {
         'accent': 'var(--color-accent)',
         'blue-purple': 'var(--color-blue-purple)',
         'grayish': 'var(--color-grayish)',
+        'slate-gray': 'var(--color-slate-gray)',
         'periwinkle': 'var(--color-periwinkle)',
         'sky-blue': 'var(--color-sky-blue)',
         'fog-white': 'var(--color-fog-white)',
