@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-  attributes: { galleryImages, description, title },
+  attributes: { galleryImages, title, details },
 } = Astro.props;
 ---
 
@@ -17,7 +17,7 @@ const {
   <Typography as="h2" variant="h4" class="text-slate-gray"> About the Project </Typography>
 
   <Typography as="p" variant="paragraph" class="mb-20 mt-5 text-slate-gray">
-    {description}
+    {details}
   </Typography>
 
   <div class="flex flex-col gap-20">
