@@ -12,12 +12,12 @@ const t = useTranslations(lang);
   class="md:gap-50 flex flex-col items-center gap-10 md:flex-row lg:gap-20 xl:gap-40"
 >
   <div class="flex flex-row">
-    <Typography class="px-5 text-center text-primary" as="h1" variant="h3">
+    <Typography class="px-5 text-center text-primary" as="h1" variant="h2">
       {t('common.work-with-us')}
     </Typography>
+  </div>
 
-    <div class="z-20 w-full rounded-lg bg-smoke px-10 py-10">
-      <WorkWithUsForm url={Astro.url} client:visible />
-    </div>
+  <div class="z-20 w-full rounded-lg bg-smoke px-10 py-10">
+    <WorkWithUsForm url={Astro.url} client:visible />
   </div>
 </ResponsiveContainer>

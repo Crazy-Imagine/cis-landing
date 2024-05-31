@@ -5,9 +5,16 @@ interface Props extends Omit<BaseInputProps, 'register'> {
   name: string;
   label: string;
   errors: FieldErrors<any>;
+  labelColor?: string;
 }
 
-function InputWrapper({ children, errors, name, label }: React.PropsWithChildren<Props>) {
+function InputWrapper({
+  children,
+  errors,
+  name,
+  label,
+  labelColor,
+}: React.PropsWithChildren<Props>) {
   const hasError = !!errors[name];
   const errorId = `${name}-error`;
 
@@ -15,16 +22,18 @@ function InputWrapper({ children, errors, name, label }: React.PropsWithChildren
     <div className="w-full">
       <div className="relative">
         <label
+          style={{ backgroundColor: labelColor }}
           htmlFor={name}
           className="absolute -top-2 left-2 inline-block bg-fog-white px-1 text-xs font-medium capitalize text-gray-900"
         >
           {label}
         </label>
+
         {children}
 
         {hasError && (
           <>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+            <div className="pointer-events-none  absolute inset-y-0 right-0 flex items-center pr-3">
               <svg
                 className="h-5 w-5 text-red-500"
                 viewBox="0 0 20 20"

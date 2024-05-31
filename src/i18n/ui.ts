@@ -211,7 +211,7 @@ export const ui = {
     'forms.phone': 'Phone',
     'forms.comments-questions-schemes': 'Comments/Questions/Schemes',
     'forms.project-type': 'Project Type',
-    'forms.how-did-you-find-us': 'How did you find us?',
+    'forms.how-did-you-find-us': 'How did you hear about us?',
     'forms.subscribe': 'Subscribe',
     'forms.linkedIn': 'LinkedIn',
     'forms.webSite': 'WebSite',
