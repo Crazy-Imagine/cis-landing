@@ -3,10 +3,9 @@ import type { BaseInputProps } from '@/types/Input.ts';
 
 interface Props extends BaseInputProps {
   type?: React.HTMLInputTypeAttribute;
-  labelColor?: string;
 }
 
-function RHFInput({ name, label, errors, register, type = 'text', labelColor }: Props) {
+function RHFInput({ name, label, errors, register, type = 'text' }: Props) {
   const hasError = !!errors[name];
   const errorId = `${name}-error`;
   const ariaValues = hasError
@@ -18,7 +17,7 @@ function RHFInput({ name, label, errors, register, type = 'text', labelColor }: 
 
   // text-red-900  ring-red-300
   return (
-    <InputWrapper name={name} label={label} errors={errors} labelColor={labelColor}>
+    <InputWrapper name={name} label={label} errors={errors}>
       <input
         type={type}
         className={`

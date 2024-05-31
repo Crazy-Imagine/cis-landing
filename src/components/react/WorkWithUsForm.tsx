@@ -50,57 +50,26 @@ function WorkWithUsForm({ url }: Props) {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-10 flex flex-col gap-5 md:flex-row">
-        <RHFInput
-          name="name"
-          label={t('forms.name')}
-          register={register}
-          errors={errors}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
-        />
-        <RHFInput
-          name="lastName"
-          label={t('forms.lastName')}
-          register={register}
-          errors={errors}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
-        />
+        <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
+        <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
       </div>
       <div className="mb-10 flex flex-col gap-5 md:flex-row">
         <RHFInput
           type="email"
           name="email"
           label={t('forms.email')}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
           register={register}
           errors={errors}
         />
-        <RHFInput
-          name="phone"
-          label={t('forms.phone')}
-          register={register}
-          errors={errors}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
-        />
+        <RHFInput name="phone" label={t('forms.phone')} register={register} errors={errors} />
       </div>
 
       <div className="mb-10">
-        <RHFInput
-          name="linkedIn"
-          label={t('forms.linkedIn')}
-          register={register}
-          errors={errors}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
-        />
+        <RHFInput name="linkedIn" label={t('forms.linkedIn')} register={register} errors={errors} />
       </div>
 
       <div className="mb-10">
-        <RHFInput
-          name="webSite"
-          label={t('forms.webSite')}
-          register={register}
-          errors={errors}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
-        />
+        <RHFInput name="webSite" label={t('forms.webSite')} register={register} errors={errors} />
       </div>
 
       <div className="mb-10">
@@ -117,7 +86,6 @@ function WorkWithUsForm({ url }: Props) {
           label={t('forms.how-did-you-find-us')}
           errors={errors}
           register={register}
-          labelColor={'rgba(235, 235, 235, 0.30)'}
         />
       </div>
 
