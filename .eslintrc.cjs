@@ -33,6 +33,7 @@ module.exports = {
         },
       },
     ],
+    '@stylistic/ts/brace-style': 'off',
     'antfu/if-newline': 'off',
   },
   overrides: [

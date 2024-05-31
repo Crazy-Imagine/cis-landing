@@ -211,6 +211,10 @@ export const ui = {
     'forms.project-type': 'Project Type',
     'forms.how-did-you-find-us': 'How did you find us?',
     'forms.subscribe': 'Subscribe',
+    'forms.thank-you': 'Thank You!',
+    'forms.submission-received': 'Your submission has been received.',
+    'forms.oops': 'Oops...',
+    'forms.something-went-wrong': 'Something went wrong.',
 
     // Forms error
     'errors.name-required': 'Name is required',
@@ -438,6 +442,10 @@ export const ui = {
     'forms.project-type': 'Tipo de proyecto',
     'forms.how-did-you-find-us': '¿Cómo nos encontraste?',
     'forms.subscribe': 'Suscribir',
+    'forms.thank-you': '¡Gracias!',
+    'forms.submission-received': 'Su solicitud ha sido recibida.',
+    'forms.oops': 'Ups...',
+    'forms.something-went-wrong': 'Algo salió mal.',
 
     // Forms error
     'errors.name-required': 'Nombre es requerido',

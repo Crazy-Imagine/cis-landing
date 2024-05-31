@@ -1,10 +1,12 @@
-import { type SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import Swal from 'sweetalert2';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
 import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
+import { postApi } from '@/lib/strapi.ts';
 
 interface IForm {
   name: string;
@@ -29,6 +31,7 @@ function ContactForm({ url }: Props) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IForm>({
     resolver: yupResolver(
       yup.object({
@@ -47,8 +50,27 @@ function ContactForm({ url }: Props) {
     ),
   });
 
-  const onSubmit: SubmitHandler<IForm> = (data) => {
-    // console.log({ data });
+  const onSubmit: SubmitHandler<IForm> = async (data) => {
+    try {
+      await postApi({
+        endpoint: 'contacts',
+        data,
+      });
+
+      await Swal.fire({
+        title: t('forms.thank-you'),
+        text: t('forms.submission-received'),
+        icon: 'success',
+      });
+
+      reset();
+    } catch (e) {
+      await Swal.fire({
+        title: t('forms.oops'),
+        text: t('forms.something-went-wrong'),
+        icon: 'error',
+      });
+    }
   };
 
   return (

@@ -1,4 +1,9 @@
 import qs from 'qs';
+import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: `${import.meta.env.PUBLIC_STRAPI_URL}/api/`,
+});
 
 interface Pagination {
   start?: number;
@@ -20,11 +25,34 @@ interface Props {
   params: StrapiParams;
 }
 
-export default async function fetchApi<T>({ endpoint, params }: Props) {
+type ContentType = 'multipart/form-data' | 'application/json';
+
+interface PostProps {
+  endpoint: string;
+  data: Record<string, any>;
+  contentType?: ContentType;
+}
+
+export default async function fetchApi<T>({ endpoint, params }: Props): Promise<T> {
   const query = qs.stringify(params);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const response = await fetch(`${import.meta.env.STRAPI_URL}/api/${endpoint}?${query}`).then(
-    (response) => response.json()
+
+  const response = await instance.get<T>(`${endpoint}?${query}`);
+  return response.data;
+}
+
+export async function postApi<T>({
+  endpoint,
+  data,
+  contentType = 'application/json',
+}: PostProps): Promise<T> {
+  const response = await instance.post<T>(
+    `${endpoint}`,
+    { data },
+    {
+      headers: {
+        'Content-Type': contentType,
+      },
+    }
   );
-  return response as T;
+  return response.data;
 }
