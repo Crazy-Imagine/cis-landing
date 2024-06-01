@@ -1,11 +1,14 @@
-import { type SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import Swal from 'sweetalert2';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useRef } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useRef } from 'react';
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
 import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
+import type { Upload } from '@/types/Upload.ts';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
+import { postApi } from '@/lib/strapi.ts';
 
 interface IForm {
   firstName: string;
@@ -37,7 +40,8 @@ function WorkWithUsForm({ url }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    watch,
   } = useForm<IForm>({
     resolver: yupResolver(
       yup.object({
@@ -85,8 +89,64 @@ function WorkWithUsForm({ url }: Props) {
     ),
   });
 
-  const onSubmit: SubmitHandler<IForm> = (data) => {
-    // console.log({ data });
+  const curriculum = watch('curriculum') as FileList | undefined;
+
+  const onSubmit: SubmitHandler<IForm> = async (data) => {
+    let fileId: number | null = null;
+
+    if (data.curriculum !== undefined) {
+      if ((data.curriculum as FileList).length > 0) {
+        const file = (data.curriculum as FileList)[0];
+
+        const formData = new FormData();
+        formData.append('files', file);
+
+        try {
+          const response = await postApi<Upload[]>({
+            endpoint: 'upload',
+            data: formData,
+            contentType: 'multipart/form-data',
+          });
+
+          fileId = response[0].id;
+        } catch (e) {
+          await Swal.fire({
+            title: t('forms.oops'),
+            text: t('forms.something-went-wrong'),
+            icon: 'error',
+          });
+          return;
+        }
+      }
+    }
+
+    try {
+      await postApi({
+        endpoint: 'curriculums',
+        data: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          linkedin: data.linkedin,
+          website: data.website,
+          reference: data.reference,
+          ...(fileId ? { curriculum: fileId } : {}),
+        },
+      });
+
+      await Swal.fire({
+        title: t('forms.thank-you'),
+        text: t('forms.submission-received'),
+        icon: 'success',
+      });
+    } catch (e) {
+      await Swal.fire({
+        title: t('forms.oops'),
+        text: t('forms.something-went-wrong'),
+        icon: 'error',
+      });
+    }
   };
 
   return (
@@ -121,6 +181,26 @@ function WorkWithUsForm({ url }: Props) {
             {t('forms.attach')}
           </p>
           <p>{t('forms.max-size')}</p>
+
+          {curriculum && curriculum.length > 0 && !errors.curriculum && (
+            <p className="mt-2 flex items-center gap-1.5 text-sm text-green-600">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M9 12l2 2l4 -4" />
+              </svg>
+              {t('forms.file-uploaded')}: {curriculum[0].name}
+            </p>
+          )}
         </div>
 
         <RHFInput
@@ -151,6 +231,7 @@ function WorkWithUsForm({ url }: Props) {
 
       <div className="text-center">
         <input
+          disabled={isSubmitting}
           type="submit"
           value={t('forms.submit')}
           className="w-full rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast lg:w-auto"

@@ -3,6 +3,9 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: `${import.meta.env.PUBLIC_STRAPI_URL}/api/`,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 interface Pagination {
@@ -47,7 +50,7 @@ export async function postApi<T>({
 }: PostProps): Promise<T> {
   const response = await instance.post<T>(
     `${endpoint}`,
-    { data },
+    contentType === 'application/json' ? { data } : data,
     {
       headers: {
         'Content-Type': contentType,

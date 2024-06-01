@@ -30,7 +30,7 @@ function ContactForm({ url }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<IForm>({
     resolver: yupResolver(
@@ -136,6 +136,7 @@ function ContactForm({ url }: Props) {
 
       <div>
         <input
+          disabled={isSubmitting}
           type="submit"
           value={t('forms.submit')}
           className="w-full rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast lg:w-auto"
