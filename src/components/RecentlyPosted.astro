@@ -56,6 +56,7 @@ const translatePath = useTranslatedPath(lang);
             <CardCTA
               href={translatePath(`/blog/${article.attributes.slug}`, lang)}
               text={t('common.read-more')}
+              ariaLabel={`${t('aria.link-to-blog-post')}: "${article.attributes.title}"`}
             />
           </li>
         ))

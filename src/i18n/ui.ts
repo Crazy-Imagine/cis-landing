@@ -35,6 +35,8 @@ export const ui = {
     'aria.services-link': 'Link to services page',
     'aria.blog-link': 'Link to blog page',
     'aria.work-with-us-link': 'Link to work with us page',
+    'aria.link-to-blog-post': 'Link to blog post titled',
+    'aria.link-to-project-page': 'Link to page showing project',
 
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
@@ -283,6 +285,8 @@ export const ui = {
     'aria.services-link': 'Enlace a la página de servicios',
     'aria.blog-link': 'Enlace a la página de blog',
     'aria.work-with-us-link': 'Enlace a la página de trabaja con nosotros',
+    'aria.link-to-blog-post': 'Enlace a la entrada del blog titulada',
+    'aria.link-to-project-page': 'Enlace a la página del proyecto',
 
     // Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',

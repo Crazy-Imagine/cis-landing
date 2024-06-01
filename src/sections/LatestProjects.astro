@@ -79,6 +79,7 @@ const { hideAllProjects = false } = Astro.props;
             linkText={t('common.view-project')}
             title={project.title}
             width={image.attributes.width}
+            ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
           />
         )
       )

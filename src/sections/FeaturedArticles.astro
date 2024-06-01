@@ -70,6 +70,7 @@ const t = useTranslations(lang);
             linkText={t('common.read-more')}
             title={article.title}
             width={image.attributes.width}
+            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
           />
         )
       )

@@ -13,6 +13,7 @@ interface Props {
   linkText: string;
   title: string;
   width: number;
+  ariaLabel?: string;
   isSwiperCard?: boolean;
 }
 
@@ -24,6 +25,7 @@ const {
   href,
   width,
   height,
+  ariaLabel = '',
   isSwiperCard = true,
 } = Astro.props;
 
@@ -56,6 +58,11 @@ const translatePath = useTranslatedPath(lang);
       {title}
     </Typography>
 
-    <CardCTA class="mt-2.5" href={translatePath(href, lang)} text={linkText} />
+    <CardCTA
+      class="mt-2.5"
+      href={translatePath(href, lang)}
+      text={linkText}
+      ariaLabel={ariaLabel}
+    />
   </div>
 </article>
