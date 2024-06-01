@@ -74,7 +74,6 @@ function ContactForm({ url }: Props) {
   };
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />

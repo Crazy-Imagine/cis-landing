@@ -21,7 +21,12 @@ const pages = [
   { icon: Code, name: t('nav.projects'), href: '/projects', ariaLabel: t('aria.projects-link') },
   { icon: Server, name: t('nav.services'), href: '/services', ariaLabel: t('aria.services-link') },
   { icon: Monitor, name: t('nav.blog'), href: '/blog', ariaLabel: t('aria.blog-link') },
-  { icon: Phone, name: t('nav.work-with-us'), href: '#', ariaLabel: t('aria.work-with-us-link') },
+  {
+    icon: Phone,
+    name: t('nav.work-with-us'),
+    href: '/work-with-us',
+    ariaLabel: t('aria.work-with-us-link'),
+  },
 ];
 
 const { class: className = '', isDrawer = false } = Astro.props;
