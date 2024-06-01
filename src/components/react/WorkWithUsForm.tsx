@@ -3,19 +3,25 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
+import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
 
 interface IForm {
-  name: string;
+  firstName: string;
   lastName: string;
   email: string;
+  phone: string;
+  linkedin?: string;
+  website?: string;
+  // curriculum
+  reference?: string;
 }
 
 interface Props {
   url: URL;
 }
 
-function SubscribeForm({ url }: Props) {
+function WorkWithUsForm({ url }: Props) {
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
 
@@ -26,12 +32,19 @@ function SubscribeForm({ url }: Props) {
   } = useForm<IForm>({
     resolver: yupResolver(
       yup.object({
-        name: yup.string().required(t('errors.name-required')),
+        firstName: yup.string().required(t('errors.name-required')),
         lastName: yup.string().required(t('errors.lastName-required')),
         email: yup
           .string()
           .email(t('errors.email-is-not-valid'))
           .required(t('errors.email-required')),
+        phone: yup
+          .string()
+          .matches(/^[a-zA-Z0-9\-().\s]{10,15}$/, t('errors.phone-invalid'))
+          .required(t('errors.phone-required')),
+        linkedin: yup.string(),
+        website: yup.string().url(),
+        reference: yup.string(),
       })
     ),
   });
@@ -39,13 +52,14 @@ function SubscribeForm({ url }: Props) {
   const onSubmit: SubmitHandler<IForm> = (data) => {
     // console.log({ data });
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-5 flex flex-col gap-5 bg-white md:flex-row">
+      <div className="mb-10 flex flex-col gap-5 md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
         <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
       </div>
-      <div className="mb-5">
+      <div className="mb-10 flex flex-col gap-5 md:flex-row">
         <RHFInput
           type="email"
           name="email"
@@ -53,7 +67,34 @@ function SubscribeForm({ url }: Props) {
           register={register}
           errors={errors}
         />
+        <RHFInput name="phone" label={t('forms.phone')} register={register} errors={errors} />
       </div>
+
+      <div className="mb-10">
+        <RHFInput name="linkedin" label={t('forms.linkedIn')} register={register} errors={errors} />
+      </div>
+
+      <div className="mb-10">
+        <RHFInput name="website" label={t('forms.webSite')} register={register} errors={errors} />
+      </div>
+
+      <div className="mb-10">
+        <RHFSelect
+          options={[
+            t('common.google'),
+            t('common.instagram'),
+            t('common.facebook'),
+            t('common.linkedin'),
+            t('common.recommended'),
+            t('common.other'),
+          ]}
+          name="reference"
+          label={t('forms.how-did-you-find-us')}
+          errors={errors}
+          register={register}
+        />
+      </div>
+
       <div className="text-center">
         <input
           type="submit"
@@ -64,4 +105,4 @@ function SubscribeForm({ url }: Props) {
     </form>
   );
 }
-export default SubscribeForm;
+export default WorkWithUsForm;

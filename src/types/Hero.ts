@@ -6,6 +6,7 @@ export type PageWithHero =
   | 'services'
   | 'mission'
   | 'contact-us'
-  | 'meet-the-team';
+  | 'meet-the-team'
+  | 'work-with-us';
 
 export type HeroImages = Record<PageWithHero, string>;

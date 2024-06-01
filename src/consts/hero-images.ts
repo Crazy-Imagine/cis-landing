@@ -9,4 +9,5 @@ export const HERO_IMAGES: HeroImages = {
   'services': '/src/assets/ui/robot.webp',
   'mission': '/src/assets/ui/mars-robot.webp',
   'meet-the-team': '/src/assets/ui/rocket.webp',
+  'work-with-us': '/src/assets/ui/rocket.webp',
 };
