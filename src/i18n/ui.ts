@@ -35,6 +35,8 @@ export const ui = {
     'aria.services-link': 'Link to services page',
     'aria.blog-link': 'Link to blog page',
     'aria.work-with-us-link': 'Link to work with us page',
+    'aria.link-to-blog-post': 'Link to blog post titled',
+    'aria.link-to-project-page': 'Link to page showing project',
 
     // Img Alt Keys
     'alt.logo': 'Crazy Imagine Software Logo',
@@ -69,6 +71,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Home',
+    'common.coming-soon': 'Coming Soon',
     'common.project-category': 'Project Category',
     'common.related-projects': 'Related Projects',
     'common.comment-list': 'Comment List',
@@ -219,7 +222,15 @@ export const ui = {
     'forms.how-did-you-find-us': 'How did you hear about us?',
     'forms.subscribe': 'Subscribe',
     'forms.linkedIn': 'LinkedIn',
-    'forms.webSite': 'WebSite',
+    'forms.webSite': 'Website',
+    'forms.curriculum': 'Resume/CV',
+    'forms.attach': 'Attach',
+    'forms.max-size': 'Max. 2MB',
+    'forms.file-uploaded': 'File uploaded successfully',
+    'forms.thank-you': 'Thank You!',
+    'forms.submission-received': 'Your submission has been received.',
+    'forms.oops': 'Oops...',
+    'forms.something-went-wrong': 'Something went wrong.',
 
     // Forms error
     'errors.name-required': 'Name is required',
@@ -231,6 +242,8 @@ export const ui = {
     'errors.phone-required': 'Phone number is required',
     'errors.phone-invalid': 'Phone number is invalid',
     'errors.webSite-required': 'Website is required',
+    'errors.curriculum-size': 'The file must have a maximum size of 2 MB.',
+    'errors.curriculum-type': 'Only the following formats are accepted: .pdf, .jpg, .jpeg, .doc',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -272,6 +285,8 @@ export const ui = {
     'aria.services-link': 'Enlace a la página de servicios',
     'aria.blog-link': 'Enlace a la página de blog',
     'aria.work-with-us-link': 'Enlace a la página de trabaja con nosotros',
+    'aria.link-to-blog-post': 'Enlace a la entrada del blog titulada',
+    'aria.link-to-project-page': 'Enlace a la página del proyecto',
 
     // Img Alt Keys
     'alt.logo': 'Logo de Crazy Imagine Software',
@@ -306,6 +321,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Inicio',
+    'common.coming-soon': 'Próximamente',
     'common.project-category': 'Categoría del Proyecto',
     'common.related-projects': 'Proyectos Relacionados',
     'common.comment-list': 'Lista de Comentarios',
@@ -460,6 +476,14 @@ export const ui = {
     'forms.subscribe': 'Suscribir',
     'forms.linkedIn': 'LinkedIn',
     'forms.webSite': 'Sitio Web',
+    'forms.curriculum': 'Currículum/CV',
+    'forms.attach': 'Adjuntar',
+    'forms.max-size': 'Max. 2MB',
+    'forms.file-uploaded': 'Archivo cargado con éxito',
+    'forms.thank-you': '¡Gracias!',
+    'forms.submission-received': 'Su solicitud ha sido recibida.',
+    'forms.oops': 'Ups...',
+    'forms.something-went-wrong': 'Algo salió mal.',
 
     // Forms error
     'errors.name-required': 'Nombre es requerido',
@@ -471,6 +495,8 @@ export const ui = {
     'errors.phone-invalid': 'Número de teléfono inválido',
     'errors.linkedIn-required': 'LinkedIn es requerido',
     'errors.webSite-required': 'Sitio Web es Requerido',
+    'errors.curriculum-size': 'El archivo debe tener un tamaño máximo de 2 MB.',
+    'errors.curriculum-type': 'Solo se aceptan los siguientes formatos: .pdf, .jpg, .jpeg, .doc',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,

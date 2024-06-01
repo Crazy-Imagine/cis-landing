@@ -1,11 +1,7 @@
-import type { FieldError, FieldErrors } from 'react-hook-form';
+import type { FieldError } from 'react-hook-form';
 import type { BaseInputProps } from '@/types/Input.ts';
 
-interface Props extends Omit<BaseInputProps, 'register'> {
-  name: string;
-  label: string;
-  errors: FieldErrors<any>;
-}
+interface Props extends Omit<BaseInputProps, 'register'> {}
 
 function InputWrapper({ children, errors, name, label }: React.PropsWithChildren<Props>) {
   const hasError = !!errors[name];
@@ -14,16 +10,18 @@ function InputWrapper({ children, errors, name, label }: React.PropsWithChildren
   return (
     <div className="w-full">
       <div className="relative">
-        <label
-          htmlFor={name}
-          className="absolute -top-2 left-2 inline-block bg-fog-white px-1 text-xs font-medium capitalize text-gray-900"
-        >
-          {label}
-        </label>
+        {label && (
+          <label
+            htmlFor={name}
+            className="absolute -top-2 left-2 inline-block bg-fog-white px-1 text-xs font-medium capitalize text-gray-900 text-primary"
+          >
+            {label}
+          </label>
+        )}
 
         {children}
 
-        {hasError && (
+        {hasError && label && (
           <>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <svg
@@ -33,8 +31,8 @@ function InputWrapper({ children, errors, name, label }: React.PropsWithChildren
                 aria-hidden="true"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
                 />
               </svg>
