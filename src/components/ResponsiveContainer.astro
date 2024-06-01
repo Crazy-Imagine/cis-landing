@@ -35,7 +35,12 @@ const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
     )
   }
 
-  <section class:list={['mx-auto px-4 2xl:container md:px-10 2xl:px-0', Astro.props.class]}>
+  <section
+    class:list={[
+      'mx-auto px-4 2xl:container md:px-5 lg:px-10 min-[1546px]:px-0',
+      Astro.props.class,
+    ]}
+  >
     <slot />
   </section>
 </div>
