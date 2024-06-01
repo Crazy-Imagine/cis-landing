@@ -140,7 +140,7 @@ export const ui = {
     'hero.work-with-us-title': 'Work With Us At Crazy Imagine',
     'hero.work-with-us-subtitle': '',
     'hero.work-with-us-button': '',
-    'hero.work-with-us-img-alt': 'image of Rocket',
+    'hero.work-with-us-img-alt': 'Rocket',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -224,6 +224,7 @@ export const ui = {
     'errors.comments-required': 'Comments/Questions/Schemes is required',
     'errors.linkedIn-required': 'Linkedin is required',
     'errors.phone-required': 'Phone number is required',
+    'errors.phone-invalid': 'Phone number is invalid',
     'errors.webSite-required': 'Website is required',
 
     // Footer Keys
@@ -369,10 +370,10 @@ export const ui = {
       'Liderando un equipo de ingenieros, desarrolladores y diseñadores de clase mundial.',
     'hero.meet-the-team-button': 'Contáctanos',
     'hero.meet-the-team-img-alt': 'Cohete',
-    'hero.work-with-us-title': 'Únete al equipo Crazy Imagine',
+    'hero.work-with-us-title': 'Únete al equipo de Crazy Imagine',
     'hero.work-with-us-subtitle': '',
     'hero.work-with-us-button': '',
-    'hero.work-with-us-img-alt': 'imagen de un cohete',
+    'hero.work-with-us-img-alt': 'Cohete',
 
     // Services
     'services.why-should-you': 'Por qué deberías',
@@ -457,6 +458,7 @@ export const ui = {
     'errors.email-required': 'Dirección de correo electrónico es requerido',
     'errors.comments-required': 'Comentarios/Preguntas/Esquemas es requerido',
     'errors.phone-required': 'Teléfono es requerido',
+    'errors.phone-invalid': 'Número de teléfono inválido',
     'errors.linkedIn-required': 'LinkedIn es requerido',
     'errors.webSite-required': 'Sitio Web es Requerido',
 

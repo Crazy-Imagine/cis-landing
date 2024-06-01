@@ -3,16 +3,18 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
 import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
 
 interface IForm {
-  name: string;
+  firstName: string;
   lastName: string;
   email: string;
-  linkedIn: string;
   phone: string;
-  webSite: string;
+  linkedin?: string;
+  website?: string;
+  // curriculum
+  reference?: string;
 }
 
 interface Props {
@@ -30,15 +32,19 @@ function WorkWithUsForm({ url }: Props) {
   } = useForm<IForm>({
     resolver: yupResolver(
       yup.object({
-        name: yup.string().required(t('errors.name-required')),
+        firstName: yup.string().required(t('errors.name-required')),
         lastName: yup.string().required(t('errors.lastName-required')),
-        linkedIn: yup.string().required(t('errors.linkedIn-required')),
-        phone: yup.string().required(t('errors.phone-required')),
-        webSite: yup.string().required(t('errors.webSite-required')),
         email: yup
           .string()
           .email(t('errors.email-is-not-valid'))
           .required(t('errors.email-required')),
+        phone: yup
+          .string()
+          .matches(/^[a-zA-Z0-9\-().\s]{10,15}$/, t('errors.phone-invalid'))
+          .required(t('errors.phone-required')),
+        linkedin: yup.string(),
+        website: yup.string().url(),
+        reference: yup.string(),
       })
     ),
   });
@@ -46,8 +52,8 @@ function WorkWithUsForm({ url }: Props) {
   const onSubmit: SubmitHandler<IForm> = (data) => {
     // console.log({ data });
   };
+
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-10 flex flex-col gap-5 md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
@@ -65,11 +71,11 @@ function WorkWithUsForm({ url }: Props) {
       </div>
 
       <div className="mb-10">
-        <RHFInput name="linkedIn" label={t('forms.linkedIn')} register={register} errors={errors} />
+        <RHFInput name="linkedin" label={t('forms.linkedIn')} register={register} errors={errors} />
       </div>
 
       <div className="mb-10">
-        <RHFInput name="webSite" label={t('forms.webSite')} register={register} errors={errors} />
+        <RHFInput name="website" label={t('forms.webSite')} register={register} errors={errors} />
       </div>
 
       <div className="mb-10">
@@ -82,7 +88,7 @@ function WorkWithUsForm({ url }: Props) {
             t('common.recommended'),
             t('common.other'),
           ]}
-          name="howDidYouFindUs"
+          name="reference"
           label={t('forms.how-did-you-find-us')}
           errors={errors}
           register={register}

@@ -1,9 +1,9 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import WorkWithUsSection from '@/sections/WorkWithUs.astro';
 import fetchApi from '@/lib/strapi';
 import type { SEO } from '@/types/strapi/SEO';
-import WorkWithUsSection from '@/sections/work-with-us-section.astro';
 
 const seo = await fetchApi<SEO>({
   endpoint: 'work-with-us-page',
@@ -22,7 +22,5 @@ const seo = await fetchApi<SEO>({
 >
   <Hero page="work-with-us" />
 
-  <div>
-    <WorkWithUsSection />
-  </div>
+  <WorkWithUsSection />
 </Layout>

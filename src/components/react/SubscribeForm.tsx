@@ -40,7 +40,6 @@ function SubscribeForm({ url }: Props) {
     // console.log({ data });
   };
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-5 flex flex-col gap-5 bg-white md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />

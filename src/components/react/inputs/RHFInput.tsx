@@ -15,7 +15,6 @@ function RHFInput({ name, label, errors, register, type = 'text' }: Props) {
       }
     : {};
 
-  // text-red-900  ring-red-300
   return (
     <InputWrapper name={name} label={label} errors={errors}>
       <input
