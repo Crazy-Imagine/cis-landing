@@ -42,6 +42,7 @@ function WorkWithUsForm({ url }: Props) {
     handleSubmit,
     formState: { errors, isSubmitting },
     watch,
+    reset,
   } = useForm<IForm>({
     resolver: yupResolver(
       yup.object({
@@ -140,6 +141,8 @@ function WorkWithUsForm({ url }: Props) {
         text: t('forms.submission-received'),
         icon: 'success',
       });
+
+      reset();
     } catch (e) {
       await Swal.fire({
         title: t('forms.oops'),
