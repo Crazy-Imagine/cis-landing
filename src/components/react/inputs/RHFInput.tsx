@@ -25,6 +25,7 @@ const RHFInput = forwardRef(
       return (
         <InputWrapper name={name} errors={errors}>
           <input
+            id={name}
             type="file"
             className="hidden"
             {...ariaValues}
@@ -43,6 +44,7 @@ const RHFInput = forwardRef(
     return (
       <InputWrapper name={name} label={label} errors={errors}>
         <input
+          id={name}
           type={type}
           className={`
           block w-full rounded-md border-0 bg-fog-white px-2 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6
