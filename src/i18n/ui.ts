@@ -219,7 +219,10 @@ export const ui = {
     'forms.how-did-you-find-us': 'How did you hear about us?',
     'forms.subscribe': 'Subscribe',
     'forms.linkedIn': 'LinkedIn',
-    'forms.webSite': 'WebSite',
+    'forms.webSite': 'Website',
+    'forms.curriculum': 'Resume/CV',
+    'forms.attach': 'Attach',
+    'forms.max-size': 'Max. 2MB',
     'forms.thank-you': 'Thank You!',
     'forms.submission-received': 'Your submission has been received.',
     'forms.oops': 'Oops...',
@@ -235,6 +238,8 @@ export const ui = {
     'errors.phone-required': 'Phone number is required',
     'errors.phone-invalid': 'Phone number is invalid',
     'errors.webSite-required': 'Website is required',
+    'errors.curriculum-size': 'The file must have a maximum size of 2 MB.',
+    'errors.curriculum-type': 'Only the following formats are accepted: .pdf, .jpg, .jpeg, .doc',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -464,6 +469,9 @@ export const ui = {
     'forms.subscribe': 'Suscribir',
     'forms.linkedIn': 'LinkedIn',
     'forms.webSite': 'Sitio Web',
+    'forms.curriculum': 'Currículum/CV',
+    'forms.attach': 'Adjuntar',
+    'forms.max-size': 'Max. 2MB',
     'forms.thank-you': '¡Gracias!',
     'forms.submission-received': 'Su solicitud ha sido recibida.',
     'forms.oops': 'Ups...',
@@ -479,6 +487,8 @@ export const ui = {
     'errors.phone-invalid': 'Número de teléfono inválido',
     'errors.linkedIn-required': 'LinkedIn es requerido',
     'errors.webSite-required': 'Sitio Web es Requerido',
+    'errors.curriculum-size': 'El archivo debe tener un tamaño máximo de 2 MB.',
+    'errors.curriculum-type': 'Solo se aceptan los siguientes formatos: .pdf, .jpg, .jpeg, .doc',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,

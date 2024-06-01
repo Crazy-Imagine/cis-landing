@@ -2,6 +2,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useRef } from 'react';
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
 import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
@@ -13,7 +14,7 @@ interface IForm {
   phone: string;
   linkedin?: string;
   website?: string;
-  // curriculum
+  curriculum?: any;
   reference?: string;
 }
 
@@ -24,6 +25,14 @@ interface Props {
 function WorkWithUsForm({ url }: Props) {
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
 
   const {
     register,
@@ -45,6 +54,33 @@ function WorkWithUsForm({ url }: Props) {
         linkedin: yup.string(),
         website: yup.string().url(),
         reference: yup.string(),
+        curriculum: yup
+          .mixed()
+          .test('fileSize', t('errors.curriculum-size'), (value) => {
+            const _files = value as FileList;
+            if (!_files || _files?.length === 0) return true;
+
+            const MAX_ALLOWED_SIZE = 2 * 1024 * 1024; // 2MB
+
+            return _files && _files[0] && _files[0].size <= MAX_ALLOWED_SIZE;
+          })
+          .test('type', t('errors.curriculum-type'), (value) => {
+            const _files = value as FileList;
+            if (!_files || _files?.length === 0) return true;
+
+            const ALLOWED_TYPES = [
+              'image/jpg',
+              'image/jpeg',
+              'application/pdf',
+              'application/msword',
+            ];
+
+            const isObject = typeof _files === 'object';
+            const hasFile = !!_files[0]?.type;
+            const isValidType = ALLOWED_TYPES.includes(_files[0].type);
+
+            return isObject && hasFile && isValidType;
+          }),
       })
     ),
   });
@@ -54,12 +90,12 @@ function WorkWithUsForm({ url }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-10 flex flex-col gap-5 md:flex-row">
-        <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-white px-5 py-10 shadow-lg md:p-10">
+      <div className="mb-10 flex flex-col gap-10 md:flex-row md:gap-5">
+        <RHFInput name="firstName" label={t('forms.name')} register={register} errors={errors} />
         <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
       </div>
-      <div className="mb-10 flex flex-col gap-5 md:flex-row">
+      <div className="mb-10 flex flex-col gap-10 md:flex-row md:gap-5">
         <RHFInput
           type="email"
           name="email"
@@ -74,8 +110,26 @@ function WorkWithUsForm({ url }: Props) {
         <RHFInput name="linkedin" label={t('forms.linkedIn')} register={register} errors={errors} />
       </div>
 
-      <div className="mb-10">
+      <div className="mb-8">
         <RHFInput name="website" label={t('forms.webSite')} register={register} errors={errors} />
+      </div>
+
+      <div className="mb-10">
+        <div className="font-roboto text-xs text-primary">
+          <p>{t('forms.curriculum')}</p>
+          <p className="cursor-pointer text-base uppercase" onClick={handleClick}>
+            {t('forms.attach')}
+          </p>
+          <p>{t('forms.max-size')}</p>
+        </div>
+
+        <RHFInput
+          type="file"
+          name="curriculum"
+          register={register}
+          errors={errors}
+          ref={inputRef}
+        />
       </div>
 
       <div className="mb-10">
