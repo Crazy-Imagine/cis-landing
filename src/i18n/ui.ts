@@ -69,6 +69,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Home',
+    'common.coming-soon': 'Coming Soon',
     'common.project-category': 'Project Category',
     'common.related-projects': 'Related Projects',
     'common.comment-list': 'Comment List',
@@ -316,6 +317,7 @@ export const ui = {
 
     // Common Keys
     'common.home': 'Inicio',
+    'common.coming-soon': 'Próximamente',
     'common.project-category': 'Categoría del Proyecto',
     'common.related-projects': 'Proyectos Relacionados',
     'common.comment-list': 'Lista de Comentarios',

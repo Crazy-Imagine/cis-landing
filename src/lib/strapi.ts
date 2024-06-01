@@ -49,7 +49,7 @@ export async function postApi<T>({
   contentType = 'application/json',
 }: PostProps): Promise<T> {
   const response = await instance.post<T>(
-    `${endpoint}`,
+    endpoint,
     contentType === 'application/json' ? { data } : data,
     {
       headers: {
