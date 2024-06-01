@@ -36,9 +36,8 @@ function SubscribeForm({ url }: Props) {
     ),
   });
 
-  const onSubmit: SubmitHandler<IForm> = (data) => {
-    // console.log({ data });
-  };
+  const onSubmit: SubmitHandler<IForm> = () => {};
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* This is a temporary fix to disable the form */}
