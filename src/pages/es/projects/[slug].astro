@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import BlogTitle from '@/sections/Blog/Title.astro';
+import Content from '@/sections/Projects/Content.astro';
+import LatestProjects from '@/sections/LatestProjects.astro';
+import Layout from '@/layouts/Layout.astro';
+import ReachOut from '@/sections/ReachOut.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectAttributes, ProjectCollection } from '@/types/strapi/Project';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+export async function getStaticPaths() {
+  const projectCollection = await fetchApi<ProjectCollection>({
+    endpoint: 'projects',
+    params: {
+      locale: 'es',
+      fields: ['title', 'description', 'details', 'slug'],
+      populate: {
+        project_types: {
+          fields: ['name', 'slug'],
+        },
+        images: {
+          fields: ['url', 'formats', 'width', 'height'],
+        },
+        galleryImages: {
+          fields: ['url', 'formats', 'width', 'height'],
+        },
+      },
+      filters: {
+        status: {
+          $eq: 'published',
+        },
+        title: {
+          $notNull: true,
+        },
+      },
+      sort: {
+        createdAt: 'desc',
+      },
+    },
+  });
+
+  return projectCollection.data.map(({ attributes, id }) => ({
+    params: { slug: attributes.slug },
+    props: { attributes, id },
+  }));
+}
+
+interface Props {
+  id: number;
+  attributes: ProjectAttributes;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { attributes, id } = Astro.props as Props;
+
+const {
+  images: {
+    data: [image], // TODO: Image must return alt text
+  },
+  ...project
+} = attributes;
+---
+
+<Layout title={project.title}>
+  <BlogTitle
+    category={project.project_types.data[0].attributes.name}
+    description={project.description}
+    title={project.title}
+  />
+
+  <ResponsiveContainer containerClass="!py-0" class="flex justify-center">
+    <Image
+      src={image.attributes.url}
+      alt={project.title}
+      width={image.attributes.width}
+      height={image.attributes.height}
+    />
+  </ResponsiveContainer>
+
+  <Content attributes={attributes} />
+
+  <LatestProjects
+    title={t('common.related-projects')}
+    background="bulbs"
+    hideAllProjects
+    projectId={id}
+    categoryId={attributes.project_types.data[0].id}
+  />
+
+  <ReachOut />
+</Layout>

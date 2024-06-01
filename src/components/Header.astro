@@ -11,15 +11,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
-const DYNAMIC_PAGES = ['blog'];
+const DYNAMIC_PAGES = ['blog', 'projects'];
 const pathname = Astro.url.pathname;
 
 let isTransparentBackground = true;
 
 if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
-  if (pathname.split('/').length > 2) {
-    isTransparentBackground = pathname.split('/')[2] === '';
-  }
+  const paths = pathname.split('/').filter((value) => value !== '' && value !== 'es');
+  isTransparentBackground = paths.length === 1;
 }
 ---
 

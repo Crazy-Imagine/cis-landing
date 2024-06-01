@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import type { ProjectAttributes } from '@/types/strapi/Project';
+
+interface Props {
+  attributes: ProjectAttributes;
+}
+
+const {
+  attributes: { galleryImages, title, details },
+} = Astro.props;
+---
+
+<ResponsiveContainer>
+  <Typography as="h2" variant="h4" class="text-slate-gray"> About the Project </Typography>
+
+  <Typography as="p" variant="paragraph" class="mb-20 mt-5 text-slate-gray">
+    {details}
+  </Typography>
+
+  <div class="flex flex-col items-center gap-20">
+    {
+      galleryImages.data.map((image, i) => (
+        <Image
+          src={image.attributes.url}
+          alt={`${title}-${i}`}
+          width={image.attributes.width}
+          height={image.attributes.height}
+        />
+      ))
+    }
+  </div>
+</ResponsiveContainer>

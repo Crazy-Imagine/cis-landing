@@ -1,0 +1,53 @@
+---
+import Typography from './Typography.astro';
+import ChevronDown from '@/icons/ChevronDown.astro';
+import ChevronUp from '@/icons/ChevronUp.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+---
+
+<div class="accordion-item mb-4 border-b border-gray-300">
+  <button class="accordion-button flex w-full justify-between py-2 text-left focus:outline-none">
+    <Typography as="h3" variant="h5" class="text-secondary">{Astro.props.title}</Typography>
+
+    <ChevronDown class="arrow text-grayish" />
+    <ChevronUp class="arrow hidden text-grayish" />
+  </button>
+  <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
+    <Typography as="p" variant="paragraph2" class="pb-2.5 text-grayish">
+      {Astro.props.description}
+    </Typography>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const $accordionItems = document.querySelectorAll('.accordion-item');
+
+    $accordionItems.forEach((item) => {
+      const $button = item.querySelector('.accordion-button');
+      const $content: any = item.querySelector('.accordion-content');
+      const $arrows = item.querySelectorAll('.arrow');
+
+      if (!$button || !$content || !$arrows) return;
+
+      $button.addEventListener('click', () => {
+        const maxHeight = $content.style.maxHeight;
+        $arrows.forEach(($arrow) => {
+          if (!$arrow) return;
+          $arrow.classList.toggle('hidden');
+        });
+
+        if (maxHeight === '0px' || maxHeight === '') {
+          $content.style.maxHeight = `${$content.scrollHeight}px`;
+          return;
+        }
+
+        $content.style.maxHeight = '0px';
+      });
+    });
+  });
+</script>

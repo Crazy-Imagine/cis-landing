@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   const articleCollection = await fetchApi<ArticleCollection>({
     endpoint: 'articles',
     params: {
-      locale: 'en',
+      locale: 'es',
       fields: ['title', 'description', 'content', 'slug', 'locale'],
       populate: {
         category: {
@@ -57,7 +57,12 @@ const {
 ---
 
 <Layout title={article.title}>
-  <BlogTitle attributes={attributes} />
+  <BlogTitle
+    author={article.author.data.attributes.name}
+    category={article.category.data.attributes.name}
+    description={article.description}
+    title={article.title}
+  />
 
   <ResponsiveContainer containerClass="!py-0">
     <Image

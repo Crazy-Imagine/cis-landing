@@ -3,11 +3,16 @@ import CarouselSection from './CarouselSection.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
 import LinkPill from '@/components/LinkPill.astro';
 import fetchApi from '@/lib/strapi';
+import type { Background } from '@/types/Background';
 import type { ProjectCollection } from '@/types/strapi/Project';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 interface Props {
   title: string;
+  background?: Background;
+  hideAllProjects?: boolean;
+  projectId?: number;
+  categoryId?: number;
 }
 
 const projects = await fetchApi<ProjectCollection>({
@@ -21,15 +26,23 @@ const projects = await fetchApi<ProjectCollection>({
       },
     },
     filters: {
+      id: {
+        $ne: Astro.props.projectId,
+      },
       status: {
         $eq: 'published',
       },
       title: {
         $notNull: true,
       },
+      project_types: {
+        id: {
+          $eq: Astro.props.categoryId,
+        },
+      },
     },
     pagination: {
-      limit: 8,
+      limit: Astro.props.categoryId ? -1 : 8,
     },
     sort: {
       createdAt: 'desc',
@@ -41,9 +54,11 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const translatePath = useTranslatedPath(lang);
+
+const { hideAllProjects = false } = Astro.props;
 ---
 
-<CarouselSection title={Astro.props.title}>
+<CarouselSection background={Astro.props.background} title={Astro.props.title}>
   <Fragment slot="items">
     {
       projects.data.map(
@@ -70,9 +85,13 @@ const translatePath = useTranslatedPath(lang);
     }
   </Fragment>
 
-  <div class="mt-10 text-center">
-    <LinkPill variant="contained" href={translatePath('#', lang)}>
-      {t('common.all-projects')}
-    </LinkPill>
-  </div>
+  {
+    !hideAllProjects && (
+      <div class="mt-10 text-center">
+        <LinkPill variant="contained" href={translatePath('/projects', lang)}>
+          {t('common.all-projects')}
+        </LinkPill>
+      </div>
+    )
+  }
 </CarouselSection>

@@ -1,0 +1,17 @@
+---
+import ProjectsTypesList from '@/components/react/Projects/TypesList';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectTypeCollection } from '@/types/strapi/ProjectType';
+
+const projectTypes = await fetchApi<ProjectTypeCollection>({
+  endpoint: 'project-types',
+  params: {
+    locale: Astro.currentLocale,
+  },
+});
+---
+
+<ResponsiveContainer containerClass="!pb-0">
+  <ProjectsTypesList client:visible projectTypes={projectTypes} url={Astro.url} />
+</ResponsiveContainer>

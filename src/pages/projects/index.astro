@@ -1,0 +1,32 @@
+---
+import Hero from '@/sections/Hero.astro';
+import Layout from '@/layouts/Layout.astro';
+import ProjectTypesList from '@/sections/Projects/ProjectTypesList.astro';
+import ProjectsList from '@/sections/Projects/ProjectsList.astro';
+import ReachOut from '@/sections/ReachOut.astro';
+import fetchApi from '@/lib/strapi';
+import type { ProjectsPage } from '@/types/strapi/pages/Project';
+
+const projectsPage = await fetchApi<ProjectsPage>({
+  endpoint: 'projectspage',
+  params: {
+    locale: Astro.currentLocale,
+    populate: {
+      seo: true,
+    },
+  },
+});
+---
+
+<Layout
+  title={projectsPage.data.attributes.seo.metaTitle}
+  description={projectsPage.data.attributes.seo.metaDescription}
+>
+  <Hero page="blog" />
+
+  <ProjectTypesList />
+
+  <ProjectsList />
+
+  <ReachOut />
+</Layout>
