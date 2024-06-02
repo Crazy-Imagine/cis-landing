@@ -37,10 +37,9 @@ const { class: className = '', isDrawer = false } = Astro.props;
     isDrawer && (
       <li>
         <a
-          class={`relative whitespace-nowrap font-nexaLight text-xs uppercase tracking-widest text-white
-          before:absolute before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white before:text-white before:transition-transform before:duration-500 before:ease-in-out
-          hover:before:scale-100
-          ${isDrawer && 'flex h-7 items-center gap-8'}
+          class={`relative flex h-7 items-center gap-8 whitespace-nowrap font-nexaLight
+          text-xs uppercase tracking-widest text-white before:absolute before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white
+          before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
           `}
           href={translatePath('/', lang)}
           aria-label={t('aria.home-link')}
@@ -57,12 +56,12 @@ const { class: className = '', isDrawer = false } = Astro.props;
 
   {
     pages.map(({ icon: Icon, name, href, ariaLabel }) => (
-      <li>
+      <li class="lg:text-center xl:text-left">
         <a
-          class={`relative whitespace-nowrap font-nexaLight text-xs uppercase tracking-widest text-white
-          before:absolute before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white before:text-white before:transition-transform before:duration-500 before:ease-in-out
-          hover:before:scale-100
-          ${isDrawer && 'flex h-7 items-center gap-8'}
+          class={`relative font-nexaLight text-xs uppercase tracking-widest text-white before:absolute
+          before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          xl:whitespace-nowrap
+          ${isDrawer ? 'flex h-7 items-center gap-8' : ''}
           `}
           href={translatePath(href, lang)}
           aria-label={ariaLabel}

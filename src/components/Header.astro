@@ -1,11 +1,13 @@
 ---
 import LinkPill from './LinkPill.astro';
+import CISLogo from '@/icons/CIS.astro';
+import LanguagePickerItems from '@/components/LanguagePicker/Items.astro';
+import LanguagePickerSelect from '@/components/LanguagePicker/Select.astro';
 import Menu from '@/icons/Menu.astro';
-import XIcon from '@/icons/XIcon.astro';
 import NavLinks from '@/components/NavLinks.astro';
 import SocialIcons from '@/components/SocialIcons.astro';
+import XIcon from '@/icons/XIcon.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import CISLogo from '@/icons/CIS.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -34,17 +36,19 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
 >
   <header class="mx-auto px-4 2xl:container md:px-5 lg:px-10 min-[1546px]:px-0">
     <nav class="flex h-[var(--header-height)] items-center justify-between">
-      <a class="hidden md:inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+      <a class="hidden xl:inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
         <CISLogo />
       </a>
 
-      <a class="md:hidden" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+      <a class="xl:hidden" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
         <img src="/img/logo/cis-logo-white.webp" alt={t('alt.logo')} height="35" width="30" />
       </a>
 
       <NavLinks />
 
-      <SocialIcons />
+      <LanguagePickerSelect />
+
+      <SocialIcons class="lg:hidden 2xl:flex" />
 
       <LinkPill
         variant="outlined"
@@ -61,7 +65,7 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
 
   <div
     id="drawer"
-    class="fixed inset-0 -translate-x-full transform bg-primary text-white transition-transform duration-300 md:hidden"
+    class="fixed inset-0 -translate-x-full transform bg-primary text-white transition-transform duration-300 lg:hidden"
   >
     <div class="flex items-center justify-between border-b-2 px-4 py-8">
       <CISLogo />
@@ -70,6 +74,10 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
 
     <nav class="p-4">
       <NavLinks isDrawer class="!flex flex-col !items-start" />
+
+      <div class="mt-5 text-center">
+        <LanguagePickerItems />
+      </div>
     </nav>
   </div>
 </div>

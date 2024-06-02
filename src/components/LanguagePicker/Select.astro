@@ -1,0 +1,50 @@
+---
+import { langFlags, languages } from '@/i18n/ui';
+import { getLangFromUrl } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<select
+  id="language-picker"
+  class="hidden border-none bg-transparent font-nexaLight text-white lg:inline-block"
+>
+  {
+    Object.keys(languages).map((langCode) => (
+      <option
+        value={langCode}
+        selected={lang === langCode}
+        class="flex items-center bg-transparent"
+      >
+        {langCode}
+        {langFlags[langCode as 'en' | 'es']}
+      </option>
+    ))
+  }
+</select>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const languagePicker = document.getElementById('language-picker');
+
+    if (!languagePicker) return;
+
+    languagePicker.addEventListener('change', (event: any) => {
+      const lang = event.target.value;
+      const url = window.location.pathname;
+
+      let newUrl = '/';
+      if (url.includes('/es') && lang === 'en') {
+        newUrl = url.replace('/es', '');
+      } else {
+        if (url === '/') {
+          newUrl = `/${lang}`;
+        } else {
+          newUrl = `/${lang}${url}`;
+        }
+      }
+
+      window.location.href = newUrl;
+    });
+  });
+</script>
