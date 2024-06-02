@@ -1,3 +1,8 @@
+export const langFlags = {
+  en: '🇺🇸',
+  es: '🇻🇪',
+};
+
 export const languages = {
   en: 'English',
   es: 'Español',
