@@ -20,6 +20,7 @@ const projects = await fetchApi<ProjectCollection>({
   params: {
     locale: Astro.currentLocale,
     fields: ['title', 'description', 'details', 'slug'],
+    publicationState: 'live',
     populate: {
       images: {
         fields: ['url', 'formats', 'width', 'height'],
@@ -28,9 +29,6 @@ const projects = await fetchApi<ProjectCollection>({
     filters: {
       id: {
         $ne: Astro.props.projectId,
-      },
-      status: {
-        $eq: 'published',
       },
       title: {
         $notNull: true,

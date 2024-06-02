@@ -9,6 +9,7 @@ const projects = await fetchApi<ProjectCollection>({
   params: {
     locale: Astro.currentLocale,
     fields: ['title', 'description', 'details', 'slug'],
+    publicationState: 'live',
     populate: {
       project_types: {
         fields: ['name', 'slug'],
@@ -18,9 +19,6 @@ const projects = await fetchApi<ProjectCollection>({
       },
     },
     filters: {
-      status: {
-        $eq: 'published',
-      },
       title: {
         $notNull: true,
       },

@@ -20,6 +20,7 @@ interface StrapiParams {
   locale?: string;
   pagination?: Pagination;
   populate?: Record<string, any>;
+  publicationState?: 'live' | 'preview';
   sort?: Record<string, string>;
 }
 
