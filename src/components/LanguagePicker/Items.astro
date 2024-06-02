@@ -13,10 +13,10 @@ const pathname = Astro.url.pathname
 
 <ul class="flex justify-center gap-5 lg:hidden">
   {
-    Object.keys(languages).map((langCode) => (
+    Object.entries(languages).map(([langCode, label]: [code: 'en' | 'es', label: string]) => (
       <li>
         <a href={translatedPath(`/${pathname}`, langCode)}>
-          {langCode}
+          {label}
           {langFlags[langCode]}
         </a>
       </li>

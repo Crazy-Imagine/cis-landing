@@ -10,7 +10,7 @@ const lang = getLangFromUrl(Astro.url);
   class="hidden border-none bg-transparent font-nexaLight text-white lg:inline-block"
 >
   {
-    Object.keys(languages).map((langCode) => (
+    Object.keys(languages).map((langCode: 'en' | 'es') => (
       <option
         value={langCode}
         selected={lang === langCode}
