@@ -26,6 +26,9 @@ const lang = getLangFromUrl(Astro.url);
 <script>
   document.addEventListener('astro:page-load', () => {
     const languagePicker = document.getElementById('language-picker');
+
+    if (!languagePicker) return;
+
     languagePicker.addEventListener('change', (event: any) => {
       const lang = event.target.value;
       const url = window.location.pathname;
