@@ -1,0 +1,25 @@
+---
+import { langFlags, languages } from '@/i18n/ui';
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const translatedPath = useTranslatedPath(lang);
+
+const pathname = Astro.url.pathname
+  .split('/')
+  .filter((value) => value !== '' && value !== 'es')
+  .join('/');
+---
+
+<ul class="flex justify-center gap-5 lg:hidden">
+  {
+    Object.entries(languages).map(([langCode, label]) => (
+      <li>
+        <a href={translatedPath(`/${pathname}`, langCode)}>
+          {label}
+          {langFlags[langCode as 'en' | 'es']}
+        </a>
+      </li>
+    ))
+  }
+</ul>
