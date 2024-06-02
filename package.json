@@ -1,7 +1,8 @@
 {
 	"name": "cis-landing",
+	"version": "1.0.0",
+	"author": "davidadc",
 	"type": "module",
-	"version": "0.0.1",
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
 		"dev": "astro dev",
