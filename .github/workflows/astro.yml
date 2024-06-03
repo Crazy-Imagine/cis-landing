@@ -89,8 +89,8 @@ jobs:
           chmod 600 private_key.pem
           scp -i private_key.pem -r * ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}:~/astro
           ssh -i private_key.pem ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}
-          cd ~/astro
+          cd /home/root/astro
           rm private_key.pem
           pnpm install
-          cd ~
+          cd /home/root
           pm2 restart ecosystem.config.js
