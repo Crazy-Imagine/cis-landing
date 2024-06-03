@@ -8,12 +8,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 env:
   BUILD_PATH: "." # default value when not using subfolders
   # BUILD_PATH: subfolder
@@ -62,18 +56,35 @@ jobs:
           PUBLIC_STRAPI_URL: ${{ secrets.PUBLIC_STRAPI_URL }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
+          name: build-artifacts
           path: ${{ env.BUILD_PATH }}/dist
 
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - name: Deploy to DigitalOcean Droplet
-        uses: appleboy/ssh-action@master
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
         with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USERNAME}}
-          key: ${{secrets.KEY}}
-          script: |
-            echo 'Deployment to digital ocean finished'
+          name: build-artifacts
+          path: ${{ env.BUILD_PATH }}/dist
+
+      - name: Deploy to Digital Ocean
+        env:
+          DIGITAL_OCEAN_ACCESS_TOKEN: ${{ secrets.DIGITAL_OCEAN_ACCESS_TOKEN }}
+        run: |
+          # Aquí podrías utilizar cualquier método para desplegar tus archivos
+          # Por ejemplo, si usas scp para copiar archivos a un servidor
+          scp -r ./build user@your_droplet_ip:/path/to/deploy
+
+
+#      - name: Deploy to DigitalOcean Droplet
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{secrets.HOST}}
+#          username: ${{secrets.USERNAME}}
+#          key: ${{secrets.KEY}}
+#          script: |
+#            echo 'Deployment to digital ocean finished'
