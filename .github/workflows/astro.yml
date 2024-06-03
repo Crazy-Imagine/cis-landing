@@ -79,6 +79,7 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           echo "${{ secrets.DIGITAL_OCEAN_DROPLET_IP }} $(ssh-keyscan ${{ secrets.DIGITAL_OCEAN_DROPLET_IP }} 2>/dev/null)" >> ~/.ssh/known_hosts
+
       - name: Deploy to DigitalOcean
         env:
           DO_SSH_KEY: ${{ secrets.DIGITAL_OCEAN_SSH_KEY }}
@@ -88,9 +89,15 @@ jobs:
           echo "$DO_SSH_KEY" > private_key.pem
           chmod 600 private_key.pem
           scp -i private_key.pem -r * ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}:~/astro
-          ssh -i private_key.pem ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}
-          cd /home/root/astro
-          rm private_key.pem
-          pnpm install
-          cd /home/root
-          pm2 restart ecosystem.config.js
+
+      - name: Connect via SSH to Digital Ocean
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}
+          username: ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}
+          key: ${{ secrets.DIGITAL_OCEAN_SSH_KEY }}
+          script: |
+            cd ~/astro
+            pnpm install
+            cd ~
+            pm2 restart ecosystem.config.js
