@@ -85,7 +85,7 @@ jobs:
           DO_HOST: ${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}
           DO_USERNAME: ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}
         run: |
-          echo "$DIGITAL_OCEAN_SSH_KEY" > private_key.pem
+          echo "$DO_SSH_KEY" > private_key.pem
           chmod 600 private_key.pem
           scp -i private_key.pem -r * ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}:/root/astro
 #      - name: Deploy to DigitalOcean Droplet
