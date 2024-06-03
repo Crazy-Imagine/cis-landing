@@ -87,7 +87,7 @@ jobs:
         run: |
           echo "$DO_SSH_KEY" > private_key.pem
           chmod 600 private_key.pem
-          scp -i private_key.pem -r * ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}:/root/astro
+          scp -i private_key.pem -r * ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}@${{ secrets.DIGITAL_OCEAN_DROPLET_IP }}:~/astro
 #      - name: Deploy to DigitalOcean Droplet
 #        uses: appleboy/ssh-action@master
 #        with:
