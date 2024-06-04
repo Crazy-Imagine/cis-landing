@@ -98,8 +98,8 @@ jobs:
           username: ${{ secrets.DIGITAL_OCEAN_DROPLET_USER }}
           key: ${{ secrets.DIGITAL_OCEAN_SSH_KEY }}
           script: |
+            nvm use 18.20.2
             cd ~/astro
-            nvm use
             pnpm install
             cd ~
             pm2 restart ecosystem.config.js
