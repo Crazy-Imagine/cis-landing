@@ -16,6 +16,7 @@ export async function getStaticPaths() {
     params: {
       locale: 'es',
       fields: ['title', 'description', 'details', 'slug'],
+      publicationState: 'live',
       populate: {
         project_types: {
           fields: ['name', 'slug'],
@@ -28,9 +29,6 @@ export async function getStaticPaths() {
         },
       },
       filters: {
-        status: {
-          $eq: 'published',
-        },
         title: {
           $notNull: true,
         },

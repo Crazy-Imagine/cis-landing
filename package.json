@@ -18,6 +18,9 @@
 		"prepare": "husky",
 		"serve-build": "serve ./dist"
 	},
+	"engines": {
+		"node": "18.20.2"
+	},
 	"dependencies": {
 		"@astrojs/check": "0.7.0",
 		"@astrojs/react": "3.4.0",

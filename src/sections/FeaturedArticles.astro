@@ -11,6 +11,7 @@ const articles = await fetchApi<ArticleCollection>({
   params: {
     locale: Astro.currentLocale,
     fields: ['title', 'description', 'content', 'slug'],
+    publicationState: 'live',
     populate: {
       category: {
         fields: ['name'],
@@ -23,9 +24,6 @@ const articles = await fetchApi<ArticleCollection>({
       },
     },
     filters: {
-      status: {
-        $eq: 'published',
-      },
       title: {
         $notNull: true,
       },
