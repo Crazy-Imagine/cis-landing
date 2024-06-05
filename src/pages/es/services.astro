@@ -17,16 +17,17 @@ import SrPackage from '@/icons/SrPackage.astro';
 import Typography from '@/components/Typography.astro';
 import User from '@/icons/User.astro';
 import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 import type { Section } from '@/types/Section';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
-const seo = await fetchApi<SEO>({
+const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'services-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: true,
     },
   },
 });
@@ -153,10 +154,14 @@ const sections: Section[] = [
 ---
 
 <Layout
-  title={seo.data.attributes.seo.metaTitle}
-  description={seo.data.attributes.seo.metaDescription}
+  title={pageInfo.data.attributes.seo.metaTitle}
+  description={pageInfo.data.attributes.seo.metaDescription}
 >
-  <Hero page="services" />
+  <Hero
+    page="services"
+    title={pageInfo.data.attributes.hero.title}
+    subtitle={pageInfo.data.attributes.hero.subtitle}
+  />
 
   {
     sections.map((section) => (

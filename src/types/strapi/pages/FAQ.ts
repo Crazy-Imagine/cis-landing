@@ -14,6 +14,7 @@ export interface Attributes {
   publishedAt: string;
   locale: string;
   seo: SEO;
+  hero: Hero;
 }
 
 export interface SEO {
@@ -21,4 +22,10 @@ export interface SEO {
   keywords: string;
   metaTitle: string;
   metaDescription: string;
+}
+
+export interface Hero {
+  id: number;
+  title: string;
+  subtitle: string;
 }

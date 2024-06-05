@@ -11,6 +11,7 @@ const faqPage = await fetchApi<FAQ>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: true,
     },
   },
 });
@@ -20,7 +21,7 @@ const faqPage = await fetchApi<FAQ>({
   title={faqPage.data.attributes.seo.metaTitle}
   description={faqPage.data.attributes.seo.metaDescription}
 >
-  <Hero page="about" />
+  <Hero page="about" title={faqPage.data.attributes.hero.title} />
 
   <FAQSection />
 </Layout>

@@ -3,24 +3,29 @@ import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import WorkWithUsSection from '@/sections/WorkWithUs.astro';
 import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 
-const seo = await fetchApi<SEO>({
+const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'work-with-us-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: true,
     },
   },
 });
 ---
 
 <Layout
-  title={seo.data.attributes.seo.metaTitle}
-  description={seo.data.attributes.seo.metaDescription}
+  title={pageInfo.data.attributes.seo.metaTitle}
+  description={pageInfo.data.attributes.seo.metaDescription}
 >
-  <Hero page="work-with-us" />
+  <Hero
+    page="work-with-us"
+    title={pageInfo.data.attributes.hero.title}
+    subtitle={pageInfo.data.attributes.hero.subtitle}
+  />
 
   <WorkWithUsSection />
 </Layout>

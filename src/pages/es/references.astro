@@ -3,24 +3,29 @@ import ClientReferences from '@/sections/ClientReferences.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 
-const seo = await fetchApi<SEO>({
+const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'references-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: true,
     },
   },
 });
 ---
 
 <Layout
-  title={seo.data.attributes.seo.metaTitle}
-  description={seo.data.attributes.seo.metaDescription}
+  title={pageInfo.data.attributes.seo.metaTitle}
+  description={pageInfo.data.attributes.seo.metaDescription}
 >
-  <Hero page="references" />
+  <Hero
+    page="references"
+    title={pageInfo.data.attributes.hero.title}
+    subtitle={pageInfo.data.attributes.hero.subtitle}
+  />
 
   <ClientReferences />
 </Layout>

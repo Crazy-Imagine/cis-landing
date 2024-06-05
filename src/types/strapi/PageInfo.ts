@@ -1,4 +1,4 @@
-export interface SEO {
+export interface PageInfo {
   data: Data;
   meta: Meta;
 }
@@ -14,14 +14,21 @@ export interface Attributes {
   updatedAt: string;
   publishedAt: string;
   locale: string;
-  seo: SEOClass;
+  seo: SEO;
+  hero: Hero;
 }
 
-export interface SEOClass {
+export interface SEO {
   id: number;
   keywords: string;
   metaTitle: string;
   metaDescription: string;
+}
+
+export interface Hero {
+  id: number;
+  title: string;
+  subtitle: string;
 }
 
 export interface Meta {}
