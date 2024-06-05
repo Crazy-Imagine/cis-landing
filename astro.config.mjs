@@ -6,6 +6,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://crazyimagine.com',
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
@@ -13,7 +14,6 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  site: 'https://crazyimagine.com',
   image: {
     domains: ['blogadmin.s3.amazonaws.com'],
   },
@@ -29,7 +29,7 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: {
           en: 'en-US',
-          es: 'es-VE',
+          es: 'es',
         },
       },
     }),
