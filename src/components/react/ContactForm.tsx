@@ -135,12 +135,16 @@ function ContactForm({ url }: Props) {
       </div>
 
       <div>
-        <input
+        <button
           disabled={isSubmitting}
           type="submit"
-          value={t('forms.submit')}
-          className="w-full rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast lg:w-auto"
-        />
+          className="flex items-center gap-5 rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast lg:w-auto"
+        >
+          {isSubmitting && (
+            <span className="relative h-5 w-5 rounded-full border-2 border-grayish border-white after:absolute after:-left-0.5 after:-top-0.5 after:inline-block after:h-5 after:w-5 after:animate-spin after:rounded-full after:border-t-2 after:border-white after:content-['']"></span>
+          )}
+          {isSubmitting ? t('forms.submitting') : t('forms.submit')}
+        </button>
       </div>
     </form>
   );

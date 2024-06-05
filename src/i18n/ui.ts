@@ -216,6 +216,7 @@ export const ui = {
 
     // Contact form
     'forms.submit': 'Submit',
+    'forms.submitting': 'Submitting',
     'forms.name': 'Name',
     'forms.lastName': 'Last Name',
     'forms.company': 'Company',
@@ -469,6 +470,7 @@ export const ui = {
 
     // Contact form
     'forms.submit': 'Enviar',
+    'forms.submitting': 'Enviando',
     'forms.name': 'Nombre',
     'forms.lastName': 'Apellido',
     'forms.company': 'Empresa',
