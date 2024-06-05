@@ -5,23 +5,25 @@ import { getLangFromUrl } from '@/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<select
-  id="language-picker"
-  class="hidden border-none bg-transparent font-nexaLight text-white lg:inline-block"
->
-  {
-    Object.keys(languages).map((langCode) => (
-      <option
-        value={langCode}
-        selected={lang === langCode}
-        class="flex items-center bg-transparent"
-      >
-        {langCode}
-        {langFlags[langCode as 'en' | 'es']}
-      </option>
-    ))
-  }
-</select>
+<label>
+  <select
+    id="language-picker"
+    class="hidden border-none bg-transparent font-nexaLight uppercase text-white lg:inline-block"
+  >
+    {
+      Object.keys(languages).map((langCode) => (
+        <option
+          value={langCode}
+          selected={lang === langCode}
+          class="flex items-center bg-transparent"
+        >
+          {langCode.toUpperCase()}
+          {langFlags[langCode as 'en' | 'es']}
+        </option>
+      ))
+    }
+  </select>
+</label>
 
 <script>
   document.addEventListener('astro:page-load', () => {
@@ -33,9 +35,14 @@ const lang = getLangFromUrl(Astro.url);
       const lang = event.target.value;
       const url = window.location.pathname;
 
-      let newUrl = '/';
-      if (url.includes('/es') && lang === 'en') {
-        newUrl = url.replace('/es', '');
+      if (url.startsWith('/es') && lang === 'es') return;
+
+      if (!url.startsWith('/es') && lang === 'en') return;
+
+      let newUrl;
+      if (url.startsWith('/es') && lang === 'en') {
+        const isHomePage = url === '/es';
+        newUrl = url.replace('/es', isHomePage ? '/' : '');
       } else {
         if (url === '/') {
           newUrl = `/${lang}`;
