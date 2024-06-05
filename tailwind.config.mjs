@@ -7,7 +7,6 @@ export default {
     extend: {
       backgroundImage: {
         'hero': "url('/img/backgrounds/hero.webp')",
-        'hero-mobile': "url('/img/backgrounds/hero-mobile.webp')",
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
       },
       fontFamily: {

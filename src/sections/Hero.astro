@@ -23,9 +23,11 @@ if (!images[path]) throw new Error(`"${path}" does not exist in glob: "/src/asse
 ---
 
 <section
-  class="relative -mt-[var(--header-height)] h-fit w-full bg-hero-mobile bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white sm:h-[680px] md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0"
+  class="relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white sm:h-[680px] md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0"
 >
-  <div class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary-with-transparency">
+  <div
+    class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency"
+  >
   </div>
 
   <div
