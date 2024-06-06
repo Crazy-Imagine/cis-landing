@@ -13,6 +13,14 @@ const projectsPage = await fetchApi<ProjectsPage>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -22,7 +30,7 @@ const projectsPage = await fetchApi<ProjectsPage>({
   title={projectsPage.data.attributes.seo.metaTitle}
   description={projectsPage.data.attributes.seo.metaDescription}
 >
-  <Hero page="blog" />
+  <Hero {...projectsPage.data.attributes.hero} />
 
   <ProjectTypesList />
 
