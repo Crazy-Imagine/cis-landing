@@ -16,15 +16,23 @@ import Reviews from '@/sections/Reviews.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
-const seo = await fetchApi<SEO>({
+const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'home-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -36,13 +44,13 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout
-  title={seo.data.attributes.seo.metaTitle}
-  description={seo.data.attributes.seo.metaDescription}
-  canonical="https://crazyimagine.com/es"
+  title={pageInfo.data.attributes.seo.metaTitle}
+  description={pageInfo.data.attributes.seo.metaDescription}
+  canonical="https://crazyimagine.com"
 >
-  <Hero page="home">
+  <Hero {...pageInfo.data.attributes.hero}>
     <LinkPill slot="button" variant="contained" href={translatePath('#', lang)}>
-      {t('hero.home-button')}
+      {t('common.home-hero-button')}
     </LinkPill>
   </Hero>
 

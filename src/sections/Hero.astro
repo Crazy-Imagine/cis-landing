@@ -1,25 +1,15 @@
 ---
-import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
-import { HERO_IMAGES } from '../consts/hero-images';
 import Typography from '@/components/Typography.astro';
-import type { PageWithHero } from '@/types/Hero';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import type { Hero } from '@/types/strapi/Hero';
 
-interface Props {
-  page: PageWithHero;
-  scheduleCall?: boolean;
-}
+interface Props extends Hero {}
 
-const { page, scheduleCall = false } = Astro.props;
+const { title, subtitle, image } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
-const path = HERO_IMAGES[page];
-
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
-if (!images[path]) throw new Error(`"${path}" does not exist in glob: "/src/assets/ui/*.webp"`);
+const imageUrl = import.meta.env.DEV
+  ? `${import.meta.env.PUBLIC_STRAPI_URL}${image.data.attributes.url}`
+  : image.data.attributes.url;
 ---
 
 <section
@@ -35,51 +25,55 @@ if (!images[path]) throw new Error(`"${path}" does not exist in glob: "/src/asse
   >
     <div class="gap-4 sm:pl-8 lg:pl-14 xl:pl-[100px]">
       <Typography class="font-bold capitalize" as="h1" variant="h1">
-        {t(`hero.${page}-title` as const)}
+        {title}
       </Typography>
 
-      <Typography class="my-10 uppercase" as="p" variant="h6">
-        {t(`hero.${page}-subtitle` as const)}
-      </Typography>
+      {
+        subtitle && (
+          <Typography class="my-10 uppercase" as="p" variant="h6">
+            {subtitle}
+          </Typography>
+        )
+      }
 
       <slot name="button" />
     </div>
 
-    <div class="ml-auto flex-shrink basis-[350px] place-self-end">
+    <div class="ml-auto flex flex-shrink-0 justify-end place-self-end">
       <Image
-        class="h-auto max-h-full w-full max-w-[349px]"
-        src={images[path]()}
-        alt={t(`hero.${page}-img-alt` as const)}
+        class="h-auto max-h-[500px] w-full"
+        src={imageUrl}
+        width={image.data.attributes.width}
+        height={image.data.attributes.height}
+        alt={image.data.attributes.alternativeText}
       />
     </div>
   </div>
 
   <Typography class="relative z-20 font-bold capitalize sm:hidden" as="h1" variant="h1">
-    {t(`hero.${page}-title` as const)}
+    {title}
   </Typography>
 
-  <Typography class="relative z-20 my-10 uppercase sm:hidden" as="p" variant="h6">
-    {t(`hero.${page}-subtitle` as const)}
-  </Typography>
+  {
+    subtitle && (
+      <Typography class="relative z-20 my-10 uppercase sm:hidden" as="p" variant="h6">
+        {subtitle}
+      </Typography>
+    )
+  }
 
   <div class="relative z-20 flex items-center sm:hidden">
     <div class="flex flex-shrink-0 flex-grow place-content-center">
       <slot name="button" />
     </div>
 
-    <div
-      class:list={[
-        'flex place-content-end',
-        {
-          'flex-shrink flex-grow-0': scheduleCall,
-          'basis-1/2': !scheduleCall,
-        },
-      ]}
-    >
+    <div class="flex basis-1/2 place-content-end">
       <Image
         class="h-auto w-full max-w-[349px]"
-        src={images[path]()}
-        alt={t(`hero.${page}-img-alt` as const)}
+        src={imageUrl}
+        width={image.data.attributes.width}
+        height={image.data.attributes.height}
+        alt={image.data.attributes.alternativeText}
       />
     </div>
   </div>

@@ -4,15 +4,23 @@ import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
 import TheTeam from '@/sections/TheTeam.astro';
 import fetchApi from '@/lib/strapi';
-import type { SEO } from '@/types/strapi/SEO';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
-const seo = await fetchApi<SEO>({
+const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'meet-team-page',
   params: {
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -23,10 +31,10 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout
-  title={seo.data.attributes.seo.metaTitle}
-  description={seo.data.attributes.seo.metaDescription}
+  title={pageInfo.data.attributes.seo.metaTitle}
+  description={pageInfo.data.attributes.seo.metaDescription}
 >
-  <Hero page="meet-the-team">
+  <Hero {...pageInfo.data.attributes.hero}>
     <LinkPill
       slot="button"
       variant="outlined"

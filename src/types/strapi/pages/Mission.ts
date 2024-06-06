@@ -1,3 +1,5 @@
+import type { Hero } from '@/types/strapi/Hero.ts';
+
 export interface Mission {
   data: Data;
 }
@@ -20,6 +22,7 @@ export interface Attributes {
   publishedAt: string;
   locale: string;
   seo: SEO;
+  hero: Hero;
 }
 
 export interface SEO {

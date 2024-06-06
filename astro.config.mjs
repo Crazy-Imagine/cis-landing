@@ -15,7 +15,7 @@ export default defineConfig({
     },
   },
   image: {
-    domains: ['blogadmin.s3.amazonaws.com'],
+    domains: ['blogadmin.s3.amazonaws.com', 'blogadmin.s3.us-east-1.amazonaws.com'],
   },
   build: {
     inlineStylesheets: 'always',

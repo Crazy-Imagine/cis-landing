@@ -1,4 +1,6 @@
-export interface SEO {
+import type { Hero } from '@/types/strapi/Hero.ts';
+
+export interface PageInfo {
   data: Data;
   meta: Meta;
 }
@@ -9,15 +11,15 @@ export interface Data {
 }
 
 export interface Attributes {
-  title: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   locale: string;
-  seo: SEOClass;
+  seo: SEO;
+  hero: Hero;
 }
 
-export interface SEOClass {
+export interface SEO {
   id: number;
   keywords: string;
   metaTitle: string;
