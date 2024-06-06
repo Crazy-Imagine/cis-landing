@@ -1,3 +1,5 @@
+import type { Hero } from '@/types/strapi/Hero.ts';
+
 export interface Mission {
   data: Data;
 }
@@ -28,10 +30,4 @@ export interface SEO {
   keywords: string;
   metaTitle: string;
   metaDescription: string;
-}
-
-export interface Hero {
-  id: number;
-  title: string;
-  subtitle: string;
 }

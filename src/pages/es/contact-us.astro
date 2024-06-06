@@ -11,7 +11,14 @@ const pageInfo = await fetchApi<PageInfo>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
-      hero: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -21,7 +28,7 @@ const pageInfo = await fetchApi<PageInfo>({
   title={pageInfo.data.attributes.seo.metaTitle}
   description={pageInfo.data.attributes.seo.metaDescription}
 >
-  <Hero page="contact-us" title={pageInfo.data.attributes.hero.title} />
+  <Hero {...pageInfo.data.attributes.hero} />
 
   <ReachOut />
 </Layout>

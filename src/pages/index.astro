@@ -25,7 +25,14 @@ const pageInfo = await fetchApi<PageInfo>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
-      hero: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -41,11 +48,7 @@ const translatePath = useTranslatedPath(lang);
   description={pageInfo.data.attributes.seo.metaDescription}
   canonical="https://crazyimagine.com"
 >
-  <Hero
-    page="home"
-    title={pageInfo.data.attributes.hero.title}
-    subtitle={pageInfo.data.attributes.hero.subtitle}
-  >
+  <Hero {...pageInfo.data.attributes.hero}>
     <LinkPill slot="button" variant="contained" href={translatePath('#', lang)}>
       {t('hero.home-button')}
     </LinkPill>

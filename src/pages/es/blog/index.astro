@@ -13,7 +13,14 @@ const pageInfo = await fetchApi<PageInfo>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
-      hero: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -26,11 +33,7 @@ const t = useTranslations(lang);
   title={pageInfo.data.attributes.seo.metaTitle}
   description={pageInfo.data.attributes.seo.metaDescription}
 >
-  <Hero
-    page="blog"
-    title={pageInfo.data.attributes.hero.title}
-    subtitle={pageInfo.data.attributes.hero.subtitle}
-  />
+  <Hero {...pageInfo.data.attributes.hero} />
 
   <FeaturedArticles />
 

@@ -13,7 +13,14 @@ const mission = await fetchApi<Mission>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
-      hero: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
     },
   },
 });
@@ -26,11 +33,7 @@ const t = useTranslations(lang);
   title={mission.data.attributes.seo.metaTitle}
   description={mission.data.attributes.seo.metaDescription}
 >
-  <Hero
-    page="mission"
-    title={mission.data.attributes.hero.title}
-    subtitle={mission.data.attributes.hero.subtitle}
-  />
+  <Hero {...mission.data.attributes.hero} />
 
   <Services
     img={{
