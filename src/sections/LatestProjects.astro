@@ -70,14 +70,14 @@ const { hideAllProjects = false } = Astro.props;
         }) => (
           <ArticleCard
             altText={project.title}
+            ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
             class="shadow-md"
+            height={image.attributes.formats.small.height}
             href={`/projects/${project.slug}`}
-            height={image.attributes.height}
-            img={image.attributes.url}
+            img={image.attributes.formats.small.url}
             linkText={t('common.view-project')}
             title={project.title}
-            width={image.attributes.width}
-            ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
+            width={image.attributes.formats.small.width}
           />
         )
       )

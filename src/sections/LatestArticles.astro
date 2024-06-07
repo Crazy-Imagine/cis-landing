@@ -61,14 +61,14 @@ const t = useTranslations(lang);
         }) => (
           <ArticleCard
             altText={article.title}
+            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
             class="shadow-md"
+            height={image.attributes.formats.small.height}
             href={`/blog/${article.slug}`}
-            height={image.attributes.height}
-            img={image.attributes.url}
+            img={image.attributes.formats.small.url}
             linkText={t('common.read-more')}
             title={article.title}
-            width={image.attributes.width}
-            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
+            width={image.attributes.formats.small.width}
           />
         )
       )
