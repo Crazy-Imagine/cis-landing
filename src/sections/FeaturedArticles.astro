@@ -59,16 +59,16 @@ const t = useTranslations(lang);
           },
         }) => (
           <ArticleCard
-            isSwiperCard={false}
             altText={article.title}
+            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
             class="shadow-md"
+            height={image.attributes.formats.medium.height}
             href={`/blog/${article.slug}`}
-            height={image.attributes.height}
-            img={image.attributes.url}
+            img={image.attributes.formats.medium.url}
+            isSwiperCard={false}
             linkText={t('common.read-more')}
             title={article.title}
-            width={image.attributes.width}
-            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
+            width={image.attributes.formats.medium.width}
           />
         )
       )
