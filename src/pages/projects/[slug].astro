@@ -63,7 +63,11 @@ const {
 } = attributes;
 ---
 
-<Layout title={project.title}>
+<Layout
+  title={project.title}
+  description={project.description}
+  image={image.attributes.formats.small.url}
+>
   <BlogTitle
     category={project.project_types.data[0].attributes.name}
     description={project.description}
