@@ -56,7 +56,11 @@ const {
 } = attributes;
 ---
 
-<Layout title={article.title}>
+<Layout
+  title={article.title}
+  description={article.description}
+  image={image.attributes.formats.small.url}
+>
   <BlogTitle
     author={article.author.data.attributes.name}
     category={article.category.data.attributes.name}
