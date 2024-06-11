@@ -35,6 +35,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-misused-promises': 'off',
     '@stylistic/ts/brace-style': 'off',
+    '@stylistic/js/operator-linebreak': 'off',
     'antfu/if-newline': 'off',
   },
   overrides: [

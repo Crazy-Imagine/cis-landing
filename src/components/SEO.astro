@@ -1,17 +1,17 @@
 ---
 interface Props {
-  title?: string;
-  description?: string;
   canonical?: string;
+  description?: string;
   image?: string;
+  title?: string;
 }
 
 const {
-  title = 'Title',
-  description = 'Description',
   canonical,
-  // TODO: CHECK ON THIS DEFAULT IMAGE
+  description = 'Description',
   image = '/img/mock/article.webp',
+  // TODO: CHECK ON THIS DEFAULT IMAGE
+  title = 'Title',
 } = Astro.props as Props;
 
 function determineCanonicalURL() {
@@ -35,12 +35,16 @@ const fullTitle = `Crazy Imagine Software | ${title}`;
 
 <link rel="alternate" hreflang={Astro.currentLocale} href={canonicalURL} />
 {
-  Astro.url.pathname.startsWith('/es/') && (
-    <link rel="alternate" hreflang="en" href={Astro.url.pathname.replace('/es/', '/')} />
+  Astro.currentLocale === 'es' && (
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(Astro.url.pathname.replace('/es/', '/'), Astro.site)}
+    />
   )
 }
 {
-  !Astro.url.pathname.startsWith('/es/') && (
+  Astro.currentLocale === 'en' && (
     <link rel="alternate" hreflang="es" href={new URL(`/es${Astro.url.pathname}`, Astro.site)} />
   )
 }
