@@ -1,17 +1,19 @@
 ---
 interface Props {
-  title?: string;
-  description?: string;
   canonical?: string;
+  description?: string;
+  hrefLangPathname?: string;
   image?: string;
+  title?: string;
 }
 
 const {
-  title = 'Title',
-  description = 'Description',
   canonical,
-  // TODO: CHECK ON THIS DEFAULT IMAGE
+  description = 'Description',
+  hrefLangPathname,
   image = '/img/mock/article.webp',
+  // TODO: CHECK ON THIS DEFAULT IMAGE
+  title = 'Title',
 } = Astro.props as Props;
 
 function determineCanonicalURL() {
@@ -31,47 +33,54 @@ const fullTitle = `Crazy Imagine Software | ${title}`;
 
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!--{-->
-<!--  preload?.map(({ href, as, type, rel = 'preload', crossorigin }) => (-->
-<!--    <link {rel} {href} {as} {type} {crossorigin} />-->
-<!--  ))-->
-<!--}-->
-
 <link rel="canonical" href={canonicalURL} />
-<link rel="alternate" hreflang="en" href="https://crazyimagine.com" />
-<link rel="alternate" hreflang="es" href="https://crazyimagine.com/es" />
-<meta name="viewport" content="width=device-width" />
-<!--<meta name="theme-color" content="#fff" />-->
 
+<link rel="alternate" hreflang={Astro.currentLocale} href={canonicalURL} />
+{
+  Astro.currentLocale === 'es' && (
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(hrefLangPathname ?? Astro.url.pathname.replace('/es/', '/'), Astro.site)}
+    />
+  )
+}
+{
+  Astro.currentLocale === 'en' && (
+    <link
+      rel="alternate"
+      hreflang="es"
+      href={new URL(hrefLangPathname ?? `/es${Astro.url.pathname}`, Astro.site)}
+    />
+  )
+}
+
+<meta name="viewport" content="width=device-width" />
 <meta
   name="keywords"
   content="crazy imagine, web development services, mobile app development, Software Development Company, Web and Mobile App Development Firm, developer, software, work, Full-stack Development, programming, user Experience, quality support"
 />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@CrazyImagineDev" />
 <meta name="twitter:creator" content="@CrazyImagineDev" />
-<meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:site" content="@CrazyImagineDev" />
+<meta name="twitter:title" content={fullTitle} />
 
-<meta property="og:image" content={new URL(image, Astro.url)} />
-<meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:site_name" content="Crazy Imagine Software" />
-<meta property="og:type" content="website" />
+<meta property="og:image" content={new URL(image, Astro.url)} />
 <meta property="og:locale" content={Astro.currentLocale} />
+<meta property="og:site_name" content="Crazy Imagine Software" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
 
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
 
 <link rel="icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
-<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
 <link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" />
-
-<!--<link rel="icon" type="image/svg+xml" href="/favicon.svg" />-->
-<!--<meta name="msapplication-config" content="/browserconfig.xml" />-->
 
 <link rel="manifest" href="/img/icons/site.webmanifest" />
