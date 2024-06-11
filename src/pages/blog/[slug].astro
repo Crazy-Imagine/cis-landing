@@ -22,7 +22,10 @@ export async function getStaticPaths() {
           fields: ['name'],
         },
         image: {
-          fields: ['url', 'width', 'height', 'formats'],
+          fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+        },
+        contentImage: {
+          fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
         },
       },
       sort: {
@@ -63,18 +66,14 @@ interface Props {
 
 const { attributes, id, hrefLangSlug } = Astro.props as Props;
 
-const {
-  image: {
-    data: [image], // TODO: Image must return alt text
-  },
-  ...article
-} = attributes;
+const { contentImage, image, ...article } = attributes;
+const imageToRender = contentImage.data ?? image.data;
 ---
 
 <Layout
   title={article.title}
   description={article.description}
-  image={image.attributes.formats.small.url}
+  image={imageToRender.attributes.formats.small.url}
   hrefLangPathname={`/es/blog/${hrefLangSlug}`}
 >
   <BlogTitle
@@ -86,10 +85,10 @@ const {
 
   <ResponsiveContainer containerClass="!py-0">
     <Image
-      src={image.attributes.url}
-      alt={article.title}
-      width={image.attributes.width}
-      height={image.attributes.height}
+      src={imageToRender.attributes.url}
+      alt={imageToRender.attributes.alternativeText ?? article.title}
+      width={imageToRender.attributes.width}
+      height={imageToRender.attributes.height}
     />
   </ResponsiveContainer>
 
