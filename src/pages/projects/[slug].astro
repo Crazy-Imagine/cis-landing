@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     endpoint: 'projects',
     params: {
       locale: 'en',
-      fields: ['title', 'description', 'details', 'slug'],
+      fields: ['title', 'description', 'details', 'slug', 'Key'],
       publicationState: 'live',
       populate: {
         project_types: {
@@ -39,21 +39,40 @@ export async function getStaticPaths() {
     },
   });
 
+  const esProjectCollection = await fetchApi<ProjectCollection>({
+    endpoint: 'projects',
+    params: {
+      locale: 'es',
+      fields: ['slug', 'Key'],
+      publicationState: 'live',
+      sort: {
+        createdAt: 'desc',
+      },
+    },
+  });
+
   return projectCollection.data.map(({ attributes, id }) => ({
     params: { slug: attributes.slug },
-    props: { attributes, id },
+    props: {
+      id,
+      attributes,
+      hrefLangSlug: esProjectCollection.data.find(
+        (project) => project.attributes.Key === attributes.Key
+      )?.attributes.slug,
+    },
   }));
 }
 
 interface Props {
   id: number;
   attributes: ProjectAttributes;
+  hrefLangSlug: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const { attributes, id } = Astro.props as Props;
+const { attributes, id, hrefLangSlug } = Astro.props as Props;
 
 const {
   images: {
@@ -67,6 +86,7 @@ const {
   title={project.title}
   description={project.description}
   image={image.attributes.formats.small.url}
+  hrefLangPathname={`/es/projects/${hrefLangSlug}`}
 >
   <BlogTitle
     category={project.project_types.data[0].attributes.name}

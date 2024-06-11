@@ -26,13 +26,13 @@ function ProjectsList({ projects, url }: Props) {
         <article key={project.id} className="flex flex-col rounded-xl shadow-lg">
           <picture>
             <img
-              className="h-auto w-full rounded-t-xl"
-              src={project.attributes.images.data[0].attributes.url}
               alt={project.attributes.title}
-              width={project.attributes.images.data[0].attributes.width}
-              height={project.attributes.images.data[0].attributes.height}
-              loading="lazy"
+              className="h-auto w-full rounded-t-xl"
               decoding="async"
+              height={project.attributes.images.data[0].attributes.formats.small.height}
+              loading="lazy"
+              src={project.attributes.images.data[0].attributes.formats.small.url}
+              width={project.attributes.images.data[0].attributes.formats.small.width}
             />
           </picture>
 

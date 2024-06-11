@@ -8,19 +8,18 @@ import SEO from '@/components/SEO.astro';
 import Footer from '@/sections/Footer.astro';
 
 interface Props {
-  title?: string;
-  description?: string;
   canonical?: string;
+  description?: string;
+  hrefLangPathname?: string;
   image?: string;
+  title?: string;
 }
-
-const { title, description, canonical, image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={Astro.currentLocale}>
   <head>
-    <SEO title={title} description={description} canonical={canonical} image={image} />
+    <SEO {...Astro.props} />
     <ViewTransitions />
   </head>
   <body class="w-full overflow-x-hidden bg-fog-white">

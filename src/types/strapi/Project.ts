@@ -13,6 +13,7 @@ export interface ProjectAttributes {
   details: string;
   description: string;
   slug: string;
+  Key: string;
   project_types: ProjectTypes;
   images: ImagesData;
   galleryImages: ImagesData;
