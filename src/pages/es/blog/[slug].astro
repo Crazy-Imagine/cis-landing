@@ -12,7 +12,8 @@ export async function getStaticPaths() {
     endpoint: 'articles',
     params: {
       locale: 'es',
-      fields: ['title', 'description', 'content', 'slug', 'locale'],
+      fields: ['title', 'description', 'content', 'slug', 'Key'],
+      publicationState: 'live',
       populate: {
         category: {
           fields: ['name'],
@@ -24,11 +25,18 @@ export async function getStaticPaths() {
           fields: ['url', 'width', 'height', 'formats'],
         },
       },
-      filters: {
-        status: {
-          $sq: 'published',
-        },
+      sort: {
+        createdAt: 'desc',
       },
+    },
+  });
+
+  const enArticleCollection = await fetchApi<ArticleCollection>({
+    endpoint: 'articles',
+    params: {
+      locale: 'en',
+      fields: ['slug', 'Key'],
+      publicationState: 'live',
       sort: {
         createdAt: 'desc',
       },
@@ -37,16 +45,23 @@ export async function getStaticPaths() {
 
   return articleCollection.data.map(({ attributes, id }) => ({
     params: { slug: attributes.slug },
-    props: { attributes, id },
+    props: {
+      id,
+      attributes,
+      hrefLangSlug: enArticleCollection.data.find(
+        (article) => article.attributes.Key === attributes.Key
+      )?.attributes.slug,
+    },
   }));
 }
 
 interface Props {
   id: number;
   attributes: ArticleAttributes;
+  hrefLangSlug: string;
 }
 
-const { attributes, id } = Astro.props as Props;
+const { attributes, id, hrefLangSlug } = Astro.props as Props;
 
 const {
   image: {
@@ -60,6 +75,7 @@ const {
   title={article.title}
   description={article.description}
   image={image.attributes.formats.small.url}
+  hrefLangPathname={`/blog/${hrefLangSlug}`}
 >
   <BlogTitle
     author={article.author.data.attributes.name}

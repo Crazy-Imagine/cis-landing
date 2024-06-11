@@ -2,6 +2,7 @@
 interface Props {
   canonical?: string;
   description?: string;
+  hrefLangPathname?: string;
   image?: string;
   title?: string;
 }
@@ -9,6 +10,7 @@ interface Props {
 const {
   canonical,
   description = 'Description',
+  hrefLangPathname,
   image = '/img/mock/article.webp',
   // TODO: CHECK ON THIS DEFAULT IMAGE
   title = 'Title',
@@ -39,13 +41,17 @@ const fullTitle = `Crazy Imagine Software | ${title}`;
     <link
       rel="alternate"
       hreflang="en"
-      href={new URL(Astro.url.pathname.replace('/es/', '/'), Astro.site)}
+      href={new URL(hrefLangPathname ?? Astro.url.pathname.replace('/es/', '/'), Astro.site)}
     />
   )
 }
 {
   Astro.currentLocale === 'en' && (
-    <link rel="alternate" hreflang="es" href={new URL(`/es${Astro.url.pathname}`, Astro.site)} />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href={new URL(hrefLangPathname ?? `/es${Astro.url.pathname}`, Astro.site)}
+    />
   )
 }
 
