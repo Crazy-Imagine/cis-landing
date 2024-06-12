@@ -8,6 +8,7 @@ import ReachOut from '@/sections/ReachOut.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectAttributes, ProjectCollection } from '@/types/strapi/Project';
+import { getImageUrl } from '@/utils/imageUrl';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 export async function getStaticPaths() {
@@ -96,7 +97,7 @@ const {
 
   <ResponsiveContainer containerClass="!py-0" class="flex justify-center">
     <Image
-      src={image.attributes.url}
+      src={getImageUrl(image.attributes.url)}
       alt={project.title}
       width={image.attributes.width}
       height={image.attributes.height}
