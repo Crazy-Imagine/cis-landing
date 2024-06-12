@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getImageUrl } from '../utils/imageUrl';
 import CardCTA from './CardCTA.astro';
 import Typography from './Typography.astro';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
@@ -44,8 +45,10 @@ const translatePath = useTranslatedPath(lang);
 >
   <picture class="rounded-t-xl">
     <Image
+      transition:animate="slide"
+      transition:name={`${title}-image`}
       class="h-auto w-full rounded-t-xl"
-      src={img}
+      src={getImageUrl(img)}
       alt={altText}
       width={width}
       height={height}
@@ -54,7 +57,12 @@ const translatePath = useTranslatedPath(lang);
   </picture>
 
   <div class="mt-auto p-5 text-center">
-    <Typography class="line-clamp-2 text-primary" as="p" variant="accent">
+    <Typography
+      transition:name={`${title}-title`}
+      class="line-clamp-2 text-primary"
+      as="p"
+      variant="accent"
+    >
       {title}
     </Typography>
 

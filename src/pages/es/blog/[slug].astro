@@ -6,6 +6,7 @@ import Layout from '@/layouts/Layout.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
+import { getImageUrl } from '@/utils/imageUrl';
 
 export async function getStaticPaths() {
   const articleCollection = await fetchApi<ArticleCollection>({
@@ -85,7 +86,8 @@ const imageToRender = contentImage.data ?? image.data;
 
   <ResponsiveContainer containerClass="!py-0">
     <Image
-      src={imageToRender.attributes.url}
+      transition:name={`${article.title}-image`}
+      src={getImageUrl(imageToRender.attributes.url)}
       alt={imageToRender.attributes.alternativeText ?? article.title}
       width={imageToRender.attributes.width}
       height={imageToRender.attributes.height}
