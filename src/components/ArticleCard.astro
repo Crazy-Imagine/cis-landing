@@ -6,27 +6,29 @@ import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 
 interface Props {
   altText?: string;
+  ariaLabel?: string;
   class?: string;
   height: number;
   href: string;
   img: string;
+  isSwiperCard?: boolean;
   linkText: string;
+  projectType?: string;
   title: string;
   width: number;
-  ariaLabel?: string;
-  isSwiperCard?: boolean;
 }
 
 const {
-  title,
-  img,
   altText = '',
-  linkText,
-  href,
-  width,
-  height,
   ariaLabel = '',
+  height,
+  href,
+  img,
   isSwiperCard = true,
+  linkText,
+  projectType,
+  title,
+  width,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
@@ -41,6 +43,7 @@ const translatePath = useTranslatedPath(lang);
       'swiper-slide': isSwiperCard,
     },
   ]}
+  {...projectType ? { 'data-project-type': projectType } : {}}
 >
   <picture class="rounded-t-xl">
     <Image

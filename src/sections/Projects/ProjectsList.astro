@@ -1,8 +1,9 @@
 ---
-import List from '@/components/react/Projects/List';
+import ArticleCard from '@/components/ArticleCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectCollection } from '@/types/strapi/Project';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const projects = await fetchApi<ProjectCollection>({
   endpoint: 'projects',
@@ -28,8 +29,60 @@ const projects = await fetchApi<ProjectCollection>({
     },
   },
 });
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer>
-  <List client:visible projects={projects} url={Astro.url} />
+  <div
+    id="projects-container"
+    class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 xl:grid-cols-4"
+  >
+    {
+      projects.data.map(
+        ({
+          attributes: {
+            images: {
+              data: [image],
+            },
+            ...project
+          },
+        }) => (
+          <ArticleCard
+            projectType={project.project_types.data[0].attributes.slug}
+            altText={project.title}
+            ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
+            class="shadow-md"
+            height={image.attributes.formats.small.height}
+            href={`/projects/${project.slug}`}
+            img={image.attributes.formats.small.url}
+            linkText={t('common.view-project')}
+            title={project.title}
+            width={image.attributes.formats.small.width}
+          />
+        )
+      )
+    }
+  </div>
 </ResponsiveContainer>
+
+<script>
+  import { projectTypeSelected } from '@/store/projectsStore';
+
+  document.addEventListener('astro:page-load', () => {
+    const $projectsContainer = document.getElementById('projects-container');
+
+    if (!$projectsContainer) return;
+
+    projectTypeSelected.subscribe((value) => {
+      $projectsContainer.querySelectorAll('[data-project-type]').forEach(($element: any) => {
+        if (value === 'all' || $element.dataset.projectType === value) {
+          $element.classList.remove('!hidden');
+        } else {
+          $element.classList.add('!hidden');
+        }
+      });
+    });
+  });
+</script>
