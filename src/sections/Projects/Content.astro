@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
 import type { ProjectAttributes } from '@/types/strapi/Project';
+import { getImageUrl } from '@/utils/imageUrl';
 
 interface Props {
   attributes: ProjectAttributes;
@@ -24,7 +25,7 @@ const {
     {
       galleryImages.data.map((image, i) => (
         <Image
-          src={image.attributes.url}
+          src={getImageUrl(image.attributes.url)}
           alt={`${title}-${i}`}
           width={image.attributes.width}
           height={image.attributes.height}
