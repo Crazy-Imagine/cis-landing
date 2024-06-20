@@ -1,8 +1,7 @@
 ---
-import LinkPill from './LinkPill.astro';
 import CISLogo from '@/icons/CIS.astro';
-import LanguagePickerItems from '@/components/LanguagePicker/Items.astro';
 import LanguagePickerSelect from '@/components/LanguagePicker/Select.astro';
+import LinkPill from '@/components/LinkPill.astro';
 import Menu from '@/icons/Menu.astro';
 import NavLinks from '@/components/NavLinks.astro';
 import SocialIcons from '@/components/SocialIcons.astro';
@@ -46,7 +45,7 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
 
       <NavLinks />
 
-      <LanguagePickerSelect />
+      <LanguagePickerSelect id="desktop" class="hidden lg:inline-block" />
 
       <SocialIcons class="lg:hidden 2xl:flex" />
 
@@ -76,7 +75,7 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
       <NavLinks isDrawer class="!flex flex-col !items-start" />
 
       <div class="mt-5 text-center">
-        <LanguagePickerItems />
+        <LanguagePickerSelect id="mobile" />
       </div>
     </nav>
   </div>

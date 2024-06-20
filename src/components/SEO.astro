@@ -21,7 +21,12 @@ function determineCanonicalURL() {
   return canonical || Astro.url.pathname;
 }
 
-const canonicalURL = new URL(determineCanonicalURL(), Astro.site);
+function determineSiteURL() {
+  if (import.meta.env.DEV) return 'http://localhost:4321';
+  return Astro.site;
+}
+
+const canonicalURL = new URL(determineCanonicalURL(), determineSiteURL());
 
 const fullTitle = `Crazy Imagine Software | ${title}`;
 ---
@@ -41,7 +46,9 @@ const fullTitle = `Crazy Imagine Software | ${title}`;
     <link
       rel="alternate"
       hreflang="en"
-      href={new URL(hrefLangPathname ?? Astro.url.pathname.replace('/es/', '/'), Astro.site)}
+      href={
+        new URL(hrefLangPathname ?? Astro.url.pathname.replace('/es/', '/'), determineSiteURL())
+      }
     />
   )
 }
@@ -50,7 +57,7 @@ const fullTitle = `Crazy Imagine Software | ${title}`;
     <link
       rel="alternate"
       hreflang="es"
-      href={new URL(hrefLangPathname ?? `/es${Astro.url.pathname}`, Astro.site)}
+      href={new URL(hrefLangPathname ?? `/es${Astro.url.pathname}`, determineSiteURL())}
     />
   )
 }
