@@ -47,7 +47,12 @@ const translatePath = useTranslatedPath(lang);
       {
         articles.data.map((article) => (
           <li class="mb-5 rounded-md bg-white p-4 shadow-md md:pr-20 lg:pr-4">
-            <Typography as="p" variant="accent" class="mb-3 text-primary">
+            <Typography
+              transition:name={`${article.attributes.title}-title`}
+              as="p"
+              variant="accent"
+              class="mb-3 text-primary"
+            >
               {article.attributes.title}
             </Typography>
 

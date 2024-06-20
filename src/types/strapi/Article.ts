@@ -18,6 +18,7 @@ export interface ArticleAttributes {
   category: Category;
   author: Author;
   image: Image;
+  contentImage: Image;
 }
 
 export interface Author {
@@ -47,7 +48,7 @@ export interface CategoryAttributes {
 }
 
 export interface Image {
-  data: ImageData[];
+  data: ImageData;
 }
 
 export interface ImageData {
@@ -60,6 +61,7 @@ export interface ImageAttributes {
   width: number;
   height: number;
   formats: Formats;
+  alternativeText: string | null;
 }
 
 export interface Formats {
