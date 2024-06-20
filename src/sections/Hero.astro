@@ -1,15 +1,12 @@
 ---
 import { Image } from 'astro:assets';
+import { getImageUrl } from '@/utils/imageUrl';
 import Typography from '@/components/Typography.astro';
 import type { Hero } from '@/types/strapi/Hero';
 
 interface Props extends Hero {}
 
 const { title, subtitle, image } = Astro.props;
-
-const imageUrl = import.meta.env.DEV
-  ? `${import.meta.env.PUBLIC_STRAPI_URL}${image.data.attributes.url}`
-  : image.data.attributes.url;
 ---
 
 <section
@@ -42,7 +39,7 @@ const imageUrl = import.meta.env.DEV
     <div class="ml-auto flex flex-shrink-0 justify-end place-self-end">
       <Image
         class="h-auto max-h-[500px] w-full"
-        src={imageUrl}
+        src={getImageUrl(image.data.attributes.url)}
         width={image.data.attributes.width}
         height={image.data.attributes.height}
         alt={image.data.attributes.alternativeText}
@@ -70,7 +67,7 @@ const imageUrl = import.meta.env.DEV
     <div class="flex basis-1/2 place-content-end">
       <Image
         class="h-auto w-full max-w-[349px]"
-        src={imageUrl}
+        src={getImageUrl(image.data.attributes.url)}
         width={image.data.attributes.width}
         height={image.data.attributes.height}
         alt={image.data.attributes.alternativeText}

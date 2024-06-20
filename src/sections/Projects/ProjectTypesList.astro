@@ -1,8 +1,8 @@
 ---
-import ProjectsTypesList from '@/components/react/Projects/TypesList';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectTypeCollection } from '@/types/strapi/ProjectType';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
 
 const projectTypes = await fetchApi<ProjectTypeCollection>({
   endpoint: 'project-types',
@@ -10,8 +10,57 @@ const projectTypes = await fetchApi<ProjectTypeCollection>({
     locale: Astro.currentLocale,
   },
 });
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer containerClass="!pb-0">
-  <ProjectsTypesList client:visible projectTypes={projectTypes} url={Astro.url} />
+  <div class="flex flex-wrap justify-between gap-5 md:justify-normal">
+    <span
+      id="all"
+      data-project-type-filter="all"
+      class="cursor-pointer rounded-full border-2 border-primary px-5 font-roboto text-base uppercase text-primary transition-all"
+    >
+      {t('common.all')}
+    </span>
+
+    {
+      projectTypes.data.map((projectType) => (
+        <span
+          id={projectType.attributes.slug}
+          data-project-type-filter={projectType.attributes.slug}
+          class="cursor-pointer rounded-full border-2 border-primary px-5 font-roboto text-base uppercase text-primary transition-all"
+        >
+          {projectType.attributes.name}
+        </span>
+      ))
+    }
+  </div>
 </ResponsiveContainer>
+
+<script>
+  import { projectTypeSelected } from '@/store/projectsStore';
+
+  document.addEventListener('astro:page-load', () => {
+    const $projectTypeElements = document.querySelectorAll('[data-project-type-filter]');
+
+    $projectTypeElements.forEach(($element) => {
+      $element.addEventListener('click', (event: any) => {
+        projectTypeSelected.set(event.target.dataset.projectTypeFilter);
+      });
+    });
+
+    projectTypeSelected.subscribe((value, oldValue) => {
+      $projectTypeElements.forEach(($element) => {
+        if ($element.id === value) {
+          $element.classList.add('bg-primary', 'text-white');
+          $element.classList.remove('hover:bg-primary-with-transparency', 'hover:text-white');
+        } else if ($element.id === oldValue) {
+          $element.classList.remove('bg-primary', 'text-white');
+          $element.classList.add('hover:bg-primary-with-transparency', 'hover:text-white');
+        }
+      });
+    });
+  });
+</script>

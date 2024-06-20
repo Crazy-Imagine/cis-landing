@@ -23,7 +23,9 @@ const { author, category, description, title } = Astro.props;
     </Typography>
   </div>
 
-  <Typography as="h1" variant="blogTitle" class="text-primary">{title}</Typography>
+  <Typography as="h1" variant="blogTitle" class="text-primary" transition:name={`${title}-title`}>
+    {title}
+  </Typography>
 
   {
     author && (

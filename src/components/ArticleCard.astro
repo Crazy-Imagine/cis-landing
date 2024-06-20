@@ -2,31 +2,34 @@
 import { Image } from 'astro:assets';
 import CardCTA from './CardCTA.astro';
 import Typography from './Typography.astro';
+import { getImageUrl } from '@/utils/imageUrl';
 import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 
 interface Props {
   altText?: string;
+  ariaLabel?: string;
   class?: string;
   height: number;
   href: string;
   img: string;
+  isSwiperCard?: boolean;
   linkText: string;
+  projectType?: string;
   title: string;
   width: number;
-  ariaLabel?: string;
-  isSwiperCard?: boolean;
 }
 
 const {
-  title,
-  img,
   altText = '',
-  linkText,
-  href,
-  width,
-  height,
   ariaLabel = '',
+  height,
+  href,
+  img,
   isSwiperCard = true,
+  linkText,
+  projectType,
+  title,
+  width,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
@@ -41,11 +44,14 @@ const translatePath = useTranslatedPath(lang);
       'swiper-slide': isSwiperCard,
     },
   ]}
+  {...projectType ? { 'data-project-type': projectType } : {}}
 >
   <picture class="rounded-t-xl">
     <Image
+      transition:animate="slide"
+      transition:name={`${title}-image`}
       class="h-auto w-full rounded-t-xl"
-      src={img}
+      src={getImageUrl(img)}
       alt={altText}
       width={width}
       height={height}
@@ -54,7 +60,12 @@ const translatePath = useTranslatedPath(lang);
   </picture>
 
   <div class="mt-auto p-5 text-center">
-    <Typography class="line-clamp-2 text-primary" as="p" variant="accent">
+    <Typography
+      transition:name={`${title}-title`}
+      class="line-clamp-2 text-primary"
+      as="p"
+      variant="accent"
+    >
       {title}
     </Typography>
 

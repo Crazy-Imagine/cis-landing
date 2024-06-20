@@ -52,25 +52,35 @@ const t = useTranslations(lang);
       articles.data.map(
         ({
           attributes: {
-            image: {
-              data: [image],
-            },
+            image: { data: image },
             ...article
           },
-        }) => (
-          <ArticleCard
-            altText={article.title}
-            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
-            class="shadow-md"
-            height={image.attributes.formats.medium.height}
-            href={`/blog/${article.slug}`}
-            img={image.attributes.formats.medium.url}
-            isSwiperCard={false}
-            linkText={t('common.read-more')}
-            title={article.title}
-            width={image.attributes.formats.medium.width}
-          />
-        )
+        }) => {
+          const height = image.attributes.formats?.medium
+            ? image.attributes.formats.medium.height
+            : image.attributes.height;
+          const width = image.attributes.formats?.medium
+            ? image.attributes.formats.medium.width
+            : image.attributes.width;
+          const url = image.attributes.formats?.medium
+            ? image.attributes.formats.medium.url
+            : image.attributes.url;
+
+          return (
+            <ArticleCard
+              altText={article.title}
+              ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
+              class="shadow-md"
+              height={height}
+              href={`/blog/${article.slug}`}
+              img={url}
+              isSwiperCard={false}
+              linkText={t('common.read-more')}
+              title={article.title}
+              width={width}
+            />
+          );
+        }
       )
     }
   </div>
