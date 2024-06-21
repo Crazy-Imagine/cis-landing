@@ -1,0 +1,68 @@
+---
+import ImageOverBackground from '@/components/ImageOverBackground.astro';
+import LinkPill from '@/components/LinkPill.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import fetchApi from '@/lib/strapi';
+import type { ServiceCollection } from '@/types/strapi/Service';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+const services = await fetchApi<ServiceCollection>({
+  endpoint: 'services',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'subTitle', 'slug'],
+    populate: {
+      hero: {
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'alternativeText'],
+          },
+        },
+      },
+    },
+    sort: {
+      createdAt: 'asc',
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<ResponsiveContainer
+  class="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-32"
+>
+  {
+    services.data.map((service) => (
+      <article class="flex flex-col items-center gap-4">
+        <ImageOverBackground
+          externalImage={{
+            url: service.attributes.hero.image.data.attributes.url,
+            width: service.attributes.hero.image.data.attributes.width,
+            height: service.attributes.hero.image.data.attributes.height,
+            alternativeText: service.attributes.hero.image.data.attributes.alternativeText,
+          }}
+        />
+
+        <Typography as="p" variant="h5" class="text-primary">
+          {service.attributes.title}
+        </Typography>
+
+        <Typography as="p" variant="paragraph2" class="text-center text-primary">
+          {service.attributes.subTitle}
+        </Typography>
+
+        <LinkPill
+          class="mt-auto"
+          variant="contained"
+          href={translatePath(`/services/${service.attributes.slug}`, lang)}
+        >
+          {t('common.view-more')}
+        </LinkPill>
+      </article>
+    ))
+  }
+</ResponsiveContainer>

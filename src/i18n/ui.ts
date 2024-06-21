@@ -97,6 +97,7 @@ export const ui = {
     'common.all-projects': 'All Projects',
     'common.partners': 'Partners',
     'common.get-started': 'Get Started',
+    'common.view-more': 'View More',
     'common.reach.out': 'Reach Out',
     'common.imagine-what-we-can-create': 'Imagine what we can create',
     'common.people-who-work-with-us-say': 'People who work with us say',
@@ -311,6 +312,7 @@ export const ui = {
     'common.all-projects': 'Todos los proyectos',
     'common.partners': 'Socios Comerciales',
     'common.get-started': 'Empecemos',
+    'common.view-more': 'Ver más',
     'common.reach.out': 'Contáctanos', // TODO: check translation
     'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
     'common.people-who-work-with-us-say': 'La gente que trabaja con nosotros dice',

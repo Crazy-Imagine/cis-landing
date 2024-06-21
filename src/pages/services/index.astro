@@ -1,24 +1,10 @@
 ---
-import Books from '@/icons/Books.astro';
-import Brush from '@/icons/Brush.astro';
-import Card from '@/components/Services/Card.astro';
-import CardContainer from '@/components/Services/CardContainer.astro';
-import Check from '@/icons/Check.astro';
-import Code from '@/icons/Code.astro';
-import Gears from '@/icons/Gears.astro';
+import AllServices from '@/sections/AllServices.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import Megaphone from '@/icons/Megaphone.astro';
-import Monitor from '@/icons/Monitor.astro';
 import Projects from '@/sections/LatestProjects.astro';
-import ReadMore from '@/components/Services/ReadMore.astro';
-import ServicesSection from '@/sections/Services.astro';
-import SrPackage from '@/icons/SrPackage.astro';
-import Typography from '@/components/Typography.astro';
-import User from '@/icons/User.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
-import type { Section } from '@/types/Section';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const pageInfo = await fetchApi<PageInfo>({
@@ -41,123 +27,6 @@ const pageInfo = await fetchApi<PageInfo>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-const sections: Section[] = [
-  {
-    img: { path: '/src/assets/ui/laptop.webp', alt: t('alt.laptop'), class: 'w-[140px]' },
-    title: t('services.custom-software-development'),
-    description: t('services.custom-software-development-description'),
-    cards: [
-      {
-        icon: Code,
-        text: t('services.frontend'),
-        description: t('services.frontend-description'),
-      },
-      {
-        icon: Check,
-        text: t('services.backend'),
-        description: t('services.backend-description'),
-      },
-      {
-        icon: Monitor,
-        text: t('services.full-stack-development'),
-        description: t('services.full-stack-development-description'),
-      },
-    ],
-  },
-  {
-    img: {
-      bgColor: 'bg-primary',
-      path: '/src/assets/ui/wireframes.webp',
-      alt: t('alt.wireframe'),
-      class: 'w-[140px]',
-    },
-    title: t('services.wordpress-packages-maintenance'),
-    description: t('services.wordpress-packages-maintenance-description'),
-    cards: [
-      {
-        icon: Brush,
-        text: t('services.design-and-development'),
-        description: t('services.design-and-development-description'),
-      },
-      {
-        icon: Gears,
-        iconClass: 'h-10 w-10',
-        text: t('services.ongoing-maintenance'),
-        description: t('services.ongoing-maintenance-description'),
-      },
-      {
-        icon: User,
-        text: t('services.technical-support'),
-        description: t('services.technical-support-description'),
-      },
-    ],
-  },
-  {
-    img: {
-      bgColor: 'bg-secondary',
-      path: '/src/assets/ui/wireframes-dark.webp',
-      alt: t('alt.wireframe'),
-      class: 'w-[120px]',
-    },
-    title: t('services.devops-aws-hosting'),
-    description: t('services.devops-aws-hosting-description'),
-    cards: [],
-  },
-  {
-    img: {
-      path: '/src/assets/ui/laptop-with-phone.webp',
-      alt: t('alt.laptop-with-phone'),
-      class: 'w-full',
-      bgColor: 'bg-primary',
-    },
-    title: t('services.digital-marketing'),
-    description: t('services.digital-marketing-description'),
-    cards: [
-      {
-        icon: Books,
-        text: t('services.marketing-strategies'),
-        description: t('services.marketing-strategies-description'),
-      },
-      {
-        icon: Megaphone,
-        text: t('services.online-advertising'),
-        description: t('services.online-advertising-description'),
-      },
-      {
-        icon: SrPackage,
-        text: t('services.social-media-management'),
-        description: t('services.social-media-management-description'),
-      },
-    ],
-  },
-  {
-    img: {
-      path: '/src/assets/ui/double-cellphone.webp',
-      alt: t('alt.double-cellphone'),
-      class: 'w-[100px]',
-    },
-    title: t('services.support-project-management'),
-    description: t('services.support-project-management-description'),
-    cards: [
-      {
-        icon: Books,
-        text: t('services.virtual-assistant'),
-        description: t('services.virtual-assistant-description'),
-      },
-      {
-        icon: Megaphone,
-        text: t('services.project-management'),
-        description: t('services.project-management-description'),
-      },
-      {
-        icon: SrPackage,
-        text: t('services.staff-outsourcing'),
-        description: t('services.staff-outsourcing-description'),
-      },
-    ],
-  },
-];
 ---
 
 <Layout
@@ -166,55 +35,7 @@ const sections: Section[] = [
 >
   <Hero {...pageInfo.data.attributes.hero} />
 
-  {
-    sections.map((section) => (
-      <ServicesSection hasCapabilities img={section.img}>
-        <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
-          {section.title}
-        </Typography>
-        <Typography slot="description" class="mt-5 text-primary" variant="paragraph" as="p">
-          {section.description}
-        </Typography>
-
-        {section.cards.length > 0 && (
-          <CardContainer slot="cards">
-            {section.cards.map(({ icon: Icon, ...card }) => (
-              <Card>
-                <Icon slot="icon" class:list={['text-secondary', card.iconClass]} />
-                <span slot="text">{card.text}</span>
-                <ReadMore slot="link" id="read-more" />
-                <Typography
-                  slot="description"
-                  as="span"
-                  variant="paragraph2"
-                  class="hidden text-center"
-                  data-id="description"
-                >
-                  {card.description}
-                </Typography>
-              </Card>
-            ))}
-          </CardContainer>
-        )}
-      </ServicesSection>
-    ))
-  }
+  <AllServices />
 
   <Projects title={t('common.featured-projects')} />
 </Layout>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const $links = document.querySelectorAll('[data-id="read-more"]');
-    const $descriptions = document.querySelectorAll('[data-id="description"]');
-
-    if (!$links || !$descriptions) return;
-
-    $links.forEach(($link, index) => {
-      $link.addEventListener('click', () => {
-        $link.classList.add('hidden');
-        $descriptions[index].classList.remove('hidden');
-      });
-    });
-  });
-</script>
