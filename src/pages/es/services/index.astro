@@ -3,6 +3,7 @@ import AllServices from '@/sections/AllServices.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import Projects from '@/sections/LatestProjects.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
@@ -37,5 +38,7 @@ const t = useTranslations(lang);
 
   <AllServices />
 
-  <Projects title={t('common.featured-projects')} />
+  <Projects title={t('common.featured-projects')} background="bulbs" />
+
+  <ReachOut />
 </Layout>

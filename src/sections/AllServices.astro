@@ -30,20 +30,26 @@ const services = await fetchApi<ServiceCollection>({
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const colors = ['bg-blue-purple', 'bg-primary', 'bg-secondary', 'bg-accent'];
 ---
 
 <ResponsiveContainer
-  class="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-32"
+  containerClass="md:!pt-32"
+  class="grid grid-cols-1 gap-x-4 gap-y-20 sm:grid-cols-2 md:gap-y-28 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-32"
 >
   {
-    services.data.map((service) => (
+    services.data.map((service, index) => (
       <article class="flex flex-col items-center gap-4">
         <ImageOverBackground
+          bgColor={colors[index % colors.length]}
           externalImage={{
             url: service.attributes.hero.image.data.attributes.url,
             width: service.attributes.hero.image.data.attributes.width,
             height: service.attributes.hero.image.data.attributes.height,
-            alternativeText: service.attributes.hero.image.data.attributes.alternativeText,
+            alternativeText:
+              service.attributes.hero.image.data.attributes.alternativeText ||
+              service.attributes.title,
           }}
         />
 

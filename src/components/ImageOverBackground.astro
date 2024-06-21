@@ -38,7 +38,7 @@ if (localImage) {
   </div>
 
   {
-    localImage && (
+    localImage && images && (
       <Image
         class:list={['absolute inset-x-0 bottom-0 mx-auto w-20 md:w-auto', className]}
         src={images[localImage.path]()}
