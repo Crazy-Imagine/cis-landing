@@ -18,7 +18,12 @@ interface Props {
   };
 }
 
-const { bgColor, class: className = '', externalImage, localImage } = Astro.props;
+const {
+  bgColor = 'bg-blue-purple',
+  class: className = '',
+  externalImage,
+  localImage,
+} = Astro.props;
 
 let images;
 if (localImage) {
@@ -29,12 +34,7 @@ if (localImage) {
 ---
 
 <div class="relative mx-auto flex h-[100px] w-max md:mx-0 md:h-[275px]">
-  <div
-    class:list={[
-      'inset-0 bottom-0 mt-auto h-full w-40 rounded-[20px] bg-blue-purple md:w-[315px]',
-      bgColor,
-    ]}
-  >
+  <div class:list={['inset-0 bottom-0 mt-auto h-full w-40 rounded-[20px] md:w-[315px]', bgColor]}>
   </div>
 
   {
