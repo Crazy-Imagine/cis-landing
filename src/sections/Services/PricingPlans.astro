@@ -1,18 +1,28 @@
 ---
 import { marked } from 'marked';
-import Typography from '@/components/Typography.astro';
+import { useTranslatedPath } from '../../i18n/utils';
 import LinkPill from '@/components/LinkPill.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
 import type { Pricing } from '@/types/strapi/Service';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   pricing: Pricing[];
 }
 
 const { pricing } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatedPath = useTranslatedPath(lang);
 ---
 
 <ResponsiveContainer background="bulbs" class="flex items-center gap-x-5">
+  <Typography class="mb-10 text-center capitalize text-white" as="h2" variant="h2">
+    {t('services.pricing-plans')}
+  </Typography>
+
   {
     pricing.map((item) => (
       <article class="pricing-plan relative z-50 flex flex-col items-center justify-center rounded-lg bg-white px-7 py-14 shadow-lg">
@@ -20,13 +30,21 @@ const { pricing } = Astro.props;
           {item.title}
         </Typography>
         <Typography as="p" variant="paragraph2" class="text-grayish">
-          Perfect to start your business
+          {t('services.perfect-to-start-your-business')}
         </Typography>
 
         <Typography as="p" variant="h3" class="mt-10 text-primary">
           ${item.price}
         </Typography>
-        <LinkPill variant="contained">Quote Now</LinkPill>
+        <Typography as="p" variant="paragraph3" class="lowercase text-grayish">
+          /
+          {item.paymentType === 'singlePayment'
+            ? t('services.single-payment')
+            : t('services.monthly-payment')}
+        </Typography>
+        <LinkPill variant="contained" href={translatedPath('/', lang)} class="lowercase">
+          {t('services.quote-now')}
+        </LinkPill>
 
         <div class="perks mt-10" set:html={marked(item.perks)} />
       </article>

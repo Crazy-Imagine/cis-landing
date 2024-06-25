@@ -170,6 +170,11 @@ export const ui = {
     'services.project-management-description': 'Supervision and direction of projects.',
     'services.staff-outsourcing': 'Staff Outsourcing',
     'services.staff-outsourcing-description': 'Remote collaborators for your team.',
+    'services.perfect-to-start-your-business': 'Perfect to start your business',
+    'services.quote-now': 'Quote now',
+    'services.single-payment': 'Pago único',
+    'services.monthly-payment': 'Por mes',
+    'services.pricing-plans': 'Pricing Plans',
 
     // Mission
     'mission.our-mission': 'Our Mission',
@@ -387,6 +392,11 @@ export const ui = {
     'services.project-management-description': 'Supervisión y dirección de proyectos.',
     'services.staff-outsourcing': 'Externalización de Personal',
     'services.staff-outsourcing-description': 'Colaboradores remotos para tu equipo.',
+    'services.perfect-to-start-your-business': 'Perfecto para iniciar su negocio',
+    'services.quote-now': 'Quote now',
+    'services.single-payment': 'Single Payment',
+    'services.monthly-payment': 'Per Month',
+    'services.pricing-plans': 'Planes de Precios',
 
     // Mission
     'mission.our-mission': 'Nuestra Misión',

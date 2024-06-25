@@ -61,7 +61,7 @@ interface Props {
   attributes: ServiceAttributes;
 }
 
-const { id, attributes } = Astro.props;
+const { attributes } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
