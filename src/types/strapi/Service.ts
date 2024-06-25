@@ -1,3 +1,5 @@
+import type { Hero } from '@/types/strapi/Hero.ts';
+
 export interface ServiceCollection {
   data: Datum[];
   meta: Meta;
@@ -15,29 +17,6 @@ export interface ServiceAttributes {
   slug: string;
   hero: Hero;
   pricing: Pricing[];
-}
-
-export interface Hero {
-  id: number;
-  title: string;
-  subtitle: null;
-  image: Image;
-}
-
-export interface Image {
-  data: Data;
-}
-
-export interface Data {
-  id: number;
-  attributes: ImageAttributes;
-}
-
-export interface ImageAttributes {
-  url: string;
-  width: number;
-  height: number;
-  alternativeText: null | string;
 }
 
 export interface Pricing {
