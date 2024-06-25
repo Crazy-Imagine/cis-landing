@@ -14,7 +14,7 @@ export async function getStaticPaths() {
     endpoint: 'services',
     params: {
       locale: 'en',
-      fields: ['title', 'subTitle', 'description', 'slug'],
+      fields: ['title', 'subTitle', 'description', 'slug', 'key'],
       populate: {
         pricing: true,
         hero: {
@@ -32,26 +32,26 @@ export async function getStaticPaths() {
     },
   });
 
-  // const esProjectCollection = await fetchApi<ProjectCollection>({
-  //   endpoint: 'projects',
-  //   params: {
-  //     locale: 'es',
-  //     fields: ['slug', 'Key'],
-  //     publicationState: 'live',
-  //     sort: {
-  //       createdAt: 'desc',
-  //     },
-  //   },
-  // });
+  const esServiceCollection = await fetchApi<ServiceCollection>({
+    endpoint: 'services',
+    params: {
+      locale: 'es',
+      fields: ['slug', 'key'],
+      publicationState: 'live',
+      sort: {
+        createdAt: 'desc',
+      },
+    },
+  });
 
   return serviceCollection.data.map(({ attributes, id }) => ({
     params: { slug: attributes.slug },
     props: {
       id,
       attributes,
-      // hrefLangSlug: esProjectCollection.data.find(
-      //   (project) => project.attributes.Key === attributes.Key
-      // )?.attributes.slug,
+      hrefLangSlug: esServiceCollection.data.find(
+        (project) => project.attributes.key === attributes.key
+      )?.attributes.slug,
     },
   }));
 }
@@ -59,6 +59,7 @@ export async function getStaticPaths() {
 interface Props {
   id: number;
   attributes: ServiceAttributes;
+  hrefLangSlug: string;
 }
 
 const { attributes } = Astro.props;

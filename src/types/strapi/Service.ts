@@ -15,6 +15,7 @@ export interface ServiceAttributes {
   subTitle: string;
   description: string;
   slug: string;
+  key: string;
   hero: Hero;
   pricing: Pricing[];
 }
