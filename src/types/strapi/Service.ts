@@ -11,6 +11,7 @@ export interface Datum {
 export interface ServiceAttributes {
   title: string;
   subTitle: string;
+  description: string;
   slug: string;
   hero: Hero;
 }

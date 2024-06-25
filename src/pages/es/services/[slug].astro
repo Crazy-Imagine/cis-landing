@@ -3,6 +3,8 @@ import Hero from '@/sections/Hero.astro';
 import LatestProjects from '@/sections/LatestProjects.astro';
 import Layout from '@/layouts/Layout.astro';
 import ReachOut from '@/sections/ReachOut.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import ServiceDescription from '@/sections/Services/Description.astro';
 import fetchApi from '@/lib/strapi';
 import type { ServiceAttributes, ServiceCollection } from '@/types/strapi/Service';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
@@ -12,7 +14,7 @@ export async function getStaticPaths() {
     endpoint: 'services',
     params: {
       locale: 'es',
-      fields: ['title', 'subTitle', 'slug'],
+      fields: ['title', 'subTitle', 'description', 'slug'],
       populate: {
         hero: {
           fields: true,
@@ -66,6 +68,10 @@ const t = useTranslations(lang);
 
 <Layout title={attributes.title} description={attributes.subTitle}>
   <Hero {...attributes.hero} />
+
+  <ServiceDescription description={attributes.description} />
+
+  <ResponsiveContainer> Plans </ResponsiveContainer>
 
   <LatestProjects title={t('common.related-projects')} />
 
