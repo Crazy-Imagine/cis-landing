@@ -1,0 +1,35 @@
+---
+import { marked } from 'marked';
+import Typography from '@/components/Typography.astro';
+import LinkPill from '@/components/LinkPill.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import type { Pricing } from '@/types/strapi/Service';
+
+interface Props {
+  pricing: Pricing[];
+}
+
+const { pricing } = Astro.props;
+---
+
+<ResponsiveContainer background="bulbs" class="flex items-center gap-x-5">
+  {
+    pricing.map((item) => (
+      <article class="pricing-plan relative z-50 flex flex-col items-center justify-center rounded-lg bg-white px-7 py-14 shadow-lg">
+        <Typography as="h3" variant="h4" class="text-primary">
+          {item.title}
+        </Typography>
+        <Typography as="p" variant="paragraph2" class="text-grayish">
+          Perfect to start your business
+        </Typography>
+
+        <Typography as="p" variant="h3" class="mt-10 text-primary">
+          ${item.price}
+        </Typography>
+        <LinkPill variant="contained">Quote Now</LinkPill>
+
+        <div class="perks mt-10" set:html={marked(item.perks)} />
+      </article>
+    ))
+  }
+</ResponsiveContainer>

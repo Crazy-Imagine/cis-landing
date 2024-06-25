@@ -14,6 +14,7 @@ export interface ServiceAttributes {
   description: string;
   slug: string;
   hero: Hero;
+  pricing: Pricing[];
 }
 
 export interface Hero {
@@ -37,6 +38,14 @@ export interface ImageAttributes {
   width: number;
   height: number;
   alternativeText: null | string;
+}
+
+export interface Pricing {
+  id: number;
+  title: string;
+  price: number;
+  paymentType: string;
+  perks: string;
 }
 
 export interface Meta {
