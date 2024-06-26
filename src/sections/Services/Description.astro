@@ -1,8 +1,8 @@
 ---
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '../../i18n/utils';
-import LinkPill from '../../components/LinkPill.astro';
+import LinkPill from '@/components/LinkPill.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
