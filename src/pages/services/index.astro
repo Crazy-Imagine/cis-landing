@@ -1,0 +1,44 @@
+---
+import AllServices from '@/sections/AllServices.astro';
+import Hero from '@/sections/Hero.astro';
+import Layout from '@/layouts/Layout.astro';
+import Projects from '@/sections/LatestProjects.astro';
+import ReachOut from '@/sections/ReachOut.astro';
+import fetchApi from '@/lib/strapi';
+import type { PageInfo } from '@/types/strapi/PageInfo';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const pageInfo = await fetchApi<PageInfo>({
+  endpoint: 'services-page',
+  params: {
+    locale: Astro.currentLocale,
+    populate: {
+      seo: true,
+      hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={pageInfo.data.attributes.seo.metaTitle}
+  description={pageInfo.data.attributes.seo.metaDescription}
+>
+  <Hero {...pageInfo.data.attributes.hero} />
+
+  <AllServices />
+
+  <Projects title={t('common.featured-projects')} background="bulbs" />
+
+  <ReachOut />
+</Layout>

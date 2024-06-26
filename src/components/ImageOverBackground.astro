@@ -1,32 +1,61 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import { getImageUrl } from '@/utils/imageUrl';
 
 interface Props {
   bgColor?: string;
   class?: string;
-  path: string;
-  alt: string;
+  externalImage?: {
+    alternativeText: string;
+    height: number;
+    url: string;
+    width: number;
+  };
+  localImage?: {
+    path: string;
+    alt: string;
+  };
 }
 
-const { bgColor, class: className = '', path, alt } = Astro.props;
+const {
+  bgColor = 'bg-blue-purple',
+  class: className = '',
+  externalImage,
+  localImage,
+} = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
-if (!images[path]) throw new Error(`"${path}" does not exist in glob: "/src/assets/ui/*.webp"`);
+let images;
+if (localImage) {
+  images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
+  if (!images[localImage.path])
+    throw new Error(`"${localImage.path}" does not exist in glob: "/src/assets/ui/*.webp"`);
+}
 ---
 
 <div class="relative mx-auto flex h-[100px] w-max md:mx-0 md:h-[275px]">
-  <div
-    class:list={[
-      'inset-0 bottom-0 mt-auto h-full w-40 rounded-[20px] bg-blue-purple md:w-[315px]',
-      bgColor,
-    ]}
-  >
+  <div class:list={['inset-0 bottom-0 mt-auto h-full w-40 rounded-[20px] md:w-[315px]', bgColor]}>
   </div>
 
-  <Image
-    class:list={['absolute inset-x-0 bottom-0 mx-auto w-20 md:w-auto', className]}
-    src={images[path]()}
-    alt={alt}
-  />
+  {
+    localImage && images && (
+      <Image
+        class:list={['absolute inset-x-0 bottom-0 mx-auto w-20 md:w-auto', className]}
+        src={images[localImage.path]()}
+        alt={localImage.alt}
+      />
+    )
+  }
+
+  {
+    externalImage && (
+      <img
+        class:list={['absolute inset-x-0 bottom-0 mx-auto w-20 md:w-auto', className]}
+        src={getImageUrl(externalImage.url)}
+        alt={externalImage.alternativeText}
+        width={externalImage.width}
+        height={externalImage.height}
+      />
+    )
+  }
 </div>
