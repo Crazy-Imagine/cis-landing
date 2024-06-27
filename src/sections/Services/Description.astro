@@ -1,7 +1,7 @@
 ---
+import { marked } from 'marked';
 import LinkPill from '@/components/LinkPill.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Typography from '@/components/Typography.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -11,9 +11,11 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <ResponsiveContainer>
-  <Typography as="p" variant="paragraph" class="text-justify text-primary xl:px-[100px]">
-    {Astro.props.description}
-  </Typography>
+  <div
+    id="service-description"
+    class="text-justify font-roboto text-primary lg:text-xl xl:px-[100px]"
+    set:html={marked(Astro.props.description)}
+  />
 
   <div class="mt-16 text-center">
     <LinkPill href={translatePath('/contact-us', lang)} variant="contained">
