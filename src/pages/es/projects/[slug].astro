@@ -19,6 +19,8 @@ export async function getStaticPaths() {
       fields: ['title', 'description', 'details', 'slug', 'Key'],
       publicationState: 'live',
       populate: {
+        // TODO: add seo after seo tags are added on production
+        // seo: true,
         project_types: {
           fields: ['name', 'slug'],
         },
@@ -84,8 +86,10 @@ const {
 ---
 
 <Layout
-  title={project.title}
-  description={project.description}
+  seo={{
+    metaTitle: project.title,
+    metaDescription: project.description,
+  }}
   image={image.attributes.formats.small.url}
   hrefLangPathname={`/projects/${hrefLangSlug}`}
 >
