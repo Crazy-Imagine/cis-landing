@@ -42,7 +42,11 @@ const translatedPath = useTranslatedPath(lang);
               ? t('services.single-payment')
               : t('services.monthly-payment')}
           </Typography>
-          <LinkPill variant="contained" href={translatedPath('/', lang)} class="mt-2 lowercase">
+          <LinkPill
+            variant="contained"
+            href={translatedPath('/contact-us', lang)}
+            class="mt-2 lowercase"
+          >
             {t('services.quote-now')}
           </LinkPill>
 
