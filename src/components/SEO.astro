@@ -1,19 +1,19 @@
 ---
+import type { SEO } from '@/types/strapi/SEO';
+
 interface Props {
   canonical?: string;
-  description?: string;
+  seo: SEO;
   hrefLangPathname?: string;
   image?: string;
-  title?: string;
 }
 
 const {
+  seo,
   canonical,
-  description = 'Description',
   hrefLangPathname,
-  image = '/img/mock/article.webp',
   // TODO: CHECK ON THIS DEFAULT IMAGE
-  title = 'Title',
+  image = '/img/mock/article.webp',
 } = Astro.props as Props;
 
 function determineCanonicalURL() {
@@ -28,13 +28,13 @@ function determineSiteURL() {
 
 const canonicalURL = new URL(determineCanonicalURL(), determineSiteURL());
 
-const fullTitle = `Crazy Imagine Software | ${title}`;
+const fullTitle = `Crazy Imagine Software | ${seo.metaTitle}`;
 ---
 
 <title>{fullTitle}</title>
 
 <meta charset="UTF-8" />
-<meta name="description" content={description} />
+<meta name="description" content={seo.metaDescription} />
 
 <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -70,12 +70,12 @@ const fullTitle = `Crazy Imagine Software | ${title}`;
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@CrazyImagineDev" />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:description" content={seo.metaDescription} />
 <meta name="twitter:image" content={new URL(image, Astro.url)} />
 <meta name="twitter:site" content="@CrazyImagineDev" />
 <meta name="twitter:title" content={fullTitle} />
 
-<meta property="og:description" content={description} />
+<meta property="og:description" content={seo.metaDescription} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
 <meta property="og:locale" content={Astro.currentLocale} />
 <meta property="og:site_name" content="Crazy Imagine Software" />
