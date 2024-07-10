@@ -3,16 +3,16 @@ import { ViewTransitions } from 'astro:transitions';
 
 import '@fontsource/roboto';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import Footer from '@/sections/Footer.astro';
 import Header from '@/components/Header.astro';
 import SEO from '@/components/SEO.astro';
-import Footer from '@/sections/Footer.astro';
+import type { SEO as ISeo } from '@/types/strapi/SEO';
 
 interface Props {
   canonical?: string;
-  description?: string;
+  seo: ISeo;
   hrefLangPathname?: string;
   image?: string;
-  title?: string;
 }
 ---
 
@@ -137,6 +137,12 @@ interface Props {
           li {
             @apply font-roboto text-[14px];
           }
+        }
+      }
+
+      #service-description {
+        p:not(:last-child) {
+          @apply mb-4;
         }
       }
     </style>

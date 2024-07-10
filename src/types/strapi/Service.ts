@@ -1,4 +1,5 @@
 import type { Hero } from '@/types/strapi/Hero.ts';
+import type { SEO } from '@/types/strapi/SEO.ts';
 
 export interface ServiceCollection {
   data: Datum[];
@@ -17,6 +18,7 @@ export interface ServiceAttributes {
   slug: string;
   key: string;
   hero: Hero;
+  seo: SEO;
   pricing: Pricing[];
 }
 

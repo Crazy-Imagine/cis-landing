@@ -24,10 +24,7 @@ const pageInfo = await fetchApi<PageInfo>({
 });
 ---
 
-<Layout
-  title={pageInfo.data.attributes.seo.metaTitle}
-  description={pageInfo.data.attributes.seo.metaDescription}
->
+<Layout seo={pageInfo.data.attributes.seo}>
   <Hero {...pageInfo.data.attributes.hero} />
 
   <ReachOut />

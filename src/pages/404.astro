@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="404" description="404">
+<Layout seo={{ metaTitle: '404', metaDescription: '404' }}>
   <ResponsiveContainer containerClass="-mt-[var(--header-height)] h-screen" class="h-full" is404>
     <div
       class="flex h-full flex-col items-center justify-center px-0 text-center sm:px-4 md:px-24 lg:px-36"

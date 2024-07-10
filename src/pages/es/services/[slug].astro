@@ -16,6 +16,7 @@ export async function getStaticPaths() {
       locale: 'es',
       fields: ['title', 'subTitle', 'description', 'slug', 'key'],
       populate: {
+        seo: true,
         pricing: true,
         hero: {
           fields: true,
@@ -62,13 +63,17 @@ interface Props {
   hrefLangSlug: string;
 }
 
-const { attributes } = Astro.props;
+const { attributes, hrefLangSlug } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title={attributes.title} description={attributes.subTitle}>
+<Layout
+  seo={attributes.seo}
+  image={attributes.hero.image.data.attributes.url}
+  hrefLangPathname={`/es/services/${hrefLangSlug}`}
+>
   <Hero {...attributes.hero} />
 
   <ServiceDescription description={attributes.description} />
