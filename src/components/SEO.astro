@@ -29,6 +29,10 @@ function determineSiteURL() {
 const canonicalURL = new URL(determineCanonicalURL(), determineSiteURL());
 
 const fullTitle = `Crazy Imagine Software | ${seo.metaTitle}`;
+
+const keywords = seo?.keywords
+  ? seo.keywords
+  : 'crazy imagine, web development services, mobile app development, Software Development Company, Web and Mobile App Development Firm, developer, software, work, Full-stack Development, programming, user Experience, quality support';
 ---
 
 <title>{fullTitle}</title>
@@ -63,10 +67,7 @@ const fullTitle = `Crazy Imagine Software | ${seo.metaTitle}`;
 }
 
 <meta name="viewport" content="width=device-width" />
-<meta
-  name="keywords"
-  content="crazy imagine, web development services, mobile app development, Software Development Company, Web and Mobile App Development Firm, developer, software, work, Full-stack Development, programming, user Experience, quality support"
-/>
+<meta name="keywords" content={keywords} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@CrazyImagineDev" />
