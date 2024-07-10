@@ -24,10 +24,7 @@ const faqPage = await fetchApi<FAQ>({
 });
 ---
 
-<Layout
-  title={faqPage.data.attributes.seo.metaTitle}
-  description={faqPage.data.attributes.seo.metaDescription}
->
+<Layout seo={faqPage.data.attributes.seo}>
   <Hero {...faqPage.data.attributes.hero} />
 
   <FAQSection />

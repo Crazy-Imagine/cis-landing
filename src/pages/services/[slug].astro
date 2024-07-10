@@ -1,0 +1,86 @@
+---
+import PricingPlans from '@/sections/Services/PricingPlans.astro';
+import Hero from '@/sections/Hero.astro';
+import LatestProjects from '@/sections/LatestProjects.astro';
+import Layout from '@/layouts/Layout.astro';
+import ReachOut from '@/sections/ReachOut.astro';
+import ServiceDescription from '@/sections/Services/Description.astro';
+import fetchApi from '@/lib/strapi';
+import type { ServiceAttributes, ServiceCollection } from '@/types/strapi/Service';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+export async function getStaticPaths() {
+  const serviceCollection = await fetchApi<ServiceCollection>({
+    endpoint: 'services',
+    params: {
+      locale: 'en',
+      fields: ['title', 'subTitle', 'description', 'slug', 'key'],
+      populate: {
+        seo: true,
+        pricing: true,
+        hero: {
+          fields: true,
+          populate: {
+            image: {
+              fields: ['url', 'width', 'height', 'alternativeText'],
+            },
+          },
+        },
+      },
+      sort: {
+        createdAt: 'asc',
+      },
+    },
+  });
+
+  const esServiceCollection = await fetchApi<ServiceCollection>({
+    endpoint: 'services',
+    params: {
+      locale: 'es',
+      fields: ['slug', 'key'],
+      publicationState: 'live',
+      sort: {
+        createdAt: 'desc',
+      },
+    },
+  });
+
+  return serviceCollection.data.map(({ attributes, id }) => ({
+    params: { slug: attributes.slug },
+    props: {
+      id,
+      attributes,
+      hrefLangSlug: esServiceCollection.data.find(
+        (project) => project.attributes.key === attributes.key
+      )?.attributes.slug,
+    },
+  }));
+}
+
+interface Props {
+  id: number;
+  attributes: ServiceAttributes;
+  hrefLangSlug: string;
+}
+
+const { attributes, hrefLangSlug } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  seo={attributes.seo}
+  image={attributes.hero.image.data.attributes.url}
+  hrefLangPathname={`/es/services/${hrefLangSlug}`}
+>
+  <Hero {...attributes.hero} />
+
+  <ServiceDescription description={attributes.description} />
+
+  <PricingPlans pricing={attributes.pricing} />
+
+  <LatestProjects title={t('common.related-projects')} />
+
+  <ReachOut />
+</Layout>

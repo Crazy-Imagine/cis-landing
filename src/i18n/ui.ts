@@ -97,6 +97,7 @@ export const ui = {
     'common.all-projects': 'All Projects',
     'common.partners': 'Partners',
     'common.get-started': 'Get Started',
+    'common.view-more': 'View More',
     'common.reach.out': 'Reach Out',
     'common.imagine-what-we-can-create': 'Imagine what we can create',
     'common.people-who-work-with-us-say': 'People who work with us say',
@@ -169,6 +170,11 @@ export const ui = {
     'services.project-management-description': 'Supervision and direction of projects.',
     'services.staff-outsourcing': 'Staff Outsourcing',
     'services.staff-outsourcing-description': 'Remote collaborators for your team.',
+    'services.perfect-to-start-your-business': 'Perfect to start your business',
+    'services.quote-now': 'Quote now',
+    'services.single-payment': 'Single Payment',
+    'services.monthly-payment': 'Per Month',
+    'services.pricing-plans': 'Pricing Plans',
 
     // Mission
     'mission.our-mission': 'Our Mission',
@@ -311,6 +317,7 @@ export const ui = {
     'common.all-projects': 'Todos los proyectos',
     'common.partners': 'Socios Comerciales',
     'common.get-started': 'Empecemos',
+    'common.view-more': 'Ver más',
     'common.reach.out': 'Contáctanos', // TODO: check translation
     'common.imagine-what-we-can-create': 'Imagina lo que podemos crear',
     'common.people-who-work-with-us-say': 'La gente que trabaja con nosotros dice',
@@ -385,6 +392,11 @@ export const ui = {
     'services.project-management-description': 'Supervisión y dirección de proyectos.',
     'services.staff-outsourcing': 'Externalización de Personal',
     'services.staff-outsourcing-description': 'Colaboradores remotos para tu equipo.',
+    'services.perfect-to-start-your-business': 'Perfecto para iniciar su negocio',
+    'services.quote-now': 'Cotiza ahora',
+    'services.single-payment': 'Pago único',
+    'services.monthly-payment': 'Por mes',
+    'services.pricing-plans': 'Planes de Precios',
 
     // Mission
     'mission.our-mission': 'Nuestra Misión',

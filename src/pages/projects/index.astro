@@ -26,10 +26,7 @@ const projectsPage = await fetchApi<ProjectsPage>({
 });
 ---
 
-<Layout
-  title={projectsPage.data.attributes.seo.metaTitle}
-  description={projectsPage.data.attributes.seo.metaDescription}
->
+<Layout seo={projectsPage.data.attributes.seo}>
   <Hero {...projectsPage.data.attributes.hero} />
 
   <ProjectTypesList />
