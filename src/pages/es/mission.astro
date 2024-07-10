@@ -29,10 +29,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout
-  title={mission.data.attributes.seo.metaTitle}
-  description={mission.data.attributes.seo.metaDescription}
->
+<Layout seo={mission.data.attributes.seo}>
   <Hero {...mission.data.attributes.hero} />
 
   <Services

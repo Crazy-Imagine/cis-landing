@@ -1,4 +1,5 @@
 import type { Hero } from '@/types/strapi/Hero.ts';
+import type { SEO } from '@/types/strapi/SEO.ts';
 
 export interface ProjectsPage {
   data: Data;
@@ -19,11 +20,4 @@ export interface Attributes {
   locale: string;
   seo: SEO;
   hero: Hero;
-}
-
-export interface SEO {
-  id: number;
-  keywords: string;
-  metaTitle: string;
-  metaDescription: string;
 }

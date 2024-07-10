@@ -16,6 +16,8 @@ export async function getStaticPaths() {
       fields: ['title', 'description', 'content', 'slug', 'Key'],
       publicationState: 'live',
       populate: {
+        // TODO: add seo after seo tags are added on production
+        // seo: true,
         category: {
           fields: ['name'],
         },
@@ -72,8 +74,10 @@ const imageToRender = contentImage.data ?? image.data;
 ---
 
 <Layout
-  title={article.title}
-  description={article.description}
+  seo={{
+    metaTitle: article.title,
+    metaDescription: article.description,
+  }}
   image={imageToRender.attributes.formats.small.url}
   hrefLangPathname={`/blog/${hrefLangSlug}`}
 >

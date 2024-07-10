@@ -1,0 +1,25 @@
+---
+import { marked } from 'marked';
+import LinkPill from '@/components/LinkPill.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const translatePath = useTranslatedPath(lang);
+---
+
+<ResponsiveContainer>
+  <div
+    id="service-description"
+    class="text-justify font-roboto text-primary lg:text-xl xl:px-[100px]"
+    set:html={marked(Astro.props.description)}
+  />
+
+  <div class="mt-16 text-center">
+    <LinkPill href={translatePath('/contact-us', lang)} variant="contained">
+      {t('common.contact-us')}
+    </LinkPill>
+  </div>
+</ResponsiveContainer>
