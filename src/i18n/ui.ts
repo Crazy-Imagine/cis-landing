@@ -173,6 +173,7 @@ export const ui = {
     'services.perfect-to-start-your-business': 'Perfect to start your business',
     'services.quote-now': 'Quote now',
     'services.single-payment': 'Single Payment',
+    'services.hourly-payment': 'Hour',
     'services.monthly-payment': 'Per Month',
     'services.pricing-plans': 'Pricing Plans',
 
@@ -395,6 +396,7 @@ export const ui = {
     'services.perfect-to-start-your-business': 'Perfecto para iniciar su negocio',
     'services.quote-now': 'Cotiza ahora',
     'services.single-payment': 'Pago único',
+    'services.hourly-payment': 'Por hora',
     'services.monthly-payment': 'Por mes',
     'services.pricing-plans': 'Planes de Precios',
 
