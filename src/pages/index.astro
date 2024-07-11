@@ -45,7 +45,7 @@ const translatePath = useTranslatedPath(lang);
 
 <Layout seo={pageInfo.data.attributes.seo} canonical="https://crazyimagine.com">
   <Hero {...pageInfo.data.attributes.hero}>
-    <LinkPill slot="button" variant="contained" href={translatePath('#', lang)}>
+    <LinkPill slot="button" variant="contained" href={translatePath('/contact-us', lang)}>
       {t('common.home-hero-button')}
     </LinkPill>
   </Hero>
