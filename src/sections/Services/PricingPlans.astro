@@ -46,7 +46,7 @@ const PAYMENT_TYPES: Record<string, string> = {
               ${item.price}
             </Typography>
             <Typography as="p" variant="paragraph3" class="lowercase text-grayish">
-              /{t(paymentType)}
+              /{t(paymentType as any)}
             </Typography>
             <LinkPill
               variant="contained"
