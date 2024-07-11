@@ -16,7 +16,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatedPath = useTranslatedPath(lang);
 
-const PAYMENT_TYPES = {
+const PAYMENT_TYPES: Record<string, string> = {
   singlePayment: 'services.single-payment',
   monthlyPayment: 'services.monthly-payment',
   hourlyPayment: 'services.hourly-payment',
