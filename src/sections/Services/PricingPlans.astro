@@ -17,9 +17,9 @@ const t = useTranslations(lang);
 const translatedPath = useTranslatedPath(lang);
 
 const PAYMENT_TYPES = {
-  singlePayment: t('services.single-payment'),
-  monthlyPayment: t('services.monthly-payment'),
-  hourlyPayment: t('services.hourly-payment'),
+  singlePayment: 'services.single-payment',
+  monthlyPayment: 'services.monthly-payment',
+  hourlyPayment: 'services.hourly-payment',
 };
 ---
 
@@ -46,7 +46,7 @@ const PAYMENT_TYPES = {
               ${item.price}
             </Typography>
             <Typography as="p" variant="paragraph3" class="lowercase text-grayish">
-              /{paymentType}
+              /{t(paymentType)}
             </Typography>
             <LinkPill
               variant="contained"
