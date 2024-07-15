@@ -12,7 +12,6 @@ interface IForm {
   name: string;
   company?: string;
   country?: string;
-  phone?: string;
   email: string;
   comments: string;
   projectType?: string;
@@ -38,7 +37,6 @@ function ContactForm({ url }: Props) {
         name: yup.string().required(t('errors.name-required')),
         company: yup.string(),
         country: yup.string(),
-        phone: yup.string(),
         email: yup
           .string()
           .email(t('errors.email-is-not-valid'))
@@ -77,15 +75,6 @@ function ContactForm({ url }: Props) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput name="name" label={t('forms.name')} register={register} errors={errors} />
-        <RHFInput name="company" label={t('forms.company')} register={register} errors={errors} />
-      </div>
-
-      <div className="mb-6 flex flex-col gap-5 md:flex-row">
-        <RHFInput name="country" label={t('forms.country')} register={register} errors={errors} />
-        <RHFInput name="phone" label={t('forms.phone')} register={register} errors={errors} />
-      </div>
-
-      <div className="mb-6 flex flex-col gap-5 md:flex-row">
         <RHFInput
           type="email"
           name="email"
@@ -93,6 +82,11 @@ function ContactForm({ url }: Props) {
           register={register}
           errors={errors}
         />
+      </div>
+
+      <div className="mb-6 flex flex-col gap-5 md:flex-row">
+        <RHFInput name="company" label={t('forms.company')} register={register} errors={errors} />
+        <RHFInput name="country" label={t('forms.country')} register={register} errors={errors} />
       </div>
 
       <div className="mb-6 flex flex-col gap-5 md:flex-row">
