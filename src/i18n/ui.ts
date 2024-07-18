@@ -398,7 +398,7 @@ export const ui = {
     'services.single-payment': 'Pago único',
     'services.hourly-payment': 'Por hora',
     'services.monthly-payment': 'Por mes',
-    'services.pricing-plans': 'Planes de Precios',
+    'services.pricing-plans': 'Precios',
 
     // Mission
     'mission.our-mission': 'Nuestra Misión',
