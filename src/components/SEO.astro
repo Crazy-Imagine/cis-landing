@@ -30,6 +30,8 @@ const canonicalURL = new URL(determineCanonicalURL(), determineSiteURL());
 
 const fullTitle = `Crazy Imagine Software | ${seo.metaTitle}`;
 
+const isContactPage = Astro.url.pathname.includes('/contact-us');
+
 const keywords = seo?.keywords
   ? seo.keywords
   : 'crazy imagine, web development services, mobile app development, Software Development Company, Web and Mobile App Development Firm, developer, software, work, Full-stack Development, programming, user Experience, quality support';
@@ -92,3 +94,5 @@ const keywords = seo?.keywords
 <link rel="apple-touch-icon" href="/img/icons/apple-touch-icon.png" />
 
 <link rel="manifest" href="/img/icons/site.webmanifest" />
+
+{isContactPage && <script is:inline src="/js/pixel-meta.js" />}
