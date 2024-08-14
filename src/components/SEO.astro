@@ -1,4 +1,5 @@
 ---
+import PixelScript from './PixelScript.astro';
 import type { SEO } from '@/types/strapi/SEO';
 
 interface Props {
@@ -95,4 +96,4 @@ const keywords = seo?.keywords
 
 <link rel="manifest" href="/img/icons/site.webmanifest" />
 
-{isContactPage && <script is:inline src="/js/pixel-meta.js" />}
+{isContactPage && <PixelScript />}
