@@ -28,6 +28,7 @@ export interface Pricing {
   price: number;
   paymentType: string;
   perks: string;
+  isBetterOption: boolean;
 }
 
 export interface Meta {
