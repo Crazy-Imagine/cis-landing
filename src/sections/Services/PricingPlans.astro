@@ -39,7 +39,22 @@ const PAYMENT_TYPES: Record<string, string> = {
               {item.title}
             </Typography>
 
-            <Typography as="p" variant="h3" class="mt-10 text-primary">
+            {item.isBetterOption && (
+              <div class="focus:ring-ring mt-2.5 inline-flex items-center rounded-full border border-transparent bg-primary px-2.5 py-0.5 text-xs font-semibold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
+                Better Option
+              </div>
+            )}
+
+            <Typography
+              as="p"
+              variant="h3"
+              class:list={[
+                'mt-10 text-primary',
+                {
+                  'mt-5': item.isBetterOption,
+                },
+              ]}
+            >
               ${item.price}
             </Typography>
             <Typography as="p" variant="paragraph3" class="lowercase text-grayish">

@@ -175,6 +175,7 @@ export const ui = {
     'services.hourly-payment': 'Hour',
     'services.monthly-payment': 'Per Month',
     'services.pricing-plans': 'Pricing Plans',
+    'services.better-option': 'Better Option',
 
     // Mission
     'mission.our-mission': 'Our Mission',
@@ -397,6 +398,7 @@ export const ui = {
     'services.hourly-payment': 'Por hora',
     'services.monthly-payment': 'Por mes',
     'services.pricing-plans': 'Precios',
+    'services.better-option': 'Mejor Opción',
 
     // Mission
     'mission.our-mission': 'Nuestra Misión',
