@@ -1,1 +1,2 @@
-src/components/PixelScript.astro
+src/components/external-scripts/PixelScript.astro
+src/components/external-scripts/ApolloScript.astro
