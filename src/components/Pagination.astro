@@ -1,0 +1,111 @@
+---
+import type { Pagination } from '@/types/Pagination';
+import ChevronLeft from '@/icons/ChevronLeft.astro';
+import ChevronsLeft from '@/icons/ChevronsLeft.astro';
+import ChevronRight from '@/icons/ChevronRight.astro';
+import ChevronsRight from '@/icons/ChevronsRight.astro';
+
+interface Props {
+  pagination: Pagination;
+}
+
+const page = Number.parseInt(Astro.url.searchParams.get('page') || '1');
+const currentPath = Astro.url.pathname;
+
+const { pagination } = Astro.props;
+---
+
+<div class="mt-4 flex items-center justify-center space-x-2">
+  <a
+    id="pagination-first"
+    href={`${currentPath}?page=1`}
+    class:list={[
+      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+      {
+        'cursor-not-allowed opacity-50': page === 1,
+      },
+    ]}
+    aria-label="First page"
+  >
+    <ChevronsLeft />
+  </a>
+  <a
+    id="pagination-previous"
+    href={`${page > 1 ? `${currentPath}?page=${page - 1}` : currentPath}`}
+    class:list={[
+      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+      {
+        'cursor-not-allowed opacity-50': page === 1,
+      },
+    ]}
+    aria-label="Previous page"
+    rel={page > 1 ? 'prev' : null}
+  >
+    <ChevronLeft />
+  </a>
+  <span class="text-sm font-medium">
+    Page {page} of {pagination.pageCount}
+  </span>
+  <a
+    id="pagination-next"
+    href={`${page < pagination.pageCount ? `${currentPath}?page=${page + 1}` : `${currentPath}?page=${page}`}`}
+    class:list={[
+      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+      {
+        'cursor-not-allowed opacity-50': page === pagination.pageCount,
+      },
+    ]}
+    aria-label="Next page"
+    rel={page < pagination.pageCount ? 'next' : null}
+  >
+    <ChevronRight />
+  </a>
+  <a
+    id="pagination-last"
+    href={`${currentPath}?page=${pagination.pageCount}`}
+    class:list={[
+      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+      {
+        'cursor-not-allowed opacity-50': page === pagination.pageCount,
+      },
+    ]}
+    aria-label="Last page"
+  >
+    <ChevronsRight />
+  </a>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const first = document.getElementById('pagination-first');
+    const previous = document.getElementById('pagination-previous');
+    const next = document.getElementById('pagination-next');
+    const last = document.getElementById('pagination-last');
+
+    if (!first || !previous || !next || !last) return;
+
+    first.addEventListener('click', (event) => {
+      if (first.classList.contains('cursor-not-allowed')) {
+        event.preventDefault();
+      }
+    });
+
+    previous.addEventListener('click', (event) => {
+      if (previous.classList.contains('cursor-not-allowed')) {
+        event.preventDefault();
+      }
+    });
+
+    next.addEventListener('click', (event) => {
+      if (next.classList.contains('cursor-not-allowed')) {
+        event.preventDefault();
+      }
+    });
+
+    last.addEventListener('click', (event) => {
+      if (last.classList.contains('cursor-not-allowed')) {
+        event.preventDefault();
+      }
+    });
+  });
+</script>
