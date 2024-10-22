@@ -38,7 +38,6 @@ module.exports = {
     '@stylistic/js/operator-linebreak': 'off',
     'antfu/if-newline': 'off',
   },
-  ignores: ['src/components/external-scripts/*'],
   overrides: [
     {
       files: ['*.astro'],
