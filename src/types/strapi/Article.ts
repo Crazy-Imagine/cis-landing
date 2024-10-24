@@ -1,3 +1,5 @@
+import type { Pagination } from '@/types/Pagination.ts';
+
 export interface ArticleCollection {
   data: Article[];
   meta: Meta;
@@ -85,10 +87,4 @@ export interface Large {
 
 export interface Meta {
   pagination: Pagination;
-}
-
-export interface Pagination {
-  start: number;
-  limit: number;
-  total: number;
 }
