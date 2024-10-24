@@ -1,3 +1,5 @@
+import type { Pagination } from '@/types/Pagination.ts';
+
 export interface FAQs {
   data: Datum[];
   meta: Meta;
@@ -30,11 +32,4 @@ export interface OptionsAttributes {
 
 export interface Meta {
   pagination: Pagination;
-}
-
-export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
 }

@@ -1,5 +1,6 @@
 import type { Hero } from '@/types/strapi/Hero.ts';
 import type { SEO } from '@/types/strapi/SEO.ts';
+import type { Pagination } from '@/types/Pagination.ts';
 
 export interface ServiceCollection {
   data: Datum[];
@@ -33,11 +34,4 @@ export interface Pricing {
 
 export interface Meta {
   pagination: Pagination;
-}
-
-export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
 }

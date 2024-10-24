@@ -1,3 +1,5 @@
+import type { Pagination } from '@/types/Pagination.ts';
+
 export interface ProjectCollection {
   data: Project[];
   meta: Meta;
@@ -70,11 +72,4 @@ interface ProjectTypeAttributes {
 
 export interface Meta {
   pagination: Pagination;
-}
-
-export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
 }

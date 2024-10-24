@@ -9,6 +9,8 @@ const instance = axios.create({
 });
 
 interface Pagination {
+  page?: number;
+  pageSize?: number;
   start?: number;
   limit?: number;
   withCount?: boolean;
