@@ -16,7 +16,8 @@
 		"format": "prettier --write src",
 		"format:check": "prettier --check src",
 		"prepare": "husky",
-		"serve-build": "serve ./dist"
+		"static-build": "serve ./dist",
+		"hybrid-build": "node ./dist/server/entry.mjs"
 	},
 	"engines": {
 		"node": "18.20.2"
