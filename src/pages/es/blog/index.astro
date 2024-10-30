@@ -5,7 +5,8 @@ import LatestArticles from '@/sections/LatestArticles.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import LinkPill from '@/components/LinkPill.astro';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'blog',
@@ -27,6 +28,7 @@ const pageInfo = await fetchApi<PageInfo>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout seo={pageInfo.data.attributes.seo}>
@@ -34,5 +36,11 @@ const t = useTranslations(lang);
 
   <FeaturedArticles />
 
-  <LatestArticles start={2} title={t('common-browse-all-articles')} />
+  <LatestArticles start={2} title={t('common-browse-all-articles')}>
+    <div slot="button" class="mt-5 text-center">
+      <LinkPill variant="contained" href={translatePath('/blog/all', lang)}>
+        {t('common.see-all')}
+      </LinkPill>
+    </div>
+  </LatestArticles>
 </Layout>
