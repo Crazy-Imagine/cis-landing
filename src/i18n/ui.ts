@@ -118,6 +118,7 @@ export const ui = {
     'common.work-with-us': 'Interested In Working With Us?',
     'common.home-hero-button': 'Schedule a call',
     'common.see-all': 'See All',
+    'common.the-latest-in-tech-talk': 'The Latest in Tech Talk',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -340,6 +341,7 @@ export const ui = {
     'common.work-with-us': '¿Quieres Ser parte de Nuestro Equipo?',
     'common.home-hero-button': 'Programar una llamada',
     'common.see-all': 'Ver todos',
+    'common.the-latest-in-tech-talk': 'Lo último en tecnología',
 
     // Services
     'services.why-should-you': 'Por qué deberías',
