@@ -18,7 +18,7 @@ const { id } = Astro.props;
           <option
             value={langCode}
             selected={lang === langCode}
-            class="flex items-center bg-transparent"
+            class="flex items-center bg-transparent text-primary"
           >
             {langCode.toUpperCase()}
             {langFlags[langCode as 'en' | 'es']}
