@@ -2,6 +2,7 @@
 import Pagination from '../../../components/Pagination.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
 import Hero from '@/sections/Hero.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 import Layout from '@/layouts/Layout.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
@@ -35,6 +36,7 @@ const pageInfo = await fetchApi<PageInfo>({
 const { data: articles, meta } = await fetchApi<ArticleCollection>({
   endpoint: 'articles',
   params: {
+    locale: Astro.currentLocale,
     publicationState: 'live',
     populate: {
       category: {
@@ -103,4 +105,6 @@ const t = useTranslations(lang);
 
     <Pagination pagination={meta.pagination} />
   </ResponsiveContainer>
+
+  <ReachOut />
 </Layout>

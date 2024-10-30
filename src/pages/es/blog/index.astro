@@ -2,6 +2,7 @@
 import FeaturedArticles from '@/sections/FeaturedArticles.astro';
 import Hero from '@/sections/Hero.astro';
 import LatestArticles from '@/sections/LatestArticles.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
@@ -43,4 +44,6 @@ const translatePath = useTranslatedPath(lang);
       </LinkPill>
     </div>
   </LatestArticles>
+
+  <ReachOut />
 </Layout>

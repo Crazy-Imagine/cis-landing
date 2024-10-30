@@ -7,6 +7,7 @@ import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import LinkPill from '@/components/LinkPill.astro';
+import ReachOut from '@/sections/ReachOut.astro';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'blog',
@@ -43,4 +44,6 @@ const translatePath = useTranslatedPath(lang);
       </LinkPill>
     </div>
   </LatestArticles>
+
+  <ReachOut />
 </Layout>
