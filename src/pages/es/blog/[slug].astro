@@ -2,11 +2,13 @@
 import { Image } from 'astro:assets';
 import BlogContent from '@/sections/Blog/Content.astro';
 import BlogTitle from '@/sections/Blog/Title.astro';
+import LatestArticles from '@/sections/LatestArticles.astro';
 import Layout from '@/layouts/Layout.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
 import { getImageUrl } from '@/utils/imageUrl';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 export async function getStaticPaths() {
   const articleCollection = await fetchApi<ArticleCollection>({
@@ -71,6 +73,9 @@ const { attributes, id, hrefLangSlug } = Astro.props as Props;
 
 const { contentImage, image, ...article } = attributes;
 const imageToRender = contentImage.data ?? image.data;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout
@@ -100,4 +105,6 @@ const imageToRender = contentImage.data ?? image.data;
   </ResponsiveContainer>
 
   <BlogContent id={id} content={article.content} />
+
+  <LatestArticles start={2} title={t('common.the-latest-in-tech-talk')} />
 </Layout>
