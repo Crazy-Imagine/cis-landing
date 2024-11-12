@@ -10,9 +10,11 @@ import fetchApi from '@/lib/strapi';
 import type { ArticleCollection } from '@/types/strapi/Article';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import SearchInput from '@/components/SearchInput/SearchInput.astro';
 
 export const prerender = false;
 const page = Number.parseInt(Astro.url.searchParams.get('page') || '1');
+const search = Astro.url.searchParams.get('search') || '';
 const pageSize = 9;
 
 const pageInfo = await fetchApi<PageInfo>({
@@ -52,6 +54,9 @@ const { data: articles, meta } = await fetchApi<ArticleCollection>({
     filters: {
       title: {
         $notNull: true,
+        ...(search && {
+          $containsi: search,
+        }),
       },
     },
     pagination: {
@@ -72,11 +77,9 @@ const t = useTranslations(lang);
   <Hero {...pageInfo.data.attributes.hero} />
 
   <ResponsiveContainer>
-    <Typography as="h2" variant="h4" class="text-primary">All Articles</Typography>
+    <Typography as="h2" variant="h4" class="text-primary">{t('common.all-articles')}</Typography>
 
-    <!--<div class="my-5">-->
-    <!--  <input />-->
-    <!--</div>-->
+    <SearchInput defaultValue={search} />
 
     <div class="grid grid-cols-3 gap-5">
       {

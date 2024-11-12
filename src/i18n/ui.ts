@@ -119,6 +119,8 @@ export const ui = {
     'common.home-hero-button': 'Schedule a call',
     'common.see-all': 'See All',
     'common.the-latest-in-tech-talk': 'The Latest in Tech Talk',
+    'common.search': 'Search',
+    'common.all-articles': 'All Articles',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -342,6 +344,8 @@ export const ui = {
     'common.home-hero-button': 'Programar una llamada',
     'common.see-all': 'Ver todos',
     'common.the-latest-in-tech-talk': 'Lo último en tecnología',
+    'common.search': 'Buscar',
+    'common.all-articles': 'Todos los artículos',
 
     // Services
     'services.why-should-you': 'Por qué deberías',
