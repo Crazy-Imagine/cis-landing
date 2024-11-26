@@ -12,27 +12,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
 ---
 
 <LandingLayout>
-  <script>
-    const container = document.querySelector('.container-button');
-    const textButton: any = document.querySelector('.text-button');
-    const text = document.querySelector('.text-content');
-
-    if (container && textButton && text) {
-      container.addEventListener('mouseover', () => {
-        // Expandir el contenedor y mostrar el texto
-        textButton.classList.add('expanded');
-        text.classList.add('visible');
-      });
-      container.addEventListener('mouseout', () => {
-        // Contraer el contenedor y ocultar el texto
-        textButton.classList.remove('expanded');
-        text.classList.remove('visible');
-      });
-      container.addEventListener('click', () => {
-        window.location.href = 'https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c';
-      });
-    }
-  </script>
   <!-- Button -->
   <div
     class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-secondary p-5"
@@ -310,3 +289,25 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
     </div>
   </div>
 </LandingLayout>
+
+<script>
+  const container = document.querySelector('.container-button');
+  const textButton: any = document.querySelector('.text-button');
+  const text = document.querySelector('.text-content');
+
+  if (container && textButton && text) {
+    container.addEventListener('mouseover', () => {
+      // Expandir el contenedor y mostrar el texto
+      textButton.classList.add('expanded');
+      text.classList.add('visible');
+    });
+    container.addEventListener('mouseout', () => {
+      // Contraer el contenedor y ocultar el texto
+      textButton.classList.remove('expanded');
+      text.classList.remove('visible');
+    });
+    container.addEventListener('click', () => {
+      window.location.href = 'https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c';
+    });
+  }
+</script>
