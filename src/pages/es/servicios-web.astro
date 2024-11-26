@@ -1,0 +1,312 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Typography from '@/components/Typography.astro';
+import LandingLayout from '@/layouts/LandingLayout.astro';
+import OurServicesLanding from '@/components/LandingPage/OurServicesLanding.astro';
+import { benefits, ourServices } from '@/consts/data';
+import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
+import { OurProcess } from '@/components/react/Landings/OurProcess';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+---
+
+<LandingLayout>
+  <script>
+    const container = document.querySelector('.container-button');
+    const textButton: any = document.querySelector('.text-button');
+    const text = document.querySelector('.text-content');
+
+    if (container && textButton && text) {
+      container.addEventListener('mouseover', () => {
+        // Expandir el contenedor y mostrar el texto
+        textButton.classList.add('expanded');
+        text.classList.add('visible');
+      });
+      container.addEventListener('mouseout', () => {
+        // Contraer el contenedor y ocultar el texto
+        textButton.classList.remove('expanded');
+        text.classList.remove('visible');
+      });
+      container.addEventListener('click', () => {
+        window.location.href = 'https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c';
+      });
+    }
+  </script>
+  <!-- Button -->
+  <div
+    class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-secondary p-5"
+  >
+    <Image
+      src={images['/src/assets/landing/atention.webp']()}
+      class="h-[40px] w-[40px]"
+      alt="button"
+    />
+    <div class="text-button max-w-[40px] overflow-hidden transition-all duration-700">
+      <Typography
+        as="p"
+        variant="h5"
+        class="text-content ml-4 w-[500px] translate-x-full text-white opacity-0 transition-all duration-700"
+      >
+        Consulta Gratuita
+      </Typography>
+    </div>
+  </div>
+  <!-- Hero -->
+  <div
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden p-4 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+  >
+    <div
+      class="relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10 sm:bg-secondary"
+    >
+      <div class="w-[79%] gap-4 p-[58px]">
+        <Typography
+          class="font-bold capitalize leading-[30px] tracking-[1.4px] lg:!text-[80px] 2xl:!text-[90px]"
+          as="h1"
+          variant="h1"
+        >
+          Crazy Imagine Sofware
+        </Typography>
+
+        <Typography class="my-10" as="p" variant="h3">
+          Ideas más allá de tu imaginación
+        </Typography>
+
+        <Typography class="mt-10 font-nexaLight" as="p" variant="h4">
+          Somos un servicio de desarrollo web personalizado y profesional, ofrecemos páginas web
+          basadas en WordPress, eCommerce con WooCommerce y mucho más.
+        </Typography>
+      </div>
+
+      <div
+        class="xxl:-top-[270px] absolute -right-[140px] -top-[240px] ml-auto flex flex-shrink-0 justify-end place-self-end lg:-top-[274px]"
+      >
+        <Image
+          class="h-[800px] max-h-[1100px] w-full lg:h-[850px] xl:h-[1040px]"
+          src={images['/src/assets/landing/andrea.webp']()}
+          alt={'andrea'}
+        />
+      </div>
+
+      <Image
+        class={'absolute -bottom-[110px] -left-[10px] min-[1550px]:w-[350px] w-[200px] lg:w-[240px] lg:bottom-[-230px] min-[1550px]:bottom-[-200px] min-[1550px]:-left-[85px] '}
+        src={images['/src/assets/landing/meteorites.webp']()}
+        alt={'test'}
+      />
+    </div>
+
+    <div class="mt-[74px] flex flex-col items-center justify-center gap-8">
+      <Typography
+        as="a"
+        target={'_blank'}
+        variant="h2"
+        href="https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c"
+        class="button-shadow cursor-pointer rounded-3xl border-[6px] border-[#27AAE1] px-6 py-2 lg:text-[40px] xl:text-[55px]"
+      >
+        Consulta Gratuita
+      </Typography>
+      <Typography as="p" variant="h5">¡Solicita una consulta gratis!</Typography>
+    </div>
+  </div>
+
+  <!-- Why cis -->
+  <div
+    class="mx-auto flex h-fit flex-row justify-between gap-20 p-10 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
+  >
+    <div class="flex w-2/5 items-center justify-center overflow-hidden">
+      <Image
+        class=""
+        src={images['/src/assets/landing/landing-martian.webp']()}
+        width={770}
+        height={810}
+        alt={'andrea'}
+      />
+    </div>
+    <div class="flex w-3/5 flex-col justify-center gap-9">
+      <Typography as="span" variant="h2" class="font-nexaBold font-bold text-primary">
+        ¿Por qué elegir Crazy Imagine para tu
+        <Typography as="span" variant="h2" class="font-nexaBold font-bold text-secondary"
+          >desarrollo web?</Typography
+        >
+      </Typography>
+      <Typography as="span" variant="h4" class="font-nexaLight text-[#333]">
+        Estamos comprometidos a ofrecer soluciones web modernas y funcionales que optimicen tu
+        negocio.
+        <br />
+        <br />
+        Nuestro equipo de expertos en programación te guiará desde la idea inicial hasta el lanzamiento
+        final, asegurando que cada detalle esté alineado con tus objetivos.
+      </Typography>
+    </div>
+  </div>
+
+  <!-- Our services -->
+  <div class="mx-auto flex h-fit flex-col gap-20 p-10 2xl:container md:px-5 lg:px-10 lg:pb-20">
+    <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
+      Nuestros <Typography as="span" variant="h2" class="font-nexaBold font-bold text-secondary">
+        Servicios
+      </Typography>
+    </Typography>
+    <div class="grid w-full gap-14 md:grid-cols-2 xl:grid-cols-3">
+      {ourServices.map((service) => <OurServicesLanding service={service} />)}
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <div class="benefits-bg flex h-fit overflow-hidden sm:h-[900px] md:px-5 lg:px-10 lg:pb-20">
+    <div
+      class="relative mx-auto flex w-full flex-col items-center justify-center pt-20 2xl:container"
+    >
+      <Image
+        src={images['/src/assets/landing/planet.webp']()}
+        alt={'planet image'}
+        class="absolute -bottom-20 left-20 z-[1] w-[600px]"
+      />
+      <Typography variant="h2" as="p" class="z-20 mb-[60px] text-center font-nexaBold text-white"
+        >Beneficios de Trabajar con Crazy Imagine</Typography
+      >
+      <div class="w-[800px] items-center justify-center">
+        <LandingCarousel>
+          <Fragment>
+            {
+              benefits.map((item) => (
+                <article class="swiper-slide z-20 !flex !h-[650px] !w-[800px] flex-col gap-5 rounded-xl bg-white px-[50px] py-10">
+                  <div class="flex flex-col gap-[46px]">
+                    <div
+                      style={{ backgroundImage: `url(${item.image})` }}
+                      class="h-[350px] w-[700px] rounded-[20px] bg-cover bg-center bg-no-repeat object-scale-down"
+                    >
+                      {/* <Image
+                        src={images[item.image]()}
+                        alt={'group'}
+                        class="h-[300px] w-full rounded-[30px]"
+                      /> */}
+                    </div>
+                    <Typography
+                      variant={'h3'}
+                      as="p"
+                      class="text-center font-nexaBold text-secondary"
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant={'h5'}
+                      as="p"
+                      class="text-center font-nexaLight text-[30px] text-primary"
+                    >
+                      {item.content}
+                    </Typography>
+                  </div>
+                </article>
+              ))
+            }
+          </Fragment>
+        </LandingCarousel>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opportunities  -->
+  <div
+    class="mx-auto mt-[50px] flex h-fit flex-row justify-between gap-20 p-10 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
+  >
+    <div class="flex w-2/5 items-center justify-center overflow-hidden">
+      <Image
+        class=""
+        src={images['/src/assets/landing/sistem.webp']()}
+        width={770}
+        height={810}
+        alt={'andrea'}
+      />
+    </div>
+    <div class="flex w-3/5 flex-col justify-center gap-9">
+      <Typography as="span" variant="h2" class="font-nexaBold font-bold text-primary">
+        Oportunidades
+        <Typography as="span" variant="h2" class="font-nexaBold font-bold text-secondary"
+          >y Alcances</Typography
+        >
+      </Typography>
+      <Typography as="span" variant="h4" class="font-nexaLight text-[#333]">
+        Ya sea que necesites un sitio web, una aplicación móvil o una estrategia de marketing
+        digital,
+        <br />
+        <br />
+        Crazy Imagine está aquí para ayudarte a destacar en un mercado digital competitivo
+      </Typography>
+    </div>
+  </div>
+
+  <!-- Our process -->
+  <div
+    class="mx-auto flex h-fit flex-col gap-20 !bg-white p-10 2xl:container md:px-5 lg:px-10 lg:pb-20"
+  >
+    <OurProcess client:visible />
+  </div>
+
+  <!-- Ready to the next level -->
+  <div class="landing-hero-bg h-full w-full">
+    <div
+      class="relative mx-auto flex h-fit flex-col justify-between gap-20 p-10 2xl:container md:px-5 lg:px-10 lg:pb-[90px]"
+    >
+      <!-- seccion 1 -->
+      <div class="flex flex-row gap-10 pb-[150px] pt-[50px]">
+        <div class="flex w-1/2 items-center justify-center">
+          <Image
+            src={images['/src/assets/landing/rocket.webp']()}
+            alt={'rocket'}
+            class="w-[500px]"
+          />
+        </div>
+        <div class="flex w-1/2 items-center justify-center">
+          <Typography
+            as="p"
+            variant="h2"
+            class="font-nexaBold !text-[50px] font-bold !leading-[60px] text-white lg:!text-[70px] lg:!leading-[97px] xl:!text-[80px]"
+          >
+            ¿Listo para llevar tu negocio al siguiente nivel?
+          </Typography>
+        </div>
+      </div>
+
+      <Image
+        src={images['/src/assets/landing/satelit2.webp']()}
+        alt={'planet'}
+        class="absolute bottom-[450px] right-0 w-[300px] lg:bottom-[500px] lg:w-[350px]"
+      />
+      <!-- seccion 2 -->
+      <div class="h-full w-full pt-20">
+        <div
+          class="relative z-10 mx-auto h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10 sm:bg-secondary"
+        >
+          <div class="w-2/5"></div>
+          <div
+            class="absolute -bottom-[40px] -left-20 ml-auto flex flex-shrink-0 justify-end place-self-end lg:-bottom-[90px] xl:left-0"
+          >
+            <Image
+              class="h-[700px] w-full lg:h-[750px] 2xl:h-[900px]"
+              src={images['/src/assets/landing/tony.webp']()}
+              alt={'andrea'}
+            />
+          </div>
+          <div class="flex w-3/5 flex-col gap-4 p-[58px] px-10 pl-0 2xl:w-1/2 2xl:px-[100px]">
+            <!-- <button class="shadow-lg mb-10 rounded-[20px] bg-white p-4 text-secondary">
+              <Typography as="p" variant="h3" class="!text-[50px]"> Consulta Gratuita </Typography>
+            </button> -->
+            <Typography
+              as="a"
+              target={'_blank'}
+              variant="h3"
+              href="https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c"
+              class="mb-10 rounded-[20px] bg-white p-4 text-center !text-[50px] text-secondary shadow-lg"
+            >
+              Consulta Gratuita
+            </Typography>
+            <Typography as="p" variant="h3" class="!leading-[50px] text-white">
+              Contacta a Crazy Imagine y descubre cómo transformar tu presencia en línea.
+            </Typography>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</LandingLayout>

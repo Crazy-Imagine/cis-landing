@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Services } from '@/types/OurServicesLanding';
+
+interface Props {
+  service: Services;
+}
+
+const { service } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+---
+
+<div class="card flex min-h-[610px] flex-col items-center justify-around rounded-2xl">
+  <div class="card-inner">
+    <div class="card-front">
+      <Image
+        class={`${service.id === 3 ? 'h-[320px] mt-[30px]' : service.id === 6 ? 'h-[240px] mt-10' : 'h-[270px]'} w-[312px] self-center`}
+        src={images[service.image]()}
+        alt={service.title}
+      />
+      <div class="overflow-hidden transition-all duration-300">
+        <p class="text-center font-nexaBold text-[39px] font-bold text-white">
+          {service.title}
+        </p>
+      </div>
+    </div>
+    <div
+      class="card-back flex flex-col justify-center overflow-hidden"
+      set:html={service.content}
+    />
+  </div>
+</div>
