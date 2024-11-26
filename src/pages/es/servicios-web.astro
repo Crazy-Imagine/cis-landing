@@ -152,7 +152,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
                 <article class="swiper-slide z-20 !flex !h-[650px] !w-[800px] flex-col gap-5 rounded-xl bg-white px-[50px] py-10">
                   <div class="flex flex-col gap-[46px]">
                     <div
-                      style={{ backgroundImage: `url(${item.image})` }}
+                      style={{ backgroundImage: `url(/landing/${item.image}.webp)` }}
                       class="h-[350px] w-[700px] rounded-[20px] bg-cover bg-center bg-no-repeat object-scale-down"
                     >
                       {/* <Image
