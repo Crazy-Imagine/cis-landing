@@ -8,7 +8,7 @@ export function OurProcess() {
     setCurrentProcess(process);
   };
   return (
-    <div className="flex justify-center items-center gap-10">
+    <div className="flex items-center justify-center gap-10">
       <div className="flex w-1/2 flex-col gap-[32px]">
         {OUR_PROCESS.map((process) => (
           <div
@@ -27,12 +27,21 @@ export function OurProcess() {
         ))}
       </div>
       <div className="w-1/2">
-        <div style={{
-          ...(currentProcess.id === 4 && { height: '450px', overflow: 'hidden', backgroundImage: `url(${currentProcess.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }),
-        }} className={`w-full rounded-[30px] ${currentProcess.id === 4 ? 'h-[450px] overflow-hidden' : 'h-full '}`}>
-          {
-            currentProcess.id !== 4 && (
-              <img src={currentProcess.image} alt={currentProcess.title} className='rounded-[30px]'/>)}
+        <div
+          style={{
+            ...(currentProcess.id === 4 && {
+              height: '450px',
+              overflow: 'hidden',
+              backgroundImage: `url(${currentProcess.image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }),
+          }}
+          className={`w-full rounded-[30px] ${currentProcess.id === 4 ? 'h-[450px] overflow-hidden' : 'h-full '}`}
+        >
+          {currentProcess.id !== 4 && (
+            <img src={currentProcess.image} alt={currentProcess.title} className="rounded-[30px]" />
+          )}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import type { OurProcessProps } from "@/types/OurServicesLanding";
+import type { OurProcessProps } from '@/types/OurServicesLanding';
 
 export const ourServices = [
   {
@@ -128,22 +128,23 @@ export const benefits = [
   {
     image: '/src/assets/landing/group.webp',
     title: 'Equipo Especializado',
-    content: 'Profesionales en desarrollo web con experiencia en proyectos de diferentes sectores'
+    content: 'Profesionales en desarrollo web con experiencia en proyectos de diferentes sectores',
   },
   {
     image: '/src/assets/landing/support.webp',
     title: 'Soporte Continuo',
-    content: 'Ofrecemos soporte post-lanzamiento para ajustes y mejoras en tu sitio web.'
+    content: 'Ofrecemos soporte post-lanzamiento para ajustes y mejoras en tu sitio web.',
   },
   {
     image: '/src/assets/landing/flexibility.webp',
     title: 'Flexibilidad y Escalabilidad',
-    content: 'Desde sitios informativos hasta complejas tiendas en línea, diseñamos soluciones que crecen con tu negocio.'
+    content:
+      'Desde sitios informativos hasta complejas tiendas en línea, diseñamos soluciones que crecen con tu negocio.',
   },
   {
     image: '/src/assets/landing/transparency.webp',
     title: 'Transparencia y Comunicación',
-    content: 'Nos aseguramos de mantenerte al tanto del progreso del proyecto en cada etapa.'
+    content: 'Nos aseguramos de mantenerte al tanto del progreso del proyecto en cada etapa.',
   },
 ];
 
