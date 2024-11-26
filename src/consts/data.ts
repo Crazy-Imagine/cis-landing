@@ -126,23 +126,23 @@ export const ourServices = [
 
 export const benefits = [
   {
-    image: '/src/assets/landing/group.webp',
+    image: 'group',
     title: 'Equipo Especializado',
     content: 'Profesionales en desarrollo web con experiencia en proyectos de diferentes sectores',
   },
   {
-    image: '/src/assets/landing/support.webp',
+    image: 'support',
     title: 'Soporte Continuo',
     content: 'Ofrecemos soporte post-lanzamiento para ajustes y mejoras en tu sitio web.',
   },
   {
-    image: '/src/assets/landing/flexibility.webp',
+    image: 'flexibility',
     title: 'Flexibilidad y Escalabilidad',
     content:
       'Desde sitios informativos hasta complejas tiendas en línea, diseñamos soluciones que crecen con tu negocio.',
   },
   {
-    image: '/src/assets/landing/transparency.webp',
+    image: 'transparency',
     title: 'Transparencia y Comunicación',
     content: 'Nos aseguramos de mantenerte al tanto del progreso del proyecto en cada etapa.',
   },
@@ -152,25 +152,25 @@ export const OUR_PROCESS: OurProcessProps[] = [
   {
     id: 1,
     title: '1. Consultoría y Planificación',
-    image: '/src/assets/landing/group2.webp',
+    image: '/landing/group2.webp',
     content: 'Analizamos tus necesidades y establecemos un plan de acción.',
   },
   {
     id: 2,
     title: '2. Consultoría y Planificación',
-    image: '/src/assets/landing/develop.webp',
+    image: '/landing/develop.webp',
     content: 'Creamos soluciones que combinan funcionalidad y estética.',
   },
   {
     id: 3,
     title: '3. Consultoría y Planificación',
-    image: '/src/assets/landing/test.webp',
+    image: '/landing/test.webp',
     content: 'Aseguramos que cada detalle esté optimizado antes del lanzamiento.',
   },
   {
     id: 4,
     title: '4. Lanzamiento y Mantenimiento',
-    image: '/src/assets/landing/deploy.webp',
+    image: '/landing/deploy.webp',
     content: 'Implementación y soporte para garantizar el éxito continuo de tu proyecto.',
   },
 ];
