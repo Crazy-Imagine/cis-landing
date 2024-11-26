@@ -1,0 +1,254 @@
+---
+import ViewTransitions from 'astro/components/ViewTransitions.astro';
+import '@fontsource/roboto';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import Header from '@/components/LandingPage/Header.astro';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <ViewTransitions />
+  </head>
+  <body class="w-full overflow-x-hidden bg-white">
+    <main>
+      <Header />
+      <slot />
+    </main>
+
+    <style is:global>
+      :root {
+        --color-primary: #193174;
+        --color-secondary: #27aae1;
+        --color-accent: #67daff;
+        --color-blue-purple: #797ef6;
+        --color-grayish: #a4a4a6;
+        --color-slate-gray: #4f4f4f;
+        --color-smoke: rgba(235, 235, 235, 0.5);
+        --color-periwinkle: #888dff;
+        --color-sky-blue: #a7e4f5;
+        --color-fog-white: #fafafa;
+        --color-primary-with-transparency: rgba(25, 49, 116, 0.65);
+        --color-blue-purple-contrast: #595dc3;
+        --header-height: 90px;
+      }
+
+      @font-face {
+        font-family: 'Nexa Bold';
+        src: url('/fonts/Nexa-Bold.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Nexa Light';
+        src: url('/fonts/Nexa-Light.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      html {
+        font-family: system-ui, 'Nexa Bold', 'Nexa Light', 'Roboto', sans-serif;
+        background: #fff;
+      }
+
+      .card {
+        perspective: 1000px;
+      }
+      .card-inner {
+        @apply relative flex h-full w-full flex-col transition duration-500;
+        transform-style: preserve-3d;
+      }
+      .card:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+      .card-front,
+      .card-back {
+        @apply absolute inset-0 flex h-full w-full flex-col rounded-lg;
+        backface-visibility: hidden;
+      }
+
+      .card-front:hover {
+        background-color: #27aae1;
+      }
+      .card-front {
+        background-color: #193174;
+        justify-content: space-around;
+      }
+      .card-back {
+        color: white;
+        font-size: 32px;
+        background-color: #27aae1;
+        transform: rotateY(180deg);
+        padding: 20px 50px;
+      }
+
+      .card-back ul {
+        color: white;
+        font-size: 32px;
+        font-weight: 700;
+        text-decoration: dotted;
+        list-style: disc;
+        padding-left: 40px;
+      }
+
+      .landing-hero-bg {
+        background: linear-gradient(180deg, #27aae1 0%, #193174 100%);
+      }
+      .benefits-bg {
+        background: linear-gradient(270deg, #193174 0%, #27aae1 100%);
+      }
+      .button-shadow {
+        box-shadow: 0px 4px 5px 3px rgba(0, 0, 0, 0.25);
+      }
+
+      .swiper-button-prev:after,
+      .swiper-button-next:after {
+        color: white;
+        font-weight: 900;
+      }
+
+      @media screen and (min-width: 1550px) {
+        .swiper-button-prev,
+        #custom-prev {
+          left: 300px;
+        }
+        .swiper-button-next,
+        #custom-next {
+          right: 300px;
+        }
+      }
+
+      @media screen and (max-width: 1549px) {
+        .swiper-button-prev,
+        #custom-prev {
+          left: 250px;
+        }
+        .swiper-button-next,
+        #custom-next {
+          right: 250px;
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        .swiper-button-prev,
+        #custom-prev {
+          left: 10px;
+        }
+        .swiper-button-next,
+        #custom-next {
+          right: 10px;
+        }
+      }
+
+      .text-button {
+        @apply max-w-[40px]; /* Inicia con el ancho de la imagen */
+        @apply transition-all duration-700;
+        width: 0;
+      }
+
+      .text-button,
+      .text-content {
+        opacity: 0;
+      }
+
+      .text-button.expanded {
+        @apply max-w-[300px]; /* Expande el contenedor para mostrar todo el texto */
+        width: 250px;
+        /* opacity: 100; */
+      }
+
+      .text-content {
+        @apply translate-x-full opacity-0;
+        @apply transition-all duration-700;
+      }
+
+      .text-button,
+      .text-content.visible {
+        @apply translate-x-0 opacity-100;
+      }
+
+      article.blog-content {
+        *:not(h1, h2, h3, h4, h5, h6, code, pre) {
+          @apply font-roboto text-base md:text-xl;
+        }
+
+        h2,
+        h3 {
+          @apply mb-2.5 font-nexaBold text-2xl md:text-3xl;
+        }
+
+        h4,
+        h5,
+        h6 {
+          @apply mb-2.5 font-nexaBold text-xl md:text-2xl;
+        }
+
+        p {
+          @apply mb-8;
+        }
+
+        pre {
+          @apply mb-8 w-full max-w-full overflow-x-hidden;
+        }
+
+        code {
+          @apply inline-block w-full max-w-full overflow-x-auto;
+        }
+
+        img {
+          @apply my-10;
+        }
+
+        ul,
+        ol {
+          @apply mb-10  pl-5 md:pl-10;
+          list-style: initial;
+
+          & li {
+            @apply mb-2.5;
+          }
+        }
+      }
+
+      article.pricing-plan {
+        .perks {
+          ul {
+            list-style-type: initial;
+            padding-left: 16px;
+          }
+
+          li {
+            @apply font-roboto text-[14px];
+          }
+        }
+      }
+
+      #service-description {
+        p:not(:last-child) {
+          @apply mb-4;
+        }
+      }
+
+      article.privacy-policy {
+        @apply space-y-5 font-nexaLight text-xl;
+
+        h2 {
+          @apply font-nexaBold text-3xl text-primary;
+        }
+
+        h3 {
+          @apply font-nexaBold;
+        }
+
+        ul {
+          list-style-type: initial;
+          padding-left: 16px;
+        }
+      }
+    </style>
+  </body>
+</html>
