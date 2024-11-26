@@ -1,0 +1,64 @@
+---
+import 'swiper/css';
+import 'swiper/css/keyboard';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+---
+
+<div class="swiper mySwiper !static">
+  <div class="swiper-wrapper">
+    <slot />
+  </div>
+
+  <div class="swiper-pagination !relative !bottom-0"></div>
+  <div id="custom-next" class="swiper-button-next"></div>
+  <div id="custom-prev" class="swiper-button-prev"></div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Keyboard, Navigation, Pagination } from 'swiper/modules';
+  import type { SwiperOptions } from 'swiper/types';
+
+  document.addEventListener('astro:page-load', () => {
+    const swiper = new Swiper('.mySwiper', {
+      modules: [Keyboard, Pagination, Navigation],
+      loop: true,
+      spaceBetween: 50,
+      slidesPerView: 1,
+      // centeredSlides: true,
+      // centeredSlidesBounds: true,
+      width: 800,
+      // breakpoints: {
+      //   0: {
+      //     slidesPerView: 1,
+      //   },
+      //   600: {
+      //     slidesPerView: 2,
+      //   },
+      //   960: {
+      //     slidesPerView: 3,
+      //   },
+      //   1280: {
+      //     slidesPerView: 4,
+      //   },
+      //   1920: {
+      //     slidesPerView: 4,
+      //   },
+      // },
+      // loop: true,
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      // keyboard: {
+      //   enabled: true,
+      // },
+    } as SwiperOptions);
+  });
+</script>

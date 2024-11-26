@@ -1,0 +1,47 @@
+---
+import CISLogo from '@/icons/CIS.astro';
+import LinkPill from '@/components/LinkPill.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const DYNAMIC_PAGES = ['blog', 'projects'];
+const pathname = Astro.url.pathname;
+
+let isTransparentBackground = false;
+
+if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
+  const paths = pathname.split('/').filter((value) => value !== '' && value !== 'es');
+  isTransparentBackground = paths.length === 1;
+}
+---
+
+<div
+  class:list={[
+    'sticky left-0 right-0 top-0 z-[1000] max-h-screen',
+    {
+      'bg-primary-with-transparency': !isTransparentBackground,
+      'bg-transparent': isTransparentBackground,
+    },
+  ]}
+  id="sticky-header"
+>
+  <header class="mx-auto px-4 2xl:container md:px-5 lg:px-10 min-[1546px]:px-0">
+    <nav class="flex h-[var(--header-height)] items-center justify-between">
+      <a class="inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+        <CISLogo />
+      </a>
+
+      <LinkPill
+        variant="outlined"
+        class="inline-block"
+        href={'https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c'}
+        aria-label={t('aria.contact-us-link')}
+      >
+        {t('common.contact-us')}
+      </LinkPill>
+    </nav>
+  </header>
+</div>
