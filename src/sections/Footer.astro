@@ -61,8 +61,14 @@ const translatePath = useTranslatedPath(lang);
 
     <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
       <Phone />
-      <a href={`tel:${CIS_INFORMATION.plainPhoneNumber}`}>
-        {CIS_INFORMATION.phoneNumber}
+      <a href={`tel:${CIS_INFORMATION.plainPhoneNumberUS}`}>
+        {CIS_INFORMATION.phoneNumberUS}
+      </a>
+    </p>
+    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+      <Phone />
+      <a href={`tel:${CIS_INFORMATION.plainPhoneNumberVE}`}>
+        {CIS_INFORMATION.phoneNumberVE}
       </a>
     </p>
   </div>
