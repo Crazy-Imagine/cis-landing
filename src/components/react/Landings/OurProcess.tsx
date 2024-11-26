@@ -29,19 +29,25 @@ export function OurProcess() {
       <div className="w-1/2">
         <div
           style={{
-            ...(currentProcess.id === 4 && {
-              height: '450px',
-              overflow: 'hidden',
-              backgroundImage: `url(${currentProcess.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }),
+            ...(currentProcess.id === 4
+              ? {
+                  overflow: 'hidden',
+                  backgroundImage: `url(${currentProcess.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }
+              : {
+                  backgroundImage: `url(${currentProcess.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }),
+            height: '450px',
           }}
-          className={`w-full rounded-[30px] ${currentProcess.id === 4 ? 'h-[450px] overflow-hidden' : 'h-full '}`}
+          className={`our-process-img rounded-[30px] ${currentProcess.id === 4 ? 'h-[450px] overflow-hidden' : 'h-full '}`}
         >
-          {currentProcess.id !== 4 && (
+          {/* {currentProcess.id !== 4 && (
             <img src={currentProcess.image} alt={currentProcess.title} className="rounded-[30px]" />
-          )}
+          )} */}
         </div>
       </div>
     </div>
