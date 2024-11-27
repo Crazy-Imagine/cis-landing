@@ -40,19 +40,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
     >
       <div class="w-full p-10 lg:w-[79%] lg:gap-4 lg:p-[58px]">
         <Typography
-          class="font-bold capitalize leading-[30px] tracking-[1.4px] lg:!text-[80px] 2xl:!text-[90px]"
+          class="hidden font-bold capitalize leading-[30px] tracking-[1.4px] md:block lg:text-left lg:!text-[80px] 2xl:!text-[90px]"
           as="h1"
           variant="h1"
         >
-          Crazy Imagine Sofware
+          Crazy Imagine Software
         </Typography>
 
-        <Typography class="my-5 lg:my-10" as="p" variant="h3">
+        <Typography class="my-5 mt-0 lg:my-10" as="p" variant="h3">
           Ideas más allá de tu imaginación
         </Typography>
 
         <Typography class="mt-5 font-nexaLight lg:mt-10" as="p" variant="h4">
-          Somos un servicio de desarrollo web personalizado y profesional, ofrecemos páginas web
+          Somos un servicio de desarrollo web personalizado y profesional. Ofrecemos páginas web
           basadas en WordPress, eCommerce con WooCommerce y mucho más.
         </Typography>
       </div>
@@ -74,7 +74,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
       />
     </div>
 
-    <div class="mt-[74px] flex flex-col items-center justify-center gap-8">
+    <div class="mt-10 flex flex-col items-center justify-center gap-8 md:mt-[74px]">
       <Typography
         as="a"
         target={'_blank'}
@@ -90,7 +90,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
 
   <!-- Why cis -->
   <div
-    class="mx-auto flex h-fit flex-row justify-between gap-20 p-5 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
+    class="mx-auto flex h-fit flex-row justify-between gap-20 p-5 pt-10 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
   >
     <div class="hidden w-2/5 items-center justify-center overflow-hidden lg:flex">
       <Image
@@ -153,7 +153,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
           <Fragment>
             {
               benefits.map((item) => (
-                <article class="swiper-slide z-20 !flex h-[500px] !w-[290px] flex-col gap-5 rounded-xl bg-white px-5 py-10 sm:!w-[320px] md:!h-[650px] md:!w-[600px] md:px-10 lg:!w-[800px] lg:px-[50px]">
+                <article class="swiper-slide z-20 !flex !h-[550px] !w-[290px] flex-col gap-5 rounded-xl bg-white px-5 py-10 sm:!w-[320px] md:!h-[650px] md:!w-[600px] md:px-10 lg:!w-[800px] lg:px-[50px]">
                   <div class="flex flex-col gap-5 md:gap-[46px]">
                     <div
                       style={{ backgroundImage: `url(/landing/${item.image}.webp)` }}
