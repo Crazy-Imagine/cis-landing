@@ -1,5 +1,6 @@
 ---
-import CISLogo from '@/icons/CIS.astro';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 import LinkPill from '@/components/LinkPill.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
@@ -11,6 +12,7 @@ const DYNAMIC_PAGES = ['blog', 'projects'];
 const pathname = Astro.url.pathname;
 
 let isTransparentBackground = false;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
 if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
   const paths = pathname.split('/').filter((value) => value !== '' && value !== 'es');
@@ -31,7 +33,11 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
   <header class="mx-auto px-4 2xl:container md:px-5 lg:px-10 min-[1546px]:px-0">
     <nav class="flex h-[var(--header-height)] items-center justify-between">
       <a class="inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
-        <CISLogo />
+        <Image
+          src={images['/src/assets/landing/CIS.webp']()}
+          alt={'CIS Logo'}
+          class="h-[30px] w-[170px] md:h-[40px] md:w-[250px]"
+        />
       </a>
 
       <LinkPill
