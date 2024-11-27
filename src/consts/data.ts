@@ -6,7 +6,7 @@ export const ourServices = [
     title: `Desarrollo en WordPress`,
     image: '/src/assets/landing/landing-satelit.webp',
     content: `
-         Transforma tu presencia en línea con nuestro equipo de desarrollo en WordPress
+         Transforma tu presencia en línea con nuestro equipo de desarrollo en WordPress.
         Ofrecemos:
         <ul>
             <li>Diseño personalizado </li>
@@ -20,7 +20,7 @@ export const ourServices = [
     title: `E-commerce con WooCommerce`,
     image: '/src/assets/landing/jupiter.webp',
     content: `
-          Nuestros especialistas crean plataformas de comercio adaptadas a las necesidades de cada empresa. Como:
+          Nuestros especialistas crean plataformas de comercio adaptadas a las necesidades de cada empresa, como:
         <ul>
             <li>Integración de pagos </li>
             <li>Gestión de inventario  </li>
@@ -59,7 +59,7 @@ export const ourServices = [
     title: 'Mantenimiento Web',
     image: '/src/assets/landing/astronauta-2.webp',
     content: ` 
-         Mantenemos y optimizamos tu sitio web garantizando  su funcionamiento continuo y seguridad:
+         Mantenemos y optimizamos tu sitio web garantizando su funcionamiento continuo y seguridad:
       
         <ul class="mt-4 ">
             <li>Monitoreo y soporte continuo </li>
@@ -87,7 +87,7 @@ export const ourServices = [
     image: '/src/assets/landing/satelit.webp',
     content: ` 
         Optimizamos tus operaciones de desarrollo con prácticas ágiles de DevOps en AWS:
-        <br/>  <br/> Automatización Seguridad y escalabilidad
+        <br/>  <br/> Automatización, seguridad y escalabilidad.
         
         
         `,
@@ -97,7 +97,7 @@ export const ourServices = [
     title: 'Diseño UI/UX',
     image: '/src/assets/landing/alien.webp',
     content: ` 
-         Diseño visuales atractivos y centrados en el usuario:
+         Diseño visual atractivo y centrado en el usuario:
        
         <ul class="mt-4 ">
             <li>Interfaces intuitivas  </li>
@@ -124,7 +124,7 @@ export const benefits = [
   {
     image: 'group',
     title: 'Equipo Especializado',
-    content: 'Profesionales en desarrollo web con experiencia en proyectos de diferentes sectores',
+    content: 'Profesionales en desarrollo web con experiencia en proyectos de diferentes sectores.',
   },
   {
     image: 'support',
