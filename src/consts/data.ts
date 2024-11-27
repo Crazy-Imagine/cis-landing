@@ -5,12 +5,9 @@ export const ourServices = [
     id: 1,
     title: `Desarrollo en WordPress`,
     image: '/src/assets/landing/landing-satelit.webp',
-    content: ` <Typography class=" " as="p" variant="h3">
+    content: `
          Transforma tu presencia en línea con nuestro equipo de desarrollo en WordPress
-        </Typography>
-        <Typography class=" my-10" as="span" variant="h3">
-          Ofrecemos:
-        </Typography>
+        Ofrecemos:
         <ul>
             <li>Diseño personalizado </li>
             <li>Optimización SEO  </li>
@@ -22,9 +19,8 @@ export const ourServices = [
     id: 2,
     title: `E-commerce con WooCommerce`,
     image: '/src/assets/landing/jupiter.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: `
           Nuestros especialistas crean plataformas de comercio adaptadas a las necesidades de cada empresa. Como:
-        </Typography>
         <ul>
             <li>Integración de pagos </li>
             <li>Gestión de inventario  </li>
@@ -36,9 +32,9 @@ export const ourServices = [
     id: 3,
     title: 'Servicio de Desarrollo de Software Especializado',
     image: '/src/assets/landing/astronauta.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
           Ofrecemos soluciones web personalizadas, creando sitios funcionales y adaptativos:
-        </Typography>
+    
         <ul class="mt-4 ">
             <li>Diseño a medida </li>
             <li>Optimización y rendimiento  </li>
@@ -49,9 +45,9 @@ export const ourServices = [
     id: 4,
     title: 'Desarrollo de Aplicaciones Móviles',
     image: '/src/assets/landing/landing-meteorit.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
           Ofrecemos aplicaciones móviles innovadoras y personalizadas para llevar tu negocio al próximo nivel:
-        </Typography>
+      
         <ul class="mt-4 ">
             <li>Aplicaciones multiplataforma </li>
             <li>Experiencia de usuario  </li>
@@ -62,9 +58,9 @@ export const ourServices = [
     id: 5,
     title: 'Mantenimiento Web',
     image: '/src/assets/landing/astronauta-2.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
          Mantenemos y optimizamos tu sitio web garantizando  su funcionamiento continuo y seguridad:
-        </Typography>
+      
         <ul class="mt-4 ">
             <li>Monitoreo y soporte continuo </li>
             <li>Actualización de contenido  </li>
@@ -75,9 +71,9 @@ export const ourServices = [
     id: 6,
     title: 'Marketing Digital',
     image: '/src/assets/landing/martian.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
          Impulsa tu negocio en línea con estrategias de marketing digital efectivas:
-        </Typography>
+       
         <ul class="mt-4 ">
             <li>SEO </li>
             <li>Redes sociales </li>
@@ -89,10 +85,10 @@ export const ourServices = [
     id: 7,
     title: 'DevOps y Hosting en AWS',
     image: '/src/assets/landing/satelit.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
         Optimizamos tus operaciones de desarrollo con prácticas ágiles de DevOps en AWS:
         <br/>  <br/> Automatización Seguridad y escalabilidad
-        </Typography>
+        
         
         `,
   },
@@ -100,9 +96,9 @@ export const ourServices = [
     id: 8,
     title: 'Diseño UI/UX',
     image: '/src/assets/landing/alien.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
          Diseño visuales atractivos y centrados en el usuario:
-        </Typography>
+       
         <ul class="mt-4 ">
             <li>Interfaces intuitivas  </li>
             <li>Experiencia mejorada  </li>
@@ -113,9 +109,9 @@ export const ourServices = [
     id: 9,
     title: 'Soporte y Gestión de Proyectos',
     image: '/src/assets/landing/telescopio.webp',
-    content: ` <Typography class="mb-2 " as="p" variant="h3">
+    content: ` 
         Servicios de soporte personalizados para cubrir todas las necesidades operativas:
-        </Typography>
+      
         <ul class="mt-4 ">
             <li>Gestión de proyectos  </li>
             <li>Asistencia técnica  </li>
