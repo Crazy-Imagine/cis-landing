@@ -8,7 +8,8 @@ import Header from '@/components/LandingPage/Header.astro';
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <ViewTransitions />
   </head>
   <body class="w-full overflow-x-hidden bg-white">
@@ -80,7 +81,7 @@ import Header from '@/components/LandingPage/Header.astro';
       }
       .card-back {
         color: white;
-        font-size: 32px;
+        /* font-size: 32px; */
         background-color: #27aae1;
         transform: rotateY(180deg);
         padding: 20px 50px;
@@ -88,7 +89,8 @@ import Header from '@/components/LandingPage/Header.astro';
 
       .card-back ul {
         color: white;
-        font-size: 32px;
+        /* font-size: 32px; */
+        margin-top: 16px;
         font-weight: 700;
         text-decoration: dotted;
         list-style: disc;
@@ -111,53 +113,51 @@ import Header from '@/components/LandingPage/Header.astro';
         font-weight: 900;
       }
 
-      @media screen and (min-width: 1550px) {
+      @media screen and (max-width: 769px) {
         .swiper-button-prev,
         #custom-prev {
-          left: 300px;
+          left: 10px; /* Posición para pantallas muy pequeñas */
         }
         .swiper-button-next,
         #custom-next {
-          right: 300px;
+          right: 10px; /* Posición para pantallas muy pequeñas */
+        }
+      }
+
+      @media screen and (min-width: 1550px) {
+        .swiper-button-prev,
+        #custom-prev {
+          left: 300px; /* Posición para pantallas grandes */
+        }
+        .swiper-button-next,
+        #custom-next {
+          right: 300px; /* Posición para pantallas grandes */
+        }
+      }
+      @media screen and (min-width: 1550px) {
+        .our-process-img {
+          width: 700px;
+          height: 450px;
         }
       }
 
       @media screen and (max-width: 1549px) {
-        .swiper-button-prev,
-        #custom-prev {
-          left: 250px;
-        }
-        .swiper-button-next,
-        #custom-next {
-          right: 250px;
-        }
-      }
-
-      @media screen and (max-width: 400px) {
-        .swiper-button-prev,
-        #custom-prev {
-          left: 10px;
-        }
-        .swiper-button-next,
-        #custom-next {
-          right: 10px;
-        }
-      }
-      @media screen and (min-width: 1550px) {
         .our-process-img {
           width: 700px;
-        }
-      }
-
-      @media screen and (min-width: 1549px) {
-        .our-process-img {
-          width: 700px;
+          height: 450px;
         }
       }
 
       @media screen and (max-width: 1024px) {
         .our-process-img {
           width: 450px;
+          height: 450px;
+        }
+      }
+      @media screen and (max-width: 769px) {
+        .our-process-img {
+          width: 100%;
+          height: 225px;
         }
       }
 
