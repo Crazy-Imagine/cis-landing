@@ -1,7 +1,6 @@
 ---
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
 import '@fontsource/roboto';
-import 'sweetalert2/dist/sweetalert2.min.css';
 import Header from '@/components/LandingPage/Header.astro';
 ---
 
@@ -105,6 +104,16 @@ import Header from '@/components/LandingPage/Header.astro';
       }
       .button-shadow {
         box-shadow: 0px 4px 5px 3px rgba(0, 0, 0, 0.25);
+      }
+
+      .image-thanks-position {
+        bottom: calc(50% - 350px);
+      }
+
+      @media screen and (max-width: 1024px) {
+        .image-thanks-position {
+          bottom: calc(50% - 200px);
+        }
       }
 
       .swiper-button-prev:after,
@@ -228,42 +237,6 @@ import Header from '@/components/LandingPage/Header.astro';
           & li {
             @apply mb-2.5;
           }
-        }
-      }
-
-      article.pricing-plan {
-        .perks {
-          ul {
-            list-style-type: initial;
-            padding-left: 16px;
-          }
-
-          li {
-            @apply font-roboto text-[14px];
-          }
-        }
-      }
-
-      #service-description {
-        p:not(:last-child) {
-          @apply mb-4;
-        }
-      }
-
-      article.privacy-policy {
-        @apply space-y-5 font-nexaLight text-xl;
-
-        h2 {
-          @apply font-nexaBold text-3xl text-primary;
-        }
-
-        h3 {
-          @apply font-nexaBold;
-        }
-
-        ul {
-          list-style-type: initial;
-          padding-left: 16px;
         }
       }
     </style>

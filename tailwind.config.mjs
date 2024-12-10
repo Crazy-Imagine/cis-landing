@@ -8,6 +8,7 @@ export default {
       backgroundImage: {
         'hero': "url('/img/backgrounds/hero.webp')",
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
+        'thanks-page': "url('/img/backgrounds/satelit2.webp')",
       },
       fontFamily: {
         nexaBold: ['"Nexa Bold"', ...defaultTheme.fontFamily.sans],
