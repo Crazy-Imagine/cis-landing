@@ -2,11 +2,15 @@
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
 import '@fontsource/roboto';
 import Header from '@/components/LandingPage/Header.astro';
+import GoogleTagLanding from '@/components/external-scripts/GoogleTagLanding.astro';
+
+const isThanksPage = Astro.url.pathname.includes('/gracias');
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
+    {isThanksPage && <GoogleTagLanding />}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <ViewTransitions />
