@@ -153,13 +153,13 @@ export const OUR_PROCESS: OurProcessProps[] = [
   },
   {
     id: 2,
-    title: '2. Consultoría y Planificación',
+    title: '2. Desarrollo y Diseño',
     image: '/landing/develop.webp',
     content: 'Creamos soluciones que combinan funcionalidad y estética.',
   },
   {
     id: 3,
-    title: '3. Consultoría y Planificación',
+    title: '3. Pruebas y Ajustes',
     image: '/landing/test.webp',
     content: 'Aseguramos que cada detalle esté optimizado antes del lanzamiento.',
   },
