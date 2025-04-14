@@ -17,7 +17,7 @@ interface IForm {
   phone: string;
   linkedin?: string;
   website?: string;
-  curriculum?: any;
+  curriculum: any;
   reference?: string;
 }
 
@@ -50,7 +50,7 @@ function WorkWithUsForm({ url }: Props) {
         lastName: yup.string().required(t('errors.lastName-required')),
         email: yup
           .string()
-          .email(t('errors.email-is-not-valid'))
+          .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, t('errors.email-is-not-valid'))
           .required(t('errors.email-required')),
         phone: yup
           .string()
@@ -61,6 +61,7 @@ function WorkWithUsForm({ url }: Props) {
         reference: yup.string(),
         curriculum: yup
           .mixed()
+          .required(t('errors.curriculum-required'))
           .test('fileSize', t('errors.curriculum-size'), (value) => {
             const _files = value as FileList;
             if (!_files || _files?.length === 0) return true;
@@ -116,10 +117,11 @@ function WorkWithUsForm({ url }: Props) {
             text: t('forms.something-went-wrong'),
             icon: 'error',
           });
-          return;
         }
       }
     }
+
+    // Todo: Revisar fallo en envio de correo
 
     try {
       await postApi({
@@ -184,6 +186,11 @@ function WorkWithUsForm({ url }: Props) {
             {t('forms.attach')}
           </p>
           <p>{t('forms.max-size')}</p>
+          {errors.curriculum?.message && (
+            <p className="mt-2 flex items-center gap-1.5 text-sm text-red-600">
+              {errors.curriculum.message.toString()}
+            </p>
+          )}
 
           {curriculum && curriculum.length > 0 && !errors.curriculum && (
             <p className="mt-2 flex items-center gap-1.5 text-sm text-green-600">
@@ -212,6 +219,7 @@ function WorkWithUsForm({ url }: Props) {
           register={register}
           errors={errors}
           ref={inputRef}
+          accept=".pdf, .doc, .docx, .jpg, .jpeg, .png"
         />
       </div>
 

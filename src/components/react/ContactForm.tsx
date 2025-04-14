@@ -39,13 +39,14 @@ function ContactForm({ url }: Props) {
         country: yup.string(),
         email: yup
           .string()
-          .email(t('errors.email-is-not-valid'))
+          .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, t('errors.email-is-not-valid'))
           .required(t('errors.email-required')),
         comments: yup.string().required(t('errors.comments-required')),
         projectType: yup.string(),
         howDidYouFindUs: yup.string(),
       })
     ),
+    mode: 'onSubmit',
   });
 
   const onSubmit: SubmitHandler<IForm> = async (data) => {
