@@ -223,6 +223,7 @@ export const ui = {
     'errors.webSite-required': 'Website is required',
     'errors.curriculum-size': 'The file must have a maximum size of 2 MB.',
     'errors.curriculum-type': 'Only the following formats are accepted: .pdf, .jpg, .jpeg, .doc',
+    'errors.curriculum-required': 'Curriculum is required',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, All Rights Reserved`,
@@ -450,6 +451,7 @@ export const ui = {
     'errors.webSite-required': 'Sitio Web es Requerido',
     'errors.curriculum-size': 'El archivo debe tener un tamaño máximo de 2 MB.',
     'errors.curriculum-type': 'Solo se aceptan los siguientes formatos: .pdf, .jpg, .jpeg, .doc',
+    'errors.curriculum-required': 'Currículum es requerido',
 
     // Footer Keys
     'footer.all-rights-reserved': `©${year} Crazy Imagine, Todos los derechos reservados`,
