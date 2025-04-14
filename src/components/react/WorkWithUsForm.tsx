@@ -94,7 +94,7 @@ function WorkWithUsForm({ url }: Props) {
   const curriculum = watch('curriculum') as FileList | undefined;
 
   const onSubmit: SubmitHandler<IForm> = async (data) => {
-    // let fileId: number | null = null;
+    let fileId: number | null = null;
 
     if (data.curriculum !== undefined) {
       if ((data.curriculum as FileList).length > 0) {
@@ -104,24 +104,13 @@ function WorkWithUsForm({ url }: Props) {
         formData.append('files', file);
 
         try {
-          // const response = await postApi<Upload[]>({
-          //   endpoint: 'upload',
-          //   data: formData,
-          //   contentType: 'multipart/form-data',
-          // });
-          await postApi<Upload[]>({
+          const response = await postApi<Upload[]>({
             endpoint: 'upload',
             data: formData,
             contentType: 'multipart/form-data',
           });
 
-          // fileId = response[0].id;
-          reset();
-          await Swal.fire({
-            title: t('forms.thank-you'),
-            text: t('forms.submission-received'),
-            icon: 'success',
-          });
+          fileId = response[0].id;
         } catch (e) {
           await Swal.fire({
             title: t('forms.oops'),
@@ -134,35 +123,35 @@ function WorkWithUsForm({ url }: Props) {
 
     // Todo: Revisar fallo en envio de correo
 
-    // try {
-    //   await postApi({
-    //     endpoint: 'curriculums',
-    //     data: {
-    //       firstName: data.firstName,
-    //       lastName: data.lastName,
-    //       email: data.email,
-    //       phone: data.phone,
-    //       linkedin: data.linkedin,
-    //       website: data.website,
-    //       reference: data.reference,
-    //       ...(fileId ? { curriculum: fileId } : {}),
-    //     },
-    //   });
+    try {
+      await postApi({
+        endpoint: 'curriculums',
+        data: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          linkedin: data.linkedin,
+          website: data.website,
+          reference: data.reference,
+          ...(fileId ? { curriculum: fileId } : {}),
+        },
+      });
 
-    //   await Swal.fire({
-    //     title: t('forms.thank-you'),
-    //     text: t('forms.submission-received'),
-    //     icon: 'success',
-    //   });
+      await Swal.fire({
+        title: t('forms.thank-you'),
+        text: t('forms.submission-received'),
+        icon: 'success',
+      });
 
-    //   reset();
-    // } catch (e) {
-    //   await Swal.fire({
-    //     title: t('forms.oops'),
-    //     text: t('forms.something-went-wrong'),
-    //     icon: 'error',
-    //   });
-    // }
+      reset();
+    } catch (e) {
+      await Swal.fire({
+        title: t('forms.oops'),
+        text: t('forms.something-went-wrong'),
+        icon: 'error',
+      });
+    }
   };
 
   return (
