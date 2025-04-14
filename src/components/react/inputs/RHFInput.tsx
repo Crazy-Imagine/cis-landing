@@ -4,11 +4,12 @@ import type { BaseInputProps } from '@/types/Input.ts';
 
 interface Props extends BaseInputProps {
   type?: React.HTMLInputTypeAttribute;
+  accept?: React.InputHTMLAttributes<HTMLInputElement>['accept'];
 }
 
 const RHFInput = forwardRef(
   (
-    { name, label, errors, register, type = 'text' }: Props,
+    { name, label, errors, register, accept, type = 'text' }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const hasError = !!errors[name];
@@ -28,6 +29,7 @@ const RHFInput = forwardRef(
             id={name}
             type="file"
             className="hidden"
+            accept={accept}
             {...ariaValues}
             {...rest}
             ref={(instance) => {
