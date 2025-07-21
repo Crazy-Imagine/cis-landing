@@ -147,26 +147,30 @@ export const benefits = [
 export const OUR_PROCESS: OurProcessProps[] = [
   {
     id: 1,
-    title: '1. Consultoría y Planificación',
-    image: '/landing/group2.webp',
-    content: 'Analizamos tus necesidades y establecemos un plan de acción.',
+    title: '1. Acceso Rápido a Talento y Flexibilidad',
+    image: '/landing/astronauta.webp',
+    content:
+      'Permite incorporar rápidamente profesionales especializados y ajustar el tamaño de su equipo según las necesidades del proyecto, escalando de forma eficiente.',
   },
   {
     id: 2,
-    title: '2. Desarrollo y Diseño',
-    image: '/landing/develop.webp',
-    content: 'Creamos soluciones que combinan funcionalidad y estética.',
+    title: '2. Reducción de Costos y Riesgos',
+    image: '/landing/meteorit.webp',
+    content:
+      'Evita los gastos significativos de la contratación tradicional y minimiza el riesgo de incorporaciones inadecuadas a largo plazo.',
   },
   {
     id: 3,
-    title: '3. Pruebas y Ajustes',
-    image: '/landing/test.webp',
-    content: 'Aseguramos que cada detalle esté optimizado antes del lanzamiento.',
+    title: '3. Control y Eficiencia Aumentada',
+    image: '/landing/telescopio.webp',
+    content:
+      'Mantiene la gestión directa de sus proyectos mientras integra talento que acelera el desarrollo y mejora la productividad.',
   },
   {
     id: 4,
-    title: '4. Lanzamiento y Mantenimiento',
-    image: '/landing/deploy.webp',
-    content: 'Implementación y soporte para garantizar el éxito continuo de tu proyecto.',
+    title: '4. Foco Estratégico y Diversificación',
+    image: '/landing/satelit.webp',
+    content:
+      'Permite a su empresa concentrarse en sus actividades principales al delegar la búsqueda de talento, enriqueciendo su equipo con nuevas perspectivas y habilidades.',
   },
 ];

@@ -121,8 +121,6 @@ function WorkWithUsForm({ url }: Props) {
       }
     }
 
-    // Todo: Revisar fallo en envio de correo
-
     try {
       await postApi({
         endpoint: 'curriculums',

@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 ---
 
-<div class="swiper mySwiper !static">
+<div class="swiper mySwiper !static w-full">
   <div class="swiper-wrapper">
     <slot />
   </div>
@@ -24,30 +24,42 @@ import 'swiper/css/navigation';
     const swiper = new Swiper('.mySwiper', {
       modules: [Keyboard, Pagination, Navigation],
       loop: true,
-      spaceBetween: 50,
-      slidesPerView: 1,
-      // centeredSlides: true,
-      // centeredSlidesBounds: true,
-      // width: 600,
+      grabCursor: true,
+      spaceBetween: 90,
+      slidesPerView: 3, // Por defecto 3 items
+      centeredSlides: false, // Por defecto no centrado
       breakpoints: {
         0: {
-          width: 290,
+          slidesPerView: 1,
+          centeredSlides: true,
+          centeredSlidesBounds: true,
+          centerInsufficientSlides: true,
+          spaceBetween: 30,
         },
-        768: {
-          width: 600,
+        600: {
+          slidesPerView: 2,
+          centeredSlides: true,
+          centeredSlidesBounds: true,
+          centerInsufficientSlides: true,
+          spaceBetween: 40,
         },
-        960: {
-          width: 600,
+        1024: {
+          slidesPerView: 2,
+          centeredSlides: false,
+          spaceBetween: 50,
         },
         1280: {
-          width: 800,
+          slidesPerView: 3,
+          centeredSlides: false,
+          spaceBetween: 90,
         },
         1920: {
-          width: 800,
+          slidesPerView: 3,
+          centeredSlides: false,
+          spaceBetween: 90,
         },
       },
-      // loop: true,
-      grabCursor: true,
+
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
