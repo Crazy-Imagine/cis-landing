@@ -88,6 +88,91 @@ interface Props {
         transform: rotateY(180deg);
       }
 
+      /* Floating Button */
+      .text-button {
+        @apply max-w-[40px]; /* Inicia con el ancho de la imagen */
+        @apply transition-all duration-700;
+        width: 0;
+      }
+
+      .text-button,
+      .text-content {
+        opacity: 0;
+      }
+
+      .text-button.expanded {
+        @apply max-w-[300px]; /* Expande el contenedor para mostrar todo el texto */
+        width: 250px;
+        /* opacity: 100; */
+      }
+
+      .text-content {
+        @apply translate-x-full opacity-0;
+        @apply transition-all duration-700;
+      }
+
+      .text-button,
+      .text-content.visible {
+        @apply translate-x-0 opacity-100;
+      }
+
+      /* Swiper arrows */
+      .swiper-button-landing-prev:after,
+      .swiper-button-landing-next:after {
+        color: white;
+        font-weight: 900;
+      }
+
+      @media screen and (max-width: 769px) {
+        .swiper-button-landing-prev,
+        #custom-prev {
+          left: 10px; /* Posición para pantallas muy pequeñas */
+        }
+        .swiper-button-landing-next,
+        #custom-next {
+          right: 10px; /* Posición para pantallas muy pequeñas */
+        }
+      }
+
+      @media screen and (min-width: 1550px) {
+        .swiper-button-landing-prev,
+        #custom-prev {
+          left: -70px;
+        }
+        .swiper-button-landing-next,
+        #custom-next {
+          right: -70px;
+        }
+      }
+
+      /* Our Process */
+      @media screen and (min-width: 1550px) {
+        .our-process-img {
+          width: 700px;
+          height: 450px;
+        }
+      }
+
+      @media screen and (max-width: 1549px) {
+        .our-process-img {
+          width: 700px;
+          height: 450px;
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        .our-process-img {
+          width: 450px;
+          height: 450px;
+        }
+      }
+      @media screen and (max-width: 769px) {
+        .our-process-img {
+          width: 100%;
+          height: 225px;
+        }
+      }
+
       article.blog-content {
         *:not(h1, h2, h3, h4, h5, h6, code, pre) {
           @apply font-roboto text-base md:text-xl;
