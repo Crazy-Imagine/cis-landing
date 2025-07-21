@@ -9,7 +9,6 @@
 		"start": "astro dev --remote",
 		"build": "astro check && astro build --remote",
 		"preview": "astro preview",
-		
 		"astro": "astro",
 		"check": "astro check && tsc --noEmit",
 		"lint": "eslint --ext .astro,.ts,.js,.tsx . --ignore-pattern \"src/components/external-scripts/*\"",

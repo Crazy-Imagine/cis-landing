@@ -7,7 +7,6 @@ import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
 import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Footer from '@/sections/Footer.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -81,14 +80,14 @@ const SEO = {
   </div>
   <!-- Hero -->
   <div
-    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:!bg-hero md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
   >
     <div
       class="relative z-10 mx-auto h-full w-full items-center rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
     >
-      <div class="w-full p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[1010px]">
+      <div class="w-full p-4 md:p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[1010px]">
         <Typography
-          class="text-center text-[40px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px] 2xl:!text-[90px]"
+          class="text-center text-[35px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px] 2xl:!text-[90px]"
           as="h1"
           variant="h1"
         >
@@ -202,60 +201,58 @@ const SEO = {
         src="https://api.clientify.net/web-marketing/superforms/script/247903.js"></script>
     </div>
   </ResponsiveContainer>
-</Layout>
 
-<!-- News -->
-<ResponsiveContainer
-  background="bulbs"
-  class="relative z-50 flex flex-col items-center justify-center"
->
-  <Typography
-    class:list={[
-      'mb-10 text-center capitalize',
-      {
-        'text-primary': false,
-        'text-white': true,
-      },
-    ]}
-    as="h2"
-    variant="h2"
+  <!-- News -->
+  <ResponsiveContainer
+    background="bulbs"
+    class="relative z-50 flex flex-col items-center justify-center"
   >
-    Novedades
-  </Typography>
-  <Typography as="p" variant="h4" class="max-w-[740px] text-center font-nexaLight text-white">
-    ¡Recibe todas las noticias y novedades que tenemos para ti!
-  </Typography>
-
-  <form
-    id="form-news"
-    class="mt-[20px] flex h-[60px] w-full max-w-[740px] justify-between overflow-hidden rounded-[20px] border-4 border-solid border-[#27AAE1] md:mt-[78px] md:h-[87px]"
-    onsubmit=""
-  >
-    <input
-      type="email"
-      name="email"
-      placeholder="Ingresa tu correo electrónico"
-      class="h-full w-[70%] rounded-none border-none bg-transparent px-4 py-6 text-white placeholder:text-white focus:border-none focus:outline-none focus:ring-0 md:text-[36px]"
-    />
-    <button
-      type="submit"
-      class="flex h-full w-[30%] cursor-pointer items-center justify-center rounded-none border-none bg-[#27AAE1] text-white lg:text-[24px]"
+    <Typography
+      class:list={[
+        'mb-10 text-center capitalize',
+        {
+          'text-primary': false,
+          'text-white': true,
+        },
+      ]}
+      as="h2"
+      variant="h2"
     >
-      Suscribirte
-    </button>
-  </form>
-</ResponsiveContainer>
-<!-- Our process -->
-<div
-  class="mx-auto flex h-fit flex-col gap-20 !bg-white p-5 2xl:container md:px-5 lg:px-10 lg:py-20"
->
-  <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
-    Beneficios
-  </Typography>
-  <OurProcess client:visible />
-</div>
+      Novedades
+    </Typography>
+    <Typography as="p" variant="h4" class="max-w-[740px] text-center font-nexaLight text-white">
+      ¡Recibe todas las noticias y novedades que tenemos para ti!
+    </Typography>
 
-<Footer />
+    <form
+      id="form-news"
+      class="mt-[20px] flex h-[60px] w-full max-w-[740px] justify-between overflow-hidden rounded-[20px] border-4 border-solid border-[#27AAE1] md:mt-[78px] md:h-[87px]"
+      onsubmit=""
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="Ingresa tu correo electrónico"
+        class="h-full w-[70%] rounded-none border-none bg-transparent px-4 py-6 text-white placeholder:text-white focus:border-none focus:outline-none focus:ring-0 md:text-[36px]"
+      />
+      <button
+        type="submit"
+        class="flex h-full w-[30%] cursor-pointer items-center justify-center rounded-none border-none bg-[#27AAE1] text-white lg:text-[24px]"
+      >
+        Suscribirte
+      </button>
+    </form>
+  </ResponsiveContainer>
+  <!-- Our process -->
+  <div
+    class="mx-auto flex h-fit flex-col gap-20 !bg-white p-5 2xl:container md:px-5 lg:px-10 lg:py-20"
+  >
+    <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
+      Beneficios
+    </Typography>
+    <OurProcess client:visible />
+  </div>
+</Layout>
 
 <script>
   const container = document.querySelector('.container-button');
