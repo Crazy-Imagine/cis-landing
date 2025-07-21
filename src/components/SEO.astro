@@ -1,6 +1,8 @@
 ---
 import PixelScript from './external-scripts/PixelScript.astro';
 import ApolloScript from './external-scripts/ApolloScript.astro';
+import GoogleTagMananger from './external-scripts/GoogleTagMananger.astro';
+import MetaScript from './external-scripts/MetaScript.astro';
 import type { SEO } from '@/types/strapi/SEO';
 
 interface Props {
@@ -99,4 +101,6 @@ const keywords = seo?.keywords
 
 <!--External Scripts-->
 <ApolloScript />
+<GoogleTagMananger />
+<MetaScript />
 {isContactPage && <PixelScript />}

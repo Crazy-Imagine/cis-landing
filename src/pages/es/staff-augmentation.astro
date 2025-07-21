@@ -1,0 +1,300 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Typography from '@/components/Typography.astro';
+import Layout from '@/layouts/Layout.astro';
+import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
+import { OurProcess } from '@/components/react/Landings/OurProcess';
+import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Footer from '@/sections/Footer.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const ourTalents = [
+  {
+    id: 1,
+    attributes: {
+      image: {
+        src: '/src/assets/landing/person.webp',
+        alt: 'person',
+      },
+      title: 'Especialista Full-Stack (Mid-Senior)',
+      technologies: 'Mid-Senior | Laravel, Vue.js, PHP',
+      description:
+        'Un constructor de sistemas de principio a fin. Este desarrollador es un experto en crear aplicaciones web completas, robustas y escalables. Domina el backend con la fiabilidad de PHP y Laravel y da vida a experiencias de usuario interactivas y modernas con Vue.js. Es la combinación perfecta de experiencia probada y pragmatismo, ideal para equipos que necesitan acelerar el desarrollo de funcionalidades clave con código limpio y mantenible.',
+    },
+  },
+  {
+    id: 2,
+    attributes: {
+      image: {
+        src: '/src/assets/landing/person.webp',
+        alt: 'person',
+      },
+      title: 'Arquitecto de Software (Senior)',
+      technologies: 'Senior | Angular, Next, Nest, React, Node',
+      description:
+        'Un líder técnico con profunda experiencia en la arquitectura de aplicaciones JavaScript de alto rendimiento. Capaz de diseñar sistemas complejos desde cero, desde APIs robustas con Node.js y Nest.js hasta interfaces de usuario optimizadas para SEO con Next.js, React o Angular. Su visión estratégica y su capacidad para mentorizar lo convierten en un pilar fundamental para cualquier proyecto ambicioso.',
+    },
+  },
+  {
+    id: 3,
+    attributes: {
+      image: {
+        src: '/src/assets/landing/person.webp',
+        alt: 'person',
+      },
+      title: 'Desarrollador Front-End y Móvil (Junior)',
+      technologies: 'Junior | React, Flutter',
+      description:
+        'Un desarrollador enérgico y versátil, especializado en la creación de interfaces de usuario modernas para web y móvil. Con una base sólida en React, es capaz de construir componentes web interactivos. Su conocimiento de Flutter le permite llevar esas mismas experiencias al mundo móvil, creando aplicaciones multiplataforma fluidas. Es el perfil ideal para dar velocidad a un equipo, materializar diseños y crecer junto al proyecto.',
+    },
+  },
+];
+
+const SEO = {
+  metaTitle: 'Staff Augmentation',
+  metaDescription: 'Staff Augmentation',
+};
+---
+
+<Layout seo={SEO}>
+  <!-- Button -->
+  <div
+    class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-secondary p-5"
+  >
+    <Image
+      src={images['/src/assets/landing/atention.webp']()}
+      class="h-[40px] w-[40px]"
+      alt="button"
+    />
+    <div class="text-button max-w-[40px] overflow-hidden transition-all duration-700">
+      <Typography
+        as="p"
+        variant="h5"
+        class="text-content ml-4 w-[500px] translate-x-full text-white opacity-0 transition-all duration-700"
+      >
+        Consulta Gratuita
+      </Typography>
+    </div>
+  </div>
+  <!-- Hero -->
+  <div
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:!bg-hero md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+  >
+    <div
+      class="relative z-10 mx-auto h-full w-full items-center rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
+    >
+      <div class="w-full p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[1010px]">
+        <Typography
+          class="text-center text-[40px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px] 2xl:!text-[90px]"
+          as="h1"
+          variant="h1"
+        >
+          Suma un Desarrollador Senior a tu Equipo Hoy
+        </Typography>
+
+        <Typography
+          class="mt-5 text-center font-nexaLight text-[25px] text-[#193476] md:text-start md:text-[36px] lg:mt-10"
+          as="p"
+          variant="h4"
+        >
+          Evita largos procesos de contratación.
+        </Typography>
+      </div>
+
+      <div
+        class="absolute -right-[140px] -top-[240px] ml-auto flex flex-shrink-0 justify-end place-self-end lg:-top-[182px] xl:-right-[95px] xl:-top-[265px] 2xl:-top-[274px]"
+      >
+        <Image
+          class="hidden h-[800px] max-h-[1100px] w-full lg:block lg:h-[770px] xl:h-[857px] 2xl:h-[990px]"
+          src={images['/src/assets/landing/ronald.webp']()}
+          alt={'ronald'}
+        />
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col items-center justify-center gap-8 md:mt-[74px]">
+      <Typography
+        as="a"
+        target={'_blank'}
+        variant="h2"
+        href="https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c"
+        class="button-shadow flex cursor-pointer items-center justify-center rounded-3xl border-[6px] border-[#27AAE1] px-2 py-4 md:h-[87px] md:w-[410px] lg:text-[36px]"
+      >
+        Consulta Gratuita
+      </Typography>
+    </div>
+  </div>
+
+  <!-- Why cis -->
+  <div
+    class="mx-auto flex h-fit flex-row justify-between gap-20 p-5 pt-10 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
+  >
+    <div class="hidden w-2/5 items-center justify-center overflow-hidden lg:flex">
+      <Image
+        class=""
+        src={images['/src/assets/landing/landing-martian.webp']()}
+        width={770}
+        height={810}
+        alt={'andrea'}
+      />
+    </div>
+    <div class="flex w-full flex-col justify-center gap-9 lg:w-3/5">
+      <Typography
+        as="span"
+        variant="h2"
+        class="text-center font-nexaBold font-bold capitalize !leading-[30px] text-primary md:!leading-[80px] lg:text-start"
+      >
+        Integra
+        <Typography as="span" variant="h2" class="font-nexaBold font-bold text-secondary"
+          >desarrolladores verificados</Typography
+        > en tu equipo en días. Flexibilidad total
+      </Typography>
+      <Typography
+        as="span"
+        variant="h4"
+        class="font-nexaLight text-[18px] text-[#333] md:text-[30px]"
+      >
+        Olvídese de largos procesos de reclutamiento y altos costos; con Staff Augmentation, obtiene
+        la flexibilidad y las habilidades exactas para potenciar su empresa.
+      </Typography>
+    </div>
+  </div>
+
+  <!-- Our talents -->
+  <ResponsiveContainer background="bulbs" class="relative z-50">
+    <Typography
+      class:list={[
+        'mb-10 text-center capitalize',
+        {
+          'text-primary': false,
+          'text-white': true,
+        },
+      ]}
+      as="h2"
+      variant="h2"
+    >
+      Conoce alguno de nuestros talentos
+    </Typography>
+
+    <LandingCarousel>
+      {ourTalents.map((talent) => <OurTalentCard talent={talent} />)}
+    </LandingCarousel>
+
+    <slot />
+  </ResponsiveContainer>
+
+  <!-- Form -->
+  <ResponsiveContainer
+    class="flex flex-col items-center justify-center"
+    containerClass="!pb-0 bg-white"
+  >
+    <Typography class:list={['mb-10 text-center capitalize text-primary']} as="h2" variant="h2">
+      ¡Comienza Ahora!
+      <br />
+      Agenda una Cita
+    </Typography>
+    <div id="contact" class="w-full max-w-[880px]">
+      <script
+        type="text/javascript"
+        src="https://api.clientify.net/web-marketing/superforms/script/247903.js"></script>
+    </div>
+  </ResponsiveContainer>
+</Layout>
+
+<!-- News -->
+<ResponsiveContainer
+  background="bulbs"
+  class="relative z-50 flex flex-col items-center justify-center"
+>
+  <Typography
+    class:list={[
+      'mb-10 text-center capitalize',
+      {
+        'text-primary': false,
+        'text-white': true,
+      },
+    ]}
+    as="h2"
+    variant="h2"
+  >
+    Novedades
+  </Typography>
+  <Typography as="p" variant="h4" class="max-w-[740px] text-center font-nexaLight text-white">
+    ¡Recibe todas las noticias y novedades que tenemos para ti!
+  </Typography>
+
+  <form
+    id="form-news"
+    class="mt-[20px] flex h-[60px] w-full max-w-[740px] justify-between overflow-hidden rounded-[20px] border-4 border-solid border-[#27AAE1] md:mt-[78px] md:h-[87px]"
+    onsubmit=""
+  >
+    <input
+      type="email"
+      name="email"
+      placeholder="Ingresa tu correo electrónico"
+      class="h-full w-[70%] rounded-none border-none bg-transparent px-4 py-6 text-white placeholder:text-white focus:border-none focus:outline-none focus:ring-0 md:text-[36px]"
+    />
+    <button
+      type="submit"
+      class="flex h-full w-[30%] cursor-pointer items-center justify-center rounded-none border-none bg-[#27AAE1] text-white lg:text-[24px]"
+    >
+      Suscribirte
+    </button>
+  </form>
+</ResponsiveContainer>
+<!-- Our process -->
+<div
+  class="mx-auto flex h-fit flex-col gap-20 !bg-white p-5 2xl:container md:px-5 lg:px-10 lg:py-20"
+>
+  <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
+    Beneficios
+  </Typography>
+  <OurProcess client:visible />
+</div>
+
+<Footer />
+
+<script>
+  const container = document.querySelector('.container-button');
+  const textButton: any = document.querySelector('.text-button');
+  const text = document.querySelector('.text-content');
+
+  if (container && textButton && text) {
+    container.addEventListener('mouseover', () => {
+      // Expandir el contenedor y mostrar el texto
+      textButton.classList.add('expanded');
+      text.classList.add('visible');
+    });
+    container.addEventListener('mouseout', () => {
+      // Contraer el contenedor y ocultar el texto
+      textButton.classList.remove('expanded');
+      text.classList.remove('visible');
+    });
+    container.addEventListener('click', () => {
+      window.location.href = '#contact';
+    });
+  }
+</script>
+
+<script>
+  import Swal from 'sweetalert2';
+
+  const formNews = document.querySelector('#form-news');
+  formNews &&
+    formNews.addEventListener('submit', (e) => {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Gracias por suscribirte',
+        text: 'Te enviaremos todas las noticias y novedades que tenemos para ti',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      });
+    });
+</script>
+
+<script
+  type="text/javascript"
+  src="https://api.clientify.net/web-marketing/webforms/external/script/249410.js"></script>
