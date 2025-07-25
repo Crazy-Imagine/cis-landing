@@ -121,6 +121,8 @@ export const ui = {
     'common.the-latest-in-tech-talk': 'The Latest in Tech Talk',
     'common.search': 'Search',
     'common.all-articles': 'All Articles',
+    'common.news': 'News',
+    'common.news-description': 'Get all the news and updates that we have for you!',
 
     // Services Keys
     'services.why-should-you': 'Why Should You',
@@ -347,6 +349,8 @@ export const ui = {
     'common.the-latest-in-tech-talk': 'Lo último en tecnología',
     'common.search': 'Buscar',
     'common.all-articles': 'Todos los artículos',
+    'common.news': 'Novedades',
+    'common.news-description': '¡Recibe todas las noticias y novedades que tenemos para ti!',
 
     // Services
     'services.why-should-you': 'Por qué deberías',

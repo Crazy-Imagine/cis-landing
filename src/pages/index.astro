@@ -9,7 +9,6 @@ import LatestProjects from '@/sections/LatestProjects.astro';
 import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
 import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
-import NewsAndUpdates from '@/sections/NewsAndUpdates.astro';
 import Partners from '@/sections/Partners.astro';
 import ReachOut from '@/sections/ReachOut.astro';
 import Reviews from '@/sections/Reviews.astro';
@@ -18,6 +17,7 @@ import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import Newslatter from '@/components/Newslatter.astro';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'home-page',
@@ -94,7 +94,7 @@ const translatePath = useTranslatedPath(lang);
 
   <LatestProjects title={t('common.previous-projects')} />
 
-  <NewsAndUpdates />
+  <Newslatter />
 
   <Partners />
 

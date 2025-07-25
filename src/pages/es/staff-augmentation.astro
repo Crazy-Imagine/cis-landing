@@ -7,6 +7,7 @@ import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
 import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Newslatter from '@/components/Newslatter.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -119,7 +120,7 @@ const SEO = {
         as="a"
         target={'_blank'}
         variant="h2"
-        href="https://share.hsforms.com/1ULyanxV7R3W1GFi9tkGfJgrz12c"
+        href="#contact"
         class="button-shadow flex cursor-pointer items-center justify-center rounded-3xl border-[6px] border-[#27AAE1] px-2 py-4 md:h-[87px] md:w-[410px] lg:text-[36px]"
       >
         Consulta Gratuita
@@ -203,46 +204,8 @@ const SEO = {
   </ResponsiveContainer>
 
   <!-- News -->
-  <ResponsiveContainer
-    background="bulbs"
-    class="relative z-50 flex flex-col items-center justify-center"
-  >
-    <Typography
-      class:list={[
-        'mb-10 text-center capitalize',
-        {
-          'text-primary': false,
-          'text-white': true,
-        },
-      ]}
-      as="h2"
-      variant="h2"
-    >
-      Novedades
-    </Typography>
-    <Typography as="p" variant="h4" class="max-w-[740px] text-center font-nexaLight text-white">
-      ¡Recibe todas las noticias y novedades que tenemos para ti!
-    </Typography>
+  <Newslatter />
 
-    <form
-      id="form-news"
-      class="mt-[20px] flex h-[60px] w-full max-w-[740px] justify-between overflow-hidden rounded-[20px] border-4 border-solid border-[#27AAE1] md:mt-[78px] md:h-[87px]"
-      onsubmit=""
-    >
-      <input
-        type="email"
-        name="email"
-        placeholder="Ingresa tu correo electrónico"
-        class="h-full w-[70%] rounded-none border-none bg-transparent px-4 py-6 text-white placeholder:text-white focus:border-none focus:outline-none focus:ring-0 md:text-[36px]"
-      />
-      <button
-        type="submit"
-        class="flex h-full w-[30%] cursor-pointer items-center justify-center rounded-none border-none bg-[#27AAE1] text-white lg:text-[24px]"
-      >
-        Suscribirte
-      </button>
-    </form>
-  </ResponsiveContainer>
   <!-- Our process -->
   <div
     class="mx-auto flex h-fit flex-col gap-20 !bg-white p-5 2xl:container md:px-5 lg:px-10 lg:py-20"
@@ -291,7 +254,3 @@ const SEO = {
       });
     });
 </script>
-
-<script
-  type="text/javascript"
-  src="https://api.clientify.net/web-marketing/webforms/external/script/249410.js"></script>

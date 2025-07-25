@@ -1,0 +1,53 @@
+---
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import Typography from './Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer
+  background="bulbs"
+  class="relative z-50 flex flex-col items-center justify-center"
+>
+  <Typography
+    class:list={[
+      'mb-10 text-center capitalize',
+      {
+        'text-primary': false,
+        'text-white': true,
+      },
+    ]}
+    as="h2"
+    variant="h2"
+  >
+    {t('common.news')}
+  </Typography>
+  <Typography as="p" variant="h4" class="max-w-[740px] text-center font-nexaLight text-white">
+    {t('common.news-description')}
+  </Typography>
+
+  <form
+    id="form-news"
+    class="mt-[20px] flex h-[60px] w-full max-w-[740px] justify-between overflow-hidden rounded-[20px] border-4 border-solid border-[#27AAE1] md:mt-[78px] md:h-[87px]"
+    onsubmit=""
+  >
+    <input
+      type="email"
+      name="email"
+      placeholder={t('forms.email')}
+      class="h-full w-[70%] rounded-none border-none bg-transparent px-4 py-6 text-white placeholder:text-white focus:border-none focus:outline-none focus:ring-0 md:text-[33px]"
+    />
+    <button
+      type="submit"
+      class="flex h-full w-[30%] cursor-pointer items-center justify-center rounded-none border-none bg-[#27AAE1] text-white lg:text-[24px]"
+    >
+      {t('forms.subscribe')}
+    </button>
+  </form>
+</ResponsiveContainer>
+
+<script
+  type="text/javascript"
+  src="https://api.clientify.net/web-marketing/webforms/external/script/249410.js"></script>
