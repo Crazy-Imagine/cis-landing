@@ -7,7 +7,7 @@ import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
 import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Newslatter from '@/components/Newslatter.astro';
+import Newsletter from '@/components/Newsletter.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -204,7 +204,7 @@ const SEO = {
   </ResponsiveContainer>
 
   <!-- News -->
-  <Newslatter />
+  <Newsletter />
 
   <!-- Our process -->
   <div
