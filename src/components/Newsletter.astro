@@ -11,17 +11,7 @@ const t = useTranslations(lang);
   background="bulbs"
   class="relative z-50 flex flex-col items-center justify-center"
 >
-  <Typography
-    class:list={[
-      'mb-10 text-center capitalize',
-      {
-        'text-primary': false,
-        'text-white': true,
-      },
-    ]}
-    as="h2"
-    variant="h2"
-  >
+  <Typography class:list={['mb-10 text-center capitalize text-white']} as="h2" variant="h2">
     {t('common.news')}
   </Typography>
   <Typography as="p" variant="h4" class="max-w-[740px] text-center font-nexaLight text-white">
