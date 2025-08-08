@@ -8,50 +8,11 @@ import { OurProcess } from '@/components/react/Landings/OurProcess';
 import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Newsletter from '@/components/Newsletter.astro';
+import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
+import Accordion from '@/components/Accordion.astro';
+import { FAQS, OUR_TALENTS } from '@/utils/staff-augmentation-info';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
-
-const ourTalents = [
-  {
-    id: 1,
-    attributes: {
-      image: {
-        src: '/src/assets/landing/person.webp',
-        alt: 'person',
-      },
-      title: 'Especialista Full-Stack (Mid-Senior)',
-      technologies: 'Mid-Senior | Laravel, Vue.js, PHP',
-      description:
-        'Un constructor de sistemas de principio a fin. Este desarrollador es un experto en crear aplicaciones web completas, robustas y escalables. Domina el backend con la fiabilidad de PHP y Laravel y da vida a experiencias de usuario interactivas y modernas con Vue.js. Es la combinación perfecta de experiencia probada y pragmatismo, ideal para equipos que necesitan acelerar el desarrollo de funcionalidades clave con código limpio y mantenible.',
-    },
-  },
-  {
-    id: 2,
-    attributes: {
-      image: {
-        src: '/src/assets/landing/person.webp',
-        alt: 'person',
-      },
-      title: 'Arquitecto de Software (Senior)',
-      technologies: 'Senior | Angular, Next, Nest, React, Node',
-      description:
-        'Un líder técnico con profunda experiencia en la arquitectura de aplicaciones JavaScript de alto rendimiento. Capaz de diseñar sistemas complejos desde cero, desde APIs robustas con Node.js y Nest.js hasta interfaces de usuario optimizadas para SEO con Next.js, React o Angular. Su visión estratégica y su capacidad para mentorizar lo convierten en un pilar fundamental para cualquier proyecto ambicioso.',
-    },
-  },
-  {
-    id: 3,
-    attributes: {
-      image: {
-        src: '/src/assets/landing/person.webp',
-        alt: 'person',
-      },
-      title: 'Desarrollador Front-End y Móvil (Junior)',
-      technologies: 'Junior | React, Flutter',
-      description:
-        'Un desarrollador enérgico y versátil, especializado en la creación de interfaces de usuario modernas para web y móvil. Con una base sólida en React, es capaz de construir componentes web interactivos. Su conocimiento de Flutter le permite llevar esas mismas experiencias al mundo móvil, creando aplicaciones multiplataforma fluidas. Es el perfil ideal para dar velocidad a un equipo, materializar diseños y crecer junto al proyecto.',
-    },
-  },
-];
 
 const SEO = {
   metaTitle: 'Staff Augmentation',
@@ -92,7 +53,7 @@ const SEO = {
           as="h1"
           variant="h1"
         >
-          Suma un Desarrollador Senior a tu Equipo Hoy
+          Escala tu equipo con desarrolladores senior verificados en menos de 7 días
         </Typography>
 
         <Typography
@@ -100,7 +61,7 @@ const SEO = {
           as="p"
           variant="h4"
         >
-          Evita largos procesos de contratación.
+          Sin costos de reclutamiento, sin papeleo, sin riesgo de rotación
         </Typography>
       </div>
 
@@ -115,17 +76,13 @@ const SEO = {
       </div>
     </div>
 
-    <div class="mt-10 flex flex-col items-center justify-center gap-8 md:mt-[74px]">
-      <Typography
-        as="a"
-        target={'_blank'}
-        variant="h2"
-        href="#contact"
-        class="button-shadow flex cursor-pointer items-center justify-center rounded-3xl border-[6px] border-[#27AAE1] px-2 py-4 md:h-[87px] md:w-[410px] lg:text-[36px]"
-      >
-        Consulta Gratuita
-      </Typography>
-    </div>
+    <CTAButtons
+      text="Evalúa tu equipo ahora"
+      href="#contact"
+      variant="outline"
+      class="mt-10 place-self-center"
+      textClass="lg:text-[30px] px-10"
+    />
   </div>
 
   <!-- Why cis -->
@@ -180,10 +137,18 @@ const SEO = {
     </Typography>
 
     <LandingCarousel>
-      {ourTalents.map((talent) => <OurTalentCard talent={talent} />)}
+      {OUR_TALENTS.map((talent) => <OurTalentCard talent={talent} />)}
     </LandingCarousel>
 
-    <slot />
+    <CTAButtons
+      text="Reclutar talento"
+      href="#contact"
+      variant="primary-light"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px]"
+    />
+
+    <!-- <slot /> -->
   </ResponsiveContainer>
 
   <!-- Form -->
@@ -211,46 +176,157 @@ const SEO = {
     class="mx-auto flex h-fit flex-col gap-20 !bg-white p-5 2xl:container md:px-5 lg:px-10 lg:py-20"
   >
     <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
+      Conoce nuestro Proceso
+    </Typography>
+
+    <div
+      style={{ grid: 'none' }}
+      class="flex flex-col items-center gap-4
+        lg:grid lg:auto-rows-min lg:grid-cols-3 lg:grid-rows-3 lg:gap-4"
+    >
+      <div class="flex h-auto w-[250px] flex-col items-center justify-center lg:w-full">
+        <Image
+          class="h-auto max-h-full"
+          src={images['/src/assets/landing/Group1.webp']()}
+          alt={'Group1'}
+        />
+        <Typography as="span" variant="h4" class="font-bold text-primary">Entrevista</Typography>
+      </div>
+      <div class="flex h-auto items-center justify-center">
+        <Image
+          class="h-auto max-h-full rotate-90 lg:rotate-0"
+          src={images['/src/assets/landing/stepsArrow.webp']()}
+          alt={'stepsArrow'}
+        />
+      </div>
+      <div class="flex h-auto w-[250px] flex-col items-center justify-center lg:w-full">
+        <Image
+          class="h-auto max-h-full"
+          src={images['/src/assets/landing/Group2.webp']()}
+          alt={'Group2'}
+        />
+        <Typography as="span" variant="h4" class="font-bold text-primary">Selección</Typography>
+      </div>
+      <div class="hidden lg:block"></div>
+      <div class="flex h-auto items-center justify-center lg:col-start-3 lg:row-start-2">
+        <Image
+          class="h-auto max-h-full rotate-90"
+          src={images['/src/assets/landing/stepsArrow.webp']()}
+          alt={'stepsArrow'}
+        />
+      </div>
+      <div
+        class="flex h-auto w-[250px] flex-col items-center justify-center lg:col-start-3 lg:row-start-3 lg:w-full"
+      >
+        <Image
+          class="h-auto max-h-full"
+          src={images['/src/assets/landing/Group4.webp']()}
+          alt={'Group3'}
+        />
+        <Typography as="span" variant="h4" class="font-bold text-primary">Onboarding</Typography>
+      </div>
+      <div class="flex h-auto items-center justify-center lg:col-start-2 lg:row-start-3">
+        <Image
+          class="h-auto max-h-full rotate-90 lg:rotate-180"
+          src={images['/src/assets/landing/stepsArrow.webp']()}
+          alt={'stepsArrow'}
+        />
+      </div>
+      <div
+        class="flex h-auto w-[250px] flex-col items-center justify-center lg:col-start-1 lg:row-start-3 lg:w-full"
+      >
+        <Image
+          class="h-auto max-h-full"
+          src={images['/src/assets/landing/Group3.webp']()}
+          alt={'Group3'}
+        />
+        <Typography as="span" variant="h4" class="font-bold text-primary">Seguimiento</Typography>
+      </div>
+    </div>
+
+    <CTAButtons
+      text="Descubre Cómo Escalar tu Equipo"
+      href="#contact"
+      variant="primary"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px]"
+    />
+  </div>
+
+  <!-- Benefits -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
       Beneficios
     </Typography>
     <OurProcess client:visible />
-  </div>
+  </ResponsiveContainer>
+
+  <ResponsiveContainer background="bulbs" class="relative z-50">
+    <Typography class:list={['mb-10 text-center capitalize text-white']} as="h2" variant="h2">
+      ¿Tu equipo se quedó corto? ¡Inyecta el talento Crazy Imagine hoy mismo
+    </Typography>
+    <CTAButtons
+      text="Habla con un asesor tecnológico "
+      href="#contact"
+      variant="outline"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px] px-20"
+    />
+  </ResponsiveContainer>
+
+  <!-- FAQS -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography class:list={['text-centercapitalize mb-10 text-primary']} as="h2" variant="h2">
+      Preguntas Frecuentes
+    </Typography>
+
+    {
+      FAQS.map((faq) => (
+        <Accordion
+          title={faq.title}
+          description={faq.description}
+          isHtml={faq.isHtml}
+          customTypographyClass="!text-base lg:!text-[18px]"
+        />
+      ))
+    }
+  </ResponsiveContainer>
 </Layout>
-
-<script>
-  const container = document.querySelector('.container-button');
-  const textButton: any = document.querySelector('.text-button');
-  const text = document.querySelector('.text-content');
-
-  if (container && textButton && text) {
-    container.addEventListener('mouseover', () => {
-      // Expandir el contenedor y mostrar el texto
-      textButton.classList.add('expanded');
-      text.classList.add('visible');
-    });
-    container.addEventListener('mouseout', () => {
-      // Contraer el contenedor y ocultar el texto
-      textButton.classList.remove('expanded');
-      text.classList.remove('visible');
-    });
-    container.addEventListener('click', () => {
-      window.location.href = '#contact';
-    });
-  }
-</script>
 
 <script>
   import Swal from 'sweetalert2';
 
-  const formNews = document.querySelector('#form-news');
-  formNews &&
-    formNews.addEventListener('submit', (e) => {
-      e.preventDefault();
-      Swal.fire({
-        title: 'Gracias por suscribirte',
-        text: 'Te enviaremos todas las noticias y novedades que tenemos para ti',
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
+  document.addEventListener('astro:page-load', () => {
+    const container = document.querySelector('.container-button');
+    const textButton: any = document.querySelector('.text-button');
+    const text = document.querySelector('.text-content');
+
+    if (container && textButton && text) {
+      container.addEventListener('mouseover', () => {
+        // Expandir el contenedor y mostrar el texto
+        textButton.classList.add('expanded');
+        text.classList.add('visible');
       });
-    });
+      container.addEventListener('mouseout', () => {
+        // Contraer el contenedor y ocultar el texto
+        textButton.classList.remove('expanded');
+        text.classList.remove('visible');
+      });
+      container.addEventListener('click', () => {
+        window.location.href = '#contact';
+      });
+    }
+
+    const formNews = document.querySelector('#form-news');
+    formNews &&
+      formNews.addEventListener('submit', (e) => {
+        e.preventDefault();
+        Swal.fire({
+          title: 'Gracias por suscribirte',
+          text: 'Te enviaremos todas las noticias y novedades que tenemos para ti',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+      });
+  });
 </script>

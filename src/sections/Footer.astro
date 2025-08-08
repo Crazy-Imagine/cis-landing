@@ -22,67 +22,79 @@ const translatePath = useTranslatedPath(lang);
     <CISLogo class="mb-5" />
 
     <p
-      class="mb-2.5 flex items-center gap-2 whitespace-normal text-wrap font-roboto text-sm leading-6 tracking-wide"
+      class="mb-2.5 flex items-center gap-2 whitespace-normal text-wrap font-roboto text-sm leading-6 tracking-wide text-white"
     >
       {t('footer.text')}
     </p>
 
-    <p class="mb-2.5 flex items-center gap-2 font-roboto text-xs leading-6 tracking-wide">
+    <p
+      class="mb-2.5 flex items-center gap-2 font-roboto text-xs leading-6 tracking-wide text-white"
+    >
       {t('footer.all-rights-reserved')}
     </p>
 
     <p class="font-roboto text-xs">
-      <a href={translatePath('#', lang)} class="underline">
+      <a href={translatePath('#', lang)} class="text-white underline">
         {t('common.terms-and-conditions')}
       </a>
       &nbsp;|&nbsp;
-      <a href={translatePath('/privacy-policy', lang)} class="underline">
+      <a href={translatePath('/privacy-policy', lang)} class="text-white underline">
         {t('common:privacy-policy')}
       </a>
     </p>
   </div>
 
   <div class="mb-10 md:basis-[calc(50%-10px)] xl:mb-0 xl:basis-[calc(25%-10px)]">
-    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider text-white">
       {t('footer.location')}
     </p>
 
-    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+    <p
+      class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide text-white"
+    >
       <Building />
       {CIS_INFORMATION.locationUS}
     </p>
-    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+    <p
+      class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide text-white"
+    >
       <Building />
       {CIS_INFORMATION.locationES}
     </p>
-    <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+    <p
+      class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide text-white"
+    >
       <Building />
       {CIS_INFORMATION.locationVE}
     </p>
 
     <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
       <OpenEnvelope />
-      <a href={`mailto:${CIS_INFORMATION.contactEmail}`} aria-label={t('aria.contact-email')}>
+      <a
+        href={`mailto:${CIS_INFORMATION.contactEmail}`}
+        aria-label={t('aria.contact-email')}
+        class="tex text-white no-underline"
+      >
         {CIS_INFORMATION.contactEmail}
       </a>
     </p>
 
     <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
-      <Phone />
-      <a href={`tel:${CIS_INFORMATION.plainPhoneNumberUS}`}>
+      <Phone class="text-white" />
+      <a href={`tel:${CIS_INFORMATION.plainPhoneNumberUS}`} class="tex text-white no-underline">
         {CIS_INFORMATION.phoneNumberUS}
       </a>
     </p>
     <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
-      <Phone />
-      <a href={`tel:${CIS_INFORMATION.plainPhoneNumberVE}`}>
+      <Phone class="text-white" />
+      <a href={`tel:${CIS_INFORMATION.plainPhoneNumberVE}`} class="tex text-white no-underline">
         {CIS_INFORMATION.phoneNumberVE}
       </a>
     </p>
   </div>
 
   <div class="mb-10 md:mb-0 md:basis-[calc(50%-10px)] xl:basis-[calc(25%-10px)]">
-    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider text-white">
       {t('footer.social-links')}
     </p>
 
@@ -90,7 +102,7 @@ const translatePath = useTranslatedPath(lang);
   </div>
 
   <div class="md:basis-[calc(50%-10px)] xl:basis-[calc(25%-10px)]">
-    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider">
+    <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider text-white">
       {t('footer.links')}
     </p>
 

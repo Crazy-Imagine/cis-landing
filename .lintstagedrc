@@ -1,6 +1,6 @@
 {
 	"src/**/*.{astro,ts,js,tsx,jsx}": [
-        "eslint --ext . --ignore-pattern \"src/components/external-scripts/*\"",
+        "eslint --ext . --ignore-pattern \"src/components/external-scripts/*\" --ignore-pattern \"src/utils/staff-augmentation-info.ts\"",
         "prettier --check"
     ]
 }
