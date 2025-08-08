@@ -6,6 +6,8 @@ import ChevronUp from '@/icons/ChevronUp.astro';
 interface Props {
   title: string;
   description: string;
+  isHtml?: boolean;
+  customTypographyClass?: string;
 }
 ---
 
@@ -17,9 +19,22 @@ interface Props {
     <ChevronUp class="arrow hidden text-grayish" />
   </button>
   <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
-    <Typography as="p" variant="paragraph2" class="pb-2.5 text-grayish">
-      {Astro.props.description}
-    </Typography>
+    {Astro.props.isHtml && <div set:html={Astro.props.description} />}
+
+    {
+      !Astro.props.isHtml && (
+        <Typography
+          as="p"
+          variant="paragraph2"
+          class:list={[
+            'pb-2.5 text-grayish',
+            { [`${Astro.props.customTypographyClass}`]: Astro.props.customTypographyClass },
+          ]}
+        >
+          {Astro.props.description}
+        </Typography>
+      )
+    }
   </div>
 </div>
 
