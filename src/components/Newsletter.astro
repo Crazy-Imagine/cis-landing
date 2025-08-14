@@ -24,6 +24,7 @@ import Typography from './Typography.astro';
 <script>
   document.addEventListener('astro:page-load', () => {
     function onNewsletterLoaded() {
+      const form: any = document.querySelector('._form_embedformselectorcpqhgo');
       const input: any = document.querySelector('.form-control95');
       const inputContainer: any = document.querySelector('.form-group95');
       const inputPadding: any = document.querySelector(
@@ -114,9 +115,9 @@ import Typography from './Typography.astro';
         setTimeout(() => {
           observer.disconnect();
           onNewsletterLoaded();
-        }, 1000);
+        }, 2500);
       } else {
-        setTimeout(waitForNewsletter, 100);
+        setTimeout(waitForNewsletter, 250);
       }
     }
 
