@@ -38,11 +38,11 @@ function MemberCard({ member }: Props) {
   }, []);
 
   return (
-    <div className="card w-full rounded-lg" style={{ height: cardHeight }}>
+    <div className="card max-h-[460px] w-full rounded-lg" style={{ height: cardHeight }}>
       <div className="card-inner">
         <div className="card-front">
           <img
-            className="rounded-t-lg"
+            className="max-h-[350px] rounded-t-lg"
             ref={imgRef}
             src={avatar.url}
             alt={`${attributes.name} - ${attributes.role}`}

@@ -14,6 +14,7 @@ interface Props {
   seo: ISeo;
   hrefLangPathname?: string;
   image?: string;
+  hiddenFooter?: boolean;
 }
 ---
 
@@ -28,7 +29,7 @@ interface Props {
     <main>
       <Header />
       <slot />
-      <Footer />
+      {!Astro.props.hiddenFooter && <Footer />}
     </main>
 
     <style is:global>

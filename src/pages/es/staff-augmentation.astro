@@ -7,10 +7,10 @@ import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
 import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Newsletter from '@/components/Newsletter.astro';
 import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
 import Accordion from '@/components/Accordion.astro';
 import { FAQS, OUR_TALENTS } from '@/utils/staff-augmentation-info';
+import Newsletter from '@/components/Newsletter.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -188,7 +188,7 @@ const SEO = {
         <Image
           class="h-auto max-h-full"
           src={images['/src/assets/landing/Group1.webp']()}
-          alt={'Group1'}
+          alt={'interview'}
         />
         <Typography as="span" variant="h4" class="font-bold text-primary">Entrevista</Typography>
       </div>
@@ -203,7 +203,7 @@ const SEO = {
         <Image
           class="h-auto max-h-full"
           src={images['/src/assets/landing/Group2.webp']()}
-          alt={'Group2'}
+          alt={'selection'}
         />
         <Typography as="span" variant="h4" class="font-bold text-primary">Selección</Typography>
       </div>
@@ -221,7 +221,7 @@ const SEO = {
         <Image
           class="h-auto max-h-full"
           src={images['/src/assets/landing/Group4.webp']()}
-          alt={'Group3'}
+          alt={'onboarding'}
         />
         <Typography as="span" variant="h4" class="font-bold text-primary">Onboarding</Typography>
       </div>
@@ -238,7 +238,7 @@ const SEO = {
         <Image
           class="h-auto max-h-full"
           src={images['/src/assets/landing/Group3.webp']()}
-          alt={'Group3'}
+          alt={'follow'}
         />
         <Typography as="span" variant="h4" class="font-bold text-primary">Seguimiento</Typography>
       </div>
