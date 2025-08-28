@@ -28,6 +28,7 @@ export default {
         'primary-with-transparency': 'var(--color-primary-with-transparency)',
         'blue-purple-contrast': 'var(--color-blue-purple-contrast)',
         'smoke': 'var(--color-smoke)',
+        'green-contact': 'var(--color-green-contact)',
       },
       keyframes: {
         wiggle: {
