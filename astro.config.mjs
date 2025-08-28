@@ -17,6 +17,12 @@ export default defineConfig({
   },
   image: {
     domains: ['blogadmin.s3.amazonaws.com', 'blogadmin.s3.us-east-1.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+    ],
   },
   build: {
     inlineStylesheets: 'always',

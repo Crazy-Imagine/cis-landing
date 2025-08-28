@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import Reviews from '@/sections/Reviews.astro';
 import Typography from '@/components/Typography.astro';
 import Layout from '@/layouts/Layout.astro';
 import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
@@ -11,6 +12,7 @@ import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
 import Accordion from '@/components/Accordion.astro';
 import { FAQS, OUR_TALENTS } from '@/utils/staff-augmentation-info';
 import Newsletter from '@/components/Newsletter.astro';
+import Phone from '@/icons/Phone.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -23,20 +25,16 @@ const SEO = {
 <Layout seo={SEO}>
   <!-- Button -->
   <div
-    class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-secondary p-5"
+    class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-[#52E75C] p-5"
   >
-    <Image
-      src={images['/src/assets/landing/atention.webp']()}
-      class="h-[40px] w-[40px]"
-      alt="button"
-    />
+    <Phone class="h-[35px] w-[35px] text-white" />
     <div class="text-button max-w-[40px] overflow-hidden transition-all duration-700">
       <Typography
         as="p"
         variant="h5"
         class="text-content ml-4 w-[500px] translate-x-full text-white opacity-0 transition-all duration-700"
       >
-        Consulta Gratuita
+        Contáctanos
       </Typography>
     </div>
   </div>
@@ -153,23 +151,53 @@ const SEO = {
 
   <!-- Form -->
   <ResponsiveContainer
-    class="flex flex-col items-center justify-center"
+    class="flex flex-row items-center justify-center"
     containerClass="!pb-0 bg-white"
   >
-    <Typography class:list={['mb-10 text-center capitalize text-primary']} as="h2" variant="h2">
-      ¡Comienza Ahora!
-      <br />
-      Agenda una Cita
-    </Typography>
-    <div id="contact" class="w-full max-w-[880px]">
-      <script
-        type="text/javascript"
-        src="https://api.clientify.net/web-marketing/superforms/script/247903.js"></script>
+    <div>
+      <Typography class:list={['mb-10 text-center capitalize text-primary']} as="h2" variant="h2">
+        ¡Comienza Ahora!
+        <br />
+        Agenda una Cita
+      </Typography>
+      <div id="contact" class="w-full max-w-[880px]">
+        <script
+          type="text/javascript"
+          src="https://api.clientify.net/web-marketing/superforms/script/247903.js"></script>
+      </div>
+    </div>
+    <div class="relative -top-[50px]">
+      <Image
+        src={images['/src/assets/landing/appointment.webp']()}
+        alt={'appointment'}
+        class="w-[450px]"
+      />
+      <div class="absolute bottom-[90px] left-0 flex w-full flex-col items-center gap-4">
+        <Typography as="span" variant="h3" class="text-center font-bold text-primary"
+          >Agenda una Cita</Typography
+        >
+        <ol class="w-[60%] list-disc">
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >Charla de 15 min, sin compromiso.</Typography
+            >
+          </li>
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >Recibe un plan de acción para escalar tu equipo.</Typography
+            >
+          </li>
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >Accede a talento de élite en menos de 7 días.</Typography
+            >
+          </li>
+        </ol>
+      </div>
     </div>
   </ResponsiveContainer>
 
-  <!-- News -->
-  <Newsletter />
+  <Reviews class="max-w-[350px]" language="es" />
 
   <!-- Our process -->
   <div
@@ -252,6 +280,9 @@ const SEO = {
       textClass="lg:text-[30px]"
     />
   </div>
+
+  <!-- News -->
+  <Newsletter />
 
   <!-- Benefits -->
   <ResponsiveContainer class="relative z-50">
