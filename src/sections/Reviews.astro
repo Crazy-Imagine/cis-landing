@@ -2,7 +2,7 @@
 import CarouselSection from './CarouselSection.astro';
 import ReviewCard from '@/components/ReviewCard.astro';
 import fetchApi from '@/lib/strapi';
-import type { ReviewCollection } from '@/types/strapi/Review';
+import type { GoogleReviews } from '@/types/strapi/Review';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 const { class: className, language } = Astro.props;
 
-const data = await fetchApi<ReviewCollection>({
+const data = await fetchApi<GoogleReviews>({
   endpoint: 'google-review',
   params: {},
 });
