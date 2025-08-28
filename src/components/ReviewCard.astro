@@ -1,42 +1,58 @@
 ---
+import Image from 'astro/components/Image.astro';
 import Typography from './Typography.astro';
 import type { Review } from '@/types/strapi/Review';
+import starIcon from '@/assets/ui/start.svg';
 
 interface Props {
   class?: string;
   review: Review;
+  language?: 'es' | 'en';
 }
 
-const {
-  review: { attributes },
-} = Astro.props;
+const { review, class: className, language = 'en' } = Astro.props;
+
+function getComment() {
+  if (language === 'en') {
+    return review.englishComment;
+  }
+
+  return review.spanishComment ?? review.englishComment;
+}
 ---
 
 <article
   class:list={[
     'swiper-slide !flex !h-auto flex-col gap-5 rounded-xl bg-white px-5 py-10',
-    Astro.props.class,
+    className,
   ]}
 >
-  <!--<div>-->
-  <!--  <img-->
-  <!--    class="mx-auto h-[100px] w-[100px] rounded-full"-->
-  <!--    alt={Astro.props.imgAlt}-->
-  <!--    src={Astro.props.img}-->
-  <!--  />-->
-  <!--</div>-->
-
-  <Typography class="line-clamp-[10] text-center text-primary" as="p" variant="paragraph2">
-    {attributes.review}
-  </Typography>
-
-  <div class="mt-auto">
-    <Typography class="mt-auto text-center text-primary" as="p" variant="accent">
-      {attributes.name}
-    </Typography>
-
-    <Typography class="line-clamp-2 text-center tracking-wide text-grayish" as="p" variant="accent">
-      {attributes.ocupation}
-    </Typography>
+  <div class="flex flex-col gap-2">
+    <div class="flex items-center gap-5">
+      {
+        review.reviewer?.profilePhotoUrl && (
+          <img
+            class="h-[45px] w-[45px] rounded-full"
+            alt={review.reviewer?.displayName ?? '--'}
+            src={review.reviewer?.profilePhotoUrl ?? ''}
+            loading="lazy"
+            decoding="async"
+          />
+        )
+      }
+      <Typography class="text-center text-primary" as="p" variant="accent">
+        {review.reviewer?.displayName ?? '--'}
+      </Typography>
+    </div>
+    <div class="flex items-center gap-1">
+      {
+        Array.from({ length: review.rating }).map((_, index) => (
+          <Image class="h-[15px] w-[15px]" alt="star" src={starIcon} width={15} height={15} />
+        ))
+      }
+    </div>
   </div>
+  <Typography class="line-clamp-[10] text-center text-primary" as="p" variant="paragraph2">
+    {getComment()}
+  </Typography>
 </article>

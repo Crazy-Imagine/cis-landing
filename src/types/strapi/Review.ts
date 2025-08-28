@@ -1,11 +1,23 @@
 export interface ReviewCollection {
-  data: Review[];
-  meta: Meta;
+  reviews: Review[];
+}
+
+export interface Reviewer {
+  profilePhotoUrl: string;
+  displayName: string;
 }
 
 export interface Review {
-  id: number;
-  attributes: Attributes;
+  reviewId: string;
+  reviewer?: Reviewer;
+  starRating: string;
+  comment: string;
+  createTime: Date;
+  updateTime: Date;
+  name: string;
+  spanishComment: string;
+  englishComment: string;
+  rating: number;
 }
 
 export interface Attributes {
