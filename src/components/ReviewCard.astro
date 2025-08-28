@@ -1,12 +1,12 @@
 ---
 import Image from 'astro/components/Image.astro';
 import Typography from './Typography.astro';
-import type { Review } from '@/types/strapi/Review';
+import type { GoogleReview } from '@/types/strapi/Review';
 import starIcon from '@/assets/ui/start.svg';
 
 interface Props {
   class?: string;
-  review: Review;
+  review: GoogleReview;
   language?: 'es' | 'en';
 }
 
