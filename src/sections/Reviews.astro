@@ -7,10 +7,9 @@ import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   class?: string;
-  language?: 'es' | 'en';
 }
 
-const { class: className, language } = Astro.props;
+const { class: className } = Astro.props;
 
 const data = await fetchApi<GoogleReviews>({
   endpoint: 'google-review',
@@ -26,7 +25,7 @@ const t = useTranslations(lang);
     {
       data.reviews.map((review, index) => {
         if (review.comment) {
-          return <ReviewCard review={review} class={className} language={language} />;
+          return <ReviewCard review={review} class={className} />;
         }
 
         return null;

@@ -1,19 +1,24 @@
 ---
 import Image from 'astro/components/Image.astro';
+import type { ImageMetadata } from 'astro';
 import Typography from './Typography.astro';
 import type { GoogleReview } from '@/types/strapi/Review';
 import starIcon from '@/assets/ui/start.svg';
+import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props {
   class?: string;
   review: GoogleReview;
   language?: 'es' | 'en';
+  url?: string;
 }
 
-const { review, class: className, language = 'en' } = Astro.props;
+const { review, class: className, url } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
 
 function getComment() {
-  if (language === 'en') {
+  if (lang === 'en') {
     return review.englishComment;
   }
 
@@ -23,26 +28,36 @@ function getComment() {
 
 <article
   class:list={[
-    'swiper-slide !flex !h-auto flex-col gap-5 rounded-xl bg-white px-5 py-10',
+    'swiper-slide !flex !h-auto cursor-pointer flex-col gap-5 rounded-xl bg-white px-5 py-10 transition-transform hover:scale-105',
     className,
   ]}
+  id={review.reviewId}
 >
   <div class="flex flex-col gap-2">
-    <div class="flex items-center gap-5">
-      {
-        review.reviewer?.profilePhotoUrl && (
-          <img
-            class="h-[45px] w-[45px] rounded-full"
-            alt={review.reviewer?.displayName ?? '--'}
-            src={review.reviewer?.profilePhotoUrl ?? ''}
-            loading="lazy"
-            decoding="async"
-          />
-        )
-      }
-      <Typography class="text-center text-primary" as="p" variant="accent">
-        {review.reviewer?.displayName ?? '--'}
-      </Typography>
+    <div class="flex justify-between">
+      <div class="flex items-center gap-4">
+        {
+          review.reviewer?.profilePhotoUrl && (
+            <img
+              class="h-[45px] w-[45px] rounded-full"
+              alt={review.reviewer?.displayName ?? '--'}
+              src={review.reviewer?.profilePhotoUrl ?? ''}
+              loading="lazy"
+              decoding="async"
+            />
+          )
+        }
+        <Typography class="text-center text-primary" as="p" variant="accent">
+          {review.reviewer?.displayName ?? '--'}
+        </Typography>
+      </div>
+
+      <Image
+        class="object-contain"
+        src={images['/src/assets/ui/google.webp']()}
+        alt="Google logo"
+        loading="lazy"
+      />
     </div>
     <div class="flex items-center gap-1">
       {
@@ -52,7 +67,25 @@ function getComment() {
       }
     </div>
   </div>
-  <Typography class="line-clamp-[10] text-center text-primary" as="p" variant="paragraph2">
+  <Typography
+    title={getComment()}
+    class="line-clamp-[5] text-center text-primary"
+    as="p"
+    variant="paragraph2"
+  >
     {getComment()}
   </Typography>
 </article>
+<script define:vars={{ reviewId: review.reviewId, url }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const reviewCard = document.querySelector(`#${reviewId}`);
+    if (reviewCard) {
+      reviewCard.addEventListener('click', () => {
+        const targetUrl =
+          url ||
+          'https://www.google.com/search?q=ceazy+imagine&oq=ceazy+imagine&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIPCAEQLhgNGK8BGMcBGIAEMgkIAhAAGA0YgAQyCAgDEAAYFhgeMggIBBAAGBYYHjIICAUQABgWGB4yCAgGEAAYFhgeMggIBxAAGBYYHjIICAgQABgWGB7SAQgyNDg5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8#lrd=0x8e666d21228b29bf:0x872d03cac3adabf6,1';
+        window.open(targetUrl, '_blank');
+      });
+    }
+  });
+</script>
