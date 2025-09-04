@@ -234,6 +234,7 @@ export const ui = {
     'footer.location': 'Location',
     'footer.social-links': 'Social Links',
     'footer.links': 'Links',
+    'footer.reviews': 'Reviews',
 
     // Nav Keys
     'nav.about': 'About',
@@ -464,6 +465,7 @@ export const ui = {
     'footer.location': 'Ubicación',
     'footer.social-links': 'Redes Sociales',
     'footer.links': 'Enlaces',
+    'footer.reviews': 'Reseñas',
 
     // Nav Keys
     'nav.about': 'Sobre nosotros',
