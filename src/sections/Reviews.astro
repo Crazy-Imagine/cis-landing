@@ -2,21 +2,18 @@
 import CarouselSection from './CarouselSection.astro';
 import ReviewCard from '@/components/ReviewCard.astro';
 import fetchApi from '@/lib/strapi';
-import type { ReviewCollection } from '@/types/strapi/Review';
+import type { GoogleReviews } from '@/types/strapi/Review';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
-const reviews = await fetchApi<ReviewCollection>({
-  endpoint: 'reviews',
-  params: {
-    locale: Astro.currentLocale,
-    fields: ['name', 'ocupation', 'review'],
-    sort: {
-      createdAt: 'desc',
-    },
-    pagination: {
-      limit: 8,
-    },
-  },
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const data = await fetchApi<GoogleReviews>({
+  endpoint: 'google-review',
+  params: {},
 });
 
 const lang = getLangFromUrl(Astro.url);
@@ -25,6 +22,14 @@ const t = useTranslations(lang);
 
 <CarouselSection background="bulbs" title={t('common.people-who-work-with-us-say')}>
   <Fragment slot="items">
-    {reviews.data.map((review) => <ReviewCard review={review} />)}
+    {
+      data.reviews.map((review, index) => {
+        if (review.comment) {
+          return <ReviewCard review={review} class={className} />;
+        }
+
+        return null;
+      })
+    }
   </Fragment>
 </CarouselSection>

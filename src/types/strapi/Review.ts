@@ -1,3 +1,12 @@
+export interface GoogleReviews {
+  reviews: GoogleReview[];
+}
+
+export interface GoogleReviewer {
+  profilePhotoUrl: string;
+  displayName: string;
+}
+
 export interface ReviewCollection {
   data: Review[];
   meta: Meta;
@@ -6,6 +15,19 @@ export interface ReviewCollection {
 export interface Review {
   id: number;
   attributes: Attributes;
+}
+
+export interface GoogleReview {
+  reviewId: string;
+  reviewer?: GoogleReviewer;
+  starRating: string;
+  comment: string;
+  createTime: Date;
+  updateTime: Date;
+  name: string;
+  spanishComment: string;
+  englishComment: string;
+  rating: number;
 }
 
 export interface Attributes {
