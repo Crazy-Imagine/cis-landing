@@ -1,0 +1,51 @@
+<script type="module" is:inline>
+  function toggleContent(contentId, btnId) {
+    const content = document.getElementById(contentId);
+    const btn = document.getElementById(btnId);
+    if (!content || !btn) return;
+
+    if (content.classList.contains('expanded')) {
+      // Cambia el texto del botón según el idioma de la página
+      const lang = document.documentElement.lang || navigator.language || 'en';
+      if (lang.startsWith('es')) {
+        btn.textContent = 'Ver más';
+      } else {
+        btn.textContent = 'View more';
+      }
+      content.style.overflow = 'hidden';
+      content.style.webkitLineClamp = '8';
+      content.style.maxHeight = '220px';
+      content.classList.remove('expanded');
+    } else {
+      content.style.transition = 'max-height 0.5s ease-in-out';
+      content.style.zIndex = '2';
+      content.style.maxHeight = `${content.scrollHeight + 80}px`;
+      content.style.webkitLineClamp = 'unset';
+      const lang = document.documentElement.lang || navigator.language || 'en';
+      if (lang.startsWith('es')) {
+        btn.textContent = 'Ver menos';
+      } else {
+        btn.textContent = 'View less';
+      }
+      content.classList.add('expanded');
+      setTimeout(() => {
+        content.style.overflow = 'visible';
+      }, 500);
+    }
+  }
+
+  const btn1 = document.getElementById('see-more-btn-1');
+  const btn2 = document.getElementById('see-more-btn-2');
+
+  if (btn1) {
+    btn1.addEventListener('click', () =>
+      toggleContent('staff-augmentation-content', 'see-more-btn-1')
+    );
+  }
+
+  if (btn2) {
+    btn2.addEventListener('click', () =>
+      toggleContent('user-experience-content', 'see-more-btn-2')
+    );
+  }
+</script>

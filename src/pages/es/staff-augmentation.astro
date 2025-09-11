@@ -4,15 +4,16 @@ import { Image } from 'astro:assets';
 import Reviews from '@/sections/Reviews.astro';
 import Typography from '@/components/Typography.astro';
 import Layout from '@/layouts/Layout.astro';
-import LandingCarousel from '@/components/LandingPage/LandingCarousel.astro';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
-import OurTalentCard from '@/components/LandingPage/OurTalentCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
 import Accordion from '@/components/Accordion.astro';
-import { FAQS, OUR_TALENTS } from '@/utils/staff-augmentation-info';
+import { FAQS } from '@/utils/staff-augmentation-info';
+import { OUR_PROCESS_STAFF_AUGMENTATION } from '@/consts/ourProcess';
 import Newsletter from '@/components/Newsletter.astro';
 import Phone from '@/icons/Phone.astro';
+import OurTalent from '@/components/LandingPage/OurTalent.astro';
+import OurProcessLanding from '@/components/LandingPage/OurProcessLanding.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -125,35 +126,16 @@ const SEO = {
   </div>
 
   <!-- Our talents -->
-  <ResponsiveContainer background="bulbs" class="relative z-50">
-    <Typography
-      class:list={[
-        'mb-10 text-center capitalize',
-        {
-          'text-primary': false,
-          'text-white': true,
-        },
-      ]}
-      as="h2"
-      variant="h2"
-    >
-      Conoce alguno de nuestros talentos
-    </Typography>
-
-    <LandingCarousel>
-      {OUR_TALENTS.map((talent) => <OurTalentCard talent={talent} />)}
-    </LandingCarousel>
-
+  <OurTalent>
     <CTAButtons
+      slot="cta"
       text="Reclutar talento"
       href="#contact"
       variant="primary-light"
       class="mt-14 place-self-center"
       textClass="lg:text-[30px]"
     />
-
-    <!-- <slot /> -->
-  </ResponsiveContainer>
+  </OurTalent>
 
   <!-- Form -->
   <ResponsiveContainer
@@ -206,86 +188,7 @@ const SEO = {
   <Reviews class="max-w-[350px]" />
 
   <!-- Our process -->
-  <div
-    class="mx-auto flex h-fit flex-col gap-20 !bg-white p-5 2xl:container md:px-5 lg:px-10 lg:py-20"
-  >
-    <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
-      Conoce nuestro Proceso
-    </Typography>
-
-    <div
-      style={{ grid: 'none' }}
-      class="flex flex-col items-center gap-4
-        lg:grid lg:auto-rows-min lg:grid-cols-3 lg:grid-rows-3 lg:gap-4"
-    >
-      <div class="flex h-auto w-[250px] flex-col items-center justify-center lg:w-full">
-        <Image
-          class="h-auto max-h-full"
-          src={images['/src/assets/landing/Group1.webp']()}
-          alt={'interview'}
-        />
-        <Typography as="span" variant="h4" class="font-bold text-primary">Entrevista</Typography>
-      </div>
-      <div class="flex h-auto items-center justify-center">
-        <Image
-          class="h-auto max-h-full rotate-90 lg:rotate-0"
-          src={images['/src/assets/landing/stepsArrow.webp']()}
-          alt={'stepsArrow'}
-        />
-      </div>
-      <div class="flex h-auto w-[250px] flex-col items-center justify-center lg:w-full">
-        <Image
-          class="h-auto max-h-full"
-          src={images['/src/assets/landing/Group2.webp']()}
-          alt={'selection'}
-        />
-        <Typography as="span" variant="h4" class="font-bold text-primary">Selección</Typography>
-      </div>
-      <div class="hidden lg:block"></div>
-      <div class="flex h-auto items-center justify-center lg:col-start-3 lg:row-start-2">
-        <Image
-          class="h-auto max-h-full rotate-90"
-          src={images['/src/assets/landing/stepsArrow.webp']()}
-          alt={'stepsArrow'}
-        />
-      </div>
-      <div
-        class="flex h-auto w-[250px] flex-col items-center justify-center lg:col-start-3 lg:row-start-3 lg:w-full"
-      >
-        <Image
-          class="h-auto max-h-full"
-          src={images['/src/assets/landing/Group4.webp']()}
-          alt={'onboarding'}
-        />
-        <Typography as="span" variant="h4" class="font-bold text-primary">Onboarding</Typography>
-      </div>
-      <div class="flex h-auto items-center justify-center lg:col-start-2 lg:row-start-3">
-        <Image
-          class="h-auto max-h-full rotate-90 lg:rotate-180"
-          src={images['/src/assets/landing/stepsArrow.webp']()}
-          alt={'stepsArrow'}
-        />
-      </div>
-      <div
-        class="flex h-auto w-[250px] flex-col items-center justify-center lg:col-start-1 lg:row-start-3 lg:w-full"
-      >
-        <Image
-          class="h-auto max-h-full"
-          src={images['/src/assets/landing/Group3.webp']()}
-          alt={'follow'}
-        />
-        <Typography as="span" variant="h4" class="font-bold text-primary">Seguimiento</Typography>
-      </div>
-    </div>
-
-    <CTAButtons
-      text="Descubre Cómo Escalar tu Equipo"
-      href="#contact"
-      variant="primary"
-      class="mt-14 place-self-center"
-      textClass="lg:text-[30px]"
-    />
-  </div>
+  <OurProcessLanding data={OUR_PROCESS_STAFF_AUGMENTATION} />
 
   <!-- News -->
   <Newsletter />

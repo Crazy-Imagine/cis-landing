@@ -1,0 +1,49 @@
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const EXPERIENCE = [
+  {
+    ammount: '+8',
+    primaryText: t('experience.years-of'),
+    secondaryText: t('experience.experience'),
+  },
+  {
+    ammount: '+100',
+    primaryText: t('experience.employees'),
+    secondaryText: t('experience.contracted'),
+  },
+  {
+    ammount: '+400',
+    primaryText: t('experience.projects'),
+    secondaryText: t('experience.successful'),
+  },
+];
+---
+
+<ResponsiveContainer
+  background="bulbs"
+  class="relative z-50 flex flex-col justify-between gap-4 md:flex-row"
+>
+  {
+    EXPERIENCE.map((experience) => (
+      <div class="flex items-center justify-center gap-6">
+        <Typography as="p" variant="h2" class="text-white">
+          {experience.ammount}
+        </Typography>
+        <div class="flex flex-col gap-2">
+          <Typography as="p" variant="h4" class="text-white">
+            {experience.primaryText}
+          </Typography>
+          <Typography as="p" variant="h4" class="!font-nexaLight text-white">
+            {experience.secondaryText}
+          </Typography>
+        </div>
+      </div>
+    ))
+  }
+</ResponsiveContainer>
