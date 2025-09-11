@@ -4,12 +4,14 @@ import ReviewCard from '@/components/ReviewCard.astro';
 import fetchApi from '@/lib/strapi';
 import type { GoogleReviews } from '@/types/strapi/Review';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import type { Background } from '@/types/Background';
 
 interface Props {
   class?: string;
+  background?: Background;
 }
 
-const { class: className } = Astro.props;
+const { class: className, background = 'bulbs' } = Astro.props;
 
 const data = await fetchApi<GoogleReviews>({
   endpoint: 'google-review',
@@ -20,7 +22,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<CarouselSection background="bulbs" title={t('common.people-who-work-with-us-say')}>
+<CarouselSection background={background} title={t('common.people-who-work-with-us-say')}>
   <Fragment slot="items">
     {
       data.reviews.map((review, index) => {
