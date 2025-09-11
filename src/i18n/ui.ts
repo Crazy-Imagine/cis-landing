@@ -123,22 +123,37 @@ export const ui = {
     'common.all-articles': 'All Articles',
     'common.news': 'News',
     'common.news-description': 'Get all the news and updates that we have for you!',
+    'common.whatsapp': 'WhatsApp',
 
     // Services Keys
-    'services.why-should-you': 'Why Should You',
-    'services.choose-us': 'Choose Us',
+    'services.a-technology-partner-for': 'A Technology Partner for ',
+    'services.every-stage-of-your-growth': 'Every Stage of Your Growth',
     'services.we-will-help-you-strategize':
-      'We will help you to strategize your web presence, designing and executing sitemaps and wireframes to provide a sleek, elegant, and seamless end-user experience.',
+      'Whether you need to upgrade your current equipment or build a product from scratch, we have the solution.',
     'services.with-deep-expertise':
       'With deep expertise that spans across the web development spectrum, we can optimize your digital presence at any level.',
-    'services.full-stack-development': 'Full-stack Development',
+    'services.staff-augmentation': 'Staff Augmentation',
+    'services.staff-augmentation-for-whom':
+      'For companies that already have a team but need more speed and expertise.',
+    'services.staff-augmentation-for-whom-1':
+      'Is your project being held back by a lack of talent? Access Elite Talent in Days: We connect you with verified senior developers from our talent pool, eliminating months of recruitment and allowing you to accelerate your roadmap immediately.',
+    'services.staff-augmentation-for-whom-2':
+      'Need highly specific skills that you can’t find? Inject Expertise on Demand: Get the exact skills your project needs (React, Node, Python, etc.) exactly when you need them, without the fixed costs of a permanent hire.',
+    'services.staff-augmentation-for-whom-3':
+      "Does your team need to grow, but in a flexible way? Scale Your Team Without Bureaucracy: Increase or reduce your team's capacity according to the phases of your project. We give you the flexibility of a freelancer with the reliability and backing of an established company.",
     'services.user-experience': 'User Experience',
     'services.quality-support': 'Quality Support',
     'services.capabilities': 'Capabilities',
     'services.custom-software-development': 'Custom Software Development',
     'services.custom-software-development-description':
-      "We create tailored software solutions to meet the specific needs of your business. Whether it's a website or a mobile app, our expert development team utilizes a wide range of technologies, including:",
+      'For companies with a clear vision that need a technology partner to build it from scratch.',
     'services.wordpress-packages-maintenance': 'WordPress Packages and Maintenance',
+    'services.custom-software-development-1':
+      'Are off-the-shelf solutions not right for your business? We build your Custom Vision: We create software specifically designed to solve your problems and adapt to your processes, giving you a competitive advantage that generic tools cannot offer.',
+    'services.custom-software-development-2':
+      'Do you have the idea but not the team to execute it? Your Product Team from Start to Finish: We become your technology arm. We take care of the entire project lifecycle: strategy, design, development, launch, and support. ',
+    'services.custom-software-development-3':
+      'Do you have the idea but not the team to execute it? Your Product Team from Start to Finish: We become your technology arm. We take care of the entire project lifecycle: strategy, design, development, launch, and support. ',
     'services.wordpress-packages-maintenance-description':
       'From basic websites to complex online stores, we handle the entire lifecycle of your WordPress site. We offer:',
     'services.devops-aws-hosting': 'DevOps and AWS Hosting',
@@ -242,6 +257,14 @@ export const ui = {
     'nav.services': 'Services',
     'nav.blog': 'Blog',
     'nav.work-with-us': 'Work with us',
+
+    // Experience Keys
+    'experience.years-of': 'Years of',
+    'experience.experience': 'Experience',
+    'experience.employees': 'Employees',
+    'experience.contracted': 'Contracted',
+    'experience.projects': 'Projects',
+    'experience.successful': 'Successful',
   },
   es: {
     // Aria keys
@@ -352,21 +375,36 @@ export const ui = {
     'common.all-articles': 'Todos los artículos',
     'common.news': 'Novedades',
     'common.news-description': '¡Recibe todas las noticias y novedades que tenemos para ti!',
+    'common.whatsapp': 'WhatsApp',
 
     // Services
-    'services.why-should-you': 'Por qué deberías',
-    'services.choose-us': 'Elegirnos',
+    'services.a-technology-partner-for': 'Un Socio Tecnológico para',
+    'services.every-stage-of-your-growth': 'Cada Etapa de tu Crecimiento',
     'services.we-will-help-you-strategize':
-      'Te ayudaremos a crear una estrategia para su presencia en la web, diseñando y ejecutando mapas de sitio y esquemas para proporcionar una experiencia de usuario final elegante y fluida.',
+      'Ya sea que necesites potenciar tu equipo actual o construir un producto desde cero, tenemos la solución.',
     'services.with-deep-expertise':
       'Con una profunda experiencia que abarca todo el espectro del desarrollo web, podemos optimizar tu presencia digital a cualquier nivel.',
-    'services.full-stack-development': 'Desarrollo Full-Stack',
+    'services.staff-augmentation': 'Aumento de Personal',
+    'services.staff-augmentation-for-whom':
+      'Para empresas que ya tienen un equipo pero necesitan más velocidad y expertise.',
+    'services.staff-augmentation-for-whom-1':
+      '¿Tu proyecto está frenado por la falta de talento? Accede a Talento de Élite en Días: Te conectamos con desarrolladores senior verificados de nuestro pool de talento, eliminando meses de reclutamiento y permitiéndote acelerar tu roadmap inmediatamente.',
+    'services.staff-augmentation-for-whom-2':
+      '¿Necesitas habilidades muy específicas que no encuentras? Inyecta Expertise Bajo Demanda: Obtén las habilidades exactas que tu proyecto necesita (React, Node, Python, etc.) justo cuando las necesitas, sin los costos fijos de una contratación permanente.',
+    'services.staff-augmentation-for-whom-3':
+      '¿Tu equipo necesita crecer, pero de manera flexible? Escala tu Equipo sin Burocratía: Aumenta o reduce la capacidad de tu equipo según las fases de tu proyecto. Te damos la flexibilidad de un freelancer con la fiabilidad y el respaldo de una empresa establecida.',
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
     'services.capabilities': 'Capacidades',
     'services.custom-software-development': 'Desarrollo de Software a Medida',
     'services.custom-software-development-description':
-      'Creamos soluciones de software a medida para satisfacer las necesidades específicas de su negocio. Ya sea un sitio web o una aplicación móvil, nuestro equipo de desarrollo experto utiliza una amplia gama de tecnologías, incluyendo:',
+      'Para empresas con una visión clara que necesitan un socio tecnológico para construirla desde cero.',
+    'services.custom-software-development-1':
+      '¿Las soluciones "de caja" no se adaptan a tu negocio?Construimos tu Visión a Medida: Creamos software diseñado específicamente para resolver tus problemas y adaptarse a tus procesos, dándote una ventaja competitiva que las herramientas genéricas no pueden ofrecer.',
+    'services.custom-software-development-2':
+      '¿Tienes la idea pero no el equipo para ejecutarla?Tu Equipo de Producto de Principio a Fin: Nos convertimos en tu brazo tecnológico. Nos encargamos de todo el ciclo de vida del proyecto: estrategia, diseño, desarrollo, lanzamiento y soporte. ',
+    'services.custom-software-development-3':
+      '¿Necesitas un producto robusto que pueda crecer contigo?Arquitectura Escalable para el Futuro: No solo construimos para hoy. Diseñamos tu plataforma con una arquitectura sólida y escalable, asegurando que pueda soportar tu crecimiento futuro sin problemas de rendimiento.',
     'services.wordpress-packages-maintenance': 'Mantenimiento de Paquetes de WordPress',
     'services.wordpress-packages-maintenance-description':
       'Desde sitios web básicos hasta tiendas en línea complejas, gestionamos todo el ciclo de vida de su sitio de WordPress. Ofrecemos:',
@@ -473,5 +511,13 @@ export const ui = {
     'nav.services': 'Servicios',
     'nav.blog': 'Blog',
     'nav.work-with-us': 'Trabaja con nosotros',
+
+    // Experience Keys
+    'experience.years-of': 'Años de',
+    'experience.experience': 'Experiencia',
+    'experience.employees': 'Empleados',
+    'experience.contracted': 'Contratados',
+    'experience.projects': 'Proyectos',
+    'experience.successful': 'Exitosos',
   },
 } as const;

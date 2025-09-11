@@ -1,0 +1,26 @@
+---
+interface Props {
+  phoneNumber: string;
+  message?: string;
+  text?: string;
+  className?: string;
+}
+
+const { phoneNumber, message = '', text = 'Chatea por WhatsApp', className } = Astro.props;
+
+const sanitizedPhoneNumber = phoneNumber.replace(/\D/g, '');
+const encodedMessage = encodeURIComponent(message);
+const whatsappUrl = `https://wa.me/${sanitizedPhoneNumber}?text=${encodedMessage}`;
+---
+
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    'hidden rounded-full border-2 px-6 py-2.5 font-roboto text-xs uppercase text-white transition hover:bg-white hover:text-primary lg:inline-block',
+    className,
+  ]}
+>
+  <span>{text}</span>
+</a>
