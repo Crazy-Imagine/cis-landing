@@ -1,16 +1,20 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import { getImageUrl } from '@/utils/imageUrl';
 import Typography from '@/components/Typography.astro';
 import type { Hero } from '@/types/strapi/Hero';
+import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props extends Hero {}
 
 const { title, subtitle, image } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 ---
 
 <section
-  class="relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white sm:h-[680px] md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0"
+  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px]'} md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
 >
   <div
     class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency"
@@ -27,11 +31,17 @@ const { title, subtitle, image } = Astro.props;
 
       {
         subtitle && (
-          <Typography class="my-10 uppercase" as="p" variant="h6">
+          <Typography class="my-10 uppercase !text-white" as="p" variant="h6">
             {subtitle}
           </Typography>
         )
       }
+
+      <Image
+        class="my-5"
+        alt="Clutch rating reviews"
+        src={images['/src/assets/landing/Clutch.webp']()}
+      />
 
       <slot name="button" />
     </div>
@@ -53,7 +63,7 @@ const { title, subtitle, image } = Astro.props;
 
   {
     subtitle && (
-      <Typography class="relative z-20 my-10 uppercase sm:hidden" as="p" variant="h6">
+      <Typography class="relative z-20 my-10 uppercase !text-white sm:hidden" as="p" variant="h6">
         {subtitle}
       </Typography>
     )

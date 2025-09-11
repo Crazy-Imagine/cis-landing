@@ -1,14 +1,8 @@
 ---
-import Antenna from '@/icons/Antenna.astro';
-import Card from '@/components/Services/Card.astro';
-import CardContainer from '@/components/Services/CardContainer.astro';
-import Code from '@/icons/Code.astro';
 import Hero from '@/sections/Hero.astro';
-import LatestArticles from '@/sections/LatestArticles.astro';
 import LatestProjects from '@/sections/LatestProjects.astro';
 import Layout from '@/layouts/Layout.astro';
 import LinkPill from '@/components/LinkPill.astro';
-import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
 import Partners from '@/sections/Partners.astro';
 import ReachOut from '@/sections/ReachOut.astro';
 import Reviews from '@/sections/Reviews.astro';
@@ -18,6 +12,8 @@ import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 import Newsletter from '@/components/Newsletter.astro';
+import Experience from '@/sections/Experience.astro';
+import ServicesCardsContent from '@/components/Services/ServicesCardsContent.astro';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'home-page',
@@ -50,6 +46,10 @@ const translatePath = useTranslatedPath(lang);
     </LinkPill>
   </Hero>
 
+  <Partners />
+
+  <Experience />
+
   <Services
     img={{
       path: '/src/assets/ui/light-bulb.webp',
@@ -57,48 +57,21 @@ const translatePath = useTranslatedPath(lang);
     }}
   >
     <Typography slot="main-text" class="capitalize text-primary" variant="h2" as="h2">
-      {t('services.why-should-you')}
-      <span class="text-secondary">{' '}{t('services.choose-us')}</span>
+      {t('services.a-technology-partner-for')}
+      <span class="text-secondary">{' '}{t('services.every-stage-of-your-growth')}</span>
     </Typography>
     <Typography slot="description" class="mt-5" variant="paragraph" as="p">
       {t('services.we-will-help-you-strategize')}
     </Typography>
 
-    <CardContainer slot="cards">
-      <Card>
-        <Code slot="icon" class="text-secondary" />
-        <span slot="text">{t('services.full-stack-development')}</span>
-      </Card>
-      <Card>
-        <MagnifyingGlass slot="icon" class="text-secondary" />
-        <span slot="text">{t('services.user-experience')}</span>
-      </Card>
-      <Card>
-        <Antenna slot="icon" class="text-secondary" />
-        <span slot="text">{t('services.quality-support')}</span>
-      </Card>
-    </CardContainer>
-
-    <Typography class="mt-16 text-wrap text-center text-primary" as="p" variant="caption">
-      {t('services.with-deep-expertise')}
-    </Typography>
-
-    <div class="mt-14 text-center">
-      <LinkPill variant="contained" href={translatePath('/projects', lang)}>
-        {t('common.get-started')}
-      </LinkPill>
-    </div>
+    <ServicesCardsContent slot="cards" />
   </Services>
 
-  <Reviews />
+  <LatestProjects background="bulbs" title={t('common.previous-projects')} />
 
-  <LatestProjects title={t('common.previous-projects')} />
+  <Reviews background="white" />
 
   <Newsletter />
-
-  <Partners />
-
-  <LatestArticles title={t('common.latest-in-tech-talk')} />
 
   <ReachOut />
 </Layout>

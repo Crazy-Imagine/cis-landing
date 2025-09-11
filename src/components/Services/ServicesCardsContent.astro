@@ -1,0 +1,107 @@
+---
+import Typography from '../Typography.astro';
+import ExpandContainer from '../Scripts/ExpandContainer.astro';
+import CardContainer from './CardContainer.astro';
+import Card from './Card.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Planets from '@/icons/Planets.astro';
+import MagnifyingGlass from '@/icons/MagnifyingGlass.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<CardContainer slot="cards">
+  <Card>
+    <Planets
+      slot="icon"
+      width={140}
+      height={140}
+      class="absolute right-4 top-4 z-[1] text-secondary"
+    />
+    <span class="relative z-[2]" slot="title">{t('services.staff-augmentation')}</span>
+    <div
+      id="staff-augmentation-content"
+      class="max-h-[220px] overflow-hidden transition-all duration-500 ease-in-out"
+      slot="content"
+      style="display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical;"
+    >
+      <Typography as="p" variant="paragraph2" class="text-primary"
+        >{t('services.staff-augmentation-for-whom')}</Typography
+      >
+      <ol
+        class="mt-4 list-inside list-disc pl-5 [&>li]:mb-2 [&>li]:leading-snug [&>li]:marker:text-lg [&>li]:marker:lg:text-[18px] [&>li]:marker:lg:text-primary"
+      >
+        <li>
+          <Typography as="span" variant="paragraph2" class="text-primary"
+            >{t('services.staff-augmentation-for-whom-1')}</Typography
+          >
+        </li>
+        <li>
+          <Typography as="span" variant="paragraph2" class="text-primary"
+            >{t('services.staff-augmentation-for-whom-2')}</Typography
+          >
+        </li>
+        <li>
+          <Typography as="span" variant="paragraph2" class="break-before-avoid-page text-primary"
+            >{t('services.staff-augmentation-for-whom-3')}</Typography
+          >
+        </li>
+      </ol>
+    </div>
+    <button
+      slot="link"
+      id="see-more-btn-1"
+      class="rounded-md px-4 py-2 text-sm font-bold text-blue-purple"
+    >
+      {t('common.view-more')}
+    </button>
+  </Card>
+  <Card>
+    <MagnifyingGlass
+      width={140}
+      height={140}
+      slot="icon"
+      class="absolute right-4 top-4 z-[1] text-secondary"
+    />
+    <span class="relative z-[2]" slot="title">{t('services.custom-software-development')}</span>
+    <div
+      id="user-experience-content"
+      class="max-h-[220px] overflow-hidden transition-all duration-500 ease-in-out"
+      slot="content"
+      style="display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical;"
+    >
+      <Typography as="p" variant="paragraph2" class="text-primary"
+        >{t('services.custom-software-development-description')}</Typography
+      >
+      <ol
+        class="mt-4 list-inside list-disc pl-5 [&>li]:mb-2 [&>li]:leading-snug [&>li]:marker:text-lg [&>li]:marker:lg:text-[18px] [&>li]:marker:lg:text-primary"
+      >
+        <li>
+          <Typography as="span" variant="paragraph2" class="text-primary"
+            >{t('services.custom-software-development-1')}</Typography
+          >
+        </li>
+        <li>
+          <Typography as="span" variant="paragraph2" class="text-primary"
+            >{t('services.custom-software-development-2')}</Typography
+          >
+        </li>
+        <li>
+          <Typography as="span" variant="paragraph2" class="break-before-avoid-page text-primary"
+            >{t('services.custom-software-development-3')}</Typography
+          >
+        </li>
+      </ol>
+    </div>
+    <button
+      slot="link"
+      id="see-more-btn-2"
+      class="rounded-md px-4 py-2 text-sm font-bold text-blue-purple"
+    >
+      {t('common.view-more')}
+    </button>
+  </Card>
+</CardContainer>
+
+<ExpandContainer client:load />

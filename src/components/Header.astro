@@ -1,12 +1,12 @@
 ---
-import CISLogo from '@/icons/CIS.astro';
-import LanguagePickerSelect from '@/components/LanguagePicker/Select.astro';
+import WhatsappButton from './WhatsappButton.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 import LinkPill from '@/components/LinkPill.astro';
+import LanguagePickerSelect from '@/components/LanguagePicker/Select.astro';
+import CISLogo from '@/icons/CIS.astro';
 import Menu from '@/icons/Menu.astro';
 import NavLinks from '@/components/NavLinks.astro';
-import SocialIcons from '@/components/SocialIcons.astro';
 import XIcon from '@/icons/XIcon.astro';
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -47,7 +47,7 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
 
       <LanguagePickerSelect id="desktop" class="hidden lg:inline-block" />
 
-      <SocialIcons class="lg:hidden 2xl:flex" />
+      <WhatsappButton phoneNumber={import.meta.env.WHATSAPP_NUMBER} text={t('common.whatsapp')} />
 
       <LinkPill
         variant="outlined"

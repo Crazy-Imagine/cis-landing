@@ -12,7 +12,7 @@ interface Props {
 
 const { title, background } = Astro.props;
 
-const isWhite = typeof background === 'undefined';
+const isWhite = typeof background === 'undefined' || background === 'white';
 ---
 
 <ResponsiveContainer background={background} class="relative z-50">
