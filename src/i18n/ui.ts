@@ -124,6 +124,7 @@ export const ui = {
     'common.news': 'News',
     'common.news-description': 'Get all the news and updates that we have for you!',
     'common.whatsapp': 'WhatsApp',
+    'common.about-the-project': 'About the Project',
 
     // Services Keys
     'services.a-technology-partner-for': 'A Technology Partner for ',
@@ -376,6 +377,7 @@ export const ui = {
     'common.news': 'Novedades',
     'common.news-description': '¡Recibe todas las noticias y novedades que tenemos para ti!',
     'common.whatsapp': 'WhatsApp',
+    'common.about-the-project': 'Sobre el Proyecto',
 
     // Services
     'services.a-technology-partner-for': 'Un Socio Tecnológico para',
