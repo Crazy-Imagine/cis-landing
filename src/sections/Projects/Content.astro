@@ -4,6 +4,7 @@ import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
 import type { ProjectAttributes } from '@/types/strapi/Project';
 import { getImageUrl } from '@/utils/imageUrl';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   attributes: ProjectAttributes;
@@ -12,10 +13,15 @@ interface Props {
 const {
   attributes: { galleryImages, title, details },
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer>
-  <Typography as="h2" variant="h4" class="text-slate-gray"> About the Project </Typography>
+  <Typography as="h2" variant="h4" class="text-slate-gray">
+    {t('common.about-the-project')}</Typography
+  >
 
   <Typography as="p" variant="paragraph" class="mb-20 mt-5 text-slate-gray">
     {details}
