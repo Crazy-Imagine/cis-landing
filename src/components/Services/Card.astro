@@ -1,9 +1,17 @@
 ---
 import Typography from '@/components/Typography.astro';
+
+interface Props {
+  redirection?: string;
+  id?: string;
+}
+
+const { redirection, id } = Astro.props;
 ---
 
 <div
-  class="relative flex min-h-[500px] w-full max-w-[600px] flex-col justify-end gap-3 bg-white p-14 shadow-md"
+  class={`relative flex min-h-[500px] w-full max-w-[600px] flex-col justify-end gap-3 bg-white p-14 shadow-md ${redirection ? 'cursor-pointer' : ''}`}
+  id={id}
 >
   <slot name="icon" />
   <Typography class="text-wrap !text-2xl text-primary" as="p" variant="accent">
@@ -12,3 +20,21 @@ import Typography from '@/components/Typography.astro';
   <slot name="content" />
   <slot name="link" />
 </div>
+
+<script define:vars={{ redirection, id }}>
+  document.addEventListener('astro:page-load', () => {
+    const card = document.getElementById(id);
+    if (card && redirection) {
+      card.addEventListener('click', (event) => {
+        // Si el click fue sobre un botón o dentro de un botón, no redireccionar
+        if (
+          event.target instanceof HTMLElement &&
+          (event.target.tagName === 'BUTTON' || event.target.closest('button'))
+        ) {
+          return;
+        }
+        window.location.href = redirection;
+      });
+    }
+  });
+</script>
