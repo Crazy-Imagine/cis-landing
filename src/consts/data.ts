@@ -174,3 +174,34 @@ export const OUR_PROCESS: OurProcessProps[] = [
       'Permite a su empresa concentrarse en sus actividades principales al delegar la búsqueda de talento, enriqueciendo su equipo con nuevas perspectivas y habilidades.',
   },
 ];
+
+export const OUR_BENEFITS_OUTSOURCING: OurProcessProps[] = [
+  {
+    id: 1,
+    title: '1. Acceso a un Equipo Multidisciplinario',
+    image: '/landing/satelite.webp',
+    content:
+      'No solo obtienes desarrolladores, sino un equipo completo de expertos: Project Managers, Diseñadores UI/UX y especialistas en QA.',
+  },
+  {
+    id: 2,
+    title: '2. Costo Fijo y Predecible',
+    image: '/landing/cohete.webp',
+    content:
+      'Trabaja con un presupuesto cerrado para tu proyecto, eliminando el riesgo de sobrecostes inesperados y dándote total control financiero.',
+  },
+  {
+    id: 3,
+    title: '3. Gestión Profesional y Transparente',
+    image: '/landing/planeta.webp',
+    content:
+      'Nosotros nos encargamos de la gestión completa del proyecto, pero tú mantienes la visibilidad total con informes de avance claros y comunicación constante.',
+  },
+  {
+    id: 4,
+    title: '4. Libera a tu Equipo Intern',
+    image: '/landing/telescopio-2.webp',
+    content:
+      'Permite que tu equipo principal se concentre en sus tareas estratégicas y el crecimiento del negocio, mientras nosotros nos encargamos de la ejecución tecnológica.',
+  },
+];

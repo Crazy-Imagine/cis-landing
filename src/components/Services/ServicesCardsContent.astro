@@ -12,7 +12,10 @@ const t = useTranslations(lang);
 ---
 
 <CardContainer slot="cards">
-  <Card>
+  <Card
+    redirection={`${lang === 'en' ? '/es/staff-augmentation' : '/es/staff-augmentation'}`}
+    id="staff-augmentation-card"
+  >
     <Planets
       slot="icon"
       width={140}
@@ -57,7 +60,10 @@ const t = useTranslations(lang);
       {t('common.view-more')}
     </button>
   </Card>
-  <Card>
+  <Card
+    redirection={`${lang === 'en' ? '/services/tailored-web-development-service' : '/es/services/servicio-de-desarrollo-de-software-especializado'}`}
+    id="custom-software-development-card"
+  >
     <MagnifyingGlass
       width={140}
       height={140}
