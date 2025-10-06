@@ -1,16 +1,24 @@
 import React from 'react';
-import { OUR_PROCESS } from '@/consts/data';
 import type { OurProcessProps } from '@/types/OurServicesLanding';
 
-export function OurProcess() {
-  const [currentProcess, setCurrentProcess] = React.useState<OurProcessProps>(OUR_PROCESS[0]);
+interface Props {
+  data: {
+    id: number;
+    title: string;
+    image: string;
+    content: string;
+  }[];
+}
+
+export function OurProcess({ data }: Props) {
+  const [currentProcess, setCurrentProcess] = React.useState<OurProcessProps>(data[0]);
   const handleSelectProcess = (process: OurProcessProps) => {
     setCurrentProcess(process);
   };
   return (
     <div className="flex items-center justify-center gap-10">
       <div className="flex w-full flex-col gap-[32px] lg:w-1/2">
-        {OUR_PROCESS.map((process, index) => (
+        {data.map((process, index) => (
           <>
             <div
               key={index}
@@ -60,7 +68,7 @@ export function OurProcess() {
         <img
           src={currentProcess.image}
           alt={currentProcess.title}
-          className="rounded-[30px] object-contain md:h-[480px] md:w-[380px]"
+          className="max-w-[450px] rounded-[30px] object-contain  md:h-[480px]"
         />
       </div>
     </div>
