@@ -8,6 +8,7 @@ import Header from '@/components/Header.astro';
 import SEO from '@/components/SEO.astro';
 import GoogleTagNoScript from '@/components/external-scripts/GoogleTagNoScript.astro';
 import type { SEO as ISeo } from '@/types/strapi/SEO';
+import MetricoolScript from '@/components/external-scripts/MetricoolScript.astro';
 
 interface Props {
   canonical?: string;
@@ -26,6 +27,7 @@ interface Props {
   </head>
   <body class="w-full overflow-x-hidden bg-fog-white">
     <GoogleTagNoScript />
+    <MetricoolScript />
     <main>
       <Header />
       <slot />
