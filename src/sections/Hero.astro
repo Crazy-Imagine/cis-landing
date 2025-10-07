@@ -14,7 +14,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
 ---
 
 <section
-  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px]'} md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
+  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]'} md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
 >
   <div
     class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency"

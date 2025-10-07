@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import ContactForm from '@/components/react/ContactForm';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Satellite from '@/assets/ui/satellite.webp';
 import Typography from '@/components/Typography.astro';
@@ -12,7 +11,7 @@ const t = useTranslations(lang);
 
 <ResponsiveContainer
   containerClass="md:!py-0"
-  class="flex flex-col items-end md:flex-row md:gap-5 lg:gap-20"
+  class="flex flex-col items-center md:flex-row md:gap-5 lg:gap-20"
 >
   <div class="w-full md:basis-1/4">
     <Typography
@@ -31,11 +30,10 @@ const t = useTranslations(lang);
       <Image class="relative z-10 mx-auto" src={Satellite} alt="Satellite" />
     </div>
   </div>
-  <div class="w-full pb-0 pt-10 md:basis-3/4 md:pb-10">
-    <ContactForm url={Astro.url} client:idle />
+  <div class="w-full pb-0 pt-10 md:basis-3/4">
+    <script
+      type="text/javascript"
+      src="https://api.clientify.net/web-marketing/superforms/script/260234.js"></script>
+    <!-- <ContactForm url={Astro.url} client:idle /> -->
   </div>
 </ResponsiveContainer>
-
-<script
-  type="text/javascript"
-  src="https://api.clientify.net/web-marketing/webforms/external/script/250422.js"></script>
