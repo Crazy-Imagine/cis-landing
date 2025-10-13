@@ -22,105 +22,148 @@ import Typography from './Typography.astro';
 </ResponsiveContainer>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    function onNewsletterLoaded() {
-      const form: any = document.querySelector('._form_embedformselectorcpqhgo');
-      const input: any = document.querySelector('.form-control95');
-      const inputContainer: any = document.querySelector('.form-group95');
-      const inputPadding: any = document.querySelector(
-        '#fullwidthcontainer span[class="relative deletehover"]'
+  function onNewsletterLoaded() {
+    // Use a more robust approach to get Clientify elements, since classes could change or not be available immediately
+
+    // Give the elements a few tries to appear
+    let attempts = 0;
+    const maxAttempts = 10;
+    const waitTime = 200;
+
+    function styleElements() {
+      const inputs = document.querySelectorAll(
+        'input[type="email"], input[type="text"], .form-control95'
       );
-      const inputPaddingTop: any = document.querySelector(
-        '#fullwidthcontainer span[class="relative deletehover"] div'
+      const inputContainers = document.querySelectorAll('.form-group, .form-group95');
+      const paddingWrappers = document.querySelectorAll(
+        '#fullwidthcontainer span[class*="deletehover"]'
       );
+      const paddingTopWrappers = document.querySelectorAll(
+        '#fullwidthcontainer span[class*="deletehover"] div'
+      );
+      const buttons = document.querySelectorAll(' .btn-subscribe, input[type="submit"]');
 
       const windowWidth = window.innerWidth;
 
-      const button: any = document.querySelector('.btn-subscribe');
+      let styledInput = false;
+      let styledButton = false;
 
-      if (input) {
-        input.style.backgroundColor = 'transparent';
-        windowWidth >= 768
-          ? (input.style.border = 'none')
-          : (input.style.border = '4px solid #27AAE1');
-        input.style.borderTop = '4px solid #27AAE1';
-        input.style.borderBottom = '4px solid #27AAE1';
-        input.style.borderLeft = '4px solid #27AAE1';
-        input.style.padding = '16px';
-        windowWidth >= 768
-          ? (input.style.borderRadius = '20px 0 0 20px')
-          : (input.style.borderRadius = '20px');
-        input.style.color = 'white';
-        input.style.height = '79px';
-      }
-
-      if (inputContainer) {
-        inputContainer.style.paddingRight = '0px';
-      }
-
-      if (inputPadding) {
-        inputPadding.style.padding = '0px';
-      }
-
-      if (inputPaddingTop) {
-        inputPaddingTop.style.paddingTop = '5px';
-      }
-
-      if (button) {
-        windowWidth >= 768
-          ? (button.style.borderRadius = '0 20px 20px 0')
-          : (button.style.borderRadius = '20px');
-        button.style.backgroundColor = '#27AAE1';
-        windowWidth >= 768 ? (button.style.height = '79px') : (button.style.height = '50px');
-      }
-    }
-
-    function waitForNewsletter() {
-      const newsletterScript = document.querySelector(
-        'script[src*="clientify.net/web-marketing/superforms/script/250755.js"]'
-      );
-
-      if (newsletterScript) {
-        const checkNewsletterContent = () => {
-          const newsletterForm =
-            document.querySelector('#form-newsletter, .clientify-form, [data-clientify]') ||
-            document.querySelector('form[action*="clientify"]');
-
-          if (newsletterForm) {
-            onNewsletterLoaded();
-            return true;
+      // Style input
+      inputs.forEach((input: any) => {
+        // Only one input may need styling
+        if (!styledInput) {
+          input.style.backgroundColor = 'transparent';
+          if (windowWidth >= 768) {
+            input.style.border = 'none';
+          } else {
+            input.style.border = '4px solid #27AAE1';
           }
-          return false;
-        };
-
-        if (checkNewsletterContent()) {
-          return;
+          input.style.borderTop = '4px solid #27AAE1';
+          input.style.borderBottom = '4px solid #27AAE1';
+          input.style.borderLeft = '4px solid #27AAE1';
+          input.style.padding = '16px';
+          if (windowWidth >= 768) {
+            input.style.borderRadius = '20px 0 0 20px';
+          } else {
+            input.style.borderRadius = '20px';
+          }
+          input.style.color = 'white';
+          input.style.height = '79px';
+          styledInput = true;
         }
+      });
 
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-              if (checkNewsletterContent()) {
-                observer.disconnect();
-              }
+      // Style input container
+      inputContainers.forEach((inputContainer: any) => {
+        inputContainer.style.paddingRight = '0px';
+      });
+
+      // Style padding elements
+      paddingWrappers.forEach((el: any) => {
+        el.style.padding = '0px';
+      });
+
+      paddingTopWrappers.forEach((el: any) => {
+        el.style.paddingTop = '5px';
+      });
+
+      // Style subscribe buttons
+      buttons.forEach((button: any) => {
+        if (
+          button.classList.contains('btn-subscribe') ||
+          button.type === 'submit' ||
+          /suscribete|subscribe/i.test(button.textContent)
+        ) {
+          if (!styledButton) {
+            if (windowWidth >= 768) {
+              button.style.borderRadius = '0 20px 20px 0';
+            } else {
+              button.style.borderRadius = '20px';
             }
-          });
-        });
+            button.style.backgroundColor = '#27AAE1';
+            if (windowWidth >= 768) {
+              button.style.height = '79px';
+            } else {
+              button.style.height = '50px';
+            }
+            styledButton = true;
+          }
+        }
+      });
 
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-        });
-
-        setTimeout(() => {
-          observer.disconnect();
-          onNewsletterLoaded();
-        }, 2500);
-      } else {
-        setTimeout(waitForNewsletter, 250);
+      // Try again if not found
+      if ((!styledInput || !styledButton) && attempts < maxAttempts) {
+        attempts++;
+        setTimeout(styleElements, waitTime);
       }
     }
 
-    waitForNewsletter();
-  });
+    styleElements();
+  }
+
+  function waitForNewsletter() {
+    const newsletterScript = document.querySelector(
+      'script[src*="clientify.net/web-marketing/superforms/script/250755.js"]'
+    );
+
+    if (newsletterScript) {
+      const checkNewsletterContent = () => {
+        const newsletterForm = document.querySelector('#myFormclientify');
+
+        if (newsletterForm) {
+          onNewsletterLoaded();
+          return true;
+        }
+        return false;
+      };
+
+      if (checkNewsletterContent()) {
+        return;
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+            if (checkNewsletterContent()) {
+              observer.disconnect();
+            }
+          }
+        });
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+
+      setTimeout(() => {
+        observer.disconnect();
+        onNewsletterLoaded();
+      }, 2500);
+    } else {
+      setTimeout(waitForNewsletter, 250);
+    }
+  }
+
+  waitForNewsletter();
 </script>

@@ -22,57 +22,55 @@ import 'swiper/css/navigation';
   import { Keyboard, Navigation, Pagination } from 'swiper/modules';
   import type { SwiperOptions } from 'swiper/types';
 
-  document.addEventListener('astro:page-load', () => {
-    const swiper = new Swiper('.mySwiper', {
-      modules: [Keyboard, Pagination, Navigation],
-      loop: true,
-      grabCursor: true,
-      spaceBetween: 90,
-      slidesPerView: 3, // Por defecto 3 items
-      centeredSlides: false, // Por defecto no centrado
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-          centeredSlides: true,
-          centeredSlidesBounds: true,
-          centerInsufficientSlides: true,
-          spaceBetween: 30,
-        },
-        600: {
-          slidesPerView: 2,
-          centeredSlides: true,
-          centeredSlidesBounds: true,
-          centerInsufficientSlides: true,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 2,
-          centeredSlides: false,
-          spaceBetween: 50,
-        },
-        1280: {
-          slidesPerView: 3,
-          centeredSlides: false,
-          spaceBetween: 90,
-        },
-        1920: {
-          slidesPerView: 3,
-          centeredSlides: false,
-          spaceBetween: 90,
-        },
+  const swiper = new Swiper('.mySwiper', {
+    modules: [Keyboard, Pagination, Navigation],
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 90,
+    slidesPerView: 3, // Por defecto 3 items
+    centeredSlides: false, // Por defecto no centrado
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+        centeredSlides: true,
+        centeredSlidesBounds: true,
+        centerInsufficientSlides: true,
+        spaceBetween: 30,
       },
+      600: {
+        slidesPerView: 2,
+        centeredSlides: true,
+        centeredSlidesBounds: true,
+        centerInsufficientSlides: true,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 2,
+        centeredSlides: false,
+        spaceBetween: 50,
+      },
+      1280: {
+        slidesPerView: 3,
+        centeredSlides: false,
+        spaceBetween: 90,
+      },
+      1920: {
+        slidesPerView: 3,
+        centeredSlides: false,
+        spaceBetween: 90,
+      },
+    },
 
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      // keyboard: {
-      //   enabled: true,
-      // },
-    } as SwiperOptions);
-  });
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    // keyboard: {
+    //   enabled: true,
+    // },
+  } as SwiperOptions);
 </script>

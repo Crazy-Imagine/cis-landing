@@ -70,11 +70,9 @@ const t = useTranslations(lang);
 <script>
   import { projectTypeSelected } from '@/store/projectsStore';
 
-  document.addEventListener('astro:page-load', () => {
-    const $projectsContainer = document.getElementById('projects-container');
+  const $projectsContainer = document.getElementById('projects-container');
 
-    if (!$projectsContainer) return;
-
+  if ($projectsContainer) {
     projectTypeSelected.subscribe((value) => {
       $projectsContainer.querySelectorAll('[data-project-type]').forEach(($element: any) => {
         if (value === 'all' || $element.dataset.projectType === value) {
@@ -84,5 +82,5 @@ const t = useTranslations(lang);
         }
       });
     });
-  });
+  }
 </script>

@@ -12,7 +12,6 @@ import { FAQS } from '@/utils/staff-augmentation-info';
 import { OUR_PROCESS_STAFF_AUGMENTATION } from '@/consts/ourProcess';
 import { OUR_PROCESS } from '@/consts/data';
 import Newsletter from '@/components/Newsletter.astro';
-import Phone from '@/icons/Phone.astro';
 import OurTalent from '@/components/LandingPage/OurTalent.astro';
 import OurProcessLanding from '@/components/LandingPage/OurProcessLanding.astro';
 
@@ -26,7 +25,7 @@ const SEO = {
 
 <Layout seo={SEO}>
   <!-- Button -->
-  <div
+  <!-- <div
     class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-[#52E75C] p-5"
   >
     <Phone class="h-[35px] w-[35px] text-white" />
@@ -39,7 +38,7 @@ const SEO = {
         Contáctanos
       </Typography>
     </div>
-  </div>
+  </div> -->
   <!-- Hero -->
   <div
     class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
@@ -237,37 +236,35 @@ const SEO = {
 <script>
   import Swal from 'sweetalert2';
 
-  document.addEventListener('astro:page-load', () => {
-    const container = document.querySelector('.container-button');
-    const textButton: any = document.querySelector('.text-button');
-    const text = document.querySelector('.text-content');
+  const container = document.querySelector('.container-button');
+  const textButton: any = document.querySelector('.text-button');
+  const text = document.querySelector('.text-content');
 
-    if (container && textButton && text) {
-      container.addEventListener('mouseover', () => {
-        // Expandir el contenedor y mostrar el texto
-        textButton.classList.add('expanded');
-        text.classList.add('visible');
-      });
-      container.addEventListener('mouseout', () => {
-        // Contraer el contenedor y ocultar el texto
-        textButton.classList.remove('expanded');
-        text.classList.remove('visible');
-      });
-      container.addEventListener('click', () => {
-        window.location.href = '#contact';
-      });
-    }
+  if (container && textButton && text) {
+    container.addEventListener('mouseover', () => {
+      // Expandir el contenedor y mostrar el texto
+      textButton.classList.add('expanded');
+      text.classList.add('visible');
+    });
+    container.addEventListener('mouseout', () => {
+      // Contraer el contenedor y ocultar el texto
+      textButton.classList.remove('expanded');
+      text.classList.remove('visible');
+    });
+    container.addEventListener('click', () => {
+      window.location.href = '#contact';
+    });
+  }
 
-    const formNews = document.querySelector('#form-news');
-    formNews &&
-      formNews.addEventListener('submit', (e) => {
-        e.preventDefault();
-        Swal.fire({
-          title: 'Gracias por suscribirte',
-          text: 'Te enviaremos todas las noticias y novedades que tenemos para ti',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-        });
+  const formNews = document.querySelector('#form-news');
+  formNews &&
+    formNews.addEventListener('submit', (e) => {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Gracias por suscribirte',
+        text: 'Te enviaremos todas las noticias y novedades que tenemos para ti',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
       });
-  });
+    });
 </script>
