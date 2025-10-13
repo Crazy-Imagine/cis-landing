@@ -87,7 +87,7 @@ const whatsappNumber =
 </div>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('sticky-header');
     const menuIcon = document.getElementById('menu-icon');
     const drawer = document.getElementById('drawer');
@@ -102,21 +102,20 @@ const whatsappNumber =
 
       if (window.scrollY > 0) {
         header.classList.add('scrolled');
-        return;
+      } else {
+        header.classList.remove('scrolled');
       }
-
-      header.classList.remove('scrolled');
     });
 
-    if (!drawer || !menuIcon || !closeIcon) return;
+    if (drawer && menuIcon && closeIcon) {
+      menuIcon.addEventListener('click', () => {
+        drawer.classList.toggle('-translate-x-full');
+      });
 
-    menuIcon.addEventListener('click', () => {
-      drawer.classList.toggle('-translate-x-full');
-    });
-
-    closeIcon.addEventListener('click', () => {
-      drawer.classList.toggle('-translate-x-full');
-    });
+      closeIcon.addEventListener('click', () => {
+        drawer.classList.toggle('-translate-x-full');
+      });
+    }
   });
 </script>
 

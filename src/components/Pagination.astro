@@ -76,36 +76,34 @@ const { pagination } = Astro.props;
 </div>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const first = document.getElementById('pagination-first');
-    const previous = document.getElementById('pagination-previous');
-    const next = document.getElementById('pagination-next');
-    const last = document.getElementById('pagination-last');
+  const first = document.getElementById('pagination-first');
+  const previous = document.getElementById('pagination-previous');
+  const next = document.getElementById('pagination-next');
+  const last = document.getElementById('pagination-last');
 
-    if (!first || !previous || !next || !last) return;
+  if (!first || !previous || !next || !last) return;
 
-    first.addEventListener('click', (event) => {
-      if (first.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+  first.addEventListener('click', (event) => {
+    if (first.classList.contains('cursor-not-allowed')) {
+      event.preventDefault();
+    }
+  });
 
-    previous.addEventListener('click', (event) => {
-      if (previous.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+  previous.addEventListener('click', (event) => {
+    if (previous.classList.contains('cursor-not-allowed')) {
+      event.preventDefault();
+    }
+  });
 
-    next.addEventListener('click', (event) => {
-      if (next.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+  next.addEventListener('click', (event) => {
+    if (next.classList.contains('cursor-not-allowed')) {
+      event.preventDefault();
+    }
+  });
 
-    last.addEventListener('click', (event) => {
-      if (last.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+  last.addEventListener('click', (event) => {
+    if (last.classList.contains('cursor-not-allowed')) {
+      event.preventDefault();
+    }
   });
 </script>

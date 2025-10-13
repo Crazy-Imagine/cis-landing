@@ -42,25 +42,23 @@ const t = useTranslations(lang);
 <script>
   import { projectTypeSelected } from '@/store/projectsStore';
 
-  document.addEventListener('astro:page-load', () => {
-    const $projectTypeElements = document.querySelectorAll('[data-project-type-filter]');
+  const $projectTypeElements = document.querySelectorAll('[data-project-type-filter]');
 
-    $projectTypeElements.forEach(($element) => {
-      $element.addEventListener('click', (event: any) => {
-        projectTypeSelected.set(event.target.dataset.projectTypeFilter);
-      });
+  $projectTypeElements.forEach(($element) => {
+    $element.addEventListener('click', (event: any) => {
+      projectTypeSelected.set(event.target.dataset.projectTypeFilter);
     });
+  });
 
-    projectTypeSelected.subscribe((value, oldValue) => {
-      $projectTypeElements.forEach(($element) => {
-        if ($element.id === value) {
-          $element.classList.add('bg-primary', 'text-white');
-          $element.classList.remove('hover:bg-primary-with-transparency', 'hover:text-white');
-        } else if ($element.id === oldValue) {
-          $element.classList.remove('bg-primary', 'text-white');
-          $element.classList.add('hover:bg-primary-with-transparency', 'hover:text-white');
-        }
-      });
+  projectTypeSelected.subscribe((value, oldValue) => {
+    $projectTypeElements.forEach(($element) => {
+      if ($element.id === value) {
+        $element.classList.add('bg-primary', 'text-white');
+        $element.classList.remove('hover:bg-primary-with-transparency', 'hover:text-white');
+      } else if ($element.id === oldValue) {
+        $element.classList.remove('bg-primary', 'text-white');
+        $element.classList.add('hover:bg-primary-with-transparency', 'hover:text-white');
+      }
     });
   });
 </script>
