@@ -20,20 +20,22 @@ const t = useTranslations(lang);
 </div>
 
 <script>
-  const inputSearch = document.getElementById('search-input');
-  if (!inputSearch) return;
-  let inputValue: NodeJS.Timeout;
-  inputSearch?.addEventListener('input', (event) => {
-    if (!event.target) return;
-    const value = (event.target as any).value;
-    if (inputValue) {
-      clearTimeout(inputValue);
-    }
-    if (value.length === 0) {
-      location.href = `/blog/all/#articles`;
-    }
-    inputValue = setTimeout(() => {
-      location.href = `/blog/all/?search=${value}&#articles`;
-    }, 1000);
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputSearch = document.getElementById('search-input');
+    if (!inputSearch) return;
+    let inputValue: NodeJS.Timeout;
+    inputSearch?.addEventListener('input', (event) => {
+      if (!event.target) return;
+      const value = (event.target as any).value;
+      if (inputValue) {
+        clearTimeout(inputValue);
+      }
+      if (value.length === 0) {
+        location.href = `/blog/all/#articles`;
+      }
+      inputValue = setTimeout(() => {
+        location.href = `/blog/all/?search=${value}&#articles`;
+      }, 1000);
+    });
   });
 </script>
