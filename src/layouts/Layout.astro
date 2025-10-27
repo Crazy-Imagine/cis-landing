@@ -10,6 +10,7 @@ import GoogleTagNoScript from '@/components/external-scripts/GoogleTagNoScript.a
 import type { SEO as ISeo } from '@/types/strapi/SEO';
 import MetricoolScript from '@/components/external-scripts/MetricoolScript.astro';
 import LiveChat from '@/components/external-scripts/LiveChat.astro';
+import VerificationMetaScript from '@/components/external-scripts/VerificationMetaScript.astro';
 
 interface Props {
   canonical?: string;
@@ -24,6 +25,7 @@ interface Props {
 <html lang={Astro.currentLocale}>
   <head>
     <!-- <ViewTransitions /> -->
+    <VerificationMetaScript />
     <SEO {...Astro.props} />
   </head>
   <body class="w-full overflow-x-hidden bg-fog-white">
