@@ -274,3 +274,57 @@ export function OUR_PROCESS_CUSTOM_SOFTWARE_DEVELOPMENT(urlLang: 'es' | 'en'): O
     },
   ];
 }
+
+export const OUR_PROCESS_LEAD_MAGNET = [
+  {
+    id: 1,
+    title: '¿Sientes que pasas más tiempo en entrevistas',
+    content: 'que liderando y progresando con tu equipo actual?',
+    image: '/landing/lead-magnet-1.webp',
+  },
+  {
+    id: 2,
+    title: '¿Alguna vez has contratado a un "crack"',
+    content:
+      'que en el papel era perfecto, pero que resultó ser un fiasco técnico o, peor aún, tóxico para tu cultura?',
+    image: '/landing/lead-magnet-2.webp',
+  },
+  {
+    id: 3,
+    title: '¿Tu roadmap se retrasa trimestre tras trimestre',
+    content:
+      'porque simplemente no encuentras el talento senior adecuado a la velocidad que necesitas?',
+    image: '/landing/lead-magnet-3.webp',
+  },
+  {
+    id: 4,
+    title: '¿Te frustra ver cómo la competencia lanza features ',
+    content:
+      'mientras tu equipo está atascado en deuda técnica o en procesos de selección interminables?',
+    image: '/landing/lead-magnet-4.webp',
+  },
+];
+
+export const THE_CLARITY_YOU_NEED = [
+  {
+    id: 1,
+    title: 'Desactivar la "Bomba del CV Perfecto":',
+    content:
+      'Aprenderás a identificar a un verdadero solucionador de problemas, en lugar de a alguien que solo es bueno haciendo entrevistas.',
+    image: '/landing/lead-magnet-5.webp',
+  },
+  {
+    id: 2,
+    title: 'Neutralizar al "Genio Tóxico":',
+    content:
+      'Te daremos un checklist de preguntas clave para detectar las malas contrataciones culturales antes de que infecten a tu equipo.',
+    image: '/landing/lead-magnet-6.webp',
+  },
+  {
+    id: 1,
+    title: 'Evitar el "Veneno del Onboarding Lento": ',
+    content:
+      'Recibirás una plantilla simple para que tus nuevos talentos (internos o externos) sean productivos en su primera semana, no en su tercer mes.',
+    image: '/landing/lead-magnet-7.webp',
+  },
+];
