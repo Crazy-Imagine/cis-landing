@@ -46,15 +46,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
       <slot name="button" />
     </div>
 
-    <div class="ml-auto flex flex-shrink-0 justify-end place-self-end">
-      <Image
-        class="h-auto max-h-[500px] w-full"
-        src={getImageUrl(image.data.attributes.url)}
-        width={image.data.attributes.width}
-        height={image.data.attributes.height}
-        alt={image.data.attributes.alternativeText}
-      />
-    </div>
+    {
+      image && (
+        <div class="ml-auto flex flex-shrink-0 justify-end place-self-end">
+          <Image
+            class="h-auto max-h-[500px] w-full"
+            src={getImageUrl(image.data.attributes.url)}
+            width={image.data.attributes.width}
+            height={image.data.attributes.height}
+            alt={image.data.attributes.alternativeText}
+          />
+        </div>
+      )
+    }
   </div>
 
   <Typography class="relative z-20 font-bold capitalize sm:hidden" as="h1" variant="h1">
@@ -74,14 +78,18 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
       <slot name="button" />
     </div>
 
-    <div class="flex basis-1/2 place-content-end">
-      <Image
-        class="h-auto w-full max-w-[349px]"
-        src={getImageUrl(image.data.attributes.url)}
-        width={image.data.attributes.width}
-        height={image.data.attributes.height}
-        alt={image.data.attributes.alternativeText}
-      />
-    </div>
+    {
+      image && (
+        <div class="flex basis-1/2 place-content-end">
+          <Image
+            class="h-auto w-full max-w-[349px]"
+            src={getImageUrl(image.data.attributes.url)}
+            width={image.data.attributes.width}
+            height={image.data.attributes.height}
+            alt={image.data.attributes.alternativeText}
+          />
+        </div>
+      )
+    }
   </div>
 </section>

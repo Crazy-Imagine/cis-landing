@@ -125,6 +125,10 @@ export const ui = {
     'common.news-description': 'Get all the news and updates that we have for you!',
     'common.whatsapp': 'WhatsApp',
     'common.about-the-project': 'About the Project',
+    'common.turn-your-vision-into-a-product': 'Turn Your Vision Into a Product',
+    'common.technology-partners-of-market-leading-companies':
+      'Technology Partners of Market-Leading Companies',
+    'common.phase': 'Phase',
 
     // Services Keys
     'services.a-technology-partner-for': 'A Technology Partner for ',
@@ -198,6 +202,54 @@ export const ui = {
     'services.monthly-payment': 'Per Month',
     'services.pricing-plans': 'Pricing Plans',
     'services.better-option': 'Better Option',
+
+    // Custom Software Development
+    'custom-development.hero-title': 'You Have the Vision, We Build the Software to Make It Real',
+    'custom-development.hero-subtitle':
+      'From the initial idea to launch, or from an outdated system to a modern platform. We handle the technology so you can focus on your business.',
+    'custom-development.experience-title': 'Experience',
+    'custom-development.your-team': 'Your Product Team, Focused on Your Results',
+    'custom-development.your-team-description':
+      'Forget about the risks of building a technical team from scratch or the headaches of an outdated system. We act as your comprehensive technology partner, providing the strategy, design, and elite engineering needed to build or modernize the software that will give you a real competitive advantage.',
+    'custom-development.benefits-title': 'Benefits of a Real Technology Partner',
+    'custom-development.benefits-1': '1. Access to a Comprehensive and Vetted Team',
+    'custom-development.benefits-1-description':
+      'You don’t just get developers. We provide a complete team: Software Architects, UI/UX Designers, and Project Managers who ensure your product’s success.',
+    'custom-development.benefits-2': '2. Radical Speed in Time-to-Market',
+    'custom-development.benefits-2-description':
+      'Whether it’s launching your MVP before the competition or deploying a critical new feature, our agile process allows us to deliver results in a fraction of the traditional time.',
+    'custom-development.benefits-3': '3. Scalable and Future-Proof Technology',
+    'custom-development.benefits-3-description':
+      'We don’t build for today, we build for tomorrow. We design your software with a solid and scalable foundation, ensuring it can support your growth without costly restructurings.',
+    'custom-development.benefits-4': '4. Certainty in Budget and Deadlines',
+    'custom-development.benefits-4-description':
+      'We work with clear roadmaps and defined budgets. We give you the peace of mind of knowing exactly what to expect, when you’ll receive it, and how much it will cost.',
+    'custom-development.cta-title': 'Ready to stop planning and start building?',
+    'custom-development.cta-button': 'Let’s Talk About Your Project',
+    'custom-development.process-1': 'Discovery and Strategic Alignment',
+    'custom-development.process-1-description':
+      'We conduct workshops with you to understand your business objectives. We translate your vision into a clear roadmap.',
+    'custom-development.process-2': 'Architecture and Functional Design (Blueprint)',
+    'custom-development.process-2-description':
+      'We create the application blueprint with wireframes and flow diagrams to validate logic and usability.',
+    'custom-development.process-3': 'Experience and Interface Design (UI/UX)',
+    'custom-development.process-3-description':
+      'Our design team creates a high-fidelity, visually appealing, and intuitive interface.',
+    'custom-development.process-4': 'Agile Development and Implementation',
+    'custom-development.process-4-description':
+      'We build your application in short "sprints," allowing you to see tangible progress and provide continuous feedback.',
+    'custom-development.process-5': 'Launch, Support, and Continuous Evolution',
+    'custom-development.process-5-description':
+      'We manage deployment and offer support plans to ensure your platform operates at peak performance.',
+    'custom-development.our-process-title': 'Our Process: From Vision to Reality',
+    'custom-development.faqs-title': 'FAQs',
+    'custom-development.start-now': 'Start Now',
+    'custom-development.schedule-an-appointment': 'Schedule an Appointment',
+    'custom-development.15-minute-chat-without-commitment': '15 minute chat, no commitment.',
+    'custom-development.receive-an-action-plan-to-scale-your-team':
+      'Receive an action plan to scale your team.',
+    'custom-development.access-elite-talent-in-less-than-7-days':
+      'Access elite talent in less than 7 days.',
 
     // Mission
     'mission.our-mission': 'Our Mission',
@@ -378,6 +430,10 @@ export const ui = {
     'common.news-description': '¡Recibe todas las noticias y novedades que tenemos para ti!',
     'common.whatsapp': 'WhatsApp',
     'common.about-the-project': 'Sobre el Proyecto',
+    'common.turn-your-vision-into-a-product': 'Convierte tu Visión en un Producto',
+    'common.technology-partners-of-market-leading-companies':
+      'Socios Tecnológicos de Empresas que Lideran el Mercado',
+    'common.phase': 'Fase',
 
     // Services
     'services.a-technology-partner-for': 'Un Socio Tecnológico para',
@@ -453,6 +509,55 @@ export const ui = {
     'services.monthly-payment': 'Por mes',
     'services.pricing-plans': 'Precios',
     'services.better-option': 'Mejor Opción',
+
+    // Custom Software Development
+    'custom-development.hero-title':
+      'Tienes la Visión Nosotros Construimos el Software que la Hace Realidad',
+    'custom-development.hero-subtitle':
+      'De la idea inicial al lanzamiento, o de un sistema obsoleto a una plataforma moderna. Nos encargamos de la tecnología para que tú te enfoques en el negocio.',
+    'custom-development.experience-title': 'Experiencia',
+    'custom-development.your-team': 'Tu Equipo de Producto Externo, Enfocado en tus Resultados',
+    'custom-development.your-team-description':
+      'Olvídate de los riesgos de construir un equipo técnico desde cero o de los dolores de cabeza de un sistema que ya no da la talla. Actuamos como tu socio tecnológico integral, aportando la estrategia, el diseño y la ingeniería de élite necesarios para construir o modernizar el software que te dará una ventaja competitiva real.',
+    'custom-development.benefits-title': 'Beneficios de un Socio Tecnológico Real',
+    'custom-development.benefits-1': '1. Acceso a un Equipo Integral y Verificado',
+    'custom-development.benefits-1-description':
+      'No solo obtienes desarrolladores. Te damos un equipo completo: Arquitectos de Software, Diseñadores UI/UX y Project Managers que garantizan el éxito de tu producto.',
+    'custom-development.benefits-2': '2. Velocidad Radical en el Time-to-Market',
+    'custom-development.benefits-2-description':
+      'Ya sea para lanzar tu MVP antes que la competencia o para desplegar una nueva funcionalidad crítica, nuestro proceso ágil nos permite entregar resultados en una fracción del tiempo tradicional.',
+    'custom-development.benefits-3': '3. Tecnología Escalable y a Prueba de Futuro',
+    'custom-development.benefits-3-description':
+      'No construimos para hoy, construimos para mañana. Diseñamos tu software con una base sólida y escalable, asegurando que pueda soportar tu crecimiento sin costosas reestructuraciones.',
+    'custom-development.benefits-4': '4. Certeza en el Presupuesto y los Plazos',
+    'custom-development.benefits-4-description':
+      'Trabajamos con hojas de ruta claras y presupuestos definidos. Te damos la tranquilidad de saber exactamente qué esperar, cuándo lo recibirás y cuánto costará.',
+    'custom-development.cta-title': '¿Listo para dejar de planificar y empezar a construir?',
+    'custom-development.cta-button': 'Hablemos de tu Proyecto',
+    'custom-development.process-1': 'Descubrimiento y Alineación Estratégica',
+    'custom-development.process-1-description':
+      'Realizamos talleres contigo para entender tus objetivos de negocio. Traducimos tu visión en una hoja de ruta clara.',
+    'custom-development.process-2': 'Arquitectura y Diseño Funcional (Blueprint)',
+    'custom-development.process-2-description':
+      'Creamos el plano de la aplicación con wireframes y diagramas de flujo para validar la lógica y la usabilidad.',
+    'custom-development.process-3': 'Diseño de Experiencia e Interfaz (UI/UX)',
+    'custom-development.process-3-description':
+      'Nuestro equipo de diseño crea una interfaz de alta fidelidad, visualmente atractiva e intuitiva.',
+    'custom-development.process-4': 'Desarrollo Ágil e Implementación',
+    'custom-development.process-4-description':
+      'Construimos tu aplicación en "sprints" cortos, permitiéndote ver un progreso tangible y dar feedback continuo.',
+    'custom-development.process-5': 'Lanzamiento, Soporte y Evolución Continua',
+    'custom-development.process-5-description':
+      'Gestionamos el despliegue y ofrecemos planes de soporte para garantizar que tu plataforma funcione a su máximo rendimiento.',
+    'custom-development.our-process-title': 'Nuestro Proceso: De la Visión a la Realidad',
+    'custom-development.faqs-title': 'Preguntas Frecuentes',
+    'custom-development.start-now': '¡Comienza Ahora!',
+    'custom-development.schedule-an-appointment': 'Agenda una Cita',
+    'custom-development.15-minute-chat-without-commitment': 'Charla de 15 min, sin compromiso.',
+    'custom-development.receive-an-action-plan-to-scale-your-team':
+      'Recibe un plan de acción para escalar tu equipo.',
+    'custom-development.access-elite-talent-in-less-than-7-days':
+      'Accede a talento de élite en menos de 7 días.',
 
     // Mission
     'mission.our-mission': 'Nuestra Misión',

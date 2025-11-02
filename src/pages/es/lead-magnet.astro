@@ -1,0 +1,291 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Typography from '@/components/Typography.astro';
+import Layout from '@/layouts/Layout.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import { OUR_PROCESS_LEAD_MAGNET, THE_CLARITY_YOU_NEED } from '@/consts/data';
+import CarouselSection from '@/sections/CarouselSection.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const SEO = {
+  metaTitle: 'Lead Magnet',
+  metaDescription: 'Lead Magnet',
+};
+---
+
+<Layout seo={SEO}>
+  <!-- Hero -->
+  <div
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+  >
+    <div
+      class="relative z-10 mx-auto h-full w-full items-center justify-end rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
+    >
+      <div
+        class="flex w-full flex-col p-4 md:p-10 lg:gap-4 lg:p-[58px] xl:w-[1050px] min-[1546px]:w-[1100px]"
+      >
+        <Typography
+          class="text-center !text-[35px] font-bold capitalize leading-[40px] tracking-[0px] sm:!text-[70px] md:block md:text-start md:!leading-[85px] lg:text-left 2xl:!text-[80px]"
+          as="h1"
+          variant="h1"
+        >
+          Tu Proceso de Contratación Está Roto.
+        </Typography>
+
+        <Typography
+          as="p"
+          variant="h3"
+          class="mt-5 w-full self-end text-center font-nexaLight text-[25px] font-bold uppercase md:text-start md:text-[28px] lg:w-[65%] xl:w-[90%]"
+          >Aquí te explicamos por qué... y cómo arreglarlo.
+        </Typography>
+
+        <Typography
+          class="mt-5 w-full self-end text-center font-nexaLight text-[25px] uppercase md:text-start md:text-[28px] lg:mt-5 lg:w-[65%] xl:w-[90%]"
+          as="p"
+          variant="h5"
+        >
+          Deja de jugar a la ruleta rusa con tu roadmap. Descarga gratis "El Manual del CTO" y
+          desactiva las 3 bombas de tiempo que están saboteando tu crecimiento (antes de que sea
+          tarde).
+        </Typography>
+      </div>
+
+      <div
+        class="absolute -top-[240px] left-[4px] mr-auto flex flex-shrink-0 justify-start place-self-start lg:-left-[65px] lg:top-[220px] xl:-left-[85px] xl:top-[36px] 2xl:top-[36px] min-[1546px]:-left-[0px] min-[1546px]:top-[4px]"
+      >
+        <Image
+          class="hidden w-[420px] lg:block xl:w-full"
+          src={images['/src/assets/landing/lead-magnet-blas.webp']()}
+          alt={'blas'}
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <ResponsiveContainer>
+    <Typography as="h2" variant="h2" class="text-center text-primary"> Contáctanos </Typography>
+    <div class="flex items-center justify-center">
+      <div class="hidden md:block md:w-2/5">
+        <Image
+          src={images['/src/assets/landing/lead-magnet-book.webp']()}
+          alt={'form'}
+          width={500}
+          height={500}
+        />
+      </div>
+      <div class="w-full md:w-3/5">
+        <script
+          type="text/javascript"
+          src="https://api.clientify.net/web-marketing/superforms/script/263529.js"></script>
+      </div>
+    </div>
+  </ResponsiveContainer>
+
+  <!-- Questions -->
+  <ResponsiveContainer class="relative z-50" background="bulbs">
+    <Typography
+      class:list={[
+        'mb-10 w-full place-self-center text-center capitalize text-secondary xl:w-[52%]',
+      ]}
+      as="h2"
+      variant="h2"
+    >
+      Si esto te suena familiar, no estás solo...
+    </Typography>
+
+    <div class="flex flex-col gap-10">
+      {
+        OUR_PROCESS_LEAD_MAGNET.map((item) => {
+          return (
+            <div
+              class={`flex flex-col items-center justify-between gap-4 ${item.id % 2 === 0 ? 'md:flex-row-reverse ' : 'md:flex-row'}`}
+            >
+              <div class="w-4/5 ">
+                <Typography as="span" variant="h3" class=" font-bold text-white">
+                  {item.title}
+                </Typography>
+
+                <Typography as="span" variant="h4" class=" font-nexaLight text-white">
+                  {item.content}
+                </Typography>
+              </div>
+              <div
+                class="flex h-[120px] w-[120px] min-w-[120px] lg:h-[170px] lg:w-[170px]"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  </ResponsiveContainer>
+
+  <!-- Not your fault -->
+  <ResponsiveContainer class="flex">
+    <Typography as="span" variant="h2" class="text-center text-primary">
+      No es tu culpa.
+      <Typography
+        as="span"
+        variant="h2"
+        class="text-center font-nexaLight !font-medium text-primary"
+      >
+        El sistema de contratación tradicional no está diseñado para la velocidad y la complejidad
+        del mundo tecnológico actual.</Typography
+      >
+    </Typography>
+  </ResponsiveContainer>
+
+  <!-- The clarity -->
+  <CarouselSection
+    background="bulbs"
+    class="relative z-50 flex flex-col items-center justify-center"
+    pagination
+    slidesPerView={{
+      0: 1,
+      600: 1,
+      960: 1,
+      1280: 1,
+      1920: 1,
+    }}
+  >
+    <Fragment slot="custom-title">
+      <article class="flex flex-col px-10">
+        <Typography as="h2" variant="h2" class="mb-8 text-center text-secondary">
+          La Claridad que Necesitas,<br />
+          en Menos de 10 Minutos de Lectura.
+        </Typography>
+
+        <Typography as="p" variant="h4" class="max-w-4x mb-4 mt-8 font-nexaLight text-white">
+          Esta no es una guía teórica de 50 páginas. Es un manual de campo, directo y sin rodeos,
+          donde destilamos más de 8 años de experiencia construyendo equipos de élite.
+        </Typography>
+        <Typography as="p" variant="h4" class="mt-4 font-nexaBold text-white">
+          Al terminar de leer, serás capaz de:
+        </Typography>
+      </article>
+    </Fragment>
+
+    <Fragment slot="items">
+      {
+        THE_CLARITY_YOU_NEED.map((item) => {
+          return (
+            <div class="swiper-slide !flex !h-auto">
+              <div class="flex w-full flex-col items-center justify-center gap-6 px-4 md:flex-row md:px-20">
+                <div class="max-w-2xl flex-1">
+                  <Typography as="h3" variant="h3" class="mb-6 font-bold text-secondary">
+                    {item.title}
+                  </Typography>
+                  <Typography as="p" variant="h4" class="font-nexaLight leading-relaxed text-white">
+                    {item.content}
+                  </Typography>
+                </div>
+
+                <div class="flex-shrink-0">
+                  <div
+                    class="flex h-[250px] w-[250px] min-w-[250px] lg:h-[350px] lg:w-[350px]"
+                    style={{
+                      backgroundImage: `url(${item.image})`,
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </Fragment>
+  </CarouselSection>
+
+  <!-- Clientify -->
+  <ResponsiveContainer>
+    <Typography as="h2" variant="h2" class="text-center text-primary">
+      Escrito desde la Trinchera,<br />
+      no desde la Teoría
+    </Typography>
+
+    <Typography as="p" variant="h4" class="mt-10 font-nexaLight text-primary">
+      Esta guía fue escrita por Blas Hernandez, CEO y Fundador de Crazy Imagine Software. No es un
+      consultor; es un líder técnico que ha vivido tus mismos desafíos durante más de una década.<br
+      />
+      <br />
+      Lo que leerás no son hipótesis. Son las lecciones aprendidas construyendo más de 400 proyectos
+      y escalando docenas de equipos tecnológicos de alto rendimiento. Sabemos lo que funciona porque
+      lo hacemos todos los días.</Typography
+    >
+
+    <div class="relative mt-16 flex justify-end">
+      <div class="relative max-w-4xl rounded-lg px-8 py-12 md:px-12 md:py-16">
+        <div class="absolute -top-8 left-8 text-[120px] font-bold leading-none text-primary">❝</div>
+
+        <div class="relative z-10 px-4 text-center md:px-8">
+          <Typography as="p" variant="h4" class="mb-8 font-nexaLight leading-relaxed text-primary">
+            Crazy Imagine no solo nos dio desarrolladores, nos dio un socio estratégico que entendió
+            nuestro negocio desde el primer día.
+          </Typography>
+
+          <Typography as="p" variant="h5" class="font-nexaBold text-primary">
+            - CEO de Clientify
+          </Typography>
+        </div>
+
+        <div class="absolute -bottom-8 right-8 text-[120px] font-bold leading-none text-primary">
+          ❞
+        </div>
+      </div>
+      <Image
+        src={images['/src/assets/landing/clientify-logo.webp']()}
+        class="absolute -bottom-[110px] left-0"
+        alt="clientify"
+      />
+    </div>
+  </ResponsiveContainer>
+
+  <!-- Roadmap -->
+  <ResponsiveContainer background="bulbs" class="relative z-50">
+    <Typography as="h2" variant="h2" class="text-center text-secondary">
+      Tu Roadmap no puede esperar.
+      <br />
+      Tu tranquilidad tampoco.
+    </Typography>
+
+    <Typography as="p" variant="h4" class="mx-auto mt-10 w-[90%] font-nexaLight text-white"
+      >El coste de una mala contratación es brutal. El coste de la inacción es aún peor. Esta guía
+      es el primer paso, el más fácil y rápido, para blindar tu equipo y tu proyecto. Es gratis.
+      ¿Qué tienes que perder?</Typography
+    >
+  </ResponsiveContainer>
+
+  <!-- Contact Form -->
+  <ResponsiveContainer>
+    <div class="flex items-center justify-center gap-5">
+      <div class="w-full md:w-3/5">
+        <Typography as="h2" variant="h2" class="text-center text-primary"> Contáctanos </Typography>
+        <Typography as="p" variant="h4" class="mb-5 mt-10 font-nexaLight text-primary"
+          >100% libre de spam. Odiamos el marketing basura tanto como tú.</Typography
+        >
+        <script
+          type="text/javascript"
+          src="https://api.clientify.net/web-marketing/superforms/script/263529.js"></script>
+      </div>
+      <div class="hidden md:block md:w-2/5">
+        <Image
+          src={images['/src/assets/landing/lead-magnet-book.webp']()}
+          alt={'form'}
+          width={500}
+          height={500}
+        />
+      </div>
+    </div>
+  </ResponsiveContainer>
+</Layout>

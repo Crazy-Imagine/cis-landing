@@ -6,31 +6,46 @@ import type { Background } from '@/types/Background';
 
 interface Props {
   background?: Background;
-  title: string;
+  title?: string;
   class?: string;
+  customTitle?: string;
+  pagination?: boolean;
+  slidesPerView?: {
+    0: number;
+    600: number;
+    960: number;
+    1280: number;
+    1920: number;
+  };
 }
 
-const { title, background } = Astro.props;
+const { title, background, slidesPerView, pagination } = Astro.props;
 
 const isWhite = typeof background === 'undefined' || background === 'white';
 ---
 
 <ResponsiveContainer background={background} class="relative z-50">
-  <Typography
-    class:list={[
-      'mb-10 text-center capitalize',
-      {
-        'text-primary': isWhite,
-        'text-white': !isWhite,
-      },
-    ]}
-    as="h2"
-    variant="h2"
-  >
-    {title}
-  </Typography>
+  {
+    title && (
+      <Typography
+        class:list={[
+          'mb-10 text-center capitalize',
+          {
+            'text-primary': isWhite,
+            'text-white': !isWhite,
+          },
+        ]}
+        as="h2"
+        variant="h2"
+      >
+        {title}
+      </Typography>
+    )
+  }
 
-  <Carousel>
+  <slot name="custom-title" />
+
+  <Carousel slidesPerView={slidesPerView} pagination={pagination}>
     <slot name="items" />
   </Carousel>
 
