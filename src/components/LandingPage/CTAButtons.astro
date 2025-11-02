@@ -4,7 +4,7 @@ import Typography from '../Typography.astro';
 interface Props {
   text: string;
   href: string;
-  variant: 'primary' | 'secondary' | 'outline' | 'primary-light';
+  variant: 'primary' | 'secondary' | 'outline' | 'primary-light' | 'purple';
   class?: string;
   textClass?: string;
 }
@@ -19,6 +19,7 @@ interface Props {
       'bg-[#27AAE1]': Astro.props.variant === 'primary-light',
       'bg-secondary': Astro.props.variant === 'secondary',
       'bg-transparent': Astro.props.variant === 'outline',
+      'border-none bg-blue-purple': Astro.props.variant === 'purple',
       [`${Astro.props.class}`]: Astro.props.class,
     },
   ]}

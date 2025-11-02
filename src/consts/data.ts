@@ -1,3 +1,4 @@
+import { useTranslations } from '@/i18n/utils';
 import type { OurProcessProps } from '@/types/OurServicesLanding';
 
 export const ourServices = [
@@ -205,3 +206,71 @@ export const OUR_BENEFITS_OUTSOURCING: OurProcessProps[] = [
       'Permite que tu equipo principal se concentre en sus tareas estratégicas y el crecimiento del negocio, mientras nosotros nos encargamos de la ejecución tecnológica.',
   },
 ];
+
+export function OUR_BENEFITS_CUSTOM_SOFTWARE_DEVELOPMENT(urlLang: 'es' | 'en'): OurProcessProps[] {
+  const t = useTranslations(urlLang);
+
+  return [
+    {
+      id: 1,
+      title: t('custom-development.benefits-1'),
+      image: '/landing/satelit.webp',
+      content: t('custom-development.benefits-1-description'),
+    },
+    {
+      id: 2,
+      title: t('custom-development.benefits-2'),
+      image: '/landing/meteorit.webp',
+      content: t('custom-development.benefits-2-description'),
+    },
+    {
+      id: 3,
+      title: t('custom-development.benefits-3'),
+      image: '/landing/repare-satelit.webp',
+      content: t('custom-development.benefits-3-description'),
+    },
+    {
+      id: 4,
+      title: t('custom-development.benefits-4'),
+      image: '/landing/planeta.webp',
+      content: t('custom-development.benefits-4-description'),
+    },
+  ];
+}
+
+export function OUR_PROCESS_CUSTOM_SOFTWARE_DEVELOPMENT(urlLang: 'es' | 'en'): OurProcessProps[] {
+  const t = useTranslations(urlLang);
+
+  return [
+    {
+      id: 1,
+      title: t('custom-development.process-1'),
+      content: t('custom-development.process-1-description'),
+      image: '/landing/process-1.webp',
+    },
+    {
+      id: 2,
+      title: t('custom-development.process-2'),
+      content: t('custom-development.process-2-description'),
+      image: '/landing/process-2.webp',
+    },
+    {
+      id: 3,
+      title: t('custom-development.process-3'),
+      content: t('custom-development.process-3-description'),
+      image: '/landing/process-3.webp',
+    },
+    {
+      id: 4,
+      title: t('custom-development.process-4'),
+      content: t('custom-development.process-4-description'),
+      image: '/landing/process-4.webp',
+    },
+    {
+      id: 5,
+      title: t('custom-development.process-5'),
+      content: t('custom-development.process-5-description'),
+      image: '/landing/process-5.webp',
+    },
+  ];
+}

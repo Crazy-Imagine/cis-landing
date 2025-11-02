@@ -9,11 +9,12 @@ import OurTalent from '@/components/LandingPage/OurTalent.astro';
 import Newsletter from '@/components/Newsletter.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import OurProcessLanding from '@/components/LandingPage/OurProcessLanding.astro';
-import { OUR_PROCESS_OUTSOURCING } from '@/consts/ourProcess';
+
 import { OUR_BENEFITS_OUTSOURCING } from '@/consts/data';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
 import Accordion from '@/components/Accordion.astro';
 import { FAQS } from '@/utils/outsourcing';
+import { OUR_PROCESS_OUTSOURCING } from '@/consts/ourProcess';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
