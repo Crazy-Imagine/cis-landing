@@ -1,0 +1,202 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
+import Layout from '@/layouts/Layout.astro';
+import Experience from '@/sections/Experience.astro';
+import Partners from '@/sections/Partners.astro';
+import Hero from '@/sections/Hero.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import {
+  OUR_BENEFITS_CUSTOM_SOFTWARE_DEVELOPMENT,
+  OUR_PROCESS_CUSTOM_SOFTWARE_DEVELOPMENT,
+} from '@/consts/data';
+import { OurProcess } from '@/components/react/Landings/OurProcess';
+import { FAQS_ES } from '@/utils/customSoftware';
+import Accordion from '@/components/Accordion.astro';
+
+const SEO_EN = {
+  metaTitle: 'Custom Web Development Websites Crazy Imagine',
+  metaDescription:
+    'Crazy Imagine offers expert web development services! We build dynamic websites tailored to your needs. Get responsive design, modern front-end (React, Vue.js, Angular), and secure back-end development (Node.js, Express, Python, PHP). We optimize performance and integrate APIs. Contact us today!',
+  keywords:
+    'Web development services, Custom web development, Responsive web design, Front-end development (React, Vue.js, Angular), Back-end, development (Node.js, Express, Python, PHP), API integration, Website security, E-commerce development, Web application development',
+};
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout seo={SEO_EN}>
+  <Hero
+    title={t('custom-development.hero-title')}
+    subtitle={t('custom-development.hero-subtitle')}
+    id={1}
+  >
+    <CTAButtons
+      text={t('common.turn-your-vision-into-a-product')}
+      href="#contact"
+      variant="purple"
+      textClass="text-[18px] lg:text-[30px]"
+      slot="button"
+    />
+  </Hero>
+  <Partners title={t('common.technology-partners-of-market-leading-companies')} />
+  <Experience />
+  <ResponsiveContainer>
+    <Typography
+      as="h2"
+      variant="h1"
+      class="mb-[94px] w-full place-self-center text-center text-primary lg:w-2/3"
+    >
+      {t('custom-development.your-team')}
+    </Typography>
+    <Typography
+      as="span"
+      variant="h4"
+      class="font-nexaLight text-[18px] text-primary md:text-[30px]"
+    >
+      {t('custom-development.your-team-description')}
+    </Typography>
+  </ResponsiveContainer>
+  <!-- Benefits -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography
+      as="p"
+      variant="h2"
+      class="mb-5 place-self-center font-nexaBold font-bold text-primary md:mb-[69px]"
+    >
+      {t('custom-development.benefits-title')}
+    </Typography>
+    <OurProcess client:visible data={OUR_BENEFITS_CUSTOM_SOFTWARE_DEVELOPMENT(lang)} />
+  </ResponsiveContainer>
+
+  <ResponsiveContainer background="bulbs" class="relative z-50">
+    <Typography class:list={['mb-10 text-center capitalize text-white']} as="h2" variant="h2">
+      {t('custom-development.cta-title')}
+    </Typography>
+    <CTAButtons
+      text={t('custom-development.cta-button')}
+      href="#contact"
+      variant="outline"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px] px-20"
+    />
+  </ResponsiveContainer>
+  <!-- Our Process -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography
+      class:list={['mb-10 w-[52%] place-self-center text-center capitalize text-primary']}
+      as="h2"
+      variant="h2"
+    >
+      {t('custom-development.our-process-title')}
+    </Typography>
+
+    <div class="flex flex-col gap-10">
+      {
+        OUR_PROCESS_CUSTOM_SOFTWARE_DEVELOPMENT(lang).map((item) => {
+          return (
+            <div
+              class={`flex flex-col items-center justify-between gap-4 ${item.id % 2 === 0 ? 'md:flex-row-reverse ' : 'md:flex-row'}`}
+            >
+              <div class="flex w-4/5  flex-col gap-4">
+                <Typography as="span" variant="h3" class=" font-bold text-primary">
+                  {`${t('common.phase')}${item.id}:`}{' '}
+                  <Typography as="span" variant="h3" class=" font-bold text-secondary">
+                    {item.title}
+                  </Typography>
+                </Typography>
+                <Typography as="span" variant="h4" class=" font-nexaLight text-primary">
+                  {item.content}
+                </Typography>
+              </div>
+
+              <div
+                class="flex h-[170px] w-[170px] min-w-[170px]"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  </ResponsiveContainer>
+
+  <!-- FQS -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography class:list={['text-centercapitalize mb-10 text-primary']} as="h2" variant="h2">
+      {t('custom-development.faqs-title')}
+    </Typography>
+
+    {
+      FAQS_ES.map((faq) => (
+        <Accordion
+          title={faq.title}
+          description={faq.description}
+          isHtml={faq.isHtml}
+          customTypographyClass="!text-base lg:!text-[18px]"
+        />
+      ))
+    }
+  </ResponsiveContainer>
+
+  <!-- Form -->
+  <ResponsiveContainer
+    class="flex flex-col items-center justify-center md:flex-row"
+    containerClass="!pb-0"
+  >
+    <div class="w-full md:w-1/2">
+      <Typography class:list={['mb-10 text-center capitalize text-primary']} as="h2" variant="h2">
+        {t('custom-development.start-now')}
+        <br />
+        {t('custom-development.schedule-an-appointment')}
+      </Typography>
+      <div id="contact" class="w-full max-w-[880px]">
+        <script
+          type="text/javascript"
+          src="https://api.clientify.net/web-marketing/superforms/script/259389.js"></script>
+      </div>
+    </div>
+    <div class="relative -top-[50px] flex w-full justify-center md:w-1/2">
+      <Image
+        src={images['/src/assets/landing/appointment.webp']()}
+        alt={'appointment'}
+        class="w-[450px]"
+      />
+      <div
+        class="absolute bottom-[90px] left-0 flex w-full flex-col items-center gap-4 2xl:left-[195px] 2xl:w-1/2"
+      >
+        <Typography as="span" variant="h3" class="text-center font-bold text-primary"
+          >{t('custom-development.schedule-an-appointment')}</Typography
+        >
+        <ol class="w-[60%] list-disc">
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >{t('custom-development.15-minute-chat-without-commitment')}</Typography
+            >
+          </li>
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >{t('custom-development.receive-an-action-plan-to-scale-your-team')}</Typography
+            >
+          </li>
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >{t('custom-development.access-elite-talent-in-less-than-7-days')}</Typography
+            >
+          </li>
+        </ol>
+      </div>
+    </div>
+  </ResponsiveContainer>
+</Layout>

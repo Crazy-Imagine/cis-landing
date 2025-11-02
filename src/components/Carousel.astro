@@ -2,9 +2,32 @@
 import 'swiper/css';
 import 'swiper/css/keyboard';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+interface Props {
+  pagination?: boolean;
+  slidesPerView?: {
+    0: number;
+    600: number;
+    960: number;
+    1280: number;
+    1920: number;
+  };
+}
+
+const {
+  slidesPerView = {
+    0: 1,
+    600: 2,
+    960: 3,
+    1280: 4,
+    1920: 4,
+  },
+  pagination = false,
+} = Astro.props;
 ---
 
-<div class="swiper mySwiper">
+<div class="swiper mySwiper relative !overflow-clip" data-slides={JSON.stringify(slidesPerView)}>
   <div class="swiper-wrapper items-stretch">
     <slot />
   </div>
@@ -17,25 +40,28 @@ import 'swiper/css/pagination';
   import { Keyboard, Pagination } from 'swiper/modules';
   import type { SwiperOptions } from 'swiper/types';
 
+  const swiperEl = document.querySelector('.mySwiper') as HTMLElement;
+  const slidesPerView = JSON.parse(swiperEl.dataset.slides || '{}');
+  const pagination = swiperEl.dataset.pagination === 'true';
+
   const swiper = new Swiper('.mySwiper', {
     modules: [Keyboard, Pagination],
-    // loop: true,
     spaceBetween: 50,
     breakpoints: {
       0: {
-        slidesPerView: 1,
+        slidesPerView: slidesPerView[0] || 1,
       },
       600: {
-        slidesPerView: 2,
+        slidesPerView: slidesPerView[600] || 2,
       },
       960: {
-        slidesPerView: 3,
+        slidesPerView: slidesPerView[960] || 3,
       },
       1280: {
-        slidesPerView: 4,
+        slidesPerView: slidesPerView[1280] || 4,
       },
       1920: {
-        slidesPerView: 4,
+        slidesPerView: slidesPerView[1920] || 4,
       },
     },
     grabCursor: true,
