@@ -318,6 +318,31 @@ export const ui = {
     'experience.contracted': 'Contracted',
     'experience.projects': 'Projects',
     'experience.successful': 'Successful',
+
+    // Thank you page
+    'thankyou.hero-title': '¡Great Choice!',
+    'thankyou.hero-subtitle': `Your "CTO's Playbook" is on its way to your inbox.`,
+    'thankyou.hero-caption':
+      'It should arrive in the next 5 minutes. (Please check your spam or promotions folder, just in case the email gods are angry today).',
+    'thankyou.wait-title': 'WAIT A SECOND...',
+    'thankyou.wait-subtitle': `Let’s be honest. You didn't download this guide for light weekend reading`,
+    'thankyou.wait-caption-1': `You downloaded it because you likely have this problem right now.`,
+    'thankyou.wait-caption-2': `Your roadmap is stuck. Your hiring cycles are hell. And every day a developer seat sits empty, your competitors are inching ahead.`,
+    'thankyou.wait-caption-3': `The guide will absolutely help you. But if you need a shortcut...`,
+    'thankyou.diagnostic-title': 'Get a Free Roadmap Rapid-Diagnostic.',
+    'thankyou.diagnostic-subtitle':
+      'Skip the theory for now. I want to invite you to a 20-minute whiteboard strategy session.',
+    'thankyou.diagnostic-paragraph-1': 'Let’s be clear: This is NOT a thinly veiled sales call',
+    'thankyou.diagnostic-paragraph-2': 'It’s a high-level consulting session where we will:',
+    'thankyou.diagnostic-list-1': 'Diagnose your #1 hiring bottleneck in under 5 minutes.',
+    'thankyou.diagnostic-list-2':
+      'Hand you an immediate Battle Plan to accelerate your time-to-market.',
+    'thankyou.diagnostic-list-3':
+      'Show you the exact framework we used to solve this same issue for fast-growing scale-ups like Clientify and Ordering.',
+    'thankyou.schedule-title': 'Yes, I want my free action plan.',
+    'thankyou.schedule-button': 'SCHEDULE AN APPOINTMENT',
+    'thankyou.schedule-caption':
+      'You’ll be speaking directly with our senior strategy team, who have helped scale 400+ tech teams. Bring us your toughest challenge.',
   },
   es: {
     // Aria keys
@@ -626,5 +651,30 @@ export const ui = {
     'experience.contracted': 'Contratados',
     'experience.projects': 'Proyectos',
     'experience.successful': 'Exitosos',
+
+    // Thank you page
+    'thankyou.hero-title': '¡Excelente Decisión!',
+    'thankyou.hero-subtitle': 'Tu "Manual del CTO" ya va en camino a tu email.',
+    'thankyou.hero-caption':
+      'Deberías recibirlo en los próximos 5 minutos. (Por favor, revisa tu carpeta de spam o promociones, por si acaso).',
+    'thankyou.wait-title': 'PERO ESPERA...',
+    'thankyou.wait-subtitle': `Si descargaste esta guía, no es por curiosidad.`,
+    'thankyou.wait-caption-1': `Es porque probablemente tienes este problema ahora mismo.`,
+    'thankyou.wait-caption-2': `Tu roadmap está atascado. Tus ciclos de contratación son un infierno. Y cada día que una silla de desarrollador está vacía, tu competencia te está sacando ventaja. La guía te ayudará, sin duda.`,
+    'thankyou.wait-caption-3': `Pero si lo que necesitas es un atajo...`,
+    'thankyou.diagnostic-title': 'Te Ofrecemos un Diagnóstico de Roadmap Gratuito.',
+    'thankyou.diagnostic-subtitle':
+      'En lugar de solo leer la teoría, te invito a una sesión de pizarra de 20 minutos',
+    'thankyou.diagnostic-paragraph-1': 'Seamos claros: Esto NO es una llamada de ventas.',
+    'thankyou.diagnostic-paragraph-2': 'Es una sesión de consultoría de alto valor donde vamos a:',
+    'thankyou.diagnostic-list-1': 'Diagnosticar tu cuello de botella #1 en 5 minutos.',
+    'thankyou.diagnostic-list-2':
+      'Darte un plan de acción inmediato para acelerar tu time-to-market.',
+    'thankyou.diagnostic-list-3':
+      'Mostrarte cómo hemos resuelto ese mismo problema para empresas como Clientify y Ordering.',
+    'thankyou.schedule-title': 'Si, quiero mi plan de acción gratuito.',
+    'thankyou.schedule-button': 'AGENDA UNA CITA',
+    'thankyou.schedule-caption':
+      'Hablarás directamente con nuestro equipo de estrategia especializado, que ha ayudado a más de 400 empresas a escalar sus equipos tecnológicos. Trae tu desafío más grande.',
   },
 } as const;
