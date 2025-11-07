@@ -1,0 +1,187 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Typography from '@/components/Typography.astro';
+import Layout from '@/layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const urlLang = getLangFromUrl(Astro.url);
+const t = useTranslations(urlLang);
+---
+
+<Layout
+  seo={{
+    metaTitle: 'Gracias por contactarnos',
+    metaDescription: 'Gracias por contactarnos',
+  }}
+>
+  <!-- Hero -->
+  <div
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+  >
+    <div
+      class="relative z-10 mx-auto h-full w-full items-center rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
+    >
+      <div class="w-full gap-10 p-4 md:p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[80%]">
+        <Typography
+          class="text-center text-[35px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px]"
+          as="h1"
+          variant="h1"
+        >
+          {t('thankyou.hero-title')}
+        </Typography>
+
+        <div class="mt-10 flex flex-col gap-10 xl:w-[60%]">
+          <Typography
+            class="text-center font-nexaBold text-[25px] md:text-start md:!text-[40px]"
+            as="p"
+            variant="h4"
+          >
+            {t('thankyou.hero-subtitle')}
+          </Typography>
+
+          <Typography
+            class="text-center font-nexaLight uppercase leading-10 md:text-start md:text-[26px]"
+            as="p"
+            variant="h5"
+          >
+            {t('thankyou.hero-caption')}
+          </Typography>
+        </div>
+      </div>
+
+      <div class="absolute bottom-0 right-0 ml-auto flex flex-shrink-0 justify-end place-self-end">
+        <Image
+          class="hidden w-full lg:block"
+          src={images['/src/assets/landing/letter.webp']()}
+          alt={'hero image'}
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Wait section -->
+  <ResponsiveContainer containerClass="!py-0">
+    <div class="flex flex-col-reverse items-center md:flex-row md:gap-10">
+      <div class="w-[300px] md:w-[44%] xl:w-1/4">
+        <Image src={images['/src/assets/landing/consuelo.webp']()} alt={'ronald'} />
+      </div>
+      <div class="flex w-full justify-center pt-24 md:w-[60%] xl:w-3/4">
+        <div class="flex w-full flex-col gap-10 lg:w-[70%]">
+          <Typography as="h2" variant="h2" class="text-primary">
+            {t('thankyou.wait-title')}
+          </Typography>
+          <Typography as="p" variant="h4" class="text-primary">
+            {t('thankyou.wait-subtitle')}
+          </Typography>
+          <Typography as="p" variant="h5" class="font-nexaLight text-primary">
+            {t('thankyou.wait-caption-1')}
+          </Typography>
+          <Typography as="p" variant="h5" class="font-nexaLight text-primary">
+            {t('thankyou.wait-caption-2')}
+          </Typography>
+          <Typography as="p" variant="h5" class="font-nexaBold !font-bold text-primary">
+            {t('thankyou.wait-caption-3')}
+          </Typography>
+        </div>
+      </div>
+    </div>
+  </ResponsiveContainer>
+
+  <!-- Rapid diagnostic -->
+  <ResponsiveContainer
+    background="bulbs"
+    class="relative z-50 flex flex-col justify-center gap-10 lg:!px-28"
+  >
+    <Typography
+      as="h2"
+      variant="h2"
+      class="w-full self-center text-center text-secondary xl:w-[70%]"
+      >{t('thankyou.diagnostic-title')}</Typography
+    >
+    <Typography
+      as="span"
+      variant="h4"
+      class="w-full self-center text-center font-nexaLight text-white lg:!w-1/2"
+      >{t('thankyou.diagnostic-subtitle')}</Typography
+    >
+    <div class="flex justify-between gap-10">
+      <div class="flex w-full flex-col gap-5 lg:w-[70%] lg:gap-10">
+        <Typography
+          as="p"
+          variant="h5"
+          class="font-nexaBold text-white md:!text-[26px] lg:!text-[36px]"
+          >{t('thankyou.diagnostic-paragraph-1')}</Typography
+        >
+        <Typography as="p" variant="h5" class="font-nexaLight text-white"
+          >{t('thankyou.diagnostic-paragraph-2')}</Typography
+        >
+        <ul class="ml-10 w-[80%] list-decimal text-white lg:ml-20">
+          <li>
+            <Typography as="p" variant="h5" class="font-nexaLight text-white"
+              >{t('thankyou.diagnostic-list-1')}</Typography
+            >
+          </li>
+          <li>
+            <Typography as="p" variant="h5" class="mt-5 font-nexaLight text-white"
+              >{t('thankyou.diagnostic-list-2')}</Typography
+            >
+          </li>
+          <li>
+            <Typography as="p" variant="h5" class="mt-5 font-nexaLight text-white"
+              >{t('thankyou.diagnostic-list-3')}</Typography
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="flex w-[30%] items-center justify-center">
+        <Image src={images['/src/assets/landing/contactUs.webp']()} alt={'contactUs'} />
+      </div>
+    </div>
+
+    <Typography
+      as="span"
+      variant="h3"
+      class="mt-5 w-full self-center text-center font-nexaBold text-secondary lg:w-[75%] lg:!text-[48px]"
+    >
+      Saldrás <Typography as="span" variant="h3" class="font-nexaBold text-white lg:!text-[48px]"
+        >de esta llamada con un</Typography
+      > con un plan de acción claro. <Typography
+        as="span"
+        variant="h3"
+        class="font-nexaBold text-white lg:!text-[48px]">Cero compromiso.</Typography
+      >
+    </Typography>
+  </ResponsiveContainer>
+
+  <!-- Schedule section -->
+  <ResponsiveContainer>
+    <div class="flex gap-10">
+      <div class="flex w-full flex-col items-center gap-10 md:w-[55%] lg:w-[60%] lg:px-20">
+        <Typography as="h2" variant="h2" class="text-primary"
+          >{t('thankyou.schedule-title')}</Typography
+        >
+        <CTAButtons
+          text={t('thankyou.schedule-button')}
+          href={'/es/agendamiento'}
+          variant="outline"
+          textClass="!text-secondary lg:!text-[48px]"
+          class="w-fit"
+        />
+
+        <Typography as="p" variant="h5" class="font-nexaLight text-primary"
+          >{t('thankyou.schedule-caption')}</Typography
+        >
+      </div>
+      <Image
+        class="absolute bottom-0 right-0 hidden w-[400px] md:block lg:w-[500px]"
+        src={images['/src/assets/landing/consuelo2.webp']()}
+        alt={'consuelo2'}
+      />
+    </div>
+  </ResponsiveContainer>
+</Layout>
