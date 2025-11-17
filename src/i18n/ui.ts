@@ -343,6 +343,58 @@ export const ui = {
     'thankyou.schedule-button': 'SCHEDULE AN APPOINTMENT',
     'thankyou.schedule-caption':
       'You’ll be speaking directly with our senior strategy team, who have helped scale 400+ tech teams. Bring us your toughest challenge.',
+
+    // Lead Magnet Page
+    'lead-magnet.hero-title': 'Your Hiring Process is Broken.',
+    'lead-magnet.hero-subtitle': "Here's why... and how to fix it.",
+    'lead-magnet.hero-description':
+      'Stop playing Russian roulette with your roadmap. Download the free "CTO\'s Playbook" and defuse the 3 ticking time bombs sabotaging your growth (before it’s too late).',
+    'lead-magnet.questions-title': 'If this sounds familiar, you’re not alone...',
+    'lead-magnet.questions-1': 'Do you feel like you spend more time interviewing',
+    'lead-magnet.questions-1-description': 'than leading and progressing with your current team?',
+    'lead-magnet.questions-2': 'Have you ever hired a "crack"',
+    'lead-magnet.questions-2-description':
+      'who was perfect on paper but turned out to be a technical fiasco or, worse, toxic to your culture?',
+    'lead-magnet.questions-3': 'Does your roadmap lag quarter after quarter',
+    'lead-magnet.questions-3-description':
+      'because you simply can’t find the right senior talent at the speed you need?',
+    'lead-magnet.questions-4': 'Do you get frustrated watching competitors launch features',
+    'lead-magnet.questions-4-description':
+      'while your team is stuck in technical debt or endless selection processes?',
+    'lead-magnet.not-your-fault-title': "It's not your fault.",
+    'lead-magnet.not-your-fault-description':
+      'The traditional hiring system is not designed for the speed and complexity of today’s tech world.',
+    'lead-magnet.the-clarity-you-need-title-1': 'The Clarity You Need,',
+    'lead-magnet.the-clarity-you-need-title-2': 'in Less Than 10 Minutes of Reading.',
+    'lead-magnet.the-clarity-you-need-description':
+      'This is not a 50-page theoretical guide. It’s a direct, no-nonsense field manual where we distill over 8 years of experience building elite teams.',
+    'lead-magnet.the-clarity-you-need-caption': 'When you finish reading, you will be able to:',
+    'lead-magnet.the-clarity-you-need-1': 'Defuse the "Perfect Resume Bomb":',
+    'lead-magnet.the-clarity-you-need-1-description':
+      'You’ll learn to spot a true problem solver, instead of someone who’s just good at interviews.',
+    'lead-magnet.the-clarity-you-need-2': 'Neutralize the "Toxic Genius":',
+    'lead-magnet.the-clarity-you-need-2-description':
+      'We’ll give you a checklist of key questions to catch bad cultural hires before they infect your team.',
+    'lead-magnet.the-clarity-you-need-3': 'Avoid the "Slow Onboarding Poison":',
+    'lead-magnet.the-clarity-you-need-3-description':
+      'You’ll get a simple template so your new talent (internal or external) is productive in their first week—not their third month.',
+    'lead-magnet.clientify-title-1': 'Written from the Trenches,',
+    'lead-magnet.clientify-title-2': 'Not from Theory',
+    'lead-magnet.clientify-description-1':
+      'This guide was written by Blas Hernandez, CEO and Founder of Crazy Imagine Software. He’s not a consultant; he’s a technical leader who’s faced your same challenges for over a decade.',
+    'lead-magnet.clientify-description-2':
+      'What you’ll read isn’t theory. These are the lessons learned from building 400+ projects and scaling dozens of high-performance tech teams. We know what works because we do it every day.',
+    'lead-magnet.clientify-description-3':
+      'What you’ll read isn’t theory. These are the lessons learned from building 400+ projects and scaling dozens of high-performance tech teams. We know what works because we do it every day.',
+    'lead-magnet.clientify-quote':
+      'Crazy Imagine didn’t just give us developers, they gave us a strategic partner who understood our business from day one.',
+    'lead-magnet.clientify-quote-author': 'CEO of Clientify',
+    'lead-magnet.roadmap-title-1': 'Your Roadmap Can’t Wait.',
+    'lead-magnet.roadmap-title-2': 'Neither Can Your Peace of Mind.',
+    'lead-magnet.roadmap-description':
+      'The cost of a bad hire is brutal. The cost of inaction is even worse. This guide is the first, fastest, and easiest step to secure your team and your project. It’s free. What have you got to lose?',
+    'lead-magnet.contact-us-description':
+      '100% spam free. We hate junk marketing as much as you do.',
   },
   es: {
     // Aria keys
@@ -676,5 +728,57 @@ export const ui = {
     'thankyou.schedule-button': 'AGENDA UNA CITA',
     'thankyou.schedule-caption':
       'Hablarás directamente con nuestro equipo de estrategia especializado, que ha ayudado a más de 400 empresas a escalar sus equipos tecnológicos. Trae tu desafío más grande.',
+
+    // Lead Magnet Page
+    'lead-magnet.hero-title': 'Tu Proceso de Contratación Está Roto.',
+    'lead-magnet.hero-subtitle': 'Aquí te explicamos por qué... y cómo arreglarlo.',
+    'lead-magnet.hero-description':
+      'Deja de jugar a la ruleta rusa con tu roadmap. Descarga gratis "El Manual del CTO" y desactiva las 3 bombas de tiempo que están saboteando tu crecimiento (antes de que sea tarde).',
+    'lead-magnet.questions-title': 'Si esto te suena familiar, no estás solo...',
+    'lead-magnet.questions-1': '¿Sientes que pasas más tiempo en entrevistas',
+    'lead-magnet.questions-1-description': 'que liderando y progresando con tu equipo actual?',
+    'lead-magnet.questions-2': '¿Alguna vez has contratado a un "crack"',
+    'lead-magnet.questions-2-description':
+      'que en el papel era perfecto, pero que resultó ser un fiasco técnico o, peor aún, tóxico para tu cultura?',
+    'lead-magnet.questions-3': '¿Tu roadmap se retrasa trimestre tras trimestre',
+    'lead-magnet.questions-3-description':
+      'porque simplemente no encuentras el talento senior adecuado a la velocidad que necesitas?',
+    'lead-magnet.questions-4': '¿Te frustra ver cómo la competencia lanza features ',
+    'lead-magnet.questions-4-description':
+      'mientras tu equipo está atascado en deuda técnica o en procesos de selección interminables?',
+    'lead-magnet.not-your-fault-title': 'No es tu culpa.',
+    'lead-magnet.not-your-fault-description':
+      'El sistema de contratación tradicional no está diseñado para la velocidad y la complejidad del mundo tecnológico actual.',
+    'lead-magnet.the-clarity-you-need-title-1': 'La Claridad que Necesitas,',
+    'lead-magnet.the-clarity-you-need-title-2': 'en Menos de 10 Minutos de Lectura.',
+    'lead-magnet.the-clarity-you-need-description':
+      'Esta no es una guía teórica de 50 páginas. Es un manual de campo, directo y sin rodeos, donde destilamos más de 8 años de experiencia construyendo equipos de élite.',
+    'lead-magnet.the-clarity-you-need-caption': 'Al terminar de leer, serás capaz de:',
+    'lead-magnet.the-clarity-you-need-1': 'Desactivar la "Bomba del CV Perfecto":',
+    'lead-magnet.the-clarity-you-need-1-description':
+      'Aprenderás a identificar a un verdadero solucionador de problemas, en lugar de a alguien que solo es bueno haciendo entrevistas.',
+    'lead-magnet.the-clarity-you-need-2': 'Neutralizar al "Genio Tóxico":',
+    'lead-magnet.the-clarity-you-need-2-description':
+      'Te daremos un checklist de preguntas clave para detectar las malas contrataciones culturales antes de que infecten a tu equipo.',
+    'lead-magnet.the-clarity-you-need-3': 'Evitar el "Veneno del Onboarding Lento":',
+    'lead-magnet.the-clarity-you-need-3-description':
+      'Recibirás una plantilla simple para que tus nuevos talentos (internos o externos) sean productivos en su primera semana, no en su tercer mes.',
+    'lead-magnet.clientify-title-1': 'Escrito desde la Trinchera,',
+    'lead-magnet.clientify-title-2': 'no desde la Teoría',
+    'lead-magnet.clientify-description-1':
+      'Esta guía fue escrita por Blas Hernandez, CEO y Fundador de Crazy Imagine Software. No es un consultor; es un líder técnico que ha vivido tus mismos desafíos durante más de una década.',
+    'lead-magnet.clientify-description-2':
+      'Lo que leerás no son hipótesis. Son las lecciones aprendidas construyendo más de 400 proyectos y escalando docenas de equipos tecnológicos de alto rendimiento. Sabemos lo que funciona porque lo hacemos todos los días.',
+    'lead-magnet.clientify-description-3':
+      'Lo que leerás no son hipótesis. Son las lecciones aprendidas construyendo más de 400 proyectos y escalando docenas de equipos tecnológicos de alto rendimiento. Sabemos lo que funciona porque lo hacemos todos los días.',
+    'lead-magnet.clientify-quote':
+      'Crazy Imagine no solo nos dio desarrolladores, nos dio un socio estratégico que entendió nuestro negocio desde el primer día.',
+    'lead-magnet.clientify-quote-author': '- CEO de Clientify',
+    'lead-magnet.roadmap-title-1': 'Tu Roadmap no puede esperar.',
+    'lead-magnet.roadmap-title-2': 'Tu tranquilidad tampoco.',
+    'lead-magnet.roadmap-description':
+      'El coste de una mala contratación es brutal. El coste de la inacción es aún peor. Esta guía es el primer paso, el más fácil y rápido, para blindar tu equipo y tu proyecto. Es gratis. ¿Qué tienes que perder?',
+    'lead-magnet.contact-us-description':
+      '100% libre de spam. Odiamos el marketing basura tanto como tú.',
   },
 } as const;
