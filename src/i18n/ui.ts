@@ -381,11 +381,7 @@ export const ui = {
     'lead-magnet.clientify-title-1': 'Written from the Trenches,',
     'lead-magnet.clientify-title-2': 'Not from Theory',
     'lead-magnet.clientify-description-1':
-      'This guide was written by Blas Hernandez, CEO and Founder of Crazy Imagine Software. He’s not a consultant; he’s a technical leader who’s faced your same challenges for over a decade.',
-    'lead-magnet.clientify-description-2':
-      'What you’ll read isn’t theory. These are the lessons learned from building 400+ projects and scaling dozens of high-performance tech teams. We know what works because we do it every day.',
-    'lead-magnet.clientify-description-3':
-      'What you’ll read isn’t theory. These are the lessons learned from building 400+ projects and scaling dozens of high-performance tech teams. We know what works because we do it every day.',
+      "This guide was written by Blas Hernández, CEO of Crazy Imagine Software. He doesn't speak from the perspective of a consultant, but rather from the experience of a technical leader who has faced the same challenges you have for over a decade. Here you won't find hypotheses, but rather tactical lessons validated after building over 400 projects and scaling dozens of engineering teams. We know what works, simply because we do it every day.",
     'lead-magnet.clientify-quote':
       'Crazy Imagine didn’t just give us developers, they gave us a strategic partner who understood our business from day one.',
     'lead-magnet.clientify-quote-author': 'CEO of Clientify',
@@ -766,11 +762,7 @@ export const ui = {
     'lead-magnet.clientify-title-1': 'Escrito desde la Trinchera,',
     'lead-magnet.clientify-title-2': 'no desde la Teoría',
     'lead-magnet.clientify-description-1':
-      'Esta guía fue escrita por Blas Hernandez, CEO y Fundador de Crazy Imagine Software. No es un consultor; es un líder técnico que ha vivido tus mismos desafíos durante más de una década.',
-    'lead-magnet.clientify-description-2':
-      'Lo que leerás no son hipótesis. Son las lecciones aprendidas construyendo más de 400 proyectos y escalando docenas de equipos tecnológicos de alto rendimiento. Sabemos lo que funciona porque lo hacemos todos los días.',
-    'lead-magnet.clientify-description-3':
-      'Lo que leerás no son hipótesis. Son las lecciones aprendidas construyendo más de 400 proyectos y escalando docenas de equipos tecnológicos de alto rendimiento. Sabemos lo que funciona porque lo hacemos todos los días.',
+      'Esta guía fue escrita por Blas Hernández, CEO de Crazy Imagine Software. No habla desde la teoría de un consultor, sino desde la experiencia de un líder técnico que ha vivido tus mismos desafíos durante más de una década. Aquí no encontrarás hipótesis, sino lecciones tácticas validadas tras construir más de 400 proyectos y escalar docenas de equipos de ingeniería. Sabemos lo que funciona, simplemente porque lo ejecutamos todos los días.',
     'lead-magnet.clientify-quote':
       'Crazy Imagine no solo nos dio desarrolladores, nos dio un socio estratégico que entendió nuestro negocio desde el primer día.',
     'lead-magnet.clientify-quote-author': '- CEO de Clientify',
