@@ -1,5 +1,5 @@
 import { useTranslations } from '@/i18n/utils';
-import type { OurProcessProps } from '@/types/OurServicesLanding';
+import type { ExecutionSpeedProps, OurProcessProps } from '@/types/OurServicesLanding';
 
 export const ourServices = [
   {
@@ -275,6 +275,32 @@ export function OUR_PROCESS_CUSTOM_SOFTWARE_DEVELOPMENT(urlLang: 'es' | 'en'): O
   ];
 }
 
+export function OUR_PROCESS_IA(urlLang: 'es' | 'en'): OurProcessProps[] {
+  const t = useTranslations(urlLang);
+
+  return [
+    {
+      id: 1,
+      title: 'Tasa de Errores:',
+      content: 'Cada factura o documento procesado manualmente añade riesgo y costosas auditorías.',
+      image: '/landing/computer-error.webp',
+    },
+    {
+      id: 2,
+      title: 'Burnout:',
+      content:
+        'Tu equipo de soporte dedica horas a responder preguntas que la IA ya resolvió 1000 veces.',
+      image: '/landing/Burnout.webp',
+    },
+    {
+      id: 3,
+      title: 'Tiempo Perdido:',
+      content:
+        'Cada hora que un vendedor dedica a data entry es una oportunidad perdida de cerrar un negocio de alto valor.',
+      image: '/landing/loss-time.webp',
+    },
+  ];
+}
 export function OUR_PROCESS_LEAD_MAGNET(urlLang: 'es' | 'en'): OurProcessProps[] {
   const t = useTranslations(urlLang);
 
@@ -327,6 +353,30 @@ export function THE_CLARITY_YOU_NEED(urlLang: 'es' | 'en'): OurProcessProps[] {
       title: t('lead-magnet.the-clarity-you-need-3'),
       content: t('lead-magnet.the-clarity-you-need-3-description'),
       image: '/landing/lead-magnet-7.webp',
+    },
+  ];
+}
+export function EXECUTION_SPEED(urlLang: 'es' | 'en'): ExecutionSpeedProps[] {
+  const t = useTranslations(urlLang);
+
+  return [
+    {
+      id: 1,
+      title: 'Lleva la Delantera (Competencia):',
+      content:
+        'Mientras la competencia sigue invirtiendo en más nómina para escalar, tú inviertes en Inteligencia. Tu capacidad de procesar datos, atender clientes e investigar el mercado se multiplica sin tener que duplicar tu equipo.',
+    },
+    {
+      id: 2,
+      title: 'El Foco en el Core Business (Eficiencia):',
+      content:
+        'Integramos Agentes Autónomos que se conectan a tu CRM, ERP y Slack. Estos "empleados digitales" gestionan la calificación de leads, auditan gastos y generan reportes. Tu equipo de planta queda liberado para el trabajo creativo y estratégico que solo los humanos pueden hacer.',
+    },
+    {
+      id: 1,
+      title: 'Caso Práctico Rápido (Ahorro de Dinero):',
+      content:
+        'Un Agente de IA para el soporte al cliente reduce el tiempo promedio de respuesta de 48 horas a 5 segundos, lo que reduce la frustración del cliente y ahorra el salario de 2 a 3 empleados de soporte en el primer año.',
     },
   ];
 }

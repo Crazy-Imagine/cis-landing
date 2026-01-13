@@ -8,8 +8,10 @@ interface Props {
   background?: Background;
   title?: string;
   class?: string;
+  containerClass?: string;
   customTitle?: string;
   pagination?: boolean;
+  navigation?: boolean;
   slidesPerView?: {
     0: number;
     600: number;
@@ -19,12 +21,16 @@ interface Props {
   };
 }
 
-const { title, background, slidesPerView, pagination } = Astro.props;
+const { title, background, slidesPerView, pagination, containerClass, navigation } = Astro.props;
 
 const isWhite = typeof background === 'undefined' || background === 'white';
 ---
 
-<ResponsiveContainer background={background} class="relative z-50">
+<ResponsiveContainer
+  background={background}
+  containerClass={containerClass}
+  class={`relative z-50 `}
+>
   {
     title && (
       <Typography
@@ -45,7 +51,7 @@ const isWhite = typeof background === 'undefined' || background === 'white';
 
   <slot name="custom-title" />
 
-  <Carousel slidesPerView={slidesPerView} pagination={pagination}>
+  <Carousel slidesPerView={slidesPerView} pagination={pagination} navigation={navigation}>
     <slot name="items" />
   </Carousel>
 
