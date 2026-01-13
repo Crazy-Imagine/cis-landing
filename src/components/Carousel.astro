@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 
 interface Props {
   pagination?: boolean;
+  navigation?: boolean;
   slidesPerView?: {
     0: number;
     600: number;
@@ -24,53 +25,103 @@ const {
     1920: 4,
   },
   pagination = false,
+  navigation = false,
 } = Astro.props;
 ---
 
-<div class="swiper mySwiper relative !overflow-clip" data-slides={JSON.stringify(slidesPerView)}>
+<div
+  class={`swiper mySwiper relative !m-0  !overflow-clip ${navigation ? 'w-full lg:w-[65%]' : 'w-full'}`}
+  data-slides={JSON.stringify(slidesPerView)}
+  data-navigation={navigation.toString()}
+>
   <div class="swiper-wrapper items-stretch">
     <slot />
   </div>
+
+  {
+    navigation && (
+      <>
+        <div
+          id="custom-next"
+          class="swiper-button-next swiper-button-landing-next !hidden md:!block lg:!right-[90px]"
+        />
+        <div
+          id="custom-prev"
+          class="swiper-button-prev swiper-button-landing-prev !hidden md:!block lg:!left-[40px]"
+        />
+      </>
+    )
+  }
 
   <div class="swiper-pagination !relative !bottom-0"></div>
 </div>
 
 <script>
   import Swiper from 'swiper';
-  import { Keyboard, Pagination } from 'swiper/modules';
-  import type { SwiperOptions } from 'swiper/types';
+  import { Keyboard, Navigation, Pagination } from 'swiper/modules';
 
-  const swiperEl = document.querySelector('.mySwiper') as HTMLElement;
-  const slidesPerView = JSON.parse(swiperEl.dataset.slides || '{}');
-  const pagination = swiperEl.dataset.pagination === 'true';
+  function initSwiper() {
+    const swiperEl = document.querySelector('.mySwiper') as HTMLElement;
+    if (!swiperEl) return;
 
-  const swiper = new Swiper('.mySwiper', {
-    modules: [Keyboard, Pagination],
-    spaceBetween: 50,
-    breakpoints: {
-      0: {
-        slidesPerView: slidesPerView[0] || 1,
+    const slidesPerView = JSON.parse(swiperEl.dataset.slides || '{}');
+    const pagination = swiperEl.dataset.pagination === 'true';
+    const navigation = swiperEl.dataset.navigation === 'true';
+
+    const modules = [Keyboard, Pagination];
+    if (navigation) {
+      modules.push(Navigation);
+    }
+
+    const swiper = new Swiper('.mySwiper', {
+      modules,
+      spaceBetween: 50,
+      breakpoints: {
+        0: {
+          slidesPerView: slidesPerView[0] || 1,
+        },
+        600: {
+          slidesPerView: slidesPerView[600] || 2,
+        },
+        960: {
+          slidesPerView: slidesPerView[960] || 3,
+        },
+        1280: {
+          slidesPerView: slidesPerView[1280] || 4,
+        },
+        1920: {
+          slidesPerView: slidesPerView[1920] || 4,
+        },
       },
-      600: {
-        slidesPerView: slidesPerView[600] || 2,
+      grabCursor: true,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
       },
-      960: {
-        slidesPerView: slidesPerView[960] || 3,
+      ...(navigation && {
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+          enabled: true,
+        },
+      }),
+      keyboard: {
+        enabled: true,
       },
-      1280: {
-        slidesPerView: slidesPerView[1280] || 4,
-      },
-      1920: {
-        slidesPerView: slidesPerView[1920] || 4,
-      },
-    },
-    grabCursor: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    keyboard: {
-      enabled: true,
-    },
-  } as SwiperOptions);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwiper);
+  } else {
+    initSwiper();
+  }
 </script>
+
+<style>
+  #custom-next:after,
+  #custom-prev:after {
+    color: var(--color-primary) !important;
+  }
+</style>
