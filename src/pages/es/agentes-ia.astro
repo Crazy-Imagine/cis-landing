@@ -1,0 +1,295 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+import Partners from '@/sections/Partners.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import { EXECUTION_SPEED, OUR_PROCESS_IA } from '@/consts/data';
+import CarouselSection from '@/sections/CarouselSection.astro';
+import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
+
+const SEO = {
+  title: 'Agentes IA',
+  description: 'Agentes IA',
+  keywords: 'Agentes IA',
+};
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout seo={SEO}>
+  <!-- Hero -->
+  <div
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+  >
+    <div
+      class="relative z-10 mx-auto h-full w-full items-center justify-start rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
+    >
+      <div
+        class="flex w-full flex-col p-4 md:p-10 lg:gap-4 lg:p-[58px] xl:w-[1050px] min-[1546px]:w-[1100px]"
+      >
+        <Typography
+          class="w-full text-center !text-[35px] font-bold capitalize leading-[40px] tracking-[0px] sm:!text-[70px] md:block md:text-start md:!leading-[85px] lg:text-left xl:w-[80%] 2xl:!text-[80px]"
+          as="h1"
+          variant="h1"
+        >
+          El Fin del Gasto Silencioso
+        </Typography>
+
+        <Typography
+          as="p"
+          variant="h3"
+          class="mt-5 w-full self-start text-center font-nexaLight text-[25px] font-bold uppercase md:text-start md:text-[28px] lg:w-[65%] xl:w-[90%]"
+        >
+          Tu Empresa Necesita un Empleado Digital 24/7
+        </Typography>
+
+        <Typography
+          class="mt-5 w-full self-start text-center font-nexaLight text-[25px] uppercase md:text-start md:text-[28px] lg:mt-5 lg:w-[65%] xl:w-[90%]"
+          as="p"
+          variant="h5"
+        >
+          No son chatbots. Son Agentes de IA que entienden, razonan y ejecutan tareas, liberando a
+          tu equipo para la innovación y ahorrándote hasta el 40% de tus costos operativos.
+        </Typography>
+      </div>
+
+      <div
+        class="min-[1546px]: absolute bottom-0 right-0 mr-auto flex flex-shrink-0 justify-start place-self-start lg:-right-[0px] xl:right-[25px] min-[1546px]:right-[60px]"
+      >
+        <Image
+          class="hidden w-[420px] lg:block lg:w-[350px] xl:w-[420px] 2xl:w-full"
+          src={images['/src/assets/landing/robot.webp']()}
+          alt={'Robot image'}
+        />
+      </div>
+    </div>
+  </div>
+
+  <Partners title="Socios Tecnológicos de Empresas que Lideran el Mercado" />
+
+  <!-- Questions -->
+  <ResponsiveContainer class="relative z-50" background="bulbs">
+    <Typography
+      class:list={['mb-10 w-full place-self-center text-center capitalize text-white xl:w-[80%]']}
+      as="h2"
+      variant="h2"
+    >
+      Tu Mayor Competidor No es la Competencia, Es la Lentitud Interna.
+    </Typography>
+
+    <Typography
+      class:list={['mb-10 w-full !text-[36px] capitalize text-white']}
+      as="p"
+      variant="h4"
+    >
+      El Costo de la Operación Manual:
+    </Typography>
+
+    <div class="flex flex-col gap-10">
+      {
+        OUR_PROCESS_IA(lang).map((item) => {
+          return (
+            <div
+              class={`flex flex-col items-center justify-between gap-4 ${item.id % 2 !== 0 ? 'md:flex-row-reverse ' : 'md:flex-row'}`}
+            >
+              <div class="w-4/5 ">
+                <Typography as="span" variant="h3" class=" font-bold text-white">
+                  {item.title}
+                </Typography>
+
+                <Typography as="span" variant="h4" class=" font-nexaLight text-white">
+                  {item.content}
+                </Typography>
+              </div>
+              <div
+                class="flex h-[120px] w-[120px] min-w-[120px] lg:h-[170px] lg:w-[170px]"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: 'contain',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <Typography
+      class:list={[
+        'mt-10 w-full place-self-center text-center capitalize text-secondary xl:w-[80%]',
+      ]}
+      as="h3"
+      variant="h2"
+    >
+      ¿Tu talento senior está innovando, o está atrapado en la burocracia digital?
+    </Typography>
+  </ResponsiveContainer>
+
+  <!-- Fast execution -->
+  <CarouselSection
+    background="white"
+    class="relative z-50 flex flex-col items-center justify-center overflow-hidden"
+    containerClass="overflow-hidden"
+    pagination
+    navigation
+    slidesPerView={{
+      0: 1,
+      600: 1,
+      960: 1,
+      1280: 1,
+      1920: 1,
+    }}
+  >
+    <Fragment slot="custom-title">
+      <article class="flex flex-col px-10">
+        <Typography as="h2" variant="h2" class="mb-20 w-full text-center text-primary xl:w-[65%]">
+          Velocidad de Ejecución Garantizada: La Única Forma de Liderar
+        </Typography>
+      </article>
+    </Fragment>
+
+    <Fragment slot="items">
+      {
+        EXECUTION_SPEED(lang).map((item) => {
+          return (
+            <div class="swiper-slide !flex !h-auto xl:!w-full">
+              <div class="flex w-full flex-col items-center justify-center gap-6 px-4 md:flex-row md:px-20 ">
+                <div class="max-w-2xl flex-1">
+                  <Typography as="h3" variant="h3" class="mb-6 font-bold text-primary">
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    as="p"
+                    variant="h4"
+                    class="font-nexaLight leading-relaxed text-primary"
+                  >
+                    {item.content}
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </Fragment>
+
+    <Image
+      class="absolute bottom-0 right-0 hidden max-w-[600px] lg:-bottom-[250px] lg:block lg:w-[500px] xl:-bottom-[290px]"
+      src={images['/src/assets/landing/execution-speed.webp']()}
+      alt={'blas'}
+    />
+  </CarouselSection>
+
+  <!-- Crazy imagine -->
+  <ResponsiveContainer background="bulbs" class="relative z-50">
+    <Typography
+      as="h2"
+      variant="h2"
+      class="place-self-center text-center text-secondary 2xl:w-[65%]"
+    >
+      Transformamos el Riesgo en Retorno de Inversión (ROI).
+    </Typography>
+
+    <Typography as="p" variant="h4" class="mt-10 font-nexaLight text-white">
+      Somos una Software Factory experta. No vendemos bots; <strong
+        >construimos soluciones robustas y escalables.</strong
+      > Nuestro proceso de vetting de IA garantiza que tu agente entiende, razona y ejecuta tareas críticas
+      sin errores.
+    </Typography>
+
+    <div class="relative mt-16 flex justify-end">
+      <div class="relative max-w-4xl rounded-lg px-8 py-12 md:px-12 md:py-16">
+        <div
+          class="absolute -top-8 left-8 text-[120px] font-bold leading-none"
+          style="color:rgba(255,255,255,0.80)"
+        >
+          ❝
+        </div>
+
+        <div class="relative z-10 px-4 text-center md:px-8">
+          <Typography as="p" variant="h4" class="mb-8 font-nexaLight leading-relaxed text-white">
+            No alquilamos bots. Construimos soluciones que se integran a tu negocio y garantizan un
+            impacto financiero. Ese es nuestro único KPI.
+          </Typography>
+
+          <Typography as="p" variant="h5" class="font-nexaBold text-white">
+            — Blas Hernandez, CEO de Crazy Imagine Software
+          </Typography>
+        </div>
+
+        <div
+          style="color:rgba(255,255,255,0.80)"
+          class="absolute -bottom-8 right-8 text-[120px] font-bold leading-none"
+        >
+          ❞
+        </div>
+      </div>
+      <Image
+        src={images['/src/assets/landing/white-logo.webp']()}
+        class="absolute -bottom-[60px] left-0 hidden lg:block lg:w-[310px] xl:w-auto"
+        alt="Crazy imagine software"
+      />
+    </div>
+  </ResponsiveContainer>
+
+  <ResponsiveContainer background="white" containerClass="relative overflow-hidden">
+    <Typography as="h2" variant="h2" class="mb-10 text-primary lg:!text-[70px]">
+      Agenda Tu Sesión de Diagnóstico.
+      <br />
+      Deja de Adivinar.
+    </Typography>
+    <div class="mb-10 flex gap-10">
+      <div class="flex w-full flex-col gap-10 lg:w-[50%] xl:w-[60%]">
+        <Typography as="p" variant="h4" class="font-nexaLight text-primary">
+          Te invitamos a una <strong>Sesión de Pizarra de 20 minutos</strong> con nuestro equipo de estrategia.
+        </Typography>
+        <Typography as="p" variant="h4" class="font-nexaBold text-primary">
+          Te garantizamos que saldrás de la llamada con:
+        </Typography>
+        <ul
+          class="ml-10 flex list-decimal flex-col gap-5 [&>li]:marker:text-[30px] [&>li]:marker:font-bold [&>li]:marker:leading-[20px] [&>li]:marker:text-primary"
+        >
+          <li>
+            <Typography as="span" variant="h5" class="font-nexaLight text-primary">
+              Un diagnóstico claro sobre el área de tu negocio con <strong>
+                mayor potencial de automatización.</strong
+              >
+            </Typography>
+          </li>
+          <li>
+            <Typography as="span" variant="h5" class="font-nexaLight text-primary">
+              Un estimado del <strong>ROI</strong> que puedes esperar.
+            </Typography>
+          </li>
+          <li>
+            <Typography as="span" variant="h5" class="font-nexaLight text-primary">
+              <strong>3 ideas accionables</strong> que puedes implementar incluso si no trabajas con
+              nosotros.
+            </Typography>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <CTAButtons
+      text="AGENDA MI DIAGNÓSTICO DE IA GRATUITO AHORA"
+      href="https://calendar.app.google/CtFbtbMdpHmNxydA8"
+      variant="outline"
+      class="w-full lg:w-[60%]"
+      textClass="!text-secondary lg:!text-[40px]"
+    />
+    <Image
+      src={images['/src/assets/landing/appointment-1.webp']()}
+      alt="appointment"
+      class="absolute right-0 top-0 hidden max-w-[700px] lg:top-[230px] lg:block lg:w-[550px] xl:w-full 2xl:top-[20px]"
+    />
+  </ResponsiveContainer>
+</Layout>

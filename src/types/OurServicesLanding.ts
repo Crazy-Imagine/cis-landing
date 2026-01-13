@@ -11,3 +11,9 @@ export interface OurProcessProps {
   image: string;
   content: string;
 }
+
+export interface ExecutionSpeedProps {
+  id: number;
+  title: string;
+  content: string;
+}
