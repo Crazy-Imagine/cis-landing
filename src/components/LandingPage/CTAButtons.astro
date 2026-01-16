@@ -7,6 +7,7 @@ interface Props {
   variant: 'primary' | 'secondary' | 'outline' | 'primary-light' | 'purple';
   class?: string;
   textClass?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
 }
 ---
 
@@ -32,6 +33,7 @@ interface Props {
     as="a"
     variant="h2"
     href={Astro.props.href}
+    target={Astro.props.target}
   >
     {Astro.props.text}
   </Typography>

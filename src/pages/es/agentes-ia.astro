@@ -242,37 +242,35 @@ const t = useTranslations(lang);
 
   <ResponsiveContainer background="white" containerClass="relative overflow-hidden">
     <Typography as="h2" variant="h2" class="mb-10 text-primary lg:!text-[70px]">
-      Agenda Tu Sesión de Diagnóstico.
+      Solicita tu Diagnóstico de Automatización.
       <br />
-      Deja de Adivinar.
+      Acelera tu implementación tecnológica.
     </Typography>
     <div class="mb-10 flex gap-10">
       <div class="flex w-full flex-col gap-10 lg:w-[50%] xl:w-[60%]">
         <Typography as="p" variant="h4" class="font-nexaLight text-primary">
-          Te invitamos a una <strong>Sesión de Pizarra de 20 minutos</strong> con nuestro equipo de estrategia.
+          Completa el formulario para recibir una cotización detallada y personalizada, directo en
+          tu correo.
         </Typography>
         <Typography as="p" variant="h4" class="font-nexaBold text-primary">
-          Te garantizamos que saldrás de la llamada con:
+          En tu propuesta recibirás:
         </Typography>
         <ul
           class="ml-10 flex list-decimal flex-col gap-5 [&>li]:marker:text-[30px] [&>li]:marker:font-bold [&>li]:marker:leading-[20px] [&>li]:marker:text-primary"
         >
           <li>
             <Typography as="span" variant="h5" class="font-nexaLight text-primary">
-              Un diagnóstico claro sobre el área de tu negocio con <strong>
-                mayor potencial de automatización.</strong
-              >
+              Estimación de inversión transparente: Sin sorpresas ni costos ocultos.
             </Typography>
           </li>
           <li>
             <Typography as="span" variant="h5" class="font-nexaLight text-primary">
-              Un estimado del <strong>ROI</strong> que puedes esperar.
+              Tiempos de implementación: Cronograma real de puesta en marcha.
             </Typography>
           </li>
           <li>
             <Typography as="span" variant="h5" class="font-nexaLight text-primary">
-              <strong>3 ideas accionables</strong> que puedes implementar incluso si no trabajas con
-              nosotros.
+              Alcance técnico preliminar: Qué incluye exactamente tu solución.
             </Typography>
           </li>
         </ul>
@@ -280,11 +278,12 @@ const t = useTranslations(lang);
     </div>
 
     <CTAButtons
-      text="AGENDA MI DIAGNÓSTICO DE IA GRATUITO AHORA"
-      href="https://calendar.app.google/CtFbtbMdpHmNxydA8"
+      text="SOLICITAR MI COTIZACIÓN"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSf7V6WyuKBgrEIZfeOPQ-miQCpTInLGljHJb-28Tl6F_NR1aA/viewform"
       variant="outline"
-      class="w-full lg:w-[60%]"
+      class="w-fit"
       textClass="!text-secondary lg:!text-[40px]"
+      target="_blank"
     />
     <Image
       src={images['/src/assets/landing/appointment-1.webp']()}
