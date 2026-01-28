@@ -8,6 +8,7 @@ import ReachOut from '@/sections/ReachOut.astro';
 import Reviews from '@/sections/Reviews.astro';
 import Services from '@/sections/Services.astro';
 import Typography from '@/components/Typography.astro';
+import CrazyBanner from '@/components/CrazyBanner.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
@@ -74,4 +75,6 @@ const translatePath = useTranslatedPath(lang);
   <Newsletter />
 
   <ReachOut />
+
+  <CrazyBanner />
 </Layout>
