@@ -1,0 +1,53 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.{svg,webp}');
+---
+
+<div
+  id="modal-overlay"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/50"
+>
+  <div id="modal-content" class="relative mx-4 rounded-lg bg-white shadow-xl">
+    <Image src={images['/src/assets/ui/crazy2.0.webp']()} alt="Clientify Logo" />
+  </div>
+</div>
+
+<script>
+  // Abrir el modal automáticamente al cargar la página
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay) {
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+    }
+  });
+
+  // Cerrar el modal al hacer clic en el overlay (fondo)
+  document.addEventListener('click', (e) => {
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay && e.target === overlay) {
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+    }
+  });
+
+  // Cerrar el modal con la tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const overlay = document.getElementById('modal-overlay');
+      if (overlay) {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('flex');
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Asegurar que el modal esté por encima de otros elementos */
+  #modal-overlay {
+    backdrop-filter: blur(2px);
+  }
+</style>
