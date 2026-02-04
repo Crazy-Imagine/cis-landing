@@ -21,6 +21,7 @@ export interface ArticleAttributes {
   author: Author;
   image: Image;
   contentImage: Image;
+  lastImageArticle: Image;
 }
 
 export interface Author {
