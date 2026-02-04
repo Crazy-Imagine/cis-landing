@@ -32,6 +32,9 @@ export async function getStaticPaths() {
         contentImage: {
           fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
         },
+        lastImageArticle: {
+          fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+        },
       },
       sort: {
         createdAt: 'desc',
@@ -71,7 +74,7 @@ interface Props {
 
 const { attributes, id, hrefLangSlug } = Astro.props as Props;
 
-const { contentImage, image, ...article } = attributes;
+const { contentImage, image, lastImageArticle, ...article } = attributes;
 const imageToRender = contentImage.data ?? image.data;
 
 const lang = getLangFromUrl(Astro.url);
@@ -105,6 +108,21 @@ const t = useTranslations(lang);
   </ResponsiveContainer>
 
   <BlogContent id={id} content={article.content} />
+
+  {
+    lastImageArticle?.data && (
+      <ResponsiveContainer containerClass="!pt-0">
+        <Image
+          transition:name={`${article.title}-image`}
+          src={getImageUrl(lastImageArticle.data.attributes.url)}
+          alt={lastImageArticle.data.attributes.alternativeText ?? article.title}
+          width={lastImageArticle.data.attributes.width}
+          height={lastImageArticle.data.attributes.height}
+          class="mx-auto"
+        />
+      </ResponsiveContainer>
+    )
+  }
 
   <LatestArticles start={2} title={t('common.the-latest-in-tech-talk')} />
 </Layout>
