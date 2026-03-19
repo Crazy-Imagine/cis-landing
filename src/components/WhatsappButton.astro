@@ -8,7 +8,7 @@ interface Props {
 
 const { phoneNumber, message = '', text = 'Chatea por WhatsApp', className } = Astro.props;
 
-const sanitizedPhoneNumber = phoneNumber.replace(/\D/g, '');
+const sanitizedPhoneNumber = phoneNumber?.replace(/\D/g, '');
 const encodedMessage = encodeURIComponent(message);
 const whatsappUrl = `https://wa.me/${sanitizedPhoneNumber}?text=${encodedMessage}`;
 ---
