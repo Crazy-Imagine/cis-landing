@@ -53,7 +53,7 @@ function MemberCard({ member }: Props) {
           />
 
           <div ref={textContainerRef} className="mt-auto px-5 py-7 lg:px-4">
-            <p className="mb-1 font-nexaBold text-primary lg:text-xl">{attributes.name}</p>
+            <p className="font-nexaBold mb-1 text-primary lg:text-xl">{attributes.name}</p>
             <p className="font-nexaLight text-base text-primary">{attributes.role}</p>
           </div>
         </div>

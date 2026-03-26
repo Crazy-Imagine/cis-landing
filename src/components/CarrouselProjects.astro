@@ -1,0 +1,87 @@
+---
+import 'swiper/css';
+import 'swiper/css/keyboard';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+interface Props {
+  pagination?: boolean;
+  navigation?: boolean;
+}
+
+const { pagination: _pagination = false, navigation = false } = Astro.props;
+---
+
+<div
+  class={`swiper mySwiper relative !m-0  !overflow-clip  w-full  `}
+  data-navigation={navigation.toString()}
+>
+  <div class="swiper-wrapper items-stretch">
+    <slot />
+  </div>
+
+  <>
+    <div
+      id="custom-next"
+      class="swiper-button-next swiper-button-landing-next !hidden md:!block lg:!right-[90px]"
+    >
+    </div>
+    <div
+      id="custom-prev"
+      class="swiper-button-prev swiper-button-landing-prev !hidden md:!block lg:!left-[40px]"
+    >
+    </div>
+  </>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Keyboard, Navigation, Pagination } from 'swiper/modules';
+
+  function initSwiper() {
+    const swiperEl = document.querySelector('.mySwiper') as HTMLElement;
+    if (!swiperEl) return;
+
+    const _swiper = new Swiper('.mySwiper', {
+      modules: [Keyboard, Pagination, Navigation],
+      spaceBetween: 50,
+      grabCursor: true,
+      slidesPerView: 1,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        enabled: true,
+      },
+
+      keyboard: {
+        enabled: true,
+      },
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSwiper);
+  } else {
+    initSwiper();
+  }
+</script>
+
+<style>
+  #custom-next:after,
+  #custom-prev:after {
+    color: white !important;
+    min-width: 70px;
+    min-height: 70px;
+    padding: 20px 27px;
+    font-size: 30px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #b1d600 0%, #05c3dd 100%);
+    border-radius: 5px;
+  }
+</style>

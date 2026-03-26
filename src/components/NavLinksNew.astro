@@ -1,0 +1,180 @@
+---
+import Code from '@/icons/Code.astro';
+import Home from '@/icons/Home.astro';
+import Menu from '@/icons/Menu.astro';
+import Monitor from '@/icons/Monitor.astro';
+import Server from '@/icons/Server.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  class?: string;
+  isDrawer?: boolean;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const pages = [
+  {
+    icon: Server,
+    name: t('nav.services'),
+    href: '/services',
+    ariaLabel: t('aria.services-link'),
+    subMenu: true,
+  },
+  { icon: Code, name: t('nav.projects'), href: '/projects', ariaLabel: t('aria.projects-link') },
+  { icon: Menu, name: t('nav.about'), href: '/about', ariaLabel: t('aria.about-link') },
+  { icon: Monitor, name: t('nav.blog'), href: '/blog', ariaLabel: t('aria.blog-link') },
+];
+
+const subMenuItems = [
+  {
+    name: 'Desarrollo web Personalizado',
+    href: '/test',
+    description:
+      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+  },
+  {
+    name: 'Staff Augmentation',
+    href: '/test',
+    description: 'Talento experto para tus equipos',
+  },
+  { name: 'Apps Móviles', href: '/test', description: 'Experiencias nativas y multiplataformas' },
+  {
+    name: 'Crazy Partner Program',
+    href: '/test',
+    description:
+      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+  },
+  {
+    name: 'Outsourcing',
+    href: '/test',
+    description:
+      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+  },
+  {
+    name: 'Odoo',
+    href: '/test',
+    description:
+      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+  },
+
+  { name: 'Agentes IA', href: '/test', description: 'IA y automatización de  conversaciones' },
+];
+
+const { class: className = '', isDrawer = false } = Astro.props;
+---
+
+<ul class:list={['hidden items-center gap-3 lg:flex xl:gap-5', className]}>
+  {
+    isDrawer && (
+      <li>
+        <a
+          class={`relative flex h-7 items-center gap-8 whitespace-nowrap font-nexaLight
+          text-xs uppercase tracking-widest text-white before:absolute before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white
+          before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          `}
+          href={translatePath('/', lang)}
+          aria-label={t('aria.home-link')}
+        >
+          <span class="flex w-10 justify-center">
+            <Home />
+          </span>
+
+          <span>{t('common.home')}</span>
+        </a>
+      </li>
+    )
+  }
+
+  {
+    pages.map(({ icon: Icon, name, href, ariaLabel, subMenu }) => (
+      <li class="lg:text-center xl:text-left">
+        {!subMenu && (
+          <a
+            class={`relative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
+          before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-primary-new before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          xl:whitespace-nowrap
+          ${isDrawer ? 'flex h-7 items-center gap-8' : ''}
+          `}
+            {...(subMenu ? {} : { href: translatePath(href, lang) })}
+            aria-label={ariaLabel}
+          >
+            {isDrawer && (
+              <Fragment>
+                <span class="flex w-10 justify-center">
+                  <Icon />
+                </span>
+
+                <span>{name}</span>
+              </Fragment>
+            )}
+            {!isDrawer && !subMenu && <Fragment>{name}</Fragment>}
+          </a>
+        )}
+
+        {!isDrawer && subMenu && (
+          <div class="relative flex items-center gap-2">
+            <p
+              id="menu-button"
+              class={`relative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
+          before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-primary-new before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          xl:whitespace-nowrap
+          ${isDrawer ? 'flex h-7 items-center gap-8' : ''}
+          `}
+            >
+              {name}
+            </p>
+            <div
+              id="sub-menu"
+              class="absolute -left-10 top-16 hidden w-[1000px] cursor-pointer  grid-cols-3 grid-rows-3 gap-x-8 gap-y-6 rounded-[20px] border border-solid border-primary-new bg-primary-blue-with-transparency px-[37px] py-[30px] backdrop-blur-lg"
+            >
+              {subMenuItems.map(({ name: name1, href: href1, description: description1 }) => (
+                <a
+                  href={translatePath(href1, lang)}
+                  class="flex min-w-0 flex-col gap-1 rounded-[10px] border border-transparent px-[11px] py-[7px] no-underline hover:border hover:border-solid hover:border-primary-new"
+                >
+                  <span class="font-openSansBold text-base font-bold text-primary-new">
+                    {name1}
+                  </span>
+                  <p class="m-0 font-openSansLight text-sm text-white">{description1}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const subMenuButton = document.getElementById('menu-button');
+    if (!subMenuButton) return;
+    subMenuButton.addEventListener('click', () => {
+      const subMenu = document.getElementById('sub-menu');
+      const body = document.querySelector('body');
+      if (!body) return;
+      if (!subMenu) return;
+      body.addEventListener('click', (event: MouseEvent) => {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target.id !== 'sub-menu' &&
+          event.target.id !== 'menu-button'
+        ) {
+          subMenu.classList.add('hidden');
+          subMenu.classList.remove('grid');
+        }
+      });
+      if (subMenu.classList.contains('grid')) {
+        subMenu.classList.add('hidden');
+        subMenu.classList.remove('grid');
+      } else {
+        subMenu.classList.remove('hidden');
+        subMenu.classList.add('grid');
+      }
+    });
+  });
+</script>

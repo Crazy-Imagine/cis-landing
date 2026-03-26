@@ -1,0 +1,103 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import CarouselSectionNew from './CarouselSectionNew.astro';
+import fetchApi from '@/lib/strapi';
+import type { Background } from '@/types/Background';
+import type { ProjectCollection } from '@/types/strapi/Project';
+import ProjectCard from '@/components/ProjectCard.astro';
+
+interface Props {
+  title: string;
+  background?: Background;
+  hideAllProjects?: boolean;
+  projectId?: number;
+  categoryId?: number;
+}
+
+const projects = await fetchApi<ProjectCollection>({
+  endpoint: 'projects',
+  params: {
+    locale: Astro.currentLocale,
+    fields: ['title', 'description', 'details', 'slug'],
+    publicationState: 'live',
+    populate: {
+      images: {
+        fields: ['url', 'formats', 'width', 'height'],
+      },
+    },
+    filters: {
+      id: {
+        $ne: Astro.props.projectId,
+      },
+      title: {
+        $notNull: true,
+      },
+      project_types: {
+        id: {
+          $eq: Astro.props.categoryId,
+        },
+      },
+    },
+    pagination: {
+      limit: Astro.props.categoryId ? -1 : 8,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.{svg,webp}');
+---
+
+<CarouselSectionNew
+  background={Astro.props.background}
+  title={Astro.props.title}
+  sectionClass="shadow-md"
+>
+  <Image
+    slot="image"
+    width={300}
+    height={200}
+    src={images['/src/assets/ui/BlueCircle.webp']()}
+    alt="Crazy Imagine"
+    class="absolute -top-1/3 left-0"
+  />
+  <Fragment slot="items">
+    {
+      projects.data.map(
+        ({
+          attributes: {
+            images: {
+              data: [image],
+            },
+            ...project
+          },
+        }) => (
+          <div class="swiper-slide py-10 md:py-20">
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              image={image.attributes.formats.medium.url}
+              width={image.attributes.formats.medium.width}
+              height={image.attributes.formats.medium.height}
+              link={`/projects/${project.slug}`}
+            />
+          </div>
+          //   <ArticleCard
+          //     altText={project.title}
+          //     ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
+          //     class="shadow-md"
+          //     height={image.attributes.formats.small.height}
+          //     href={`/projects/${project.slug}`}
+          //     img={image.attributes.formats.small.url}
+          //     linkText={t('common.view-project')}
+          //     title={project.title}
+          //     width={image.attributes.formats.small.width}
+          //   />
+        )
+      )
+    }
+  </Fragment>
+</CarouselSectionNew>

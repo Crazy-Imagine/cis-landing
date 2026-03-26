@@ -1,0 +1,130 @@
+---
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import Typography from './Typography.astro';
+---
+
+<ResponsiveContainer background="white">
+  <div class="flex flex-col justify-between gap-10 md:flex-row">
+    <div
+      class="service-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+    >
+      <div class="service-card-bg"></div>
+      <div class="service-card-img relative z-10">
+        <img
+          src="/img/icons/iconGreen.webp"
+          alt="Icono servicio"
+          class="h-10 w-10 object-contain"
+        />
+      </div>
+      <Typography
+        as="h4"
+        variant="h4"
+        class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
+        >Servicios</Typography
+      >
+      <Typography
+        as="p"
+        variant="paragraph"
+        class="relative z-10 text-black group-hover:text-white"
+      >
+        Desarrollo a medida para desafíos reales. Desde arquitecturas web robustas y aplicaciones
+        móviles hasta automatización inteligente.
+      </Typography>
+    </div>
+
+    <div
+      class="service-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+    >
+      <div class="service-card-bg"></div>
+      <div class="service-card-img relative z-10">
+        <img
+          src="/img/icons/iconBlue.webp"
+          alt="Icono servicio"
+          class="h-10 w-10 rotate-45 object-contain"
+        />
+      </div>
+      <Typography
+        as="h4"
+        variant="h4"
+        class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
+        >Crazy Partner</Typography
+      >
+      <Typography
+        as="p"
+        variant="paragraph"
+        class="relative z-10 text-black group-hover:text-white"
+      >
+        Ampliamos tu equipo al instante para que dejes de rechazar proyectos y conviertas cada
+        solicitud en una nueva oportunidad de negocio.
+      </Typography>
+    </div>
+
+    <div
+      class="service-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+    >
+      <div class="service-card-bg"></div>
+      <div class="service-card-img relative z-10">
+        <img
+          src="/img/icons/iconOrange.webp"
+          alt="Icono servicio"
+          class="h-10 w-10 object-contain"
+        />
+      </div>
+      <Typography
+        as="h4"
+        variant="h4"
+        class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
+        >Proyectos</Typography
+      >
+      <Typography
+        as="p"
+        variant="paragraph"
+        class="relative z-10 text-black group-hover:text-white"
+      >
+        Nuestras soluciones no conocen fronteras. Diseñamos pensando en la escalabilidad global y la
+        adaptabilidad cultural.
+      </Typography>
+    </div>
+  </div>
+</ResponsiveContainer>
+
+<style>
+  .service-card {
+    background-color: var(--color-gray-new);
+    box-shadow: 0 10px 15px -3px var(--color-primary-new-with-transparency);
+    transition: box-shadow 0.4s ease;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Fondo animado: entra de arriba a abajo, sale de abajo a arriba */
+  .service-card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: var(--color-primary-blue);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover .service-card-bg {
+    transform: translateY(0);
+  }
+
+  /* Imagen oculta que aparece en hover y empuja el contenido */
+  .service-card-img {
+    max-height: 0;
+    opacity: 0;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  .service-card:hover .service-card-img {
+    max-height: 60px;
+    opacity: 1;
+  }
+</style>

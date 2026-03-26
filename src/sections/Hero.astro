@@ -1,31 +1,41 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import Clutch from '@/icons/Clutch.astro';
 import { getImageUrl } from '@/utils/imageUrl';
 import Typography from '@/components/Typography.astro';
 import type { CustomHero } from '@/types/strapi/Hero';
 import { getLangFromUrl } from '@/i18n/utils';
 
-interface Props extends CustomHero {}
+interface Props extends CustomHero {
+  isNew?: boolean;
+}
 
-const { title, subtitle, image } = Astro.props;
+const { title, subtitle, image, isNew } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const titleTypographyClass = isNew
+  ? 'bg-gradinet-font bg-clip-text font-bold capitalize text-transparent first-line:text-white'
+  : 'font-bold capitalize';
 ---
 
 <section
-  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]'} md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
+  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]'} ${isNew ? 'md:bg-hero-background' : 'md:bg-hero'} md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
 >
-  <div
-    class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency"
-  >
-  </div>
+  {
+    !isNew && (
+      <div class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency" />
+    )
+  }
 
   <div
-    class="relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10 sm:bg-secondary"
+    class={`relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10 ${!isNew ? 'sm:bg-secondary' : ''}`}
   >
     <div class="gap-4 sm:pl-8 lg:pl-14 xl:pl-[100px]">
-      <Typography class="font-bold capitalize" as="h1" variant="h1">
+      {isNew && <Clutch fill="#BFED06" />}
+
+      <Typography class={`${titleTypographyClass} `} as="h1" variant="h1">
         {title}
       </Typography>
 
@@ -36,12 +46,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
           </Typography>
         )
       }
-
-      <Image
-        class="my-5"
-        alt="Clutch rating reviews"
-        src={images['/src/assets/landing/Clutch.webp']()}
-      />
+      {
+        !isNew && (
+          <Image
+            class="my-5"
+            alt="Clutch rating reviews"
+            src={images['/src/assets/landing/Clutch.webp']()}
+          />
+        )
+      }
 
       <slot name="button" />
     </div>
@@ -61,7 +74,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
     }
   </div>
 
-  <Typography class="relative z-20 font-bold capitalize sm:hidden" as="h1" variant="h1">
+  <Typography class={`relative z-20 sm:hidden ${titleTypographyClass}`} as="h1" variant="h1">
     {title}
   </Typography>
 

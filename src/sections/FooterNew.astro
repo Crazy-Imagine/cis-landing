@@ -1,0 +1,107 @@
+---
+import NavLinks from '@/components/NavLinks.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import SocialIcons from '@/components/SocialIcons.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import CISLogoNew from '@/icons/CISLogoNew.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<ResponsiveContainer
+  background="blueNew"
+  containerClass="pb-5 md:pb-10"
+  class="flex flex-col gap-10 !pb-10"
+>
+  <div class="flex h-max flex-col justify-between text-white md:flex-row md:flex-wrap md:gap-x-2.5">
+    <div class="mb-10 md:basis-[calc(50%-10px)] xl:mb-0 xl:basis-[calc(25%-10px)]">
+      <CISLogoNew class="mb-5" />
+      <p
+        class="mb-2.5 mt-5 flex items-center gap-2 font-roboto text-xs leading-6 tracking-wide text-white"
+      >
+        {t('footer.all-rights-reserved')}
+      </p>
+    </div>
+
+    <div class="flex basis-[calc(50%-10px)] justify-between">
+      <div class="md:basis-[calc(50%-10px)] xl:basis-[calc(20%-10px)]">
+        <NavLinks class="!flex flex-col !items-start justify-start text-left" />
+      </div>
+      <div class="md:basis-[calc(50%-10px)] xl:basis-[calc(20%-10px)]">
+        <NavLinks class="!flex flex-col !items-start justify-start text-left" />
+      </div>
+
+      <div
+        class="mb-10 flex flex-col gap-5 md:mb-0 md:basis-[calc(50%-10px)] xl:basis-[calc(25%-10px)]"
+      >
+        <p class="font-nexaBold text-lg uppercase leading-7 tracking-wider text-white">Síguenos</p>
+
+        <SocialIcons isNew class="!flex !gap-3" />
+      </div>
+    </div>
+
+    <!-- <div class="mb-10 md:basis-[calc(50%-10px)] xl:mb-0 xl:basis-[calc(25%-10px)]">
+      <p class="mb-5 font-nexaBold text-lg uppercase leading-7 tracking-wider text-white">
+        {t('footer.location')}
+      </p>
+
+      <p
+        class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide text-white"
+      >
+        <Building />
+        {CIS_INFORMATION.locationUS}
+      </p>
+      <p
+        class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide text-white"
+      >
+        <Building />
+        {CIS_INFORMATION.locationES}
+      </p>
+      <p
+        class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide text-white"
+      >
+        <Building />
+        {CIS_INFORMATION.locationVE}
+      </p>
+
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+        <OpenEnvelope />
+        <a
+          href={`mailto:${CIS_INFORMATION.contactEmail}`}
+          aria-label={t('aria.contact-email')}
+          class="tex text-white no-underline"
+        >
+          {CIS_INFORMATION.contactEmail}
+        </a>
+      </p>
+
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+        <Phone class="text-white" />
+        <a href={`tel:${CIS_INFORMATION.plainPhoneNumberUS}`} class="tex text-white no-underline">
+          {CIS_INFORMATION.phoneNumberUS}
+        </a>
+      </p>
+      <p class="mb-2.5 flex items-center gap-2 font-roboto text-sm leading-6 tracking-wide">
+        <Phone class="text-white" />
+        <a href={`tel:${CIS_INFORMATION.plainPhoneNumberVE}`} class="tex text-white no-underline">
+          {CIS_INFORMATION.phoneNumberVE}
+        </a>
+      </p>
+    </div> -->
+  </div>
+  <div class="flex justify-end gap-3">
+    <p class="font-roboto text-xs">
+      <a href={translatePath('#', lang)} class="text-white underline">
+        {t('common.terms-and-conditions')}
+      </a>
+      &nbsp;|&nbsp;
+      <a href={translatePath('/privacy-policy', lang)} class="text-white underline">
+        {t('common:privacy-policy')}
+      </a>
+      &nbsp;|&nbsp;
+      <a href={translatePath('/privacy-policy', lang)} class="text-white underline"> Cookies </a>
+    </p>
+  </div>
+</ResponsiveContainer>

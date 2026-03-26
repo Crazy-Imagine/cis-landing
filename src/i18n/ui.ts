@@ -116,7 +116,7 @@ export const ui = {
     'common.news-and-updates-description':
       'Get insight into our latest projects, news related to popular technologies, and updates on our services',
     'common.work-with-us': 'Interested In Working With Us?',
-    'common.home-hero-button': 'Schedule a call',
+    'common.home-hero-button': 'Start Project',
     'common.see-all': 'See All',
     'common.the-latest-in-tech-talk': 'The Latest in Tech Talk',
     'common.search': 'Search',
@@ -494,7 +494,7 @@ export const ui = {
     'common.news-and-updates-description':
       'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
     'common.work-with-us': '¿Quieres Ser parte de Nuestro Equipo?',
-    'common.home-hero-button': 'Programar una llamada',
+    'common.home-hero-button': 'Iniciar Proyecto',
     'common.see-all': 'Ver todos',
     'common.the-latest-in-tech-talk': 'Lo último en tecnología',
     'common.search': 'Buscar',

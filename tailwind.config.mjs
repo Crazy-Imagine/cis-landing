@@ -7,16 +7,22 @@ export default {
     extend: {
       backgroundImage: {
         'hero': "url('/img/backgrounds/hero.webp')",
+        'hero-background': "url('/img/backgrounds/heroBg.webp')",
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
         'thanks-page': "url('/img/backgrounds/satelit2.webp')",
+        'gradinet-font': 'var(--color-gradinet-font)',
       },
       fontFamily: {
-        nexaBold: ['"Nexa Bold"', ...defaultTheme.fontFamily.sans],
+        colvetica: ['"Colvetica"', ...defaultTheme.fontFamily.sans],
         nexaLight: ['"Nexa Light"', ...defaultTheme.fontFamily.sans],
+        openSansBold: ['"Open Sans Bold"', ...defaultTheme.fontFamily.sans],
+        openSansLight: ['"Open Sans Light"', ...defaultTheme.fontFamily.sans],
         roboto: ['"Roboto"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'primary': 'var(--color-primary)',
+        'primary-new': 'var(--color-primary-new)',
+        'primary-blue': 'var(--color-primary-blue)',
         'secondary': 'var(--color-secondary)',
         'accent': 'var(--color-accent)',
         'blue-purple': 'var(--color-blue-purple)',
@@ -26,9 +32,12 @@ export default {
         'sky-blue': 'var(--color-sky-blue)',
         'fog-white': 'var(--color-fog-white)',
         'primary-with-transparency': 'var(--color-primary-with-transparency)',
+        'primary-blue-with-transparency': 'var(--color-primary-blue-with-transparency)',
         'blue-purple-contrast': 'var(--color-blue-purple-contrast)',
         'smoke': 'var(--color-smoke)',
         'green-contact': 'var(--color-green-contact)',
+        'gray-new': 'var(--color-gray-new)',
+        'primary-new-with-transparency': 'var(--color-primary-new-with-transparency)',
       },
       keyframes: {
         wiggle: {

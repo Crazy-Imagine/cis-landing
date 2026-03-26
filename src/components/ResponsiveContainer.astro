@@ -14,6 +14,7 @@ const backgroundClasses: {
   white: 'bg-fog-white',
   blue: 'bg-primary',
   bulbs: 'bg-primary bg-light-bulbs bg-center bg-repeat',
+  blueNew: 'bg-primary-blue',
 };
 
 const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
@@ -29,6 +30,7 @@ const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
     },
   ]}
 >
+  <slot name="image" />
   {
     Astro.props?.background === 'bulbs' && (
       <div class="absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent" />

@@ -1,0 +1,41 @@
+---
+import LinkPill from './LinkPill.astro';
+import Typography from './Typography.astro';
+import { getImageUrl } from '@/utils/imageUrl';
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  width: number;
+  height: number;
+}
+
+const { title, description, image, link, width, height } = Astro.props;
+---
+
+<article class="flex w-[80%] items-center gap-10 place-self-center px-10 py-8">
+  <div class="flex flex-1 shrink-0 basis-2/5 flex-col gap-4">
+    <Typography as="h3" variant="h3" class="text-2xl font-bold text-black">{title}</Typography>
+    <Typography as="p" variant="paragraph" class="text-base font-semibold text-black"
+      >{description}</Typography
+    >
+
+    <LinkPill isNew variant="contained" href={link} class="w-max rounded-md">
+      Ver Proyecto
+    </LinkPill>
+  </div>
+
+  <div class="flex flex-1 basis-3/5 justify-end">
+    <img
+      transition:name={`${title}-image`}
+      class="h-auto w-full max-w-[520px] rounded-md object-cover"
+      src={getImageUrl(image)}
+      alt={title}
+      width={width}
+      height={height}
+      loading="lazy"
+    />
+  </div>
+</article>
