@@ -23,6 +23,7 @@ export default {
         'primary': 'var(--color-primary)',
         'primary-new': 'var(--color-primary-new)',
         'primary-blue': 'var(--color-primary-blue)',
+        'font-light-gray': 'var(--color-font-light-gray)',
         'secondary': 'var(--color-secondary)',
         'accent': 'var(--color-accent)',
         'blue-purple': 'var(--color-blue-purple)',
@@ -38,6 +39,7 @@ export default {
         'green-contact': 'var(--color-green-contact)',
         'gray-new': 'var(--color-gray-new)',
         'primary-new-with-transparency': 'var(--color-primary-new-with-transparency)',
+        'gradient-font': 'var(--color-gradient-font)',
       },
       keyframes: {
         wiggle: {

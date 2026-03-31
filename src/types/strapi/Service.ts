@@ -1,3 +1,4 @@
+import type { Image } from './Article';
 import type { Hero } from '@/types/strapi/Hero.ts';
 import type { SEO } from '@/types/strapi/SEO.ts';
 import type { Pagination } from '@/types/Pagination.ts';
@@ -21,6 +22,38 @@ export interface ServiceAttributes {
   hero: Hero;
   seo: SEO;
   pricing: Pricing[];
+  mainContent: MainContent;
+  features: Features;
+  cta: CTA;
+}
+
+export interface CTA {
+  id: number;
+  title: string;
+  subtitle: string;
+  caption: string;
+}
+
+export interface Features {
+  id: number;
+  title: string;
+  subtitle: string;
+  feats: Feats[];
+}
+
+export interface Feats {
+  id: number;
+  title: string;
+  content: string;
+  icon: Image;
+}
+
+export interface MainContent {
+  id: number;
+  title: string;
+  description: string;
+  image: Image;
+  caption?: string;
 }
 
 export interface Pricing {

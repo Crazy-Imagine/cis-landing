@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import Typography from './Typography.astro';
+import { getImageUrl } from '@/utils/imageUrl';
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+
+interface Props {
+  altText?: string;
+  ariaLabel?: string;
+  class?: string;
+  height: number;
+  href: string;
+  img: string;
+  isSwiperCard?: boolean;
+  linkText: string;
+  projectType?: string;
+  title: string;
+  width: number;
+  description?: string;
+}
+
+const {
+  altText = '',
+  ariaLabel = '',
+  height,
+  href,
+  img,
+  isSwiperCard = true,
+  linkText,
+  projectType,
+  title,
+  width,
+  description,
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+---
+
+<article
+  class:list={[
+    'my-2 !flex !h-auto flex-col rounded-xl border border-transparent bg-white shadow-md hover:shadow-primary-new-with-transparency',
+    Astro.props.class,
+    {
+      'swiper-slide': isSwiperCard,
+    },
+  ]}
+  {...projectType ? { 'data-project-type': projectType } : {}}
+>
+  <picture class="relative block h-[250px] overflow-hidden rounded-t-xl">
+    <Image
+      transition:animate="slide"
+      transition:name={`${title}-image`}
+      class="h-full w-full rounded-t-xl object-cover"
+      src={getImageUrl(img)}
+      alt={altText}
+      width={width}
+      height={height}
+      quality={100}
+    />
+    <!-- {isSwiperCard && <div class="swiper-lazy-preloader" />} -->
+  </picture>
+
+  <div class="mt-auto flex flex-col gap-3 p-6">
+    <Typography
+      isNew
+      class={`text-primary-blue w-[65%] text-start font-bold capitalize`}
+      as="p"
+      variant="paragraph3"
+    >
+      {projectType}
+    </Typography>
+    <Typography
+      transition:name={`${title}-title`}
+      class="line-clamp-2 font-bold text-primary-blue"
+      as="p"
+      variant="paragraph"
+    >
+      {title}
+    </Typography>
+    <Typography
+      transition:name={`${title}-title`}
+      class="line-clamp-2 text-font-light-gray"
+      as="p"
+      variant="paragraph3"
+    >
+      {description}
+    </Typography>
+
+    <!-- <CardCTA
+      class="mt-2.5"
+      href={translatePath(href, lang)}
+      text={linkText}
+      ariaLabel={ariaLabel}
+    /> -->
+  </div>
+</article>

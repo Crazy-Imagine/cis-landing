@@ -54,9 +54,8 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
         >
           {t('common.contact-us')}
         </LinkPill>
+        <LanguagePickerSelect id="desktop" class="hidden lg:inline-block" />
       </div>
-
-      <LanguagePickerSelect id="desktop" class="hidden lg:inline-block" />
 
       <Menu id="menu-icon" class="h-12 w-12 text-white lg:hidden" />
     </nav>
@@ -73,7 +72,6 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
 
     <nav class="p-4">
       <NavLinksNew isDrawer class="!flex flex-col !items-start" />
-
       <div class="mt-5 text-center">
         <LanguagePickerSelect id="mobile" />
       </div>

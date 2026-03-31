@@ -1,0 +1,23 @@
+---
+import LinkPill from '../LinkPill.astro';
+import ResponsiveContainer from '../ResponsiveContainer.astro';
+import Typography from '../Typography.astro';
+---
+
+<ResponsiveContainer background="blueNew">
+  <div class="flex flex-col items-center justify-center gap-10">
+    <Typography as="h2" variant="h2" class="text-center text-6xl text-white">
+      {Astro.props.title}
+    </Typography>
+    <Typography as="p" variant="paragraph" class="text-sm text-primary-new">
+      {Astro.props.caption}
+    </Typography>
+    <Typography as="p" variant="paragraph" class="text-xl text-white">
+      {Astro.props.subtitle}
+    </Typography>
+
+    <LinkPill isNew href={Astro.props.href} variant="contained" class="rounded-md">
+      Iniciar proyecto
+    </LinkPill>
+  </div>
+</ResponsiveContainer>

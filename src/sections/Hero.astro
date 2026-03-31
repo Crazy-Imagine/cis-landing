@@ -9,19 +9,35 @@ import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props extends CustomHero {
   isNew?: boolean;
+  sectionClass?: string;
+  hiddenClutch?: boolean;
+  isCustom?: boolean;
 }
 
-const { title, subtitle, image, isNew } = Astro.props;
+const { title, subtitle, image, isNew, backgroundImage, sectionClass, hiddenClutch, isCustom } =
+  Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const heroImage = backgroundImage?.data?.attributes
+  ? backgroundImage?.data?.attributes
+  : image?.data?.attributes;
+
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
 const titleTypographyClass = isNew
-  ? 'bg-gradinet-font bg-clip-text font-bold capitalize text-transparent first-line:text-white'
+  ? ' font-bold capitalize bg-gradinet-font bg-clip-text text-transparent first-line:text-white w-full md:w-[90%]'
   : 'font-bold capitalize';
 ---
 
 <section
-  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]'} ${isNew ? 'md:bg-hero-background' : 'md:bg-hero'} md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
+  class:list={[
+    'second relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
+    lang === 'es' ? 'xs:h-[850px] xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]',
+    {
+      'md:bg-hero-background': isNew,
+      'md:bg-hero': !isNew,
+    },
+    sectionClass,
+  ]}
 >
   {
     !isNew && (
@@ -30,10 +46,25 @@ const titleTypographyClass = isNew
   }
 
   <div
-    class={`relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10 ${!isNew ? 'sm:bg-secondary' : ''}`}
+    class:list={[
+      'z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10',
+      {
+        'sm:bg-secondary': !isNew,
+        'sm:bg-secondary-with-transparency': backgroundImage?.data,
+        // 'relative': !backgroundImage?.data,
+      },
+    ]}
   >
-    <div class="gap-4 sm:pl-8 lg:pl-14 xl:pl-[100px]">
-      {isNew && <Clutch fill="#BFED06" />}
+    <div
+      class:list={[
+        'z-10  gap-4',
+        {
+          'sm:pl-8 lg:pl-14 xl:pl-[100px]': !isNew,
+          'w-[70%]': isCustom,
+        },
+      ]}
+    >
+      {isNew && !hiddenClutch && <Clutch fill="#BFED06" />}
 
       <Typography class={`${titleTypographyClass} `} as="h1" variant="h1">
         {title}
@@ -60,14 +91,31 @@ const titleTypographyClass = isNew
     </div>
 
     {
-      image && (
-        <div class="ml-auto flex flex-shrink-0 justify-end place-self-end">
+      heroImage && (
+        <div
+          class:list={[
+            {
+              'absolute bottom-auto left-0 top-auto  h-full w-full opacity-25':
+                backgroundImage?.data,
+              'place-self-end': !backgroundImage?.data,
+              'absolute bottom-0 lg:right-[2%] 2xl:right-[10%] ': isCustom,
+            },
+            ' ml-auto flex flex-shrink-0 justify-end place-self-end',
+          ]}
+        >
           <Image
-            class="h-auto max-h-[500px] w-full"
-            src={getImageUrl(image.data.attributes.url)}
-            width={image.data.attributes.width}
-            height={image.data.attributes.height}
-            alt={image.data.attributes.alternativeText}
+            class:list={[
+              'h-auto max-h-[500px] w-full',
+              {
+                'opacity-25': backgroundImage?.data,
+                'w-[500px]': isCustom,
+              },
+            ]}
+            src={getImageUrl(heroImage?.url)}
+            width={heroImage?.width}
+            height={heroImage?.height}
+            alt={heroImage?.alternativeText}
+            quality={100}
           />
         </div>
       )
@@ -91,7 +139,7 @@ const titleTypographyClass = isNew
       <slot name="button" />
     </div>
 
-    {
+    <!-- {
       image && (
         <div class="flex basis-1/2 place-content-end">
           <Image
@@ -103,6 +151,6 @@ const titleTypographyClass = isNew
           />
         </div>
       )
-    }
+    } -->
   </div>
 </section>

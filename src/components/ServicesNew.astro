@@ -6,9 +6,9 @@ import Typography from './Typography.astro';
 <ResponsiveContainer background="white">
   <div class="flex flex-col justify-between gap-10 md:flex-row">
     <div
-      class="service-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+      class="service-card bg-hover-slide-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
     >
-      <div class="service-card-bg"></div>
+      <div class="bg-hover-slide-layer bg-primary-blue"></div>
       <div class="service-card-img relative z-10">
         <img
           src="/img/icons/iconGreen.webp"
@@ -33,9 +33,9 @@ import Typography from './Typography.astro';
     </div>
 
     <div
-      class="service-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+      class="service-card bg-hover-slide-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
     >
-      <div class="service-card-bg"></div>
+      <div class="bg-hover-slide-layer bg-primary-blue"></div>
       <div class="service-card-img relative z-10">
         <img
           src="/img/icons/iconBlue.webp"
@@ -60,9 +60,9 @@ import Typography from './Typography.astro';
     </div>
 
     <div
-      class="service-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+      class="service-card bg-hover-slide-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
     >
-      <div class="service-card-bg"></div>
+      <div class="bg-hover-slide-layer bg-primary-blue"></div>
       <div class="service-card-img relative z-10">
         <img
           src="/img/icons/iconOrange.webp"
@@ -97,20 +97,6 @@ import Typography from './Typography.astro';
 
   .service-card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Fondo animado: entra de arriba a abajo, sale de abajo a arriba */
-  .service-card-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-color: var(--color-primary-blue);
-    transform: translateY(-100%);
-    transition: transform 0.4s ease;
-  }
-
-  .service-card:hover .service-card-bg {
-    transform: translateY(0);
   }
 
   /* Imagen oculta que aparece en hover y empuja el contenido */
