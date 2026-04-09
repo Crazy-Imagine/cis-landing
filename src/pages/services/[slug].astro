@@ -1,13 +1,12 @@
 ---
 import Hero from '@/sections/Hero.astro';
-import LatestProjects from '@/sections/LatestProjects.astro';
 import Layout from '@/layouts/Layout.astro';
-import ReachOut from '@/sections/ReachOut.astro';
-import ServiceDescription from '@/sections/Services/Description.astro';
 import fetchApi from '@/lib/strapi';
 import type { ServiceAttributes, ServiceCollection } from '@/types/strapi/Service';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-import Newsletter from '@/components/Newsletter.astro';
+import ServiceMainContent from '@/sections/Services/ServiceMainContent.astro';
+import ServicesFeatures from '@/sections/Services/ServicesFeatures.astro';
+import ServicesCTA from '@/components/Services/ServicesCTA.astro';
 
 export async function getStaticPaths() {
   const serviceCollection = await fetchApi<ServiceCollection>({
@@ -26,6 +25,28 @@ export async function getStaticPaths() {
             },
           },
         },
+        mainContent: {
+          fields: ['title', 'description', 'image', 'caption'],
+          populate: {
+            image: {
+              fields: ['url', 'width', 'height', 'alternativeText'],
+            },
+          },
+        },
+        features: {
+          fields: ['title', 'subtitle', 'icon'],
+          populate: {
+            feats: {
+              fields: ['title', 'content'],
+              populate: {
+                icon: {
+                  fields: ['url', 'width', 'height', 'alternativeText'],
+                },
+              },
+            },
+          },
+        },
+        cta: true,
       },
       sort: {
         createdAt: 'asc',
@@ -70,17 +91,23 @@ const t = useTranslations(lang);
 ---
 
 <Layout
+  isNew
   seo={attributes.seo}
-  image={attributes.hero.image?.data.attributes.url}
-  hrefLangPathname={`/es/services/${hrefLangSlug}`}
+  image={attributes.hero.image?.data?.attributes?.url ??
+    attributes.hero.backgroundImage?.data?.attributes?.url}
+  hrefLangPathname={`/services/${hrefLangSlug}`}
 >
-  <Hero {...attributes.hero} />
+  <Hero
+    isNew
+    isCustom
+    hiddenClutch
+    sectionClass="sm:!h-[680px] xl:!h-[650px]"
+    {...attributes.hero}
+  />
 
-  <ServiceDescription description={attributes.description} />
+  <ServiceMainContent {...attributes} />
 
-  <Newsletter />
+  <ServicesFeatures {...attributes.features} />
 
-  <LatestProjects title={t('common.related-projects')} />
-
-  <ReachOut />
+  <ServicesCTA {...attributes.cta} />
 </Layout>

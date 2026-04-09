@@ -1,0 +1,47 @@
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import type { Values } from '@/types/strapi/PageInfo';
+
+interface Props {
+  values: Values[];
+}
+
+const { values } = Astro.props;
+
+function chunk<T>(arr: T[], size: number): T[][] {
+  return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+}
+
+const rows = chunk(values, 4);
+---
+
+<ResponsiveContainer background="blueNew">
+  <div class="mb-10 flex flex-col items-center">
+    <Typography isNew as="h2" variant="h2" class="text-center text-white">
+      Nuestros Valores
+    </Typography>
+    <span class="mt-3 inline-block h-1 w-32 shrink-0 rounded-full bg-[#AC4FC6]" aria-hidden="true"
+    ></span>
+  </div>
+
+  <div class="flex flex-col items-center gap-5">
+    {
+      rows.map((row) => (
+        <div class="flex flex-wrap justify-center gap-4 sm:gap-5">
+          {row.map((value) => (
+            <Typography
+              as="p"
+              variant="paragraph"
+              class="rounded-2xl bg-white px-8 py-5 text-center font-bold text-primary-blue"
+            >
+              {value.value}
+            </Typography>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</ResponsiveContainer>

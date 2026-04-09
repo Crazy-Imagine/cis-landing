@@ -1,0 +1,270 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Reviews from '@/sections/Reviews.astro';
+import Typography from '@/components/Typography.astro';
+import Layout from '@/layouts/Layout.astro';
+import { OurProcess } from '@/components/react/Landings/OurProcess';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
+import Accordion from '@/components/Accordion.astro';
+import { FAQS } from '@/utils/staff-augmentation-info';
+import { OUR_PROCESS_STAFF_AUGMENTATION } from '@/consts/ourProcess';
+import { OUR_PROCESS } from '@/consts/data';
+import Newsletter from '@/components/Newsletter.astro';
+import OurTalent from '@/components/LandingPage/OurTalent.astro';
+import OurProcessLanding from '@/components/LandingPage/OurProcessLanding.astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const SEO = {
+  metaTitle: 'Staff Augmentation',
+  metaDescription: 'Staff Augmentation',
+};
+---
+
+<Layout seo={SEO}>
+  <!-- Button -->
+  <!-- <div
+    class="container-button group fixed bottom-5 right-5 z-[99] flex max-h-[80px] w-fit cursor-pointer items-center overflow-hidden rounded-full bg-[#52E75C] p-5"
+  >
+    <Phone class="h-[35px] w-[35px] text-white" />
+    <div class="text-button max-w-[40px] overflow-hidden transition-all duration-700">
+      <Typography
+        as="p"
+        variant="h5"
+        class="text-content ml-4 w-[500px] translate-x-full text-white opacity-0 transition-all duration-700"
+      >
+        Contáctanos
+      </Typography>
+    </div>
+  </div> -->
+  <!-- Hero -->
+  <div
+    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
+  >
+    <div
+      class="relative z-10 mx-auto h-full w-full items-center rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
+    >
+      <div class="w-full p-4 md:p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[1010px]">
+        <Typography
+          class="text-center text-[35px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px] 2xl:!text-[90px]"
+          as="h1"
+          variant="h1"
+        >
+          Escala tu equipo con desarrolladores senior verificados en menos de 7 días
+        </Typography>
+
+        <Typography
+          class="mt-5 text-center font-nexaLight text-[25px] text-[#193476] md:text-start md:text-[36px] lg:mt-10"
+          as="p"
+          variant="h4"
+        >
+          Sin costos de reclutamiento, sin papeleo, sin riesgo de rotación
+        </Typography>
+      </div>
+
+      <div
+        class="absolute -right-[140px] -top-[240px] ml-auto flex flex-shrink-0 justify-end place-self-end lg:-top-[182px] xl:-right-[95px] xl:-top-[265px] 2xl:-top-[274px]"
+      >
+        <Image
+          class="hidden h-[800px] max-h-[1100px] w-full lg:block lg:h-[770px] xl:h-[857px] 2xl:h-[990px]"
+          src={images['/src/assets/landing/ronald.webp']()}
+          alt={'ronald'}
+        />
+      </div>
+    </div>
+
+    <CTAButtons
+      text="Evalúa tu equipo ahora"
+      href="#contact"
+      variant="outline"
+      class="mt-10 place-self-center"
+      textClass="lg:text-[30px] px-10"
+    />
+
+    <Image
+      class="mt-5 place-self-center"
+      alt="Clutch rating reviews"
+      src={images['/src/assets/landing/Clutch.webp']()}
+    />
+  </div>
+
+  <!-- Why cis -->
+  <div
+    class="mx-auto flex h-fit flex-row justify-between gap-20 p-5 pt-10 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
+  >
+    <div class="hidden w-2/5 items-center justify-center overflow-hidden lg:flex">
+      <Image
+        class=""
+        src={images['/src/assets/landing/landing-martian.webp']()}
+        width={770}
+        height={810}
+        alt={'andrea'}
+      />
+    </div>
+    <div class="flex w-full flex-col justify-center gap-9 lg:w-3/5">
+      <Typography
+        as="span"
+        variant="h2"
+        class="font-nexaBold text-center font-bold capitalize !leading-[30px] text-primary md:!leading-[80px] lg:text-start"
+      >
+        Integra
+        <Typography as="span" variant="h2" class="font-nexaBold font-bold text-secondary"
+          >desarrolladores verificados</Typography
+        > en tu equipo en días. Flexibilidad total
+      </Typography>
+      <Typography
+        as="span"
+        variant="h4"
+        class="font-nexaLight text-[18px] text-[#333] md:text-[30px]"
+      >
+        Olvídese de largos procesos de reclutamiento y altos costos; con Staff Augmentation, obtiene
+        la flexibilidad y las habilidades exactas para potenciar su empresa.
+      </Typography>
+    </div>
+  </div>
+
+  <!-- Our talents -->
+  <OurTalent>
+    <CTAButtons
+      slot="cta"
+      text="Reclutar talento"
+      href="#contact"
+      variant="primary-light"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px]"
+    />
+  </OurTalent>
+
+  <!-- Form -->
+  <ResponsiveContainer
+    class="flex flex-row items-center justify-center"
+    containerClass="!pb-0 bg-white"
+  >
+    <div>
+      <Typography class:list={['mb-10 text-center capitalize text-primary']} as="h2" variant="h2">
+        ¡Comienza Ahora!
+        <br />
+        Agenda una Cita
+      </Typography>
+      <div id="contact" class="w-full max-w-[880px]">
+        <script
+          type="text/javascript"
+          src="https://api.clientify.net/web-marketing/superforms/script/247903.js"></script>
+      </div>
+    </div>
+    <div class="relative -top-[50px]">
+      <Image
+        src={images['/src/assets/landing/appointment.webp']()}
+        alt={'appointment'}
+        class="w-[450px]"
+      />
+      <div class="absolute bottom-[90px] left-0 flex w-full flex-col items-center gap-4">
+        <Typography as="span" variant="h3" class="text-center font-bold text-primary"
+          >Agenda una Cita</Typography
+        >
+        <ol class="w-[60%] list-disc">
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >Charla de 15 min, sin compromiso.</Typography
+            >
+          </li>
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >Recibe un plan de acción para escalar tu equipo.</Typography
+            >
+          </li>
+          <li>
+            <Typography as="span" variant="paragraph" class="text-primary"
+              >Accede a talento de élite en menos de 7 días.</Typography
+            >
+          </li>
+        </ol>
+      </div>
+    </div>
+  </ResponsiveContainer>
+
+  <Reviews class="max-w-[350px]" />
+
+  <!-- Our process -->
+  <OurProcessLanding data={OUR_PROCESS_STAFF_AUGMENTATION} />
+
+  <!-- News -->
+  <Newsletter />
+
+  <!-- Benefits -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography as="span" variant="h2" class="font-nexaBold text-center font-bold text-primary">
+      Beneficios
+    </Typography>
+    <OurProcess client:visible data={OUR_PROCESS} />
+  </ResponsiveContainer>
+
+  <ResponsiveContainer background="bulbs" class="relative z-50">
+    <Typography class:list={['mb-10 text-center capitalize text-white']} as="h2" variant="h2">
+      ¿Tu equipo se quedó corto? ¡Inyecta el talento Crazy Imagine hoy mismo
+    </Typography>
+    <CTAButtons
+      text="Habla con un asesor tecnológico "
+      href="#contact"
+      variant="outline"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px] px-20"
+    />
+  </ResponsiveContainer>
+
+  <!-- FAQS -->
+  <ResponsiveContainer class="relative z-50">
+    <Typography class:list={['text-centercapitalize mb-10 text-primary']} as="h2" variant="h2">
+      Preguntas Frecuentes
+    </Typography>
+
+    {
+      FAQS.map((faq) => (
+        <Accordion
+          title={faq.title}
+          description={faq.description}
+          isHtml={faq.isHtml}
+          customTypographyClass="!text-base lg:!text-[18px]"
+        />
+      ))
+    }
+  </ResponsiveContainer>
+</Layout>
+
+<script>
+  import Swal from 'sweetalert2';
+
+  const container = document.querySelector('.container-button');
+  const textButton: any = document.querySelector('.text-button');
+  const text = document.querySelector('.text-content');
+
+  if (container && textButton && text) {
+    container.addEventListener('mouseover', () => {
+      // Expandir el contenedor y mostrar el texto
+      textButton.classList.add('expanded');
+      text.classList.add('visible');
+    });
+    container.addEventListener('mouseout', () => {
+      // Contraer el contenedor y ocultar el texto
+      textButton.classList.remove('expanded');
+      text.classList.remove('visible');
+    });
+    container.addEventListener('click', () => {
+      window.location.href = '#contact';
+    });
+  }
+
+  const formNews = document.querySelector('#form-news');
+  formNews &&
+    formNews.addEventListener('submit', (e) => {
+      e.preventDefault();
+      Swal.fire({
+        title: 'Gracias por suscribirte',
+        text: 'Te enviaremos todas las noticias y novedades que tenemos para ti',
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+      });
+    });
+</script>

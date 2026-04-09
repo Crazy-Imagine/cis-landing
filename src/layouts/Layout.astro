@@ -60,6 +60,7 @@ interface Props {
         --color-fog-white: #fafafa;
         ---color-green-contact: #52e75c;
         --color-primary-with-transparency: rgba(25, 49, 116, 0.65);
+        --color-primary-with-transparency-white: rgba(255, 255, 255, 0.05);
         --color-primary-blue-with-transparency: rgba(19, 30, 41, 0.65);
         --color-blue-purple-contrast: #595dc3;
         --header-height: 90px;
@@ -68,7 +69,7 @@ interface Props {
 
       @font-face {
         font-family: 'Colvetica';
-        src: url('/fonts/Colvetica.woff2') format('woff2');
+        src: url('/fonts/Coolvetica.woff2') format('woff2');
         font-weight: normal;
         font-style: normal;
         font-display: swap;
@@ -113,7 +114,7 @@ interface Props {
       }
       .card-front,
       .card-back {
-        @apply absolute inset-0 flex h-full w-full flex-col rounded-lg bg-white shadow-md;
+        @apply absolute inset-0 flex h-full w-full flex-col rounded-lg bg-primary-blue shadow-md;
         backface-visibility: hidden;
       }
       .card-back {

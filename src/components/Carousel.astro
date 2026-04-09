@@ -58,7 +58,7 @@ const {
 
 <script>
   import Swiper from 'swiper';
-  import { Keyboard, Navigation, Pagination } from 'swiper/modules';
+  import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
 
   function initSwiper() {
     const swiperEl = document.querySelector('.mySwiper') as HTMLElement;
@@ -68,7 +68,7 @@ const {
     const pagination = swiperEl.dataset.pagination === 'true';
     const navigation = swiperEl.dataset.navigation === 'true';
 
-    const modules = [Keyboard, Pagination];
+    const modules = [Autoplay, Keyboard, Pagination];
     if (navigation) {
       modules.push(Navigation);
     }
@@ -76,6 +76,10 @@ const {
     const swiper = new Swiper('.mySwiper', {
       modules,
       spaceBetween: 50,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
       breakpoints: {
         0: {
           slidesPerView: slidesPerView[0] || 1,

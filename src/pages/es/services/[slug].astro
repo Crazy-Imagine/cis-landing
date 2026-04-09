@@ -99,16 +99,17 @@ const t = useTranslations(lang);
     attributes.hero.backgroundImage?.data?.attributes?.url}
   hrefLangPathname={`/services/${hrefLangSlug}`}
 >
-  <Hero isNew isCustom hiddenClutch sectionClass="sm:h-[680px] xl:h-[650px]" {...attributes.hero} />
+  <Hero
+    isNew
+    isCustom
+    hiddenClutch
+    sectionClass="sm:!h-[680px] xl:!h-[650px]"
+    {...attributes.hero}
+  />
 
   <ServiceMainContent {...attributes} />
 
   <ServicesFeatures {...attributes.features} />
 
   <ServicesCTA {...attributes.cta} />
-  <!-- <ServiceDescription description={attributes.description} /> -->
-
-  <!-- <Newsletter /> -->
-
-  <!-- <ReachOut /> -->
 </Layout>

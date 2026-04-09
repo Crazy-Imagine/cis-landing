@@ -1,6 +1,10 @@
 ---
 import ResponsiveContainer from './ResponsiveContainer.astro';
 import Typography from './Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer background="white">
@@ -20,15 +24,14 @@ import Typography from './Typography.astro';
         as="h4"
         variant="h4"
         class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
-        >Servicios</Typography
+        >{t('services.services')}</Typography
       >
       <Typography
         as="p"
         variant="paragraph"
         class="relative z-10 text-black group-hover:text-white"
       >
-        Desarrollo a medida para desafíos reales. Desde arquitecturas web robustas y aplicaciones
-        móviles hasta automatización inteligente.
+        {t('services.services-description')}
       </Typography>
     </div>
 
@@ -47,15 +50,14 @@ import Typography from './Typography.astro';
         as="h4"
         variant="h4"
         class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
-        >Crazy Partner</Typography
+        >{t('services.crazy-partner')}</Typography
       >
       <Typography
         as="p"
         variant="paragraph"
         class="relative z-10 text-black group-hover:text-white"
       >
-        Ampliamos tu equipo al instante para que dejes de rechazar proyectos y conviertas cada
-        solicitud en una nueva oportunidad de negocio.
+        {t('services.crazy-partner-description')}
       </Typography>
     </div>
 
@@ -74,15 +76,14 @@ import Typography from './Typography.astro';
         as="h4"
         variant="h4"
         class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
-        >Proyectos</Typography
+        >{t('services.projects')}</Typography
       >
       <Typography
         as="p"
         variant="paragraph"
         class="relative z-10 text-black group-hover:text-white"
       >
-        Nuestras soluciones no conocen fronteras. Diseñamos pensando en la escalabilidad global y la
-        adaptabilidad cultural.
+        {t('services.projects-description')}
       </Typography>
     </div>
   </div>

@@ -33,29 +33,20 @@ const projects = await fetchApi<ProjectCollection>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-console.log(projects.data);
 ---
 
 <ResponsiveContainer>
   <Typography
     isNew
-    class={`text-primary-blue mb-10 w-[65%] text-start font-bold`}
+    class={`text-primary-blue mb-10 w-[75%] text-start font-bold`}
     as="h2"
     variant="h2"
   >
-    Empresas que escalan con nosotros
-  </Typography>
-  <Typography
-    isNew
-    class={`text-primary-blue w-[65%] text-start font-bold mb-14`}
-    as="p"
-    variant="paragraph"
-  >
-    Transformamos visiones técnicas en realidades de mercado robustas y escalables.
+    {t('common.projects-title')}
   </Typography>
   <div
     id="projects-container"
-    class="grid grid-cols-1 gap-5 px-20 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
+    class="grid grid-cols-1 gap-5 px-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 2xl:px-20"
   >
     {
       projects.data.map(
@@ -72,7 +63,7 @@ console.log(projects.data);
             altText={project.title}
             description={project.description}
             ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
-            class="shadow-md"
+            class="shadow-xl"
             height={image.attributes.formats.medium.height}
             href={`/projects/${project.slug}`}
             img={image.attributes.formats.medium.url}

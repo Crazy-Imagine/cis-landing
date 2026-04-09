@@ -30,37 +30,37 @@ const pages = [
 
 const subMenuItems = [
   {
-    name: 'Desarrollo web Personalizado',
-    href: '/test',
-    description:
-      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+    name: t('common.custom-development'),
+    href: '/services/custom-software-development',
+    description: t('common.custom-development-description'),
   },
   {
-    name: 'Staff Augmentation',
-    href: '/test',
-    description: 'Talento experto para tus equipos',
-  },
-  { name: 'Apps Móviles', href: '/test', description: 'Experiencias nativas y multiplataformas' },
-  {
-    name: 'Crazy Partner Program',
-    href: '/test',
-    description:
-      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+    name: t('common.staff-augmentation'),
+    href: '/services/staff-augmentation',
+    description: t('common.staff-augmentation-description'),
   },
   {
-    name: 'Outsourcing',
-    href: '/test',
-    description:
-      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+    name: t('common.mobile-apps'),
+    href: '/services/mobile-application-development',
+    description: t('common.mobile-apps-description'),
   },
   {
-    name: 'Odoo',
+    name: t('common.crazy-partner-program'),
     href: '/test',
-    description:
-      'colaboración diseñado para consultores y agencias que desean monetizar su red de contactos',
+    description: t('common.crazy-partner-program-description'),
+  },
+  {
+    name: t('common.outsourcing'),
+    href: 'services/outsourcing',
+    description: t('common.outsourcing-description'),
+  },
+  {
+    name: t('common.odoo'),
+    href: '/test',
+    description: t('common.odoo-description'),
   },
 
-  { name: 'Agentes IA', href: '/test', description: 'IA y automatización de  conversaciones' },
+  { name: t('common.ai-agents'), href: '/test', description: t('common.ai-agents-description') },
 ];
 
 const { class: className = '', isDrawer = false } = Astro.props;
@@ -128,7 +128,7 @@ const { class: className = '', isDrawer = false } = Astro.props;
             </p>
             <div
               id="sub-menu"
-              class="absolute -left-10 top-16 hidden w-[1000px] cursor-pointer  grid-cols-3 grid-rows-3 gap-x-8 gap-y-6 rounded-[20px] border border-solid border-primary-new bg-primary-blue-with-transparency px-[37px] py-[30px] backdrop-blur-lg"
+              class="absolute -left-44 top-16 hidden w-[1000px] cursor-pointer grid-cols-3  grid-rows-3 gap-x-8 gap-y-6 rounded-[20px] border border-solid border-primary-new bg-primary-blue-with-transparency px-[37px] py-[30px] backdrop-blur-lg 2xl:-left-10"
             >
               {subMenuItems.map(({ name: name1, href: href1, description: description1 }) => (
                 <a

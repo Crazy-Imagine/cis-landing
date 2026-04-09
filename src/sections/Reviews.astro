@@ -26,7 +26,14 @@ const t = useTranslations(lang);
 <CarouselSection
   pagination={!isNew}
   background={background}
-  title={isNew ? 'Lo que dicen nuestros socios' : t('common.people-who-work-with-us-say')}
+  title={isNew ? t('common.reviews-title') : t('common.people-who-work-with-us-say')}
+  slidesPerView={{
+    0: 1,
+    600: 2,
+    960: 2,
+    1280: 3,
+    1920: 3,
+  }}
 >
   <Fragment slot="items">
     {

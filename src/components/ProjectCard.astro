@@ -1,6 +1,7 @@
 ---
 import LinkPill from './LinkPill.astro';
 import Typography from './Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import { getImageUrl } from '@/utils/imageUrl';
 
 interface Props {
@@ -13,6 +14,9 @@ interface Props {
 }
 
 const { title, description, image, link, width, height } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <article class="flex w-[80%] items-center gap-10 place-self-center px-10 py-8">
@@ -23,7 +27,7 @@ const { title, description, image, link, width, height } = Astro.props;
     >
 
     <LinkPill isNew variant="contained" href={link} class="w-max rounded-md">
-      Ver Proyecto
+      {t('common.view-project')}
     </LinkPill>
   </div>
 

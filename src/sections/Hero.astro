@@ -12,10 +12,20 @@ interface Props extends CustomHero {
   sectionClass?: string;
   hiddenClutch?: boolean;
   isCustom?: boolean;
+  lighten?: boolean;
 }
 
-const { title, subtitle, image, isNew, backgroundImage, sectionClass, hiddenClutch, isCustom } =
-  Astro.props;
+const {
+  title,
+  subtitle,
+  image,
+  isNew,
+  backgroundImage,
+  sectionClass,
+  hiddenClutch,
+  isCustom,
+  lighten,
+} = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const heroImage = backgroundImage?.data?.attributes
   ? backgroundImage?.data?.attributes
@@ -33,7 +43,7 @@ const titleTypographyClass = isNew
     'second relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
     lang === 'es' ? 'xs:h-[850px] xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]',
     {
-      'md:bg-hero-background': isNew,
+      'md:bg-hero-background ': isNew,
       'md:bg-hero': !isNew,
     },
     sectionClass,
@@ -47,9 +57,10 @@ const titleTypographyClass = isNew
 
   <div
     class:list={[
-      'z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10',
+      'container z-10 mx-auto hidden h-full w-full items-center rounded-xl sm:flex sm:gap-10',
       {
         'sm:bg-secondary': !isNew,
+        'px-4 md:px-5 lg:px-10 min-[1546px]:px-0': isNew,
         'sm:bg-secondary-with-transparency': backgroundImage?.data,
         // 'relative': !backgroundImage?.data,
       },
@@ -60,7 +71,7 @@ const titleTypographyClass = isNew
         'z-10  gap-4',
         {
           'sm:pl-8 lg:pl-14 xl:pl-[100px]': !isNew,
-          'w-[70%]': isCustom,
+          'w-[80%]': isCustom,
         },
       ]}
     >
@@ -105,10 +116,11 @@ const titleTypographyClass = isNew
         >
           <Image
             class:list={[
-              'h-auto max-h-[500px] w-full',
+              'h-auto max-h-[500px] w-full ',
               {
                 'opacity-25': backgroundImage?.data,
                 'w-[500px]': isCustom,
+                'mix-blend-lighten': lighten,
               },
             ]}
             src={getImageUrl(heroImage?.url)}

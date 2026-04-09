@@ -4,6 +4,15 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+    container: {
+      screens: {
+        sm: '500px',
+        md: '600px',
+        lg: '800px',
+        xl: '1000px',
+        '2xl': '1200px',
+      },
+    },
     extend: {
       backgroundImage: {
         'hero': "url('/img/backgrounds/hero.webp')",
@@ -40,6 +49,7 @@ export default {
         'gray-new': 'var(--color-gray-new)',
         'primary-new-with-transparency': 'var(--color-primary-new-with-transparency)',
         'gradient-font': 'var(--color-gradient-font)',
+        'primary-with-transparency-white': 'var(--color-primary-with-transparency-white)',
       },
       keyframes: {
         wiggle: {

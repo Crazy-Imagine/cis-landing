@@ -34,7 +34,7 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout isNew seo={pageInfo.data.attributes.seo} canonical="https://crazyimagine.com/es">
-  <Hero {...pageInfo.data.attributes.hero} isNew={true}>
+  <Hero {...pageInfo.data.attributes.hero} isNew>
     <LinkPill isNew slot="button" variant="contained" href={translatePath('/contact-us', lang)}>
       {t('common.home-hero-button')}
     </LinkPill>
@@ -45,10 +45,4 @@ const translatePath = useTranslatedPath(lang);
   <LatestProjectsNew title={'Transformaciones digitales'} />
 
   <ServicesNew />
-
-  <!--  <Newsletter /> -->
-
-  <!-- <ReachOut /> -->
-
-  <!-- <CrazyBanner /> -->
 </Layout>
