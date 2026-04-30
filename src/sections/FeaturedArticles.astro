@@ -39,8 +39,6 @@ const articles = await fetchApi<ArticleCollection>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-console.log(articles.data);
 ---
 
 <ResponsiveContainer background="blog">

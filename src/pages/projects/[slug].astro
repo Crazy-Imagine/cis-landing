@@ -99,8 +99,6 @@ const {
   },
   ...project
 } = attributes;
-
-console.log(project);
 ---
 
 <Layout
@@ -116,11 +114,11 @@ console.log(project);
     isNew
     hiddenClutch
     isCustom
-    sectionClass="sm:!h-[680px] xl:!h-[650px]"
+    sectionClass="sm:!h-[680px] xl:!h-[550px]"
     {...project.hero}
     types={project.project_types.data.map((type) => type.attributes.name)}
     title={`${project.title} \n ${project.hero.title}`}
-    customImageClass="!right-0"
+    customImageClass="!right-0 lg:w-[620px]"
   />
   <ChallengeSolution solution={project.solution} challenge={project.challenge} />
   <Features feats={project.feats} />
