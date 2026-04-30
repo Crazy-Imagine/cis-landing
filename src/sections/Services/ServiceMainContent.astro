@@ -35,17 +35,18 @@ import { getImageUrl } from '@/utils/imageUrl';
         )
       }
     </div>
-    {
-      Astro.props.mainContent.image?.data?.attributes?.url && (
-        <Image
-          class:list={['absolute bottom-0 right-0 h-full']}
-          src={getImageUrl(Astro.props.mainContent.image?.data?.attributes?.url)}
-          width={Astro.props.mainContent.image?.data?.attributes?.width}
-          height={Astro.props.mainContent.image?.data?.attributes?.height}
-          alt={Astro.props.mainContent.image?.data?.attributes?.alternativeText}
-          quality={100}
-        />
-      )
-    }
   </div>
+  {
+    Astro.props.mainContent.image?.data?.attributes?.url && (
+      <Image
+        slot="image"
+        class:list={['absolute bottom-0 right-0 h-full']}
+        src={getImageUrl(Astro.props.mainContent.image?.data?.attributes?.url)}
+        width={Astro.props.mainContent.image?.data?.attributes?.width}
+        height={Astro.props.mainContent.image?.data?.attributes?.height}
+        alt={Astro.props.mainContent.image?.data?.attributes?.alternativeText}
+        quality={100}
+      />
+    )
+  }
 </ResponsiveContainer>
