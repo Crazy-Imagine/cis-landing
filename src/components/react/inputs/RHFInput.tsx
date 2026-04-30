@@ -5,11 +5,12 @@ import type { BaseInputProps } from '@/types/Input.ts';
 interface Props extends BaseInputProps {
   type?: React.HTMLInputTypeAttribute;
   accept?: React.InputHTMLAttributes<HTMLInputElement>['accept'];
+  required?: boolean;
 }
 
 const RHFInput = forwardRef(
   (
-    { name, label, errors, register, accept, type = 'text' }: Props,
+    { name, label, errors, register, accept, type = 'text', required }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const hasError = !!errors[name];
@@ -24,7 +25,7 @@ const RHFInput = forwardRef(
     if (type === 'file') {
       const { ref: rhfRef, ...rest } = register(name);
       return (
-        <InputWrapper name={name} errors={errors}>
+        <InputWrapper name={name} errors={errors} required={required}>
           <input
             id={name}
             type="file"
@@ -44,12 +45,12 @@ const RHFInput = forwardRef(
     }
 
     return (
-      <InputWrapper name={name} label={label} errors={errors}>
+      <InputWrapper name={name} label={label} errors={errors} required={required}>
         <input
           id={name}
           type={type}
           className={`
-          block w-full rounded-md border-0 bg-fog-white px-2 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6
+          block w-full rounded-xl border-2 border-solid border-primary-blue bg-fog-white px-2 py-1.5 shadow-lg ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6
           ${hasError ? 'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600'}
           `}
           {...ariaValues}

@@ -3,7 +3,6 @@ import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { ServiceAttributes, ServiceCollection } from '@/types/strapi/Service';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import ServiceMainContent from '@/sections/Services/ServiceMainContent.astro';
 import ServicesFeatures from '@/sections/Services/ServicesFeatures.astro';
 import ServicesCTA from '@/components/Services/ServicesCTA.astro';
@@ -81,13 +80,10 @@ export async function getStaticPaths() {
 interface Props {
   id: number;
   attributes: ServiceAttributes;
-  hrefLangSlug: string;
+  hrefLangSlug?: string;
 }
 
 const { attributes, hrefLangSlug } = Astro.props;
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
 <Layout
@@ -95,7 +91,7 @@ const t = useTranslations(lang);
   seo={attributes.seo}
   image={attributes.hero.image?.data?.attributes?.url ??
     attributes.hero.backgroundImage?.data?.attributes?.url}
-  hrefLangPathname={`/services/${hrefLangSlug}`}
+  hrefLangPathname={hrefLangSlug ? `/es/services/${hrefLangSlug}` : undefined}
 >
   <Hero
     isNew

@@ -3,7 +3,8 @@ import { Image } from 'astro:assets';
 import CardCTA from './CardCTA.astro';
 import Typography from './Typography.astro';
 import { getImageUrl } from '@/utils/imageUrl';
-import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import { formatPublishedAt } from '@/utils/formateDate';
 
 interface Props {
   altText?: string;
@@ -20,6 +21,7 @@ interface Props {
   cardBg?: string;
   isNew?: boolean;
   description?: string;
+  publishedAt: string;
 }
 
 const {
@@ -35,67 +37,73 @@ const {
   width,
   cardBg,
   isNew,
-  description,
+  publishedAt,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const publishedAtLabel = formatPublishedAt(publishedAt, lang);
 ---
 
 <article
+  style="background-color: rgba(226, 229, 232, 0.08);"
   class:list={[
-    'my-2 !flex !h-auto flex-col rounded-xl',
+    'my-2 !flex !h-auto max-w-[650px] flex-col rounded-xl px-14 pb-2 pt-10',
     Astro.props.class,
     {
       'swiper-slide': isSwiperCard,
     },
-    cardBg ?? 'bg-white',
+    cardBg ?? 'bg-gray-with-transparency backdrop-blur-sm',
   ]}
   {...projectType ? { 'data-project-type': projectType } : {}}
 >
-  <picture class:list={['rounded-xl', { 'p-4': isNew }]}>
+  <picture class:list={['rounded-sm p-10 pt-0']}>
     <Image
       transition:animate="slide"
       transition:name={`${title}-image`}
-      class="h-auto w-full rounded-xl object-cover"
+      class="h-auto w-full rounded-sm object-cover"
       src={getImageUrl(img)}
       alt={altText}
       width={width}
       height={height}
     />
-    {isSwiperCard && <div class="swiper-lazy-preloader" />}
   </picture>
 
-  <div class="mt-auto p-5 text-center">
+  <div class="mt-auto flex flex-col gap-5 p-5 pb-0">
+    <div class="flex items-center gap-4">
+      <Typography
+        style={'background-color: #C0FF0033;'}
+        as="p"
+        variant="paragraph3"
+        class={'px-4 py-1  rounded-lg text-primary-new '}>{t('common.recent')}</Typography
+      >
+      <Typography as="p" variant="paragraph3" class={'text-[#94A3B8]'}
+        >{publishedAtLabel}</Typography
+      >
+    </div>
     <Typography
       transition:name={`${title}-title`}
       class:list={[
         'line-clamp-2',
         {
-          'text-primary': !isNew,
+          'text-white': !isNew,
           'bg-gradinet-font bg-clip-text text-start text-transparent': isNew,
         },
       ]}
       as="p"
-      variant="accent"
+      variant="h4"
     >
       {title}
     </Typography>
 
-    {
-      description && (
-        <Typography class="text-start text-white" as="p" variant="paragraph3">
-          {description}
-        </Typography>
-      )
-    }
-
     <CardCTA
-      isNew={isNew}
       class="mt-2.5 !justify-self-start"
       href={translatePath(href, lang)}
       text={linkText}
       ariaLabel={ariaLabel}
+      textColor="text-primary-new"
     />
   </div>
 </article>

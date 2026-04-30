@@ -1,110 +1,339 @@
 ---
-import type { Pagination } from '@/types/Pagination';
+import type { Pagination as PaginationMeta } from '@/types/Pagination';
 import ChevronLeft from '@/icons/ChevronLeft.astro';
 import ChevronsLeft from '@/icons/ChevronsLeft.astro';
 import ChevronRight from '@/icons/ChevronRight.astro';
 import ChevronsRight from '@/icons/ChevronsRight.astro';
 
+interface LoadMoreOptions {
+  /** Contenedor al que se añaden las tarjetas de artículo */
+  gridId: string;
+  locale: string;
+  /** Idioma UI para formatear fechas (`formatPublishedAt`) */
+  uiLang: 'en' | 'es';
+  search: string;
+  /** Base de la ruta del post, sin barra final (p. ej. `/blog`, `/es/blog`) */
+  articleBasePath: string;
+  loadMoreLabel: string;
+  loadingLabel: string;
+  linkText: string;
+  ariaLinkPrefix: string;
+}
+
 interface Props {
-  pagination: Pagination;
+  pagination: PaginationMeta;
+  /** `links`: enlaces de página (por defecto). `load-more`: botón incremental vía API Strapi */
+  variant?: 'links' | 'load-more';
+  /** Obligatorio si `variant` es `load-more` */
+  loadMore?: LoadMoreOptions;
+}
+
+const { pagination, variant = 'links', loadMore } = Astro.props;
+
+if (variant === 'load-more' && !loadMore) {
+  throw new Error('Pagination: con variant="load-more" debes pasar la prop `loadMore`.');
 }
 
 const page = Number.parseInt(Astro.url.searchParams.get('page') || '1');
 const currentPath = Astro.url.pathname;
 
-const { pagination } = Astro.props;
+const strapiUrl = import.meta.env.PUBLIC_STRAPI_URL;
+const isDev = import.meta.env.DEV;
+const showLoadMore = variant === 'load-more' && pagination.pageCount > 1;
 ---
 
-<div class="mt-4 flex items-center justify-center space-x-2">
-  <a
-    id="pagination-first"
-    href={`${currentPath}?page=1`}
-    class:list={[
-      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
-      {
-        'cursor-not-allowed opacity-50': page === 1,
-      },
-    ]}
-    aria-label="First page"
-  >
-    <ChevronsLeft />
-  </a>
-  <a
-    id="pagination-previous"
-    href={`${page > 1 ? `${currentPath}?page=${page - 1}` : currentPath}`}
-    class:list={[
-      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
-      {
-        'cursor-not-allowed opacity-50': page === 1,
-      },
-    ]}
-    aria-label="Previous page"
-    rel={page > 1 ? 'prev' : null}
-  >
-    <ChevronLeft />
-  </a>
-  <span class="text-sm font-medium">
-    Page {page} of {pagination.pageCount}
-  </span>
-  <a
-    id="pagination-next"
-    href={`${page < pagination.pageCount ? `${currentPath}?page=${page + 1}` : `${currentPath}?page=${page}`}`}
-    class:list={[
-      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
-      {
-        'cursor-not-allowed opacity-50': page === pagination.pageCount,
-      },
-    ]}
-    aria-label="Next page"
-    rel={page < pagination.pageCount ? 'next' : null}
-  >
-    <ChevronRight />
-  </a>
-  <a
-    id="pagination-last"
-    href={`${currentPath}?page=${pagination.pageCount}`}
-    class:list={[
-      'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
-      {
-        'cursor-not-allowed opacity-50': page === pagination.pageCount,
-      },
-    ]}
-    aria-label="Last page"
-  >
-    <ChevronsRight />
-  </a>
-</div>
+{
+  variant === 'links' && (
+    <div class="mt-4 flex items-center justify-center space-x-2">
+      <a
+        id="pagination-first"
+        href={`${currentPath}?page=1`}
+        class:list={[
+          'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+          {
+            'cursor-not-allowed opacity-50': page === 1,
+          },
+        ]}
+        aria-label="First page"
+      >
+        <ChevronsLeft />
+      </a>
+      <a
+        id="pagination-previous"
+        href={`${page > 1 ? `${currentPath}?page=${page - 1}` : currentPath}`}
+        class:list={[
+          'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+          {
+            'cursor-not-allowed opacity-50': page === 1,
+          },
+        ]}
+        aria-label="Previous page"
+        rel={page > 1 ? 'prev' : null}
+      >
+        <ChevronLeft />
+      </a>
+      <span class="text-sm font-medium">
+        Page {page} of {pagination.pageCount}
+      </span>
+      <a
+        id="pagination-next"
+        href={`${page < pagination.pageCount ? `${currentPath}?page=${page + 1}` : `${currentPath}?page=${page}`}`}
+        class:list={[
+          'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+          {
+            'cursor-not-allowed opacity-50': page === pagination.pageCount,
+          },
+        ]}
+        aria-label="Next page"
+        rel={page < pagination.pageCount ? 'next' : null}
+      >
+        <ChevronRight />
+      </a>
+      <a
+        id="pagination-last"
+        href={`${currentPath}?page=${pagination.pageCount}`}
+        class:list={[
+          'rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 disabled:opacity-50',
+          {
+            'cursor-not-allowed opacity-50': page === pagination.pageCount,
+          },
+        ]}
+        aria-label="Last page"
+      >
+        <ChevronsRight />
+      </a>
+    </div>
+  )
+}
+
+{
+  showLoadMore && loadMore && (
+    <div class="mt-8 flex justify-center">
+      <button
+        type="button"
+        id="pagination-load-more-btn"
+        class="rounded-md bg-primary-blue px-6 py-3 text-base font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        data-next-page="2"
+        data-total-pages={pagination.pageCount}
+        data-page-size={pagination.pageSize}
+        data-strapi-url={strapiUrl}
+        data-is-dev={isDev ? 'true' : 'false'}
+        data-grid-id={loadMore.gridId}
+        data-locale={loadMore.locale}
+        data-ui-lang={loadMore.uiLang}
+        data-search={loadMore.search}
+        data-article-base={loadMore.articleBasePath}
+        data-link-text={loadMore.linkText}
+        data-aria-prefix={loadMore.ariaLinkPrefix}
+        data-load-more={loadMore.loadMoreLabel}
+        data-loading={loadMore.loadingLabel}
+      >
+        {loadMore.loadMoreLabel}
+      </button>
+    </div>
+  )
+}
 
 <script>
+  import qs from 'qs';
+  import type { ArticleCollection } from '@/types/strapi/Article';
+  import { formatPublishedAt } from '@/utils/formateDate';
+
+  function resolveImgSrc(rawUrl: string, strapiBase: string, dev: boolean) {
+    if (!dev) return rawUrl;
+    if (rawUrl.includes('https://')) return rawUrl;
+    return `${strapiBase}${rawUrl}`;
+  }
+
+  function appendArticleCards(
+    grid: HTMLElement,
+    items: ArticleCollection['data'],
+    opts: {
+      strapiUrl: string;
+      isDev: boolean;
+      lang: 'en' | 'es';
+      linkText: string;
+      ariaPrefix: string;
+      articleBasePath: string;
+    }
+  ) {
+    const base = opts.articleBasePath.replace(/\/$/, '');
+
+    for (const item of items) {
+      const {
+        title,
+        description,
+        slug,
+        publishedAt,
+        image: {
+          data: {
+            attributes: {
+              formats: { small },
+              alternativeText,
+            },
+          },
+        },
+      } = item.attributes;
+
+      const imgUrl = resolveImgSrc(small.url, opts.strapiUrl, opts.isDev);
+      const href = `${base}/${slug}`;
+      const projectType = formatPublishedAt(publishedAt, opts.lang);
+
+      const article = document.createElement('article');
+      article.className =
+        'my-2 !flex !h-auto cursor-pointer flex-col rounded-xl border border-transparent bg-white shadow-md hover:shadow-primary-new-with-transparency shadow-md';
+      article.dataset.href = href;
+      article.dataset.projectType = projectType;
+      article.setAttribute('aria-label', `${opts.ariaPrefix}: "${title}"`);
+
+      const picture = document.createElement('picture');
+      picture.className = 'relative block h-[250px] overflow-hidden rounded-t-xl';
+
+      const img = document.createElement('img');
+      img.className = 'h-full w-full rounded-t-xl object-cover';
+      img.src = imgUrl;
+      img.alt = alternativeText || title;
+      img.width = small.width;
+      img.height = small.height;
+      img.loading = 'lazy';
+
+      picture.appendChild(img);
+      article.appendChild(picture);
+
+      const body = document.createElement('div');
+      body.className = 'mt-auto flex flex-col gap-3 p-6';
+
+      const dateEl = document.createElement('p');
+      dateEl.className =
+        'text-primary-blue w-[65%] text-start font-bold capitalize text-base lg:text-lg';
+      dateEl.textContent = projectType;
+
+      const titleEl = document.createElement('p');
+      titleEl.className = 'line-clamp-2 font-bold text-primary-blue text-lg lg:text-xl';
+      titleEl.textContent = title;
+
+      const descEl = document.createElement('p');
+      descEl.className = 'line-clamp-2 text-font-light-gray text-base lg:text-lg';
+      descEl.textContent = description;
+
+      const linkEl = document.createElement('p');
+      linkEl.className =
+        'text-primary-blue px-4 py-2 rounded-md bg-gray-new text-primary-blue text-base lg:text-lg text-center';
+      linkEl.textContent = opts.linkText;
+
+      body.append(dateEl, titleEl, descEl, linkEl);
+      article.appendChild(body);
+      grid.appendChild(article);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const first = document.getElementById('pagination-first');
     const previous = document.getElementById('pagination-previous');
     const next = document.getElementById('pagination-next');
     const last = document.getElementById('pagination-last');
 
-    if (!first || !previous || !next || !last) return;
+    if (first && previous && next && last) {
+      first.addEventListener('click', (event) => {
+        if (first.classList.contains('cursor-not-allowed')) {
+          event.preventDefault();
+        }
+      });
 
-    first.addEventListener('click', (event) => {
-      if (first.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+      previous.addEventListener('click', (event) => {
+        if (previous.classList.contains('cursor-not-allowed')) {
+          event.preventDefault();
+        }
+      });
 
-    previous.addEventListener('click', (event) => {
-      if (previous.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+      next.addEventListener('click', (event) => {
+        if (next.classList.contains('cursor-not-allowed')) {
+          event.preventDefault();
+        }
+      });
 
-    next.addEventListener('click', (event) => {
-      if (next.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
-      }
-    });
+      last.addEventListener('click', (event) => {
+        if (last.classList.contains('cursor-not-allowed')) {
+          event.preventDefault();
+        }
+      });
+    }
 
-    last.addEventListener('click', (event) => {
-      if (last.classList.contains('cursor-not-allowed')) {
-        event.preventDefault();
+    const btn = document.getElementById('pagination-load-more-btn');
+    if (!btn || !(btn instanceof HTMLButtonElement)) return;
+
+    const gridId = btn.dataset.gridId;
+    const grid = gridId ? document.getElementById(gridId) : null;
+    if (!grid || !(grid instanceof HTMLElement)) return;
+
+    const strapiUrl = btn.dataset.strapiUrl;
+    const totalPages = Number.parseInt(btn.dataset.totalPages || '1', 10);
+    if (!strapiUrl || Number.isNaN(totalPages)) return;
+
+    const isDev = btn.dataset.isDev === 'true';
+    const locale = btn.dataset.locale || 'en';
+    const lang = (btn.dataset.uiLang === 'es' ? 'es' : 'en') as 'en' | 'es';
+    const search = btn.dataset.search || '';
+    const pageSize = Number.parseInt(btn.dataset.pageSize || '9', 10);
+    const linkText = btn.dataset.linkText || '';
+    const ariaPrefix = btn.dataset.ariaPrefix || '';
+    const loadMoreText = btn.dataset.loadMore || '';
+    const loadingText = btn.dataset.loading || '';
+    const articleBasePath = btn.dataset.articleBase || '/blog';
+
+    btn.addEventListener('click', async () => {
+      let nextPage = Number.parseInt(btn.dataset.nextPage || '2', 10);
+      if (Number.isNaN(nextPage) || nextPage > totalPages) return;
+
+      btn.disabled = true;
+      const prevLabel = btn.textContent;
+      btn.textContent = loadingText;
+
+      try {
+        const params = {
+          locale,
+          publicationState: 'live' as const,
+          populate: {
+            category: { fields: ['name'] },
+            author: { fields: ['name'] },
+            image: { fields: ['url', 'width', 'height', 'formats'] },
+          },
+          filters: {
+            title: {
+              $notNull: true,
+              ...(search ? { $containsi: search } : {}),
+            },
+          },
+          pagination: { page: nextPage, pageSize },
+          sort: { createdAt: 'desc' },
+        };
+
+        const query = qs.stringify(params);
+        const res = await fetch(`${strapiUrl}/api/articles?${query}`);
+        if (!res.ok) throw new Error(`Strapi ${res.status}`);
+
+        const json = (await res.json()) as ArticleCollection;
+        appendArticleCards(grid, json.data, {
+          strapiUrl,
+          isDev,
+          lang,
+          linkText,
+          ariaPrefix,
+          articleBasePath,
+        });
+
+        nextPage += 1;
+        btn.dataset.nextPage = String(nextPage);
+
+        if (nextPage > totalPages) {
+          btn.parentElement?.remove();
+        } else {
+          btn.disabled = false;
+          btn.textContent = loadMoreText || prevLabel;
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = prevLabel || loadMoreText;
       }
     });
   });

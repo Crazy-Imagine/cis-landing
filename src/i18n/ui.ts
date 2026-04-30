@@ -152,7 +152,23 @@ export const ui = {
     'common.projects-description':
       'We transform technical visions into robust and scalable market realities.',
     'common.reviews-title': 'What our partners say',
-
+    'common.challenge': 'The challenge',
+    'common.solution': 'The solution',
+    'common.explore-other-projects': 'Explore other projects ->',
+    'common.other-projects-title': 'Empowering Other Industry Leaders',
+    'common.other-projects-description':
+      'Discover how we have transformed complex challenges into competitive advantages for high-level companies.',
+    'common.our-values': 'Our Values',
+    'common.satisfaction': 'Satisfaction',
+    'common.projects': 'Projects',
+    'common.reach-out-title': 'Let’s Talk About Your Project',
+    'common.reach-out-subtitle':
+      'From the initial idea to launch, or from an outdated system to a modern platform. We handle the technology so you can focus on your business.',
+    'common.recent': 'Recent',
+    // CTO Manual Keys
+    'cto-manual.title': 'Know our CTO Manual',
+    'cto-manual.description':
+      'Join our technical community and receive the manual directly in your inbox that every technical leader needs for 2026.',
     // Services Keys
     'services.a-technology-partner-for': 'A Technology Partner for ',
     'services.every-stage-of-your-growth': 'Every Stage of Your Growth',
@@ -562,6 +578,23 @@ export const ui = {
     'common.projects-description':
       'Transformamos visiones técnicas en realidades de mercado robustas y escalables.',
     'common.reviews-title': 'Lo que dicen nuestros socios',
+    'common.challenge': 'El desafío',
+    'common.solution': 'La solución',
+    'common.explore-other-projects': 'Explora otros proyectos ->',
+    'common.other-projects-title': 'Impulsando a otros líderes del sector',
+    'common.other-projects-description':
+      'Descubre cómo hemos transformado desafíos complejos en ventajas competitivas para empresas de alto nivel.',
+    'common.our-values': 'Nuestros Valores',
+    'common.satisfaction': 'Satisfacción',
+    'common.projects': 'Proyectos',
+    'common.reach-out-title': 'Hablemos de tu Proyecto',
+    'common.reach-out-subtitle':
+      'De la idea inicial al lanzamiento, o de un sistema obsoleto a una plataforma moderna. Nos encargamos de la tecnología para que tú te enfoques en el negocio.',
+    'common.recent': 'Reciente',
+    // CTO Manual Keys
+    'cto-manual.title': ' Conoce nuestro Manual del CTO',
+    'cto-manual.description':
+      '  Únete a nuestra comunidad técnica y recibe directamente en tu bandeja de entrada el manual que todo líder tecnológico necesita para este 2026.',
     // Services
     'services.a-technology-partner-for': 'Un Socio Tecnológico para',
     'services.every-stage-of-your-growth': 'Cada Etapa de tu Crecimiento',

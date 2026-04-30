@@ -5,6 +5,9 @@ import Menu from '@/icons/Menu.astro';
 import Monitor from '@/icons/Monitor.astro';
 import Server from '@/icons/Server.astro';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import Phone from '@/icons/Phone.astro';
+import { SERVICES_NAV_MENU } from '@/consts/servicesNavMenu';
+import { getServiceSlugPairsByEnSlug, resolveServicePath } from '@/utils/serviceNavSlugs';
 
 interface Props {
   class?: string;
@@ -14,6 +17,14 @@ interface Props {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+
+const slugPairs = await getServiceSlugPairsByEnSlug();
+
+const subMenuItems = SERVICES_NAV_MENU.map((row) => ({
+  name: t(row.nameKey),
+  description: t(row.descKey),
+  href: resolveServicePath(slugPairs, lang, row.resolveByEnSlug, row.fallbackPath),
+}));
 
 const pages = [
   {
@@ -26,41 +37,12 @@ const pages = [
   { icon: Code, name: t('nav.projects'), href: '/projects', ariaLabel: t('aria.projects-link') },
   { icon: Menu, name: t('nav.about'), href: '/about', ariaLabel: t('aria.about-link') },
   { icon: Monitor, name: t('nav.blog'), href: '/blog', ariaLabel: t('aria.blog-link') },
-];
-
-const subMenuItems = [
   {
-    name: t('common.custom-development'),
-    href: '/services/custom-software-development',
-    description: t('common.custom-development-description'),
+    icon: Phone,
+    name: t('nav.work-with-us'),
+    href: '/work-with-us',
+    ariaLabel: t('aria.work-with-us-link'),
   },
-  {
-    name: t('common.staff-augmentation'),
-    href: '/services/staff-augmentation',
-    description: t('common.staff-augmentation-description'),
-  },
-  {
-    name: t('common.mobile-apps'),
-    href: '/services/mobile-application-development',
-    description: t('common.mobile-apps-description'),
-  },
-  {
-    name: t('common.crazy-partner-program'),
-    href: '/test',
-    description: t('common.crazy-partner-program-description'),
-  },
-  {
-    name: t('common.outsourcing'),
-    href: 'services/outsourcing',
-    description: t('common.outsourcing-description'),
-  },
-  {
-    name: t('common.odoo'),
-    href: '/test',
-    description: t('common.odoo-description'),
-  },
-
-  { name: t('common.ai-agents'), href: '/test', description: t('common.ai-agents-description') },
 ];
 
 const { class: className = '', isDrawer = false } = Astro.props;
@@ -69,12 +51,11 @@ const { class: className = '', isDrawer = false } = Astro.props;
 <ul class:list={['hidden items-center gap-3 lg:flex xl:gap-5', className]}>
   {
     isDrawer && (
-      <li>
+      <li class="lg:text-center xl:text-left">
         <a
-          class={`relative flex h-7 items-center gap-8 whitespace-nowrap font-nexaLight
-          text-xs uppercase tracking-widest text-white before:absolute before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-white
-          before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
-          `}
+          class={`rrelative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
+          before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-primary-new before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          xl:whitespace-nowrap ${isDrawer ? 'flex h-7 items-center gap-8' : ''}`}
           href={translatePath('/', lang)}
           aria-label={t('aria.home-link')}
         >
@@ -89,63 +70,103 @@ const { class: className = '', isDrawer = false } = Astro.props;
   }
 
   {
-    pages.map(({ icon: Icon, name, href, ariaLabel, subMenu }) => (
-      <li class="lg:text-center xl:text-left">
-        {!subMenu && (
-          <a
-            class={`relative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
-          before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-primary-new before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
-          xl:whitespace-nowrap
-          ${isDrawer ? 'flex h-7 items-center gap-8' : ''}
-          `}
-            {...(subMenu ? {} : { href: translatePath(href, lang) })}
-            aria-label={ariaLabel}
-          >
-            {isDrawer && (
-              <Fragment>
-                <span class="flex w-10 justify-center">
+    pages.map(({ icon: Icon, name, href, ariaLabel, subMenu }) => {
+      return (
+        <li class="lg:text-center xl:text-left">
+          {isDrawer && subMenu ? (
+            <details class="group/drawer-services">
+              <summary
+                class={`relative flex h-7 w-full cursor-pointer select-none list-none items-center gap-8 font-openSansBold text-base font-bold tracking-widest text-white before:absolute
+          before:-bottom-0.5 before:-left-0.5 before:h-0.5  before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          xl:whitespace-nowrap [&::-webkit-details-marker]:hidden`}
+                aria-label={ariaLabel}
+              >
+                <span class="flex w-10 shrink-0 justify-center">
                   <Icon />
                 </span>
 
-                <span>{name}</span>
-              </Fragment>
-            )}
-            {!isDrawer && !subMenu && <Fragment>{name}</Fragment>}
-          </a>
-        )}
+                <span class="flex min-w-0 flex-1 items-center justify-between gap-2">
+                  <span>{name}</span>
+                  <span
+                    class="inline-block shrink-0 text-xs text-primary-new transition-transform duration-200 group-open/drawer-services:rotate-180"
+                    aria-hidden="true"
+                  >
+                    ▼
+                  </span>
+                </span>
+              </summary>
 
-        {!isDrawer && subMenu && (
-          <div class="relative flex items-center gap-2">
-            <p
-              id="menu-button"
-              class={`relative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
+              <ul class="mb-1 ml-[calc(2.5rem+1rem)] mt-2 flex list-none flex-col gap-4 border-l-2 border-white/25 py-1 pl-2">
+                {subMenuItems.map(({ name: subName, href: subHref }) => (
+                  <li>
+                    <a
+                      href={translatePath(subHref, lang)}
+                      class="block py-2 font-openSansLight text-sm font-normal tracking-wide text-white/90 no-underline transition-colors hover:text-primary-new"
+                    >
+                      {subName}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <Fragment>
+              <a
+                class={`relative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
           before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-primary-new before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
           xl:whitespace-nowrap
           ${isDrawer ? 'flex h-7 items-center gap-8' : ''}
           `}
-            >
-              {name}
-            </p>
-            <div
-              id="sub-menu"
-              class="absolute -left-44 top-16 hidden w-[1000px] cursor-pointer grid-cols-3  grid-rows-3 gap-x-8 gap-y-6 rounded-[20px] border border-solid border-primary-new bg-primary-blue-with-transparency px-[37px] py-[30px] backdrop-blur-lg 2xl:-left-10"
-            >
-              {subMenuItems.map(({ name: name1, href: href1, description: description1 }) => (
-                <a
-                  href={translatePath(href1, lang)}
-                  class="flex min-w-0 flex-col gap-1 rounded-[10px] border border-transparent px-[11px] py-[7px] no-underline hover:border hover:border-solid hover:border-primary-new"
-                >
-                  <span class="font-openSansBold text-base font-bold text-primary-new">
-                    {name1}
-                  </span>
-                  <p class="m-0 font-openSansLight text-sm text-white">{description1}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </li>
-    ))
+                href={translatePath(href, lang)}
+                aria-label={ariaLabel}
+              >
+                {isDrawer && (
+                  <Fragment>
+                    <span class="flex w-10 justify-center">
+                      <Icon />
+                    </span>
+
+                    <span>{name}</span>
+                  </Fragment>
+                )}
+                {!isDrawer && !subMenu && href !== '/work-with-us' && <Fragment>{name}</Fragment>}
+              </a>
+
+              {!isDrawer && subMenu && (
+                <div class="relative flex items-center gap-2">
+                  <p
+                    id="menu-button"
+                    class={`relative cursor-pointer font-openSansBold text-base font-bold tracking-widest text-white before:absolute
+          before:-bottom-0.5 before:-left-0.5 before:h-0.5 before:w-full before:scale-0 before:bg-primary-new before:text-white before:transition-transform before:duration-500 before:ease-in-out hover:before:scale-100
+          xl:whitespace-nowrap
+          ${isDrawer ? 'flex h-7 items-center gap-8' : ''}
+          `}
+                  >
+                    {name}
+                  </p>
+                  <div
+                    id="sub-menu"
+                    class="absolute -left-44 top-16 hidden w-[1000px] cursor-pointer grid-cols-3  grid-rows-3 gap-x-8 gap-y-6 rounded-[20px] border border-solid border-primary-new bg-primary-blue-with-transparency px-[37px] py-[30px] backdrop-blur-lg 2xl:-left-10"
+                  >
+                    {subMenuItems.map(({ name: name1, href: href1, description: description1 }) => (
+                      <a
+                        href={translatePath(href1, lang)}
+                        class="flex min-w-0 flex-col gap-1 rounded-[10px] border border-transparent px-[11px] py-[7px] no-underline hover:border hover:border-solid hover:border-primary-new"
+                      >
+                        <span class="font-openSansBold text-base font-bold text-primary-new">
+                          {name1}
+                        </span>
+                        <p class="m-0 font-openSansLight text-sm text-white">{description1}</p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </Fragment>
+          )}
+        </li>
+      );
+    })
   }
 </ul>
 

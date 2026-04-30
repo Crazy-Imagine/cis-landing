@@ -1,0 +1,63 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import Typography from './Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  solution: string;
+  challenge: string;
+}
+
+const { solution, challenge } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer background="white">
+  <div class="flex flex-col gap-10 lg:flex-row lg:items-stretch">
+    <div class="flex w-full flex-col gap-5 rounded-xl bg-gray-new px-8 py-5 lg:min-h-0 lg:flex-1">
+      <div class="flex shrink-0 items-center gap-4">
+        <Image
+          src={images['/src/assets/ui/solution.webp']()}
+          alt="The solution"
+          width={40}
+          height={40}
+          class="h-10 w-10 rounded-full object-cover"
+          quality={100}
+        />
+        <Typography
+          as="p"
+          variant="h4"
+          class="font-nexaBold text-center font-bold capitalize text-primary-blue"
+        >
+          {t('common.solution')}
+        </Typography>
+      </div>
+      <div class="min-h-0 text-base text-primary-blue lg:flex-1 lg:text-xl" set:html={solution} />
+    </div>
+    <div class="flex w-full flex-col gap-5 rounded-xl bg-gray-new px-8 py-5 lg:min-h-0 lg:flex-1">
+      <div class="flex shrink-0 items-center gap-4">
+        <Image
+          src={images['/src/assets/ui/challenge.webp']()}
+          alt="The challenge"
+          width={40}
+          height={40}
+          class="h-10 w-10 rounded-full object-cover"
+          quality={100}
+        />
+        <Typography
+          as="p"
+          variant="h4"
+          class="font-nexaBold text-center font-bold capitalize text-primary-blue"
+        >
+          {t('common.challenge')}
+        </Typography>
+      </div>
+      <div class="min-h-0 text-base text-primary-blue lg:flex-1 lg:text-xl" set:html={challenge} />
+    </div>
+  </div>
+</ResponsiveContainer>

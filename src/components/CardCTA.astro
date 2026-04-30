@@ -7,22 +7,46 @@ interface Props {
   text: string;
   ariaLabel: string;
   class?: string;
+  isNew?: boolean;
+  textColor?: string;
 }
 ---
 
 <Typography
-  class:list={['inline-block text-periwinkle', Astro.props.class]}
+  class:list={[
+    '  ',
+    Astro.props.class,
+    {
+      'justify-self-start': Astro.props.isNew,
+      'inline-block text-periwinkle': !Astro.props.isNew,
+    },
+  ]}
   as="p"
   variant="accent"
 >
   <a
     href={Astro.props.href}
     aria-label={Astro.props.ariaLabel}
-    class="group relative flex items-end justify-center
-        after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-['']
-        hover:after:origin-bottom-left hover:after:scale-100"
+    class:list={[
+      'group relative flex items-end justify-center',
+      {
+        'justify-start  bg-gradinet-font bg-clip-text text-transparent': Astro.props.isNew,
+        'after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-[] hover:after:origin-bottom-left hover:after:scale-100':
+          !Astro.props.isNew,
+      },
+      Astro.props.textColor,
+    ]}
   >
     <span class="text-sm">{Astro.props.text}</span>
-    <ArrowNarrowRight class="group-hover:animate-wiggle" />
+    <ArrowNarrowRight
+      class:list={[
+        'group-hover:animate-wiggle',
+        {
+          'text-primary': !Astro.props.isNew,
+          'text-primary-new': Astro.props.isNew,
+        },
+        Astro.props.textColor,
+      ]}
+    />
   </a>
 </Typography>

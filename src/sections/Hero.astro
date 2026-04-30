@@ -13,6 +13,9 @@ interface Props extends CustomHero {
   hiddenClutch?: boolean;
   isCustom?: boolean;
   lighten?: boolean;
+  types?: string[];
+  customImageClass?: string;
+  customTextClass?: string;
 }
 
 const {
@@ -25,6 +28,9 @@ const {
   hiddenClutch,
   isCustom,
   lighten,
+  types,
+  customImageClass,
+  customTextClass,
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const heroImage = backgroundImage?.data?.attributes
@@ -40,10 +46,10 @@ const titleTypographyClass = isNew
 
 <section
   class:list={[
-    'second relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
+    'second relative -mt-[var(--header-height)] h-fit w-full overflow-hidden bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
     lang === 'es' ? 'xs:h-[850px] xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]',
     {
-      'md:bg-hero-background ': isNew,
+      'bg-hero-background ': isNew,
       'md:bg-hero': !isNew,
     },
     sectionClass,
@@ -57,7 +63,7 @@ const titleTypographyClass = isNew
 
   <div
     class:list={[
-      'container z-10 mx-auto hidden h-full w-full items-center rounded-xl sm:flex sm:gap-10',
+      'container z-10 mx-auto hidden h-full w-full items-center rounded-xl sm:flex lg:gap-10',
       {
         'sm:bg-secondary': !isNew,
         'px-4 md:px-5 lg:px-10 min-[1546px]:px-0': isNew,
@@ -71,13 +77,16 @@ const titleTypographyClass = isNew
         'z-10  gap-4',
         {
           'sm:pl-8 lg:pl-14 xl:pl-[100px]': !isNew,
-          'w-[80%]': isCustom,
+          'w-[75%]': isCustom && heroImage?.url,
+          'w-[85%]': !heroImage?.url,
+          'w-[70%]': !isCustom,
         },
+        customTextClass,
       ]}
     >
       {isNew && !hiddenClutch && <Clutch fill="#BFED06" />}
 
-      <Typography class={`${titleTypographyClass} `} as="h1" variant="h1">
+      <Typography class={`${titleTypographyClass} whitespace-pre-line`} as="h1" variant="h1">
         {title}
       </Typography>
 
@@ -86,6 +95,22 @@ const titleTypographyClass = isNew
           <Typography class="my-10 uppercase !text-white" as="p" variant="h6">
             {subtitle}
           </Typography>
+        )
+      }
+
+      {
+        types && (
+          <div class="flex flex-wrap gap-5">
+            {types.map((type) => (
+              <Typography
+                class="rounded-lg border border-solid border-primary-with-transparency bg-primary-with-transparency-white px-5 py-2 capitalize !text-white"
+                as="p"
+                variant="h6"
+              >
+                {type}
+              </Typography>
+            ))}
+          </div>
         )
       }
       {
@@ -106,17 +131,17 @@ const titleTypographyClass = isNew
         <div
           class:list={[
             {
-              'absolute bottom-auto left-0 top-auto  h-full w-full opacity-25':
-                backgroundImage?.data,
-              'place-self-end': !backgroundImage?.data,
+              'absolute bottom-auto left-0 top-auto  h-full opacity-25': backgroundImage?.data,
+              'absolute right-0 w-[30%] place-self-end  ': !backgroundImage?.data,
               'absolute bottom-0 lg:right-[2%] 2xl:right-[10%] ': isCustom,
             },
             ' ml-auto flex flex-shrink-0 justify-end place-self-end',
+            customImageClass,
           ]}
         >
           <Image
             class:list={[
-              'h-auto max-h-[500px] w-full ',
+              'h-auto min-h-[350px] w-full min-w-[350px] lg:min-h-min lg:min-w-[500px] xl:max-h-[550px] ',
               {
                 'opacity-25': backgroundImage?.data,
                 'w-[500px]': isCustom,
@@ -134,7 +159,11 @@ const titleTypographyClass = isNew
     }
   </div>
 
-  <Typography class={`relative z-20 sm:hidden ${titleTypographyClass}`} as="h1" variant="h1">
+  <Typography
+    class={`relative z-20 sm:hidden whitespace-pre-line ${titleTypographyClass}`}
+    as="h1"
+    variant="h1"
+  >
     {title}
   </Typography>
 

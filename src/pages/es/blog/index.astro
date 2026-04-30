@@ -1,13 +1,21 @@
 ---
+import Pagination from '@/components/Pagination.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import FeaturedArticles from '@/sections/FeaturedArticles.astro';
 import Hero from '@/sections/Hero.astro';
-import LatestArticles from '@/sections/LatestArticles.astro';
-import ReachOut from '@/sections/ReachOut.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
-import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import LinkPill from '@/components/LinkPill.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import SearchInput from '@/components/SearchInput/SearchInput.astro';
+import type { ArticleCollection } from '@/types/strapi/Article';
+import ArticleCardNew from '@/components/ArticleCardNew.astro';
+import { formatPublishedAt } from '@/utils/formateDate';
+import CTOManual from '@/components/CTOManual.astro';
+
+const search = Astro.url.searchParams.get('search') || '';
+const pageSize = 9;
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'blog',
@@ -27,23 +35,110 @@ const pageInfo = await fetchApi<PageInfo>({
   },
 });
 
+const { data: articles, meta } = await fetchApi<ArticleCollection>({
+  endpoint: 'articles',
+  params: {
+    locale: Astro.currentLocale,
+    publicationState: 'live',
+    populate: {
+      category: {
+        fields: ['name'],
+      },
+      author: {
+        fields: ['name'],
+      },
+      image: {
+        fields: ['url', 'width', 'height', 'formats'],
+      },
+    },
+    filters: {
+      title: {
+        $notNull: true,
+        ...(search && {
+          $containsi: search,
+        }),
+      },
+    },
+    pagination: {
+      page: 1,
+      pageSize,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
+
+const loadMoreLabel = lang === 'es' ? 'Cargar más artículos' : 'Load more articles';
+const loadingLabel = lang === 'es' ? 'Cargando…' : 'Loading…';
 ---
 
-<Layout seo={pageInfo.data.attributes.seo}>
-  <Hero {...pageInfo.data.attributes.hero} />
+<Layout isNew seo={pageInfo.data.attributes.seo}>
+  <Hero
+    isNew
+    isCustom
+    hiddenClutch
+    customTextClass="text-center w-full flex flex-col items-center justify-center"
+    sectionClass="!h-[350px] md:!h-[450px] lg:!h-[680px] xl:!h-[550px]"
+    {...pageInfo.data.attributes.hero}
+  />
 
   <FeaturedArticles />
 
-  <LatestArticles start={2} title={t('common-browse-all-articles')}>
-    <div slot="button" class="mt-5 text-center">
-      <LinkPill variant="contained" href={translatePath('/blog/all', lang)}>
-        {t('common.see-all')}
-      </LinkPill>
-    </div>
-  </LatestArticles>
+  <ResponsiveContainer>
+    <Typography id="articles" as="h2" variant="h4" class="text-primary-blue"
+      >{t('common.all-articles')}</Typography
+    >
 
-  <ReachOut />
+    <SearchInput defaultValue={search} />
+
+    <div id="blog-articles-grid" class="grid-col-1 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        articles.map(
+          ({
+            attributes: {
+              image: { data: image },
+              ...article
+            },
+          }) => (
+            <ArticleCardNew
+              description={article.description}
+              projectType={formatPublishedAt(article.publishedAt, lang)}
+              altText={article.title}
+              ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
+              class="shadow-md"
+              height={image.attributes.formats.small.height}
+              href={`/blog/${article.slug}`}
+              img={image.attributes.formats.small.url}
+              linkText={t('common.read-more')}
+              linkClass="text-primary-blue px-4 py-2 rounded-md bg-gray-new text-primary-blue text-base lg:text-lg text-center"
+              title={article.title}
+              width={image.attributes.formats.small.width}
+            />
+          )
+        )
+      }
+    </div>
+
+    <Pagination
+      variant="load-more"
+      pagination={meta.pagination}
+      loadMore={{
+        gridId: 'blog-articles-grid',
+        locale: Astro.currentLocale ?? 'en',
+        uiLang: lang,
+        search,
+        articleBasePath: '/blog',
+        loadMoreLabel,
+        loadingLabel,
+        linkText: t('common.read-more'),
+        ariaLinkPrefix: t('aria.link-to-blog-post'),
+      }}
+    />
+  </ResponsiveContainer>
+
+  <CTOManual containerClass="justify-self-center " />
 </Layout>

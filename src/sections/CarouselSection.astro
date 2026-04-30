@@ -7,11 +7,14 @@ import type { Background } from '@/types/Background';
 interface Props {
   background?: Background;
   title?: string;
+  subtitle?: string;
   class?: string;
   containerClass?: string;
   customTitle?: string;
   pagination?: boolean;
   navigation?: boolean;
+  isNew?: boolean;
+  textClass?: string;
   slidesPerView?: {
     0: number;
     600: number;
@@ -21,9 +24,24 @@ interface Props {
   };
 }
 
-const { title, background, slidesPerView, pagination, containerClass, navigation } = Astro.props;
+const {
+  title,
+  background,
+  slidesPerView,
+  pagination,
+  containerClass,
+  navigation,
+  subtitle,
+  isNew,
+  textClass,
+} = Astro.props;
 
 const isWhite = typeof background === 'undefined' || background === 'white';
+
+// If the title has more than 6 words, we need to slice the last 3 words, otherwise we slice the last 2 words to use primary color for the last two words.
+const words = title?.split(' ') ?? [];
+const mainWords = words.length >= 6 ? words.slice(0, -3).join(' ') : words.slice(0, -2).join(' ');
+const lastTwoWords = words.length >= 6 ? words.slice(-3).join(' ') : words.slice(-2).join(' ');
 ---
 
 <ResponsiveContainer
@@ -35,16 +53,31 @@ const isWhite = typeof background === 'undefined' || background === 'white';
     title && (
       <Typography
         class:list={[
-          'mb-10 text-center capitalize',
+          'mb-10 text-center',
           {
-            'text-primary': isWhite,
-            'text-white': !isWhite,
+            'text-primary-blue': isWhite && isNew,
+            'text-white': !isWhite && isNew,
           },
+          textClass,
         ]}
         as="h2"
         variant="h2"
       >
-        {title}
+        {isNew && words.length > 2 ? (
+          <>
+            {mainWords} <span class="text-primary-new">{` ${lastTwoWords}`}</span>
+          </>
+        ) : (
+          title
+        )}
+      </Typography>
+    )
+  }
+
+  {
+    subtitle && (
+      <Typography as="p" variant="paragraph" class={`mb-10 text-center font-bold ${textClass} `}>
+        {subtitle}
       </Typography>
     )
   }

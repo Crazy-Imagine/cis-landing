@@ -44,7 +44,8 @@ module.exports = {
         "allow": ["warn", "error"]
       }
     ],
-    "no-var": "error"
+    "no-var": "error",
+    "@stylistic/js/multiline-ternary": "off"
   },
   overrides: [
     {

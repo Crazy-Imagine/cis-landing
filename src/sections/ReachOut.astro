@@ -1,41 +1,126 @@
 ---
-import { Image } from 'astro:assets';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Satellite from '@/assets/ui/satellite.webp';
 import Typography from '@/components/Typography.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import type { Background } from '@/types/Background';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+interface Props {
+  /** Raíz única del embed; obligatorio si hay más de un formulario Clientify en la misma página. */
+  embedRootId?: string;
+  background?: Background;
+  title?: string;
+  subtitle?: string;
+}
+
+const { embedRootId = 'reach-out-embed', background = 'contactUs', title, subtitle } = Astro.props;
 ---
 
 <ResponsiveContainer
-  containerClass="md:!py-0"
-  class="flex flex-col items-center md:flex-row md:gap-5 lg:gap-20"
+  containerClass="bg-primary-blue"
+  class="flex min-h-[500px] flex-col items-center justify-center md:gap-5 lg:gap-20"
+  background={background}
 >
-  <div class="w-full md:basis-1/4">
-    <Typography
-      as="h3"
-      variant="accent"
-      class="text-center uppercase tracking-widest text-periwinkle"
-    >
-      {t('common.reach.out')}
-    </Typography>
-    <Typography as="p" variant="h4" class="px-16 text-center capitalize tracking-wide text-primary">
-      {t('common.imagine-what-we-can-create')}
-    </Typography>
+  {
+    (title || subtitle) && (
+      <div class="flex flex-col items-center justify-center gap-10">
+        {title && (
+          <Typography as="h2" variant="h2" class="text-center text-white">
+            {title}
+          </Typography>
+        )}
+        {subtitle && (
+          <Typography as="p" variant="2" class="w-4/5 text-center text-primary-new">
+            {subtitle}
+          </Typography>
+        )}
+      </div>
+    )
+  }
 
-    <div class="relative text-center">
-      <div class="absolute inset-x-0 bottom-0 h-20 rounded-t-2xl bg-secondary"></div>
-      <Image class="relative z-10 mx-auto" src={Satellite} alt="Satellite" />
-    </div>
-  </div>
-  <div class="w-full pb-0 pt-10 md:basis-3/4">
+  <div id={embedRootId} class="clientify-embed-root w-full justify-self-center lg:w-[70%]">
     <script
-      is:inline
-      data-astro-rerun
       type="text/javascript"
       src="https://api.clientify.net/web-marketing/superforms/script/260234.js"></script>
-    <!-- <ContactForm url={Astro.url} client:idle /> -->
   </div>
+
+  <!-- <ContactForm url={Astro.url} client:idle /> -->
 </ResponsiveContainer>
+
+<script define:vars={{ embedRootId }}>
+  function getReachOutStyleScope() {
+    const root = document.getElementById(embedRootId);
+
+    if (!(root instanceof HTMLElement)) {
+      return null;
+    }
+
+    const iframe = root.querySelector('iframe[src*="clientify"], iframe[src*="superforms"]');
+
+    if (iframe instanceof HTMLIFrameElement && iframe.contentDocument) {
+      return iframe.contentDocument;
+    }
+
+    return root;
+  }
+
+  function applyReachOutFieldStyles(scope) {
+    const inputs = scope.querySelectorAll('input.form-control95');
+    const selects = scope.querySelectorAll('select.form-control95');
+    const container = scope.querySelector('#firstcolumn');
+
+    if (container instanceof HTMLElement) {
+      container.style.borderRadius = '30px';
+    }
+
+    inputs.forEach((input) => {
+      if (input instanceof HTMLInputElement) {
+        input.style.border = '2px solid #131E29';
+        input.style.boxShadow = '0 5.432px 10.864px 2.716px rgba(19, 30, 41, 0.19)';
+      }
+    });
+
+    selects.forEach((select) => {
+      if (select instanceof HTMLSelectElement) {
+        select.style.border = '2px solid #B1D600';
+        select.style.boxShadow = '0 5.432px 10.864px 2.716px rgba(19, 30, 41, 0.19)';
+      }
+    });
+
+    return inputs.length + selects.length;
+  }
+
+  function waitForReachOutForm() {
+    let attempts = 0;
+    const maxAttempts = 20;
+    const waitTime = 250;
+
+    function tryStyleFields() {
+      const scope = getReachOutStyleScope();
+
+      if (!scope) {
+        attempts++;
+
+        if (attempts < maxAttempts) {
+          setTimeout(tryStyleFields, waitTime);
+        }
+
+        return;
+      }
+
+      const styledElements = applyReachOutFieldStyles(scope);
+
+      if (styledElements > 0) {
+        return;
+      }
+
+      attempts++;
+
+      if (attempts < maxAttempts) {
+        setTimeout(tryStyleFields, waitTime);
+      }
+    }
+
+    tryStyleFields();
+  }
+
+  waitForReachOutForm();
+</script>

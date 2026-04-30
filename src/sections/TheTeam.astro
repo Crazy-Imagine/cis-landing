@@ -37,7 +37,7 @@ const t = useTranslations(lang);
     {t('about.meet-the-team-description')}
   </Typography>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     {members.data.map((member) => <MemberCard client:visible member={member} />)}
   </div>
 </ResponsiveContainer>

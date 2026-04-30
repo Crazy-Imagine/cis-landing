@@ -5,10 +5,14 @@ import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import { getImageUrl } from '@/utils/imageUrl';
 import type { MissionVission } from '@/types/strapi/PageInfo';
 import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   missionVission: MissionVission[];
 }
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer background="blueNew">
@@ -24,7 +28,7 @@ interface Props {
           ]}
         >
           <Image
-            class="max-h-[400px] max-w-[400px] mix-blend-lighten"
+            class="hidden max-h-[400px] max-w-[400px] mix-blend-lighten lg:block"
             src={getImageUrl(item.image?.data?.attributes?.url)}
             alt={item.image?.data?.attributes?.alternativeText}
             width={item.image?.data?.attributes?.width}
@@ -49,7 +53,7 @@ interface Props {
                     98%
                   </Typography>
                   <Typography isNew as="p" variant="paragraph" class="!text-sm text-primary-new">
-                    Satisfacción
+                    {t('common.satisfaction')}
                   </Typography>
                 </div>
                 <div class="flex flex-col gap-2">
@@ -62,7 +66,7 @@ interface Props {
                     400+
                   </Typography>
                   <Typography isNew as="p" variant="paragraph" class="!text-sm text-primary-new">
-                    Proyectos
+                    {t('common.projects')}
                   </Typography>
                 </div>
               </div>

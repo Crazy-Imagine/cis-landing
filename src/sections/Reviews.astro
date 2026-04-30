@@ -24,6 +24,7 @@ const t = useTranslations(lang);
 ---
 
 <CarouselSection
+  isNew={isNew}
   pagination={!isNew}
   background={background}
   title={isNew ? t('common.reviews-title') : t('common.people-who-work-with-us-say')}

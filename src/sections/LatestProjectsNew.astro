@@ -6,6 +6,7 @@ import fetchApi from '@/lib/strapi';
 import type { Background } from '@/types/Background';
 import type { ProjectCollection } from '@/types/strapi/Project';
 import ProjectCard from '@/components/ProjectCard.astro';
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
 
 interface Props {
   title: string;
@@ -48,6 +49,9 @@ const projects = await fetchApi<ProjectCollection>({
   },
 });
 
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.{svg,webp}');
 ---
 
@@ -82,7 +86,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.{s
               image={image.attributes.formats.medium.url}
               width={image.attributes.formats.medium.width}
               height={image.attributes.formats.medium.height}
-              link={`/projects/${project.slug}`}
+              link={translatePath(`/projects/${project.slug}`)}
             />
           </div>
           //   <ArticleCard

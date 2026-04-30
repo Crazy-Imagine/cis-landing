@@ -12,21 +12,22 @@ interface Props {
   href: string;
   img: string;
   isSwiperCard?: boolean;
-  linkText: string;
+  linkText?: string;
   projectType?: string;
   title: string;
   width: number;
   description?: string;
+  linkClass?: string;
 }
 
 const {
   altText = '',
-  ariaLabel = '',
   height,
   href,
   img,
   isSwiperCard = true,
   linkText,
+  linkClass,
   projectType,
   title,
   width,
@@ -38,8 +39,9 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <article
+  data-href={href}
   class:list={[
-    'my-2 !flex !h-auto flex-col rounded-xl border border-transparent bg-white shadow-md hover:shadow-primary-new-with-transparency',
+    'my-2 !flex !h-auto cursor-pointer flex-col rounded-xl border border-transparent bg-white shadow-md hover:shadow-primary-new-with-transparency',
     Astro.props.class,
     {
       'swiper-slide': isSwiperCard,
@@ -86,12 +88,24 @@ const translatePath = useTranslatedPath(lang);
     >
       {description}
     </Typography>
-
-    <!-- <CardCTA
-      class="mt-2.5"
-      href={translatePath(href, lang)}
-      text={linkText}
-      ariaLabel={ariaLabel}
-    /> -->
+    {
+      linkClass && (
+        <Typography class={linkClass} as="p" variant="paragraph3">
+          {linkText}
+        </Typography>
+      )
+    }
   </div>
 </article>
+
+<script>
+  function navigateArticleCard(event: MouseEvent) {
+    const target = event.target as Element | null;
+    const card = target?.closest?.('article[data-href]');
+    if (!card) return;
+    const href = card.getAttribute('data-href');
+    if (href) window.location.href = href;
+  }
+
+  document.addEventListener('click', navigateArticleCard);
+</script>

@@ -6,6 +6,11 @@ interface Props {
   class?: string;
   background?: Background;
   is404?: boolean;
+  /**
+   * Si es true, el `<section>` deja de ser `relative`, de modo que los hijos `absolute`
+   * usan como bloque contenedor el div exterior (útil con alturas fijas y `top` en %).
+   */
+  outerAbsoluteBounds?: boolean;
 }
 
 const backgroundClasses: {
@@ -15,6 +20,8 @@ const backgroundClasses: {
   blue: 'bg-primary',
   bulbs: 'bg-primary bg-light-bulbs bg-center bg-repeat',
   blueNew: 'bg-primary-blue',
+  contactUs: 'bg-contact-us bg-cover bg-center bg-no-repeat',
+  blog: 'bg-blog-hero bg-cover bg-center bg-no-repeat',
 };
 
 const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
@@ -36,9 +43,14 @@ const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
       <div class="absolute inset-0 z-10 bg-gradient-to-r from-primary-with-transparency to-transparent" />
     )
   }
+  {Astro.props?.background === 'blog' && <div class="absolute inset-0 z-10 bg-[#131E29]/50" />}
 
   <section
-    class:list={['container mx-auto px-4 md:px-5 lg:px-10 min-[1546px]:px-0', Astro.props.class]}
+    class:list={[
+      'container mx-auto px-4 md:px-5 lg:px-10 min-[1546px]:px-0',
+      Astro.props.outerAbsoluteBounds ? 'static' : 'relative z-20',
+      Astro.props.class,
+    ]}
   >
     <slot />
   </section>

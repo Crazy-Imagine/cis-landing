@@ -4,6 +4,13 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1025px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     container: {
       screens: {
         sm: '500px',
@@ -20,6 +27,8 @@ export default {
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
         'thanks-page': "url('/img/backgrounds/satelit2.webp')",
         'gradinet-font': 'var(--color-gradinet-font)',
+        'contact-us': "url('/img/backgrounds/contact-us.webp')",
+        'blog-hero': "url('/img/backgrounds/blogs.webp')",
       },
       fontFamily: {
         colvetica: ['"Colvetica"', ...defaultTheme.fontFamily.sans],
@@ -50,6 +59,7 @@ export default {
         'primary-new-with-transparency': 'var(--color-primary-new-with-transparency)',
         'gradient-font': 'var(--color-gradient-font)',
         'primary-with-transparency-white': 'var(--color-primary-with-transparency-white)',
+        'gray-with-transparency': 'var(--color-gray-with-transparency)',
       },
       keyframes: {
         wiggle: {

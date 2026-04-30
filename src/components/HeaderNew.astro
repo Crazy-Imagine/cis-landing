@@ -10,26 +10,10 @@ import CISLogoNew from '@/icons/CISLogoNew.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
-
-const DYNAMIC_PAGES = ['blog', 'projects'];
-const pathname = Astro.url.pathname;
-
-let isTransparentBackground = true;
-
-if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
-  const paths = pathname.split('/').filter((value) => value !== '' && value !== 'es');
-  isTransparentBackground = paths.length === 1;
-}
 ---
 
 <div
-  class:list={[
-    'sticky left-0 right-0 top-0 z-[1000] max-h-screen',
-    {
-      'bg-blue-purple': !isTransparentBackground,
-      'bg-transparent': isTransparentBackground,
-    },
-  ]}
+  class:list={['sticky left-0 right-0 top-0 z-[9999999] max-h-screen bg-transparent']}
   id="sticky-header"
 >
   <header class="container mx-auto px-4 md:px-5 lg:px-10 min-[1546px]:px-0">
@@ -57,42 +41,59 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
         <LanguagePickerSelect id="desktop" class="hidden lg:inline-block" />
       </div>
 
-      <Menu id="menu-icon" class="h-12 w-12 text-white lg:hidden" />
+      <button
+        type="button"
+        class="inline-flex shrink-0 cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-inherit lg:hidden"
+        data-action="open-drawer"
+        aria-label={t('aria.menu-icon')}
+        aria-controls="drawer"
+        aria-expanded="false"
+      >
+        <Menu class="pointer-events-none h-12 w-12 text-white" stroke="#b1d600" />
+      </button>
     </nav>
   </header>
 
   <div
     id="drawer"
-    class="fixed inset-0 -translate-x-full transform bg-primary text-white transition-transform duration-300 lg:hidden"
+    data-drawer-panel
+    class="fixed inset-0 z-[9999999] -translate-x-full transform bg-primary-blue text-white transition-transform duration-300 lg:hidden"
   >
     <div class="flex items-center justify-between border-b-2 px-4 py-8">
       <CISLogoNew />
-      <XIcon id="close-icon" />
+
+      <LanguagePickerSelect id="mobile" />
+
+      <button
+        type="button"
+        class="inline-flex cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-inherit"
+        data-action="close-drawer"
+        aria-label={lang === 'es' ? 'Cerrar menú' : 'Close menu'}
+      >
+        <XIcon class="h-8 w-8 text-white" />
+      </button>
     </div>
 
     <nav class="p-4">
       <NavLinksNew isDrawer class="!flex flex-col !items-start" />
-      <div class="mt-5 text-center">
-        <LanguagePickerSelect id="mobile" />
-      </div>
     </nav>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initHeaderNew() {
     const header = document.getElementById('sticky-header');
-    const menuIcon = document.getElementById('menu-icon');
-    const drawer = document.getElementById('drawer');
-    const closeIcon = document.getElementById('close-icon');
+    if (!header) return;
 
-    if (header && window.scrollY > 0) {
+    const drawer = header.querySelector('[data-drawer-panel]');
+    const openBtn = header.querySelector('[data-action="open-drawer"]');
+    const closeBtn = header.querySelector('[data-action="close-drawer"]');
+
+    if (window.scrollY > 0) {
       header.classList.add('scrolled');
     }
 
     window.addEventListener('scroll', () => {
-      if (!header) return;
-
       if (window.scrollY > 0) {
         header.classList.add('scrolled');
       } else {
@@ -100,16 +101,29 @@ if (DYNAMIC_PAGES.some((page) => pathname.includes(page))) {
       }
     });
 
-    if (drawer && menuIcon && closeIcon) {
-      menuIcon.addEventListener('click', () => {
-        drawer.classList.toggle('-translate-x-full');
-      });
+    if (!drawer || !openBtn || !closeBtn) return;
 
-      closeIcon.addEventListener('click', () => {
-        drawer.classList.toggle('-translate-x-full');
-      });
-    }
-  });
+    const syncAria = () => {
+      const isOpen = !drawer.classList.contains('-translate-x-full');
+      openBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    openBtn.addEventListener('click', () => {
+      drawer.classList.toggle('-translate-x-full');
+      syncAria();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      drawer.classList.toggle('-translate-x-full');
+      syncAria();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeaderNew, { once: true });
+  } else {
+    initHeaderNew();
+  }
 </script>
 
 <style>

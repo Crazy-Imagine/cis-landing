@@ -2,7 +2,7 @@
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectCollection } from '@/types/strapi/Project';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 import Typography from '@/components/Typography.astro';
 import ArticleCardNew from '@/components/ArticleCardNew.astro';
 
@@ -33,6 +33,7 @@ const projects = await fetchApi<ProjectCollection>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <ResponsiveContainer>
@@ -65,7 +66,7 @@ const t = useTranslations(lang);
             ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
             class="shadow-xl"
             height={image.attributes.formats.medium.height}
-            href={`/projects/${project.slug}`}
+            href={translatePath(`/projects/${project.slug}`)}
             img={image.attributes.formats.medium.url}
             linkText={t('common.view-project')}
             title={project.title}

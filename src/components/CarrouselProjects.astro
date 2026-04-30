@@ -84,4 +84,12 @@ const { pagination: _pagination = false, navigation = false } = Astro.props;
     background: linear-gradient(90deg, #b1d600 0%, #05c3dd 100%);
     border-radius: 5px;
   }
+
+  @media screen and (max-width: 769px) {
+    #custom-next:after,
+    #custom-prev:after {
+      padding: 15px 14px;
+      font-size: 15px;
+    }
+  }
 </style>

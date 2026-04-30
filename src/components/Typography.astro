@@ -12,10 +12,10 @@ const { as: Tag, class: className, variant, isNew, ...props } = Astro.props;
 const variantClasses: {
   [key: string]: string;
 } = {
-  h1: 'font-colvetica text-2xl leading-7 sm:text-5xl sm:leading-10 xl:text-[80px] xl:leading-[80px]',
-  h2: `font-colvetica text-2xl leading-5 sm:text-4xl sm:leading-10 ${isNew ? 'lg:text-[88px] xl:leading-[80px]' : 'lg:text-6xl'}`,
+  h1: 'font-colvetica text-4xl leading-10 sm:text-5xl sm:leading-10 xl:text-[80px] xl:leading-[80px]',
+  h2: `font-colvetica text-3xl leading-8 sm:text-4xl sm:leading-10 ${isNew ? 'lg:text-[88px] xl:leading-[80px]' : 'lg:text-6xl'}`,
   h3: 'font-colvetica text-2xl sm:text-4xl lg:text-[40px]',
-  h4: 'font-colvetica lg:text-3xl',
+  h4: 'font-colvetica text-2xl lg:text-3xl',
   h5: 'font-colvetica lg:text-2xl',
   h6: 'font-colvetica text-xs tracking-widest lg:text-sm',
   link: `${isNew ? 'text-primary-blue' : 'text-white'} font-colvetica uppercase tracking-wide`,
@@ -34,3 +34,9 @@ const classes = [variantClasses[variant as keyof typeof variantClasses], classNa
 <Tag class:list={classes} {...props}>
   <slot />
 </Tag>
+
+<style>
+  :global(a.custom-w-button) {
+    width: fit-content !important ;
+  }
+</style>

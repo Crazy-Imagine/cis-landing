@@ -53,7 +53,7 @@ const {
     )
   }
 
-  {pagination && <div class="swiper-pagination !relative !bottom-0" />}
+  {pagination && <div class="swiper-pagination !relative !bottom-0 " />}
 </div>
 
 <script>
@@ -127,5 +127,9 @@ const {
   #custom-next:after,
   #custom-prev:after {
     color: var(--color-primary) !important;
+  }
+  .mySwiper :global(.swiper-pagination-bullet-active) {
+    background: var(--color-primary-blue) !important;
+    opacity: 1;
   }
 </style>

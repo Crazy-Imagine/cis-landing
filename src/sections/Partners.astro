@@ -40,7 +40,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partner
       {
         PARTNERS.map((partner) => (
           <div class="swiper-slide">
-            <Image class="mx-auto" src={images[partner.src]()} alt={partner.alt} />
+            <Image class=" mx-auto max-w-[170px]" src={images[partner.src]()} alt={partner.alt} />
             <div class="swiper-lazy-preloader" />
           </div>
         ))

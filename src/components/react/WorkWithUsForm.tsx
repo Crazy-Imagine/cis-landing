@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import RHFInput from '@/components/react/inputs/RHFInput.tsx';
-import RHFSelect from '@/components/react/inputs/RHFSelect.tsx';
 import type { Upload } from '@/types/Upload.ts';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils.ts';
 import { postApi } from '@/lib/strapi.ts';
@@ -153,31 +152,50 @@ function WorkWithUsForm({ url }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white px-5 py-10 shadow-lg md:p-10">
-      <div className="mb-10 flex flex-col gap-10 md:flex-row md:gap-5">
-        <RHFInput name="firstName" label={t('forms.name')} register={register} errors={errors} />
-        <RHFInput name="lastName" label={t('forms.lastName')} register={register} errors={errors} />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full place-self-center rounded-lg bg-white px-5 py-10 shadow-lg md:p-10 lg:w-2/3"
+    >
+      <div className="mb-5 flex flex-col gap-10 md:flex-row md:gap-5">
+        <RHFInput
+          name="firstName"
+          label={t('forms.name')}
+          register={register}
+          errors={errors}
+          required
+        />
+        <RHFInput
+          name="lastName"
+          label={t('forms.lastName')}
+          register={register}
+          errors={errors}
+          required
+        />
       </div>
-      <div className="mb-10 flex flex-col gap-10 md:flex-row md:gap-5">
+      <div className="mb-5 flex flex-col gap-10 md:flex-row md:gap-5">
         <RHFInput
           type="email"
           name="email"
           label={t('forms.email')}
           register={register}
           errors={errors}
+          required
         />
-        <RHFInput name="phone" label={t('forms.phone')} register={register} errors={errors} />
+        <RHFInput
+          name="phone"
+          label={t('forms.phone')}
+          register={register}
+          errors={errors}
+          required
+        />
       </div>
 
-      <div className="mb-10">
+      <div className="mb-5 flex flex-col gap-10 md:flex-row md:gap-5">
         <RHFInput name="linkedin" label={t('forms.linkedIn')} register={register} errors={errors} />
-      </div>
-
-      <div className="mb-8">
         <RHFInput name="website" label={t('forms.webSite')} register={register} errors={errors} />
       </div>
 
-      <div className="mb-10">
+      <div className="mb-5">
         <div className="font-roboto text-xs text-primary">
           <p>{t('forms.curriculum')}</p>
           <p className="cursor-pointer text-base uppercase" onClick={handleClick}>
@@ -221,7 +239,7 @@ function WorkWithUsForm({ url }: Props) {
         />
       </div>
 
-      <div className="mb-10">
+      {/* <div className="mb-10">
         <RHFSelect
           options={[
             t('common.google'),
@@ -236,13 +254,13 @@ function WorkWithUsForm({ url }: Props) {
           errors={errors}
           register={register}
         />
-      </div>
+      </div> */}
 
       <div className="flex justify-center">
         <button
           disabled={isSubmitting}
           type="submit"
-          className="flex items-center gap-5 rounded-full bg-periwinkle px-5 py-2.5 font-nexaLight uppercase tracking-wide text-white hover:cursor-pointer hover:bg-blue-purple-contrast lg:w-auto"
+          className="flex items-center gap-5 rounded-lg bg-primary-new px-10 py-2.5 text-base font-semibold uppercase tracking-wide text-primary-blue hover:cursor-pointer lg:w-auto"
         >
           {isSubmitting && (
             <span className="relative h-5 w-5 rounded-full border-2 border-grayish border-white after:absolute after:-left-0.5 after:-top-0.5 after:inline-block after:h-5 after:w-5 after:animate-spin after:rounded-full after:border-t-2 after:border-white after:content-['']"></span>
