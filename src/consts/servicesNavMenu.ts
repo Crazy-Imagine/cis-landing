@@ -15,7 +15,7 @@ export const SERVICES_NAV_MENU: ServiceNavRow[] = [
   {
     nameKey: 'common.custom-development',
     descKey: 'common.custom-development-description',
-    resolveByEnSlug: 'custom-software-development',
+    resolveByEnSlug: 'tailored-web-development-service',
   },
   {
     nameKey: 'common.staff-augmentation',
