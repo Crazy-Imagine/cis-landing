@@ -16,7 +16,7 @@ const { title, content, icon } = Astro.props;
   <Image
     class="relative z-10"
     src={getImageUrl(icon.data.attributes.url)}
-    alt={icon.data.attributes.alternativeText}
+    alt={icon?.data?.attributes?.alternativeText ?? ''}
     width={icon.data.attributes.width}
     height={icon.data.attributes.height}
   />
