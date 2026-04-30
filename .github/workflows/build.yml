@@ -26,4 +26,5 @@ jobs:
       - name: Build
         env:
           PUBLIC_STRAPI_URL: ${{ secrets.PUBLIC_STRAPI_URL }}
+          WHATSAPP_NUMBER: ${{ secrets.WHATSAPP_NUMBER }}
         run: pnpm run build

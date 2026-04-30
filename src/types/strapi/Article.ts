@@ -23,6 +23,13 @@ export interface ArticleAttributes {
   contentImage: Image;
   lastImageArticle: Image;
   publishedAt: string;
+  Button: Button[];
+}
+
+export interface Button {
+  id: number;
+  label: string;
+  link: string;
 }
 
 export interface Author {
