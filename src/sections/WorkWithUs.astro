@@ -1,22 +1,13 @@
 ---
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Typography from '@/components/Typography.astro';
 import WorkWithUsForm from '@/components/react/WorkWithUsForm';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer
   class="md:gap-50 flex flex-col items-center gap-10 leading-10 md:flex-row lg:gap-20 xl:gap-40"
+  background="contactUs"
+  containerClass="lg:!pb-44"
 >
-  <div class="flex flex-row">
-    <Typography class="px-5 text-center text-primary" as="h2" variant="h2">
-      {t('common.work-with-us')}
-    </Typography>
-  </div>
-
   <div class="z-20 w-full rounded-lg">
     <WorkWithUsForm url={Astro.url} client:idle />
   </div>

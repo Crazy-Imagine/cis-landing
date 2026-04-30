@@ -1,24 +1,40 @@
 ---
-import { Image } from 'astro:assets';
-import BlogTitle from '@/sections/Blog/Title.astro';
-import Content from '@/sections/Projects/Content.astro';
 import LatestProjects from '@/sections/LatestProjects.astro';
 import Layout from '@/layouts/Layout.astro';
-import ReachOut from '@/sections/ReachOut.astro';
-import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectAttributes, ProjectCollection } from '@/types/strapi/Project';
-import { getImageUrl } from '@/utils/imageUrl';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Hero from '@/sections/Hero.astro';
+import ChallengeSolution from '@/components/ChallengeSolution.astro';
+import Features from '@/components/Features.astro';
+import Typography from '@/components/Typography.astro';
+import CTASection from '@/components/CTASection.astro';
 
 export async function getStaticPaths() {
   const projectCollection = await fetchApi<ProjectCollection>({
     endpoint: 'projects',
     params: {
       locale: 'es',
-      fields: ['title', 'description', 'details', 'slug', 'Key'],
+      fields: ['title', 'description', 'details', 'slug', 'Key', 'challenge', 'solution'],
       publicationState: 'live',
       populate: {
+        hero: {
+          fields: true,
+          populate: {
+            image: {
+              fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+            },
+          },
+        },
+        feats: {
+          fields: ['title', 'content', 'icon'],
+          populate: {
+            icon: {
+              fields: ['url', 'width', 'height', 'alternativeText'],
+            },
+          },
+        },
+        cta: true,
         // TODO: add seo after seo tags are added on production
         // seo: true,
         project_types: {
@@ -69,7 +85,7 @@ export async function getStaticPaths() {
 interface Props {
   id: number;
   attributes: ProjectAttributes;
-  hrefLangSlug: string;
+  hrefLangSlug?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -86,6 +102,7 @@ const {
 ---
 
 <Layout
+  isNew
   seo={{
     metaTitle: project.title,
     metaDescription: project.description,
@@ -93,30 +110,44 @@ const {
   image={image.attributes.formats.small.url}
   hrefLangPathname={`/projects/${hrefLangSlug}`}
 >
-  <BlogTitle
-    category={project.project_types.data[0].attributes.name}
-    description={project.description}
-    title={project.title}
+  <Hero
+    isNew
+    hiddenClutch
+    isCustom
+    sectionClass="!h-[350px] md:!h-[450px] lg:!h-[680px] xl:!h-[550px]"
+    {...project.hero}
+    types={project.project_types.data.map((type) => type.attributes.name)}
+    title={`${project.title} \n ${project.hero.title}`}
+    customImageClass="!right-0"
   />
-
-  <ResponsiveContainer containerClass="!py-0" class="flex justify-center">
-    <Image
-      src={getImageUrl(image.attributes.url)}
-      alt={project.title}
-      width={image.attributes.width}
-      height={image.attributes.height}
-    />
-  </ResponsiveContainer>
-
-  <Content attributes={attributes} />
+  <ChallengeSolution solution={project.solution} challenge={project.challenge} />
+  <Features feats={project.feats} />
 
   <LatestProjects
-    title={t('common.related-projects')}
-    background="bulbs"
+    isNew
+    title={'Impulsando a otros líderes del sector'}
+    subtitle={'Descubre cómo hemos transformado desafíos complejos en ventajas competitivas para empresas de alto nivel.'}
+    background="white"
     hideAllProjects
     projectId={id}
     categoryId={attributes.project_types.data[0].id}
-  />
+  >
+    <a
+      slot="custom-all-button"
+      href="/es/projects"
+      class="absolute right-0 top-[30%] z-10 text-primary-blue"
+    >
+      <Typography isNew as="span" variant="p" class="font-bold text-primary-blue">
+        {t('common.explore-other-projects')}</Typography
+      >
+    </a>
+  </LatestProjects>
 
-  <ReachOut />
+  <CTASection
+    title={project.cta.title}
+    caption={project.cta.caption}
+    subtitle={project.cta.subtitle}
+    href="/es/contact-us"
+    buttonText={t('common.home-hero-button')}
+  />
 </Layout>

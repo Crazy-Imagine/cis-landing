@@ -18,7 +18,7 @@ function RHFSelect({ name, register, label, errors, options }: Props) {
       <select
         id={name}
         className={`
-        block h-10 w-full rounded-md border-0 bg-fog-white px-2 py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6
+        block h-10 w-full rounded-xl border-2 border-solid border-primary-blue bg-fog-white px-3 py-1.5 shadow-lg ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6
         ${hasError ? 'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-indigo-600'}
         `}
         {...register(name)}

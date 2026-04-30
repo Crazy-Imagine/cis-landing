@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import Typography from './Typography.astro';
+import { getImageUrl } from '@/utils/imageUrl';
+import type { Feats } from '@/types/strapi/Service';
+
+interface Props extends Feats {}
+
+const { title, content, icon } = Astro.props;
+---
+
+<div
+  class="bg-hover-slide-card relative flex flex-col gap-4 rounded bg-gray-new p-10 text-primary-blue shadow-md hover:text-white"
+>
+  <div class="bg-hover-slide-layer bg-primary-blue"></div>
+  <Image
+    class="relative z-10"
+    src={getImageUrl(icon.data.attributes.url)}
+    alt={icon.data.attributes.alternativeText}
+    width={icon.data.attributes.width}
+    height={icon.data.attributes.height}
+  />
+
+  <Typography as="h4" variant="h4" class="relative z-10 font-colvetica font-bold">
+    {title}
+  </Typography>
+  <Typography as="p" variant="paragraph" class="relative z-10 font-colvetica text-base lg:text-xl">
+    {content}
+  </Typography>
+</div>

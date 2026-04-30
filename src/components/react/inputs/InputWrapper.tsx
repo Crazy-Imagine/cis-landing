@@ -1,9 +1,11 @@
 import type { FieldError } from 'react-hook-form';
 import type { BaseInputProps } from '@/types/Input.ts';
 
-interface Props extends Omit<BaseInputProps, 'register'> {}
+interface Props extends Omit<BaseInputProps, 'register'> {
+  required?: boolean;
+}
 
-function InputWrapper({ children, errors, name, label }: React.PropsWithChildren<Props>) {
+function InputWrapper({ children, errors, name, label, required }: React.PropsWithChildren<Props>) {
   const hasError = !!errors[name];
   const errorId = `${name}-error`;
 
@@ -11,11 +13,9 @@ function InputWrapper({ children, errors, name, label }: React.PropsWithChildren
     <div className="w-full">
       <div className="relative">
         {label && (
-          <label
-            htmlFor={name}
-            className="absolute -top-2 left-2 inline-block bg-fog-white px-1 text-xs font-medium capitalize text-gray-900 text-primary"
-          >
+          <label htmlFor={name} className=" px-1 text-lg font-medium capitalize text-primary-blue ">
             {label}
+            {required && <span className="text-red-500">*</span>}
           </label>
         )}
 

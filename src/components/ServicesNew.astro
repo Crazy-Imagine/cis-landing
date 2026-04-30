@@ -1,0 +1,117 @@
+---
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import Typography from './Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer background="white">
+  <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      class="service-card bg-hover-slide-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+    >
+      <div class="bg-hover-slide-layer bg-primary-blue"></div>
+      <div class="service-card-img relative z-10">
+        <img
+          src="/img/icons/iconGreen.webp"
+          alt="Icono servicio"
+          class="h-10 w-10 object-contain"
+        />
+      </div>
+      <Typography
+        as="h4"
+        variant="h4"
+        class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
+        >{t('services.services')}</Typography
+      >
+      <Typography
+        as="p"
+        variant="paragraph"
+        class="relative z-10 text-black group-hover:text-white"
+      >
+        {t('services.services-description')}
+      </Typography>
+    </div>
+
+    <div
+      class="service-card bg-hover-slide-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+    >
+      <div class="bg-hover-slide-layer bg-primary-blue"></div>
+      <div class="service-card-img relative z-10">
+        <img
+          src="/img/icons/iconBlue.webp"
+          alt="Icono servicio"
+          class="h-10 w-10 rotate-45 object-contain"
+        />
+      </div>
+      <Typography
+        as="h4"
+        variant="h4"
+        class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
+        >{t('services.crazy-partner')}</Typography
+      >
+      <Typography
+        as="p"
+        variant="paragraph"
+        class="relative z-10 text-black group-hover:text-white"
+      >
+        {t('services.crazy-partner-description')}
+      </Typography>
+    </div>
+
+    <div
+      class="service-card bg-hover-slide-card group relative flex h-80 max-h-80 flex-col gap-5 overflow-hidden rounded-md p-[33px]"
+    >
+      <div class="bg-hover-slide-layer bg-primary-blue"></div>
+      <div class="service-card-img relative z-10">
+        <img
+          src="/img/icons/iconOrange.webp"
+          alt="Icono servicio"
+          class="h-10 w-10 object-contain"
+        />
+      </div>
+      <Typography
+        as="h4"
+        variant="h4"
+        class="relative z-10 text-2xl font-bold text-black group-hover:text-white"
+        >{t('services.projects')}</Typography
+      >
+      <Typography
+        as="p"
+        variant="paragraph"
+        class="relative z-10 text-black group-hover:text-white"
+      >
+        {t('services.projects-description')}
+      </Typography>
+    </div>
+  </div>
+</ResponsiveContainer>
+
+<style>
+  .service-card {
+    background-color: var(--color-gray-new);
+    box-shadow: 0 10px 15px -3px var(--color-primary-new-with-transparency);
+    transition: box-shadow 0.4s ease;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Imagen oculta que aparece en hover y empuja el contenido */
+  .service-card-img {
+    max-height: 0;
+    opacity: 0;
+
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  .service-card:hover .service-card-img {
+    max-height: 60px;
+    opacity: 1;
+  }
+</style>

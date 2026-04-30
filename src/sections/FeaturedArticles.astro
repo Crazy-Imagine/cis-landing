@@ -1,16 +1,15 @@
 ---
-import ArticleCard from '@/components/ArticleCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleCollection } from '@/types/strapi/Article';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import FeaturedArticle from '@/components/FeaturedArticle.astro';
 
 const articles = await fetchApi<ArticleCollection>({
   endpoint: 'articles',
   params: {
     locale: Astro.currentLocale,
-    fields: ['title', 'description', 'content', 'slug'],
+    fields: ['title', 'description', 'content', 'slug', 'publishedAt'],
     publicationState: 'live',
     populate: {
       category: {
@@ -30,7 +29,7 @@ const articles = await fetchApi<ArticleCollection>({
     },
     pagination: {
       start: 0,
-      limit: 2,
+      limit: 1,
     },
     sort: {
       createdAt: 'desc',
@@ -40,13 +39,11 @@ const articles = await fetchApi<ArticleCollection>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+console.log(articles.data);
 ---
 
-<ResponsiveContainer>
-  <Typography class="mb-10 text-center capitalize text-primary" as="h2" variant="h2">
-    {t('common.featured-article')}
-  </Typography>
-
+<ResponsiveContainer background="blog">
   <div class="flex flex-col justify-center gap-5 md:flex-row md:gap-10">
     {
       articles.data.map(
@@ -67,7 +64,7 @@ const t = useTranslations(lang);
             : image.attributes.url;
 
           return (
-            <ArticleCard
+            <FeaturedArticle
               altText={article.title}
               ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
               class="shadow-md"
@@ -78,6 +75,7 @@ const t = useTranslations(lang);
               linkText={t('common.read-more')}
               title={article.title}
               width={width}
+              publishedAt={article.publishedAt}
             />
           );
         }

@@ -1,3 +1,5 @@
+import type { CTA, Feats } from './Service';
+import type { Hero } from './Hero';
 import type { Pagination } from '@/types/Pagination.ts';
 
 export interface ProjectCollection {
@@ -12,6 +14,8 @@ export interface Project {
 
 export interface ProjectAttributes {
   title: string;
+  hero: Hero;
+  feats: Feats[];
   details: string;
   description: string;
   slug: string;
@@ -19,6 +23,9 @@ export interface ProjectAttributes {
   project_types: ProjectTypes;
   images: ImagesData;
   galleryImages: ImagesData;
+  challenge: string;
+  solution: string;
+  cta: CTA;
 }
 
 export interface ImagesData {

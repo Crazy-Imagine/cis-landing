@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import { marked } from 'marked';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import { getImageUrl } from '@/utils/imageUrl';
+import type { MissionVission } from '@/types/strapi/PageInfo';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  missionVission: MissionVission[];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer background="blueNew">
+  <div class:list={['flex flex-col gap-10']}>
+    {
+      Astro.props.missionVission.map((item, index) => (
+        <div
+          class:list={[
+            'flex items-center justify-center gap-10',
+            {
+              'flex-row-reverse': index % 2 !== 0,
+            },
+          ]}
+        >
+          <Image
+            class="hidden max-h-[400px] max-w-[400px] mix-blend-lighten lg:block"
+            src={getImageUrl(item.image?.data?.attributes?.url)}
+            alt={item.image?.data?.attributes?.alternativeText}
+            width={item.image?.data?.attributes?.width}
+            height={item.image?.data?.attributes?.height}
+            quality={100}
+          />
+          <div class="flex flex-col gap-8 rounded-2xl bg-primary-with-transparency-white p-8">
+            <Typography as="h2" variant="h2" class="font-colvetica font-bold text-white">
+              {item.title}
+            </Typography>
+            <div class:list={['font-colvetica text-xl text-white']} set:html={marked(item.value)} />
+
+            {index % 2 !== 0 && (
+              <div class="flex items-center justify-center gap-24 ">
+                <div class="flex flex-col gap-2">
+                  <Typography
+                    isNew
+                    as="p"
+                    variant="paragraph"
+                    class="!font-colvetica !text-4xl !font-black text-primary-new"
+                  >
+                    98%
+                  </Typography>
+                  <Typography isNew as="p" variant="paragraph" class="!text-sm text-primary-new">
+                    {t('common.satisfaction')}
+                  </Typography>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <Typography
+                    isNew
+                    as="p"
+                    variant="paragraph"
+                    class="!font-colvetica !text-4xl !font-black text-primary-new"
+                  >
+                    400+
+                  </Typography>
+                  <Typography isNew as="p" variant="paragraph" class="!text-sm text-primary-new">
+                    {t('common.projects')}
+                  </Typography>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</ResponsiveContainer>

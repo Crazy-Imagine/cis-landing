@@ -1,0 +1,69 @@
+---
+import LinkPill from './LinkPill.astro';
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import Typography from './Typography.astro';
+
+interface Props {
+  title: string;
+  caption: string;
+  subtitle: string;
+  href: string;
+  buttonText: string;
+}
+
+const { title, caption, subtitle, href, buttonText } = Astro.props;
+---
+
+<ResponsiveContainer background="blueNew" containerClass="flex justify-center items-center">
+  <div
+    class="flex w-full flex-col items-center justify-center gap-10 justify-self-center lg:w-[70%]"
+  >
+    <Typography
+      as="h2"
+      variant="h1"
+      class="bg-gradinet-font bg-clip-text text-center text-transparent first-line:text-white lg:text-6xl"
+    >
+      {title}
+    </Typography>
+    <Typography as="p" variant="paragraph" class="text-center text-primary-new lg:text-6xl">
+      {caption}
+    </Typography>
+    <Typography as="p" variant="paragraph" class="text-center text-sm text-white">
+      {subtitle}
+    </Typography>
+    <LinkPill isNew href={href} variant="contained" class="cta-section-breathing-neon rounded-md">
+      {buttonText}
+    </LinkPill>
+  </div>
+</ResponsiveContainer>
+
+<style>
+  :global(.cta-section-breathing-neon) {
+    animation: cta-section-breathe-glow 2.75s ease-in-out infinite;
+  }
+
+  @keyframes cta-section-breathe-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 0 10px 2px rgba(177, 214, 0, 0.55),
+        0 0 28px 6px rgba(177, 214, 0, 0.22);
+      transform: scale(1);
+    }
+
+    50% {
+      box-shadow:
+        0 0 22px 7px rgba(177, 214, 0, 0.78),
+        0 0 52px 14px rgba(177, 214, 0, 0.38);
+      transform: scale(1.02);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.cta-section-breathing-neon) {
+      animation: none;
+      box-shadow: 0 0 16px 4px rgba(177, 214, 0, 0.45);
+      transform: none;
+    }
+  }
+</style>

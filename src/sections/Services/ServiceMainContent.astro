@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import { marked } from 'marked';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import { getImageUrl } from '@/utils/imageUrl';
+---
+
+<ResponsiveContainer background="blueNew" containerClass="overflow-hidden">
+  <div class="flex gap-10">
+    <div
+      class:list={[
+        'flex flex-col gap-10',
+        `${Astro.props.mainContent.image?.data?.attributes?.url ? 'w-2/3' : 'w-full'}`,
+      ]}
+    >
+      <Typography as="h2" variant="h2" class="font-colvetica font-bold text-white">
+        {Astro.props.mainContent.title}
+      </Typography>
+      <div
+        class:list={[
+          'font-colvetica text-xl text-white',
+          `${Astro.props.mainContent.image?.data?.attributes?.url ? 'w-1/2' : 'w-full'}`,
+        ]}
+        set:html={marked(Astro.props.mainContent.description)}
+      />
+
+      {
+        Astro.props.mainContent.caption && (
+          <div class="z-10 flex items-center gap-2 border-l-4 border-l-primary-new p-6">
+            <Typography as="p" variant="paragraph" class="text-white">
+              {Astro.props.mainContent.caption}
+            </Typography>
+          </div>
+        )
+      }
+    </div>
+    {
+      Astro.props.mainContent.image?.data?.attributes?.url && (
+        <Image
+          class:list={['absolute bottom-0 right-0 h-full']}
+          src={getImageUrl(Astro.props.mainContent.image?.data?.attributes?.url)}
+          width={Astro.props.mainContent.image?.data?.attributes?.width}
+          height={Astro.props.mainContent.image?.data?.attributes?.height}
+          alt={Astro.props.mainContent.image?.data?.attributes?.alternativeText}
+          quality={100}
+        />
+      )
+    }
+  </div>
+</ResponsiveContainer>

@@ -4,17 +4,16 @@ import { Image } from 'astro:assets';
 import Reviews from '@/sections/Reviews.astro';
 import Typography from '@/components/Typography.astro';
 import Layout from '@/layouts/Layout.astro';
-import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
-import OurTalent from '@/components/LandingPage/OurTalent.astro';
-import Newsletter from '@/components/Newsletter.astro';
-import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import OurProcessLanding from '@/components/LandingPage/OurProcessLanding.astro';
-
-import { OUR_BENEFITS_OUTSOURCING } from '@/consts/data';
 import { OurProcess } from '@/components/react/Landings/OurProcess';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
 import Accordion from '@/components/Accordion.astro';
-import { FAQS } from '@/utils/outsourcing';
-import { OUR_PROCESS_OUTSOURCING } from '@/consts/ourProcess';
+import { FAQS } from '@/utils/staff-augmentation-info';
+import { OUR_PROCESS_STAFF_AUGMENTATION } from '@/consts/ourProcess';
+import { OUR_PROCESS } from '@/consts/data';
+import Newsletter from '@/components/Newsletter.astro';
+import OurTalent from '@/components/LandingPage/OurTalent.astro';
+import OurProcessLanding from '@/components/LandingPage/OurProcessLanding.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
@@ -45,20 +44,15 @@ const SEO = {
     class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
   >
     <div
-      class="relative z-10 mx-auto h-full w-full items-center justify-end rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
+      class="relative z-10 mx-auto h-full w-full items-center rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
     >
-      <div
-        class="w-full p-4 md:p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[1050px] min-[1546px]:w-[1100px]"
-      >
+      <div class="w-full p-4 md:p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[1010px]">
         <Typography
           class="text-center text-[35px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px] 2xl:!text-[90px]"
           as="h1"
           variant="h1"
         >
-          Tu Proyecto de
-          <Typography as="span" variant="h1" class="font-nexaBold font-bold text-primary"
-            >Software,</Typography
-          > Entregado. Sin Desviaciones, Sin Excusas.
+          Escala tu equipo con desarrolladores senior verificados en menos de 7 días
         </Typography>
 
         <Typography
@@ -66,17 +60,17 @@ const SEO = {
           as="p"
           variant="h4"
         >
-          Olvídate de la gestión, los plazos incumplidos y los sobrecostes. Nosotros nos encargamos.
+          Sin costos de reclutamiento, sin papeleo, sin riesgo de rotación
         </Typography>
       </div>
 
       <div
-        class="absolute -left-[43px] -top-[240px] mr-auto flex flex-shrink-0 justify-start place-self-start lg:-top-[182px] xl:-top-[265px] 2xl:-top-[110px] min-[1546px]:-left-[0px]"
+        class="absolute -right-[140px] -top-[240px] ml-auto flex flex-shrink-0 justify-end place-self-end lg:-top-[182px] xl:-right-[95px] xl:-top-[265px] 2xl:-top-[274px]"
       >
         <Image
-          class="hidden h-[800px] max-h-[1100px] w-full lg:block lg:h-[770px] xl:h-[857px] 2xl:h-[950px]"
-          src={images['/src/assets/landing/paola.webp']()}
-          alt={'paola'}
+          class="hidden h-[800px] max-h-[1100px] w-full lg:block lg:h-[770px] xl:h-[857px] 2xl:h-[990px]"
+          src={images['/src/assets/landing/ronald.webp']()}
+          alt={'ronald'}
         />
       </div>
     </div>
@@ -96,43 +90,59 @@ const SEO = {
     />
   </div>
 
-  <!--Description  -->
-  <ResponsiveContainer class="relative z-50 flex gap-2">
-    <div class="flex w-full flex-col justify-center gap-9 lg:w-3/5">
-      <Typography as="span" variant="h2" class="capitalize text-secondary">
-        Delega
-        <Typography as="span" variant="h2" class="text-primary">la Complejidad</Typography>
-        en Expertos.
-        <Typography as="span" variant="h2" class="text-primary">Recibe Resultados.</Typography>
-      </Typography>
-
-      <Typography as="span" variant="h4" class="font-nexaLight text-primary">
-        Olvídate de la gestión diaria y los desafíos técnicos de un proyecto de software. Con
-        nuestro servicio de Outsourcing, nos convertimos en su equipo de desarrollo de principio a
-        fin, garantizando que su visión se materialice en un producto de alta calidad, entregado a
-        tiempo y dentro del presupuesto.
-      </Typography>
-    </div>
+  <!-- Why cis -->
+  <div
+    class="mx-auto flex h-fit flex-row justify-between gap-20 p-5 pt-10 2xl:container sm:h-[680px] md:px-5 lg:px-10 lg:pb-4"
+  >
     <div class="hidden w-2/5 items-center justify-center overflow-hidden lg:flex">
       <Image
         class=""
-        src={images['/src/assets/landing/outsourcing-martian.webp']()}
+        src={images['/src/assets/landing/landing-martian.webp']()}
         width={770}
         height={810}
-        alt={'martian'}
+        alt={'andrea'}
       />
     </div>
-  </ResponsiveContainer>
+    <div class="flex w-full flex-col justify-center gap-9 lg:w-3/5">
+      <Typography
+        as="span"
+        variant="h2"
+        class="font-nexaBold text-center font-bold capitalize !leading-[30px] text-primary md:!leading-[80px] lg:text-start"
+      >
+        Integra
+        <Typography as="span" variant="h2" class="font-nexaBold font-bold text-secondary"
+          >desarrolladores verificados</Typography
+        > en tu equipo en días. Flexibilidad total
+      </Typography>
+      <Typography
+        as="span"
+        variant="h4"
+        class="font-nexaLight text-[18px] text-[#333] md:text-[30px]"
+      >
+        Olvídese de largos procesos de reclutamiento y altos costos; con Staff Augmentation, obtiene
+        la flexibilidad y las habilidades exactas para potenciar su empresa.
+      </Typography>
+    </div>
+  </div>
 
   <!-- Our talents -->
-  <OurTalent />
+  <OurTalent>
+    <CTAButtons
+      slot="cta"
+      text="Reclutar talento"
+      href="#contact"
+      variant="primary-light"
+      class="mt-14 place-self-center"
+      textClass="lg:text-[30px]"
+    />
+  </OurTalent>
 
   <!-- Form -->
   <ResponsiveContainer
-    class="flex flex-col items-center justify-center md:flex-row"
+    class="flex flex-row items-center justify-center"
     containerClass="!pb-0 bg-white"
   >
-    <div class="w-full md:w-1/2">
+    <div>
       <Typography class:list={['mb-10 text-center capitalize text-primary']} as="h2" variant="h2">
         ¡Comienza Ahora!
         <br />
@@ -141,18 +151,16 @@ const SEO = {
       <div id="contact" class="w-full max-w-[880px]">
         <script
           type="text/javascript"
-          src="https://api.clientify.net/web-marketing/superforms/script/259371.js"></script>
+          src="https://api.clientify.net/web-marketing/superforms/script/247903.js"></script>
       </div>
     </div>
-    <div class="relative -top-[50px] flex w-full justify-center md:w-1/2">
+    <div class="relative -top-[50px]">
       <Image
         src={images['/src/assets/landing/appointment.webp']()}
         alt={'appointment'}
         class="w-[450px]"
       />
-      <div
-        class="absolute bottom-[90px] left-0 flex w-full flex-col items-center gap-4 2xl:left-[195px] 2xl:w-1/2"
-      >
+      <div class="absolute bottom-[90px] left-0 flex w-full flex-col items-center gap-4">
         <Typography as="span" variant="h3" class="text-center font-bold text-primary"
           >Agenda una Cita</Typography
         >
@@ -177,32 +185,28 @@ const SEO = {
     </div>
   </ResponsiveContainer>
 
-  <!-- Newsletter -->
-  <Newsletter />
+  <Reviews class="max-w-[350px]" />
 
   <!-- Our process -->
-  <OurProcessLanding data={OUR_PROCESS_OUTSOURCING} />
+  <OurProcessLanding data={OUR_PROCESS_STAFF_AUGMENTATION} />
 
-  <!-- reviews -->
-  <Reviews />
+  <!-- News -->
+  <Newsletter />
 
   <!-- Benefits -->
   <ResponsiveContainer class="relative z-50">
-    <Typography as="span" variant="h2" class="text-center font-nexaBold font-bold text-primary">
-      Conoce nuestro Proceso
+    <Typography as="span" variant="h2" class="font-nexaBold text-center font-bold text-primary">
+      Beneficios
     </Typography>
-    <OurProcess client:visible data={OUR_BENEFITS_OUTSOURCING} />
+    <OurProcess client:visible data={OUR_PROCESS} />
   </ResponsiveContainer>
 
   <ResponsiveContainer background="bulbs" class="relative z-50">
     <Typography class:list={['mb-10 text-center capitalize text-white']} as="h2" variant="h2">
-      ¿Tu proyecto no avanza?
-      <br />
-      ¡Es <Typography as="span" variant="h2" class="text-secondary">hora de delegar </Typography> en
-      expertos!
+      ¿Tu equipo se quedó corto? ¡Inyecta el talento Crazy Imagine hoy mismo
     </Typography>
     <CTAButtons
-      text="Habla con un arquitecto de soluciones"
+      text="Habla con un asesor tecnológico "
       href="#contact"
       variant="outline"
       class="mt-14 place-self-center"
@@ -210,6 +214,7 @@ const SEO = {
     />
   </ResponsiveContainer>
 
+  <!-- FAQS -->
   <ResponsiveContainer class="relative z-50">
     <Typography class:list={['text-centercapitalize mb-10 text-primary']} as="h2" variant="h2">
       Preguntas Frecuentes

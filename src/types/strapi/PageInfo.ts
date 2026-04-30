@@ -1,3 +1,4 @@
+import type { Image } from './Article';
 import type { Hero } from '@/types/strapi/Hero.ts';
 import type { SEO } from '@/types/strapi/SEO.ts';
 
@@ -17,4 +18,17 @@ export interface Attributes {
   locale: string;
   seo: SEO;
   hero: Hero;
+  values: Values[];
+  missionVission: MissionVission[];
+}
+
+export interface MissionVission {
+  id: number;
+  title: string;
+  value: string;
+  image: Image;
+}
+export interface Values {
+  id: number;
+  value: string;
 }

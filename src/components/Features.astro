@@ -1,0 +1,17 @@
+---
+import FeatsCards from './FeatsCards.astro';
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import type { Feats } from '@/types/strapi/Service';
+
+interface Props {
+  feats: Feats[];
+}
+
+const { feats } = Astro.props;
+---
+
+<ResponsiveContainer containerClass="!py-0">
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {feats.map((feat) => <FeatsCards {...feat} />)}
+  </div>
+</ResponsiveContainer>

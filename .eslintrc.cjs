@@ -37,6 +37,15 @@ module.exports = {
     '@stylistic/ts/brace-style': 'off',
     '@stylistic/js/operator-linebreak': 'off',
     'antfu/if-newline': 'off',
+    "unused-imports/no-unused-imports": "error",
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "no-var": "error",
+    "@stylistic/js/multiline-ternary": "off"
   },
   overrides: [
     {

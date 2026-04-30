@@ -1,31 +1,92 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
+import Clutch from '@/icons/Clutch.astro';
 import { getImageUrl } from '@/utils/imageUrl';
 import Typography from '@/components/Typography.astro';
 import type { CustomHero } from '@/types/strapi/Hero';
 import { getLangFromUrl } from '@/i18n/utils';
 
-interface Props extends CustomHero {}
+interface Props extends CustomHero {
+  isNew?: boolean;
+  sectionClass?: string;
+  hiddenClutch?: boolean;
+  isCustom?: boolean;
+  lighten?: boolean;
+  types?: string[];
+  customImageClass?: string;
+  customTextClass?: string;
+}
 
-const { title, subtitle, image } = Astro.props;
+const {
+  title,
+  subtitle,
+  image,
+  isNew,
+  backgroundImage,
+  sectionClass,
+  hiddenClutch,
+  isCustom,
+  lighten,
+  types,
+  customImageClass,
+  customTextClass,
+} = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+const heroImage = backgroundImage?.data?.attributes
+  ? backgroundImage?.data?.attributes
+  : image?.data?.attributes;
+
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+
+const titleTypographyClass = isNew
+  ? ' font-bold capitalize bg-gradinet-font bg-clip-text text-transparent first-line:text-white w-full md:w-[90%]'
+  : 'font-bold capitalize';
 ---
 
 <section
-  class={`relative -mt-[var(--header-height)] h-fit w-full bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white ${lang === 'es' ? 'xs:h-[850px]  xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]'} md:bg-hero md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0`}
+  class:list={[
+    'second relative -mt-[var(--header-height)] h-fit w-full overflow-hidden bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
+    lang === 'es' ? 'xs:h-[850px] xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]',
+    {
+      'bg-hero-background ': isNew,
+      'md:bg-hero': !isNew,
+    },
+    sectionClass,
+  ]}
 >
-  <div
-    class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency"
-  >
-  </div>
+  {
+    !isNew && (
+      <div class="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-primary md:to-primary-with-transparency" />
+    )
+  }
 
   <div
-    class="relative z-10 mx-auto hidden h-full w-full items-center rounded-xl 2xl:container sm:flex sm:gap-10 sm:bg-secondary"
+    class:list={[
+      'container z-10 mx-auto hidden h-full w-full items-center rounded-xl sm:flex lg:gap-10',
+      {
+        'sm:bg-secondary': !isNew,
+        'px-4 md:px-5 lg:px-10 min-[1546px]:px-0': isNew,
+        'sm:bg-secondary-with-transparency': backgroundImage?.data,
+        // 'relative': !backgroundImage?.data,
+      },
+    ]}
   >
-    <div class="gap-4 sm:pl-8 lg:pl-14 xl:pl-[100px]">
-      <Typography class="font-bold capitalize" as="h1" variant="h1">
+    <div
+      class:list={[
+        'z-10  gap-4',
+        {
+          'sm:pl-8 lg:pl-14 xl:pl-[100px]': !isNew,
+          'w-[75%]': isCustom && heroImage?.url,
+          'w-[85%]': !heroImage?.url,
+          'w-[70%]': !isCustom,
+        },
+        customTextClass,
+      ]}
+    >
+      {isNew && !hiddenClutch && <Clutch fill="#BFED06" />}
+
+      <Typography class={`${titleTypographyClass} whitespace-pre-line`} as="h1" variant="h1">
         {title}
       </Typography>
 
@@ -37,31 +98,72 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
         )
       }
 
-      <Image
-        class="my-5"
-        alt="Clutch rating reviews"
-        src={images['/src/assets/landing/Clutch.webp']()}
-      />
+      {
+        types && (
+          <div class="flex flex-wrap gap-5">
+            {types.map((type) => (
+              <Typography
+                class="rounded-lg border border-solid border-primary-with-transparency bg-primary-with-transparency-white px-5 py-2 capitalize !text-white"
+                as="p"
+                variant="h6"
+              >
+                {type}
+              </Typography>
+            ))}
+          </div>
+        )
+      }
+      {
+        !isNew && (
+          <Image
+            class="my-5"
+            alt="Clutch rating reviews"
+            src={images['/src/assets/landing/Clutch.webp']()}
+          />
+        )
+      }
 
       <slot name="button" />
     </div>
 
     {
-      image && (
-        <div class="ml-auto flex flex-shrink-0 justify-end place-self-end">
+      heroImage && (
+        <div
+          class:list={[
+            {
+              'absolute bottom-auto left-0 top-auto  h-full opacity-25': backgroundImage?.data,
+              'absolute right-0 w-[30%] place-self-end  ': !backgroundImage?.data,
+              'absolute bottom-0 lg:right-[2%] 2xl:right-[10%] ': isCustom,
+            },
+            ' ml-auto flex flex-shrink-0 justify-end place-self-end',
+            customImageClass,
+          ]}
+        >
           <Image
-            class="h-auto max-h-[500px] w-full"
-            src={getImageUrl(image.data.attributes.url)}
-            width={image.data.attributes.width}
-            height={image.data.attributes.height}
-            alt={image.data.attributes.alternativeText}
+            class:list={[
+              'h-auto min-h-[350px] w-full min-w-[350px] lg:min-h-min lg:min-w-[500px] xl:max-h-[550px] ',
+              {
+                'opacity-25': backgroundImage?.data,
+                'w-[500px]': isCustom,
+                'mix-blend-lighten': lighten,
+              },
+            ]}
+            src={getImageUrl(heroImage?.url)}
+            width={heroImage?.width}
+            height={heroImage?.height}
+            alt={heroImage?.alternativeText}
+            quality={100}
           />
         </div>
       )
     }
   </div>
 
-  <Typography class="relative z-20 font-bold capitalize sm:hidden" as="h1" variant="h1">
+  <Typography
+    class={`relative z-20 sm:hidden whitespace-pre-line ${titleTypographyClass}`}
+    as="h1"
+    variant="h1"
+  >
     {title}
   </Typography>
 
@@ -78,7 +180,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
       <slot name="button" />
     </div>
 
-    {
+    <!-- {
       image && (
         <div class="flex basis-1/2 place-content-end">
           <Image
@@ -90,6 +192,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing
           />
         </div>
       )
-    }
+    } -->
   </div>
 </section>

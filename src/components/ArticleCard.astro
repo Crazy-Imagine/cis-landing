@@ -17,6 +17,9 @@ interface Props {
   projectType?: string;
   title: string;
   width: number;
+  cardBg?: string;
+  isNew?: boolean;
+  description?: string;
 }
 
 const {
@@ -30,6 +33,9 @@ const {
   projectType,
   title,
   width,
+  cardBg,
+  isNew,
+  description,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
@@ -38,19 +44,20 @@ const translatePath = useTranslatedPath(lang);
 
 <article
   class:list={[
-    'my-2 !flex !h-auto flex-col rounded-xl bg-white',
+    'my-2 !flex !h-auto flex-col rounded-xl',
     Astro.props.class,
     {
       'swiper-slide': isSwiperCard,
     },
+    cardBg ?? 'bg-white',
   ]}
   {...projectType ? { 'data-project-type': projectType } : {}}
 >
-  <picture class="rounded-t-xl">
+  <picture class:list={['rounded-xl', { 'p-4': isNew }]}>
     <Image
       transition:animate="slide"
       transition:name={`${title}-image`}
-      class="h-auto w-full rounded-t-xl"
+      class="h-auto w-full rounded-xl object-cover"
       src={getImageUrl(img)}
       alt={altText}
       width={width}
@@ -62,15 +69,30 @@ const translatePath = useTranslatedPath(lang);
   <div class="mt-auto p-5 text-center">
     <Typography
       transition:name={`${title}-title`}
-      class="line-clamp-2 text-primary"
+      class:list={[
+        'line-clamp-2',
+        {
+          'text-primary': !isNew,
+          'bg-gradinet-font bg-clip-text text-start text-transparent': isNew,
+        },
+      ]}
       as="p"
       variant="accent"
     >
       {title}
     </Typography>
 
+    {
+      description && (
+        <Typography class="text-start text-white" as="p" variant="paragraph3">
+          {description}
+        </Typography>
+      )
+    }
+
     <CardCTA
-      class="mt-2.5"
+      isNew={isNew}
+      class="mt-2.5 !justify-self-start"
       href={translatePath(href, lang)}
       text={linkText}
       ariaLabel={ariaLabel}

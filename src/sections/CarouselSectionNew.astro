@@ -1,0 +1,63 @@
+---
+import CarrouselProjects from '@/components/CarrouselProjects.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import type { Background } from '@/types/Background';
+
+interface Props {
+  background?: Background;
+  title?: string;
+  class?: string;
+  containerClass?: string;
+  sectionClass?: string;
+  customTitle?: string;
+  pagination?: boolean;
+  navigation?: boolean;
+  slidesPerView?: {
+    0: number;
+    600: number;
+    960: number;
+    1280: number;
+    1920: number;
+  };
+}
+
+const { title, background, pagination, containerClass, navigation, sectionClass } = Astro.props;
+
+const isWhite = typeof background === 'undefined' || background === 'white';
+---
+
+<ResponsiveContainer
+  background={background}
+  containerClass={containerClass}
+  class={`relative z-50 ${sectionClass}`}
+>
+  {
+    title && (
+      <Typography
+        isNew
+        class:list={[
+          'mb-10 text-center font-bold capitalize ',
+          {
+            'bg-gradinet-font bg-clip-text text-transparent lg:!leading-[100px]': isWhite,
+            'text-white': !isWhite,
+          },
+        ]}
+        as="h2"
+        variant="h2"
+      >
+        {title}
+      </Typography>
+    )
+  }
+
+  <slot name="custom-title" />
+  <Fragment slot="image">
+    <slot name="image" />
+  </Fragment>
+  <slot />
+
+  <CarrouselProjects pagination={pagination} navigation={navigation}>
+    <slot name="items" />
+  </CarrouselProjects>
+</ResponsiveContainer>

@@ -11,9 +11,10 @@ interface Props {
   review: GoogleReview;
   language?: 'es' | 'en';
   url?: string;
+  isNew?: boolean;
 }
 
-const { review, class: className, url } = Astro.props;
+const { review, class: className, url, isNew } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
 
@@ -28,8 +29,12 @@ function getComment() {
 
 <article
   class:list={[
-    'swiper-slide !flex !h-auto cursor-pointer flex-col gap-5 rounded-xl bg-white px-5 py-10 transition-transform hover:scale-105',
+    'swiper-slide !flex !h-auto cursor-pointer flex-col gap-5 px-5 py-10 transition-transform',
     className,
+    {
+      'review-card-new': isNew,
+      'rounded-xl bg-white': !isNew,
+    },
   ]}
   id={review.reviewId}
 >
@@ -39,7 +44,12 @@ function getComment() {
         {
           review.reviewer?.profilePhotoUrl && (
             <img
-              class="h-[45px] w-[45px] rounded-full"
+              class:list={[
+                'h-[45px] w-[45px] rounded-full',
+                {
+                  'border-2 border-primary-new': isNew,
+                },
+              ]}
               alt={review.reviewer?.displayName ?? '--'}
               src={review.reviewer?.profilePhotoUrl ?? ''}
               loading="lazy"
@@ -47,7 +57,17 @@ function getComment() {
             />
           )
         }
-        <Typography class="text-center text-primary" as="p" variant="accent">
+        <Typography
+          class:list={[
+            'text-center',
+            {
+              'text-primary': !isNew,
+              'text-white': isNew,
+            },
+          ]}
+          as="p"
+          variant="accent"
+        >
           {review.reviewer?.displayName ?? '--'}
         </Typography>
       </div>
@@ -69,13 +89,27 @@ function getComment() {
   </div>
   <Typography
     title={getComment()}
-    class="line-clamp-[5] text-center text-primary"
+    class:list={[
+      'line-clamp-[5] text-center',
+      {
+        'text-primary': !isNew,
+        'text-white': isNew,
+      },
+    ]}
     as="p"
     variant="paragraph2"
   >
     {getComment()}
   </Typography>
 </article>
+<style>
+  .review-card-new {
+    border-radius: 14px;
+    background: rgba(226, 229, 232, 0.08);
+    box-shadow: 10px 10px 100px 3px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(18.850000381469727px);
+  }
+</style>
 <script define:vars={{ reviewId: review.reviewId, url }}>
   document.addEventListener('DOMContentLoaded', () => {
     const reviewCard = document.querySelector(`#${reviewId}`);
