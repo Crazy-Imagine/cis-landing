@@ -13,6 +13,8 @@ interface Props {
   hideAllProjects?: boolean;
   projectId?: number;
   categoryId?: number;
+  subtitle?: string;
+  isNew?: boolean;
 }
 
 const projects = await fetchApi<ProjectCollection>({
@@ -53,10 +55,25 @@ const t = useTranslations(lang);
 
 const translatePath = useTranslatedPath(lang);
 
-const { hideAllProjects = false } = Astro.props;
+const { hideAllProjects = false, title, subtitle, background, isNew } = Astro.props;
 ---
 
-<CarouselSection background={Astro.props.background} title={Astro.props.title}>
+<CarouselSection
+  background={background}
+  title={title}
+  subtitle={subtitle}
+  isNew={isNew}
+  textClass="text-start w-full xl:w-[65%]"
+  pagination
+  slidesPerView={{
+    0: 1,
+    600: 2,
+    960: 2,
+    1280: 3,
+    1920: 3,
+  }}
+>
+  <slot name="custom-all-button" />
   <Fragment slot="items">
     {
       projects.data.map(
@@ -69,15 +86,18 @@ const { hideAllProjects = false } = Astro.props;
           },
         }) => (
           <ArticleCard
+            isNew={isNew}
+            cardBg="bg-primary-blue"
             altText={project.title}
             ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
             class="shadow-md"
             height={image.attributes.formats.small.height}
-            href={`/projects/${project.slug}`}
+            href={translatePath(`/projects/${project.slug}`)}
             img={image.attributes.formats.small.url}
             linkText={t('common.view-project')}
             title={project.title}
             width={image.attributes.formats.small.width}
+            description={project.description}
           />
         )
       )

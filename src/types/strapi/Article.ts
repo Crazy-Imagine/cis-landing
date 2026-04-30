@@ -22,6 +22,7 @@ export interface ArticleAttributes {
   image: Image;
   contentImage: Image;
   lastImageArticle: Image;
+  publishedAt: string;
   Button: Button[];
 }
 

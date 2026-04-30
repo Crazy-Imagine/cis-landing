@@ -1,0 +1,133 @@
+---
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import LinkPill from '@/components/LinkPill.astro';
+import LanguagePickerSelect from '@/components/LanguagePicker/Select.astro';
+import Menu from '@/icons/Menu.astro';
+import NavLinksNew from '@/components/NavLinksNew.astro';
+import XIcon from '@/icons/XIcon.astro';
+import CISLogoNew from '@/icons/CISLogoNew.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<div
+  class:list={['sticky left-0 right-0 top-0 z-[9999999] max-h-screen bg-transparent']}
+  id="sticky-header"
+>
+  <header class="container mx-auto px-4 md:px-5 lg:px-10 min-[1546px]:px-0">
+    <nav class="flex h-[var(--header-height)] items-center justify-between">
+      <a class="hidden xl:inline" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+        <CISLogoNew />
+      </a>
+
+      <a class="xl:hidden" href={translatePath('/', lang)} aria-label={t('aria.home-link')}>
+        <img src="/img/logo/cis-logo-new.webp" alt={t('alt.logo')} height="35" width="30" />
+      </a>
+
+      <NavLinksNew />
+
+      <div class="flex items-center gap-4">
+        <LinkPill
+          isNew
+          variant="contained"
+          class="hidden rounded-md lg:inline-block"
+          href={translatePath('/contact-us', lang)}
+          aria-label={t('aria.contact-us-link')}
+        >
+          {t('common.contact-us')}
+        </LinkPill>
+        <LanguagePickerSelect id="desktop" class="hidden lg:inline-block" />
+      </div>
+
+      <button
+        type="button"
+        class="inline-flex shrink-0 cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-inherit lg:hidden"
+        data-action="open-drawer"
+        aria-label={t('aria.menu-icon')}
+        aria-controls="drawer"
+        aria-expanded="false"
+      >
+        <Menu class="pointer-events-none h-12 w-12 text-white" stroke="#b1d600" />
+      </button>
+    </nav>
+  </header>
+
+  <div
+    id="drawer"
+    data-drawer-panel
+    class="fixed inset-0 z-[9999999] -translate-x-full transform bg-primary-blue text-white transition-transform duration-300 lg:hidden"
+  >
+    <div class="flex items-center justify-between border-b-2 px-4 py-8">
+      <CISLogoNew />
+
+      <LanguagePickerSelect id="mobile" />
+
+      <button
+        type="button"
+        class="inline-flex cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-inherit"
+        data-action="close-drawer"
+        aria-label={lang === 'es' ? 'Cerrar menú' : 'Close menu'}
+      >
+        <XIcon class="h-8 w-8 text-white" />
+      </button>
+    </div>
+
+    <nav class="p-4">
+      <NavLinksNew isDrawer class="!flex flex-col !items-start" />
+    </nav>
+  </div>
+</div>
+
+<script>
+  function initHeaderNew() {
+    const header = document.getElementById('sticky-header');
+    if (!header) return;
+
+    const drawer = header.querySelector('[data-drawer-panel]');
+    const openBtn = header.querySelector('[data-action="open-drawer"]');
+    const closeBtn = header.querySelector('[data-action="close-drawer"]');
+
+    if (window.scrollY > 0) {
+      header.classList.add('scrolled');
+    }
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    if (!drawer || !openBtn || !closeBtn) return;
+
+    const syncAria = () => {
+      const isOpen = !drawer.classList.contains('-translate-x-full');
+      openBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    openBtn.addEventListener('click', () => {
+      drawer.classList.toggle('-translate-x-full');
+      syncAria();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      drawer.classList.toggle('-translate-x-full');
+      syncAria();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeaderNew, { once: true });
+  } else {
+    initHeaderNew();
+  }
+</script>
+
+<style>
+  #sticky-header.scrolled {
+    @apply bg-primary-blue-with-transparency;
+  }
+</style>

@@ -60,8 +60,6 @@ export const ui = {
     'about.faq-description': 'Know the most frequently asked questions by our clients.',
     'about.roadmap-title': 'Roadmap',
     'about.roadmap-description': 'Our process for designing and developing branding and webflow.',
-    'about.meet-the-team-title': 'Meet the team',
-    'about.meet-the-team-description': 'Become acquainted with the Management Team.',
     'about.mission-title': 'Mission',
     'about.mission-description': 'We are dedicated to software development to provide a...',
     'about.working-together-title': 'Working together',
@@ -73,6 +71,8 @@ export const ui = {
     'about.who-we-are-description': 'We have a dynamic and diverse mix of full-stack, front-end...',
     'about.work-with-us-title': 'Work with us',
     'about.work-with-us-description': 'Our biggest strength is the quality of our team.',
+    'about.meet-the-team-title': 'Leading the Innovation',
+    'about.meet-the-team-description': 'Masterminds focused on digital perfection.',
 
     // Common Keys
     'common.home': 'Home',
@@ -116,7 +116,7 @@ export const ui = {
     'common.news-and-updates-description':
       'Get insight into our latest projects, news related to popular technologies, and updates on our services',
     'common.work-with-us': 'Interested In Working With Us?',
-    'common.home-hero-button': 'Schedule a call',
+    'common.home-hero-button': 'Start Project',
     'common.see-all': 'See All',
     'common.the-latest-in-tech-talk': 'The Latest in Tech Talk',
     'common.search': 'Search',
@@ -129,7 +129,46 @@ export const ui = {
     'common.technology-partners-of-market-leading-companies':
       'Technology Partners of Market-Leading Companies',
     'common.phase': 'Phase',
-
+    'common.partners-title': 'Companies that scale with us',
+    'common.latest-projects-title': 'Digital Transformations',
+    'common.custom-development': 'Custom Development',
+    'common.custom-development-description':
+      'Collaboration designed for consultants and agencies that want to monetize their contact network',
+    'common.staff-augmentation': 'Staff Augmentation',
+    'common.staff-augmentation-description': 'Expert talent for your teams',
+    'common.mobile-apps-description': 'Native and multiplatform experiences',
+    'common.crazy-partner-program': 'Crazy Partner Program',
+    'common.crazy-partner-program-description':
+      'Collaboration designed for consultants and agencies that want to monetize their contact network',
+    'common.outsourcing': 'Outsourcing',
+    'common.outsourcing-description':
+      'Collaboration designed for consultants and agencies that want to monetize their contact network',
+    'common.odoo': 'Odoo',
+    'common.odoo-description':
+      'Collaboration designed for consultants and agencies that want to monetize their contact network',
+    'common.ai-agents': 'AI Agents',
+    'common.ai-agents-description': 'IA and automation of conversations',
+    'common.projects-title': 'Digital Transformations',
+    'common.projects-description':
+      'We transform technical visions into robust and scalable market realities.',
+    'common.reviews-title': 'What our partners say',
+    'common.challenge': 'The challenge',
+    'common.solution': 'The solution',
+    'common.explore-other-projects': 'Explore other projects ->',
+    'common.other-projects-title': 'Empowering Other Industry Leaders',
+    'common.other-projects-description':
+      'Discover how we have transformed complex challenges into competitive advantages for high-level companies.',
+    'common.our-values': 'Our Values',
+    'common.satisfaction': 'Satisfaction',
+    'common.projects': 'Projects',
+    'common.reach-out-title': 'Let’s Talk About Your Project',
+    'common.reach-out-subtitle':
+      'From the initial idea to launch, or from an outdated system to a modern platform. We handle the technology so you can focus on your business.',
+    'common.recent': 'Recent',
+    // CTO Manual Keys
+    'cto-manual.title': 'Know our CTO Manual',
+    'cto-manual.description':
+      'Join our technical community and receive the manual directly in your inbox that every technical leader needs for 2026.',
     // Services Keys
     'services.a-technology-partner-for': 'A Technology Partner for ',
     'services.every-stage-of-your-growth': 'Every Stage of Your Growth',
@@ -202,6 +241,15 @@ export const ui = {
     'services.monthly-payment': 'Per Month',
     'services.pricing-plans': 'Pricing Plans',
     'services.better-option': 'Better Option',
+    'services.services': 'Services',
+    'services.crazy-partner': 'Crazy Partner',
+    'services.projects': 'Projects',
+    'services.services-description':
+      'Custom development for real challenges. From robust web architectures and mobile applications to intelligent automation.',
+    'services.crazy-partner-description':
+      'We expand your team instantly so you stop rejecting projects and turn every request into a new business opportunity.',
+    'services.projects-description':
+      'Our solutions know no borders. We design thinking about global scalability and cultural adaptability.',
 
     // Custom Software Development
     'custom-development.hero-title': 'You Have the Vision, We Build the Software to Make It Real',
@@ -437,8 +485,6 @@ export const ui = {
     'about.faq-description': 'Conoce las preguntas más frecuentes de nuestros clientes.',
     'about.roadmap-title': 'Hoja de Ruta',
     'about.roadmap-description': 'Nuestro proceso para diseñar y desarrollar branding y webflow.',
-    'about.meet-the-team-title': 'Conozca al equipo',
-    'about.meet-the-team-description': 'Conozca al equipo de gestión.',
     'about.mission-title': 'Misión',
     'about.mission-description': 'Nos dedicamos al desarrollo de software para proporcionar una...',
     'about.working-together-title': 'Trabajando juntos',
@@ -451,6 +497,8 @@ export const ui = {
       'Tenemos una mezcla dinámica y diversa de full-stack, front-end...',
     'about.work-with-us-title': 'Trabaja con nosotros',
     'about.work-with-us-description': 'Nuestra mayor fortaleza es la calidad de nuestro equipo.',
+    'about.meet-the-team-title': 'Liderando la Innovación',
+    'about.meet-the-team-description': 'Mentes maestras enfocadas en la perfección digital.',
 
     // Common Keys
     'common.home': 'Inicio',
@@ -494,7 +542,7 @@ export const ui = {
     'common.news-and-updates-description':
       'Mántengase al día sobre nuestros últimos proyectos, noticias relacionadas con tecnologías populares y actualizaciones sobre nuestros servicios.',
     'common.work-with-us': '¿Quieres Ser parte de Nuestro Equipo?',
-    'common.home-hero-button': 'Programar una llamada',
+    'common.home-hero-button': 'Iniciar Proyecto',
     'common.see-all': 'Ver todos',
     'common.the-latest-in-tech-talk': 'Lo último en tecnología',
     'common.search': 'Buscar',
@@ -507,7 +555,46 @@ export const ui = {
     'common.technology-partners-of-market-leading-companies':
       'Socios Tecnológicos de Empresas que Lideran el Mercado',
     'common.phase': 'Fase',
-
+    'common.partners-title': 'Empresas que escalan con nosotros',
+    'common.latest-projects-title': 'Transformaciones digitales',
+    'common.custom-development': 'Desarrollo Personalizado',
+    'common.custom-development-description':
+      'Colaboración diseñada para consultores y agencias que desean monetizar su red de contactos',
+    'common.staff-augmentation': 'Aumento de Personal',
+    'common.staff-augmentation-description': 'Talento experto para tus equipos',
+    'common.mobile-apps-description': 'Experiencias nativas y multiplataformas',
+    'common.crazy-partner-program': 'Programa Crazy Partner',
+    'common.crazy-partner-program-description':
+      'Colaboración diseñada para consultores y agencias que desean monetizar su red de contactos',
+    'common.outsourcing': 'Externalización de Personal',
+    'common.outsourcing-description':
+      'Colaboración diseñada para consultores y agencias que desean monetizar su red de contactos',
+    'common.odoo': 'Odoo',
+    'common.odoo-description':
+      'Colaboración diseñada para consultores y agencias que desean monetizar su red de contactos',
+    'common.ai-agents': 'Agentes IA',
+    'common.ai-agents-description': 'IA y automatización de  conversaciones',
+    'common.projects-title': 'Transformaciones digitales',
+    'common.projects-description':
+      'Transformamos visiones técnicas en realidades de mercado robustas y escalables.',
+    'common.reviews-title': 'Lo que dicen nuestros socios',
+    'common.challenge': 'El desafío',
+    'common.solution': 'La solución',
+    'common.explore-other-projects': 'Explora otros proyectos ->',
+    'common.other-projects-title': 'Impulsando a otros líderes del sector',
+    'common.other-projects-description':
+      'Descubre cómo hemos transformado desafíos complejos en ventajas competitivas para empresas de alto nivel.',
+    'common.our-values': 'Nuestros Valores',
+    'common.satisfaction': 'Satisfacción',
+    'common.projects': 'Proyectos',
+    'common.reach-out-title': 'Hablemos de tu Proyecto',
+    'common.reach-out-subtitle':
+      'De la idea inicial al lanzamiento, o de un sistema obsoleto a una plataforma moderna. Nos encargamos de la tecnología para que tú te enfoques en el negocio.',
+    'common.recent': 'Reciente',
+    // CTO Manual Keys
+    'cto-manual.title': ' Conoce nuestro Manual del CTO',
+    'cto-manual.description':
+      '  Únete a nuestra comunidad técnica y recibe directamente en tu bandeja de entrada el manual que todo líder tecnológico necesita para este 2026.',
     // Services
     'services.a-technology-partner-for': 'Un Socio Tecnológico para',
     'services.every-stage-of-your-growth': 'Cada Etapa de tu Crecimiento',
@@ -582,6 +669,15 @@ export const ui = {
     'services.monthly-payment': 'Por mes',
     'services.pricing-plans': 'Precios',
     'services.better-option': 'Mejor Opción',
+    'services.services': 'Servicios',
+    'services.crazy-partner': 'Crazy Partner',
+    'services.projects': 'Proyectos',
+    'services.services-description':
+      'Desarrollo a medida para desafíos reales. Desde arquitecturas web robustas y aplicaciones móviles hasta automatización inteligente.',
+    'services.crazy-partner-description':
+      'Ampliamos tu equipo al instante para que dejes de rechazar proyectos y conviertas cada solicitud en una nueva oportunidad de negocio.',
+    'services.projects-description':
+      'Nuestras soluciones no conocen fronteras. Diseñamos pensando en la escalabilidad global y la adaptabilidad cultural.',
 
     // Custom Software Development
     'custom-development.hero-title':

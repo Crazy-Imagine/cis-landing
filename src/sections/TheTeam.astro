@@ -1,6 +1,8 @@
 ---
 import MemberCard from '@/components/react/MemberCard';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 import fetchApi from '@/lib/strapi';
 import type { MemberCollection } from '@/types/strapi/Member';
 
@@ -14,10 +16,28 @@ const members = await fetchApi<MemberCollection>({
         fields: ['width', 'height', 'url'],
       },
     },
+    sort: { createdAt: 'asc' },
   },
 });
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<ResponsiveContainer class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-  {members.data.map((member) => <MemberCard client:visible member={member} />)}
+<ResponsiveContainer background="white">
+  <Typography
+    isNew
+    as="h2"
+    variant="h2"
+    class="mb-4 bg-gradinet-font bg-clip-text text-transparent"
+  >
+    {t('about.meet-the-team-title')}
+  </Typography>
+  <Typography isNew as="p" variant="paragraph" class="mb-10 text-primary-blue">
+    {t('about.meet-the-team-description')}
+  </Typography>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {members.data.map((member) => <MemberCard client:visible member={member} />)}
+  </div>
 </ResponsiveContainer>

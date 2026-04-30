@@ -4,19 +4,44 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1025px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    container: {
+      screens: {
+        sm: '500px',
+        md: '600px',
+        lg: '800px',
+        xl: '1000px',
+        '2xl': '1200px',
+      },
+    },
     extend: {
       backgroundImage: {
         'hero': "url('/img/backgrounds/hero.webp')",
+        'hero-background': "url('/img/backgrounds/heroBg.webp')",
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
         'thanks-page': "url('/img/backgrounds/satelit2.webp')",
+        'gradinet-font': 'var(--color-gradinet-font)',
+        'contact-us': "url('/img/backgrounds/contact-us.webp')",
+        'blog-hero': "url('/img/backgrounds/blogs.webp')",
       },
       fontFamily: {
-        nexaBold: ['"Nexa Bold"', ...defaultTheme.fontFamily.sans],
+        colvetica: ['"Colvetica"', ...defaultTheme.fontFamily.sans],
         nexaLight: ['"Nexa Light"', ...defaultTheme.fontFamily.sans],
+        openSansBold: ['"Open Sans Bold"', ...defaultTheme.fontFamily.sans],
+        openSansLight: ['"Open Sans Light"', ...defaultTheme.fontFamily.sans],
         roboto: ['"Roboto"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         'primary': 'var(--color-primary)',
+        'primary-new': 'var(--color-primary-new)',
+        'primary-blue': 'var(--color-primary-blue)',
+        'font-light-gray': 'var(--color-font-light-gray)',
         'secondary': 'var(--color-secondary)',
         'accent': 'var(--color-accent)',
         'blue-purple': 'var(--color-blue-purple)',
@@ -26,9 +51,15 @@ export default {
         'sky-blue': 'var(--color-sky-blue)',
         'fog-white': 'var(--color-fog-white)',
         'primary-with-transparency': 'var(--color-primary-with-transparency)',
+        'primary-blue-with-transparency': 'var(--color-primary-blue-with-transparency)',
         'blue-purple-contrast': 'var(--color-blue-purple-contrast)',
         'smoke': 'var(--color-smoke)',
         'green-contact': 'var(--color-green-contact)',
+        'gray-new': 'var(--color-gray-new)',
+        'primary-new-with-transparency': 'var(--color-primary-new-with-transparency)',
+        'gradient-font': 'var(--color-gradient-font)',
+        'primary-with-transparency-white': 'var(--color-primary-with-transparency-white)',
+        'gray-with-transparency': 'var(--color-gray-with-transparency)',
       },
       keyframes: {
         wiggle: {

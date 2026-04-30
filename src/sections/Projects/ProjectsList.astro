@@ -1,9 +1,10 @@
 ---
-import ArticleCard from '@/components/ArticleCard.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectCollection } from '@/types/strapi/Project';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import Typography from '@/components/Typography.astro';
+import ArticleCardNew from '@/components/ArticleCardNew.astro';
 
 const projects = await fetchApi<ProjectCollection>({
   endpoint: 'projects',
@@ -32,12 +33,21 @@ const projects = await fetchApi<ProjectCollection>({
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <ResponsiveContainer>
+  <Typography
+    isNew
+    class={`text-primary-blue mb-10 w-[75%] text-start font-bold`}
+    as="h2"
+    variant="h2"
+  >
+    {t('common.projects-title')}
+  </Typography>
   <div
     id="projects-container"
-    class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 xl:grid-cols-4"
+    class="grid grid-cols-1 gap-5 px-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 2xl:px-20"
   >
     {
       projects.data.map(
@@ -49,17 +59,18 @@ const t = useTranslations(lang);
             ...project
           },
         }) => (
-          <ArticleCard
+          <ArticleCardNew
             projectType={project.project_types.data[0].attributes.slug}
             altText={project.title}
+            description={project.description}
             ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
-            class="shadow-md"
-            height={image.attributes.formats.small.height}
-            href={`/projects/${project.slug}`}
-            img={image.attributes.formats.small.url}
+            class="shadow-xl"
+            height={image.attributes.formats.medium.height}
+            href={translatePath(`/projects/${project.slug}`)}
+            img={image.attributes.formats.medium.url}
             linkText={t('common.view-project')}
             title={project.title}
-            width={image.attributes.formats.small.width}
+            width={image.attributes.formats.medium.width}
           />
         )
       )

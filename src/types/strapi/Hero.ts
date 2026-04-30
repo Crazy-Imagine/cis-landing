@@ -5,10 +5,12 @@ export interface CustomHero {
   title: string;
   subtitle?: string;
   image?: HeroImage;
+  backgroundImage?: HeroImage;
 }
 export interface Hero {
   id: number;
   title: string;
   subtitle?: string;
   image: HeroImage;
+  backgroundImage: HeroImage;
 }

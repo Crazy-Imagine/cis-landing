@@ -9,9 +9,10 @@ import type { Background } from '@/types/Background';
 interface Props {
   class?: string;
   background?: Background;
+  isNew?: boolean;
 }
 
-const { class: className, background = 'bulbs' } = Astro.props;
+const { class: className, background = 'bulbs', isNew } = Astro.props;
 
 const data = await fetchApi<GoogleReviews>({
   endpoint: 'google-review',
@@ -22,12 +23,24 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<CarouselSection background={background} title={t('common.people-who-work-with-us-say')}>
+<CarouselSection
+  isNew={isNew}
+  pagination={!isNew}
+  background={background}
+  title={isNew ? t('common.reviews-title') : t('common.people-who-work-with-us-say')}
+  slidesPerView={{
+    0: 1,
+    600: 2,
+    960: 2,
+    1280: 3,
+    1920: 3,
+  }}
+>
   <Fragment slot="items">
     {
       data.reviews.map((review, index) => {
         if (review.comment) {
-          return <ReviewCard review={review} class={className} />;
+          return <ReviewCard isNew={isNew} review={review} class={className} />;
         }
 
         return null;

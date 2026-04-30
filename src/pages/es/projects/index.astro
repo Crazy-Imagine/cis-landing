@@ -1,11 +1,10 @@
 ---
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import ProjectTypesList from '@/sections/Projects/ProjectTypesList.astro';
 import ProjectsList from '@/sections/Projects/ProjectsList.astro';
-import ReachOut from '@/sections/ReachOut.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectsPage } from '@/types/strapi/pages/Project';
+import Reviews from '@/sections/Reviews.astro';
 
 const projectsPage = await fetchApi<ProjectsPage>({
   endpoint: 'projectspage',
@@ -26,12 +25,10 @@ const projectsPage = await fetchApi<ProjectsPage>({
 });
 ---
 
-<Layout seo={projectsPage.data.attributes.seo}>
-  <Hero {...projectsPage.data.attributes.hero} />
-
-  <ProjectTypesList />
+<Layout isNew seo={projectsPage.data.attributes.seo}>
+  <Hero isNew {...projectsPage.data.attributes.hero} />
 
   <ProjectsList />
 
-  <ReachOut />
+  <Reviews isNew background="blueNew" />
 </Layout>

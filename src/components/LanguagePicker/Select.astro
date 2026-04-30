@@ -1,5 +1,5 @@
 ---
-import { langFlags, languages } from '@/i18n/ui';
+import { languages } from '@/i18n/ui';
 import { getLangFromUrl } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -8,10 +8,12 @@ const { id } = Astro.props;
 ---
 
 <astro-language-picker data-id={id}>
-  <label class={Astro.props.class}>
+  <label
+    class:list={['language-picker-label relative inline-flex items-center', Astro.props.class]}
+  >
     <select
       id={`language-picker-${id}`}
-      class="border-none bg-transparent font-nexaLight uppercase text-white"
+      class="language-picker-select border-none bg-transparent pr-5 font-nexaLight uppercase text-white"
     >
       {
         Object.keys(languages).map((langCode) => (
@@ -21,7 +23,6 @@ const { id } = Astro.props;
             class="flex items-center bg-transparent text-primary"
           >
             {langCode.toUpperCase()}
-            {langFlags[langCode as 'en' | 'es']}
           </option>
         ))
       }
@@ -61,3 +62,32 @@ const { id } = Astro.props;
 
   customElements.define('astro-language-picker', AstroLanguagePicker);
 </script>
+
+<style>
+  /* Flecha personalizada en primary-new (los select nativos no dejan colorear la flecha del SO) */
+  .language-picker-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: none !important;
+  }
+
+  .language-picker-label::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1rem;
+    height: 1rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+    background-color: var(--color-primary-new);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='black' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='black' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ResponsiveContainer from './ResponsiveContainer.astro';
+import Typography from './Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  containerClass?: string;
+  /** Raíz única del embed; obligatorio si hay más de un formulario Clientify en la misma página. */
+  embedRootId?: string;
+  outerAbsoluteBounds?: boolean;
+}
+
+const { containerClass, embedRootId = 'cto-manual-embed', outerAbsoluteBounds } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/public/img/icons/*.webp');
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ResponsiveContainer
+  background="blueNew"
+  containerClass={`h-[600px]  ${outerAbsoluteBounds ? 'lg:h-[350px]' : 'lg:h-[450px]'}`}
+  outerAbsoluteBounds={outerAbsoluteBounds}
+>
+  <div
+    class:list={[
+      'absolute z-20 mx-auto flex max-w-[1000px] flex-col items-center justify-center gap-10 rounded-[50px] bg-primary-blue-with-transparency p-10 backdrop-blur-lg lg:flex-row',
+      containerClass,
+    ]}
+  >
+    <div class="flex w-full flex-col items-center justify-center gap-10 lg:w-1/2">
+      <Typography as="h2" variant="h2" class="text-center text-white">
+        {t('cto-manual.title')}
+      </Typography>
+      <Typography as="p" variant="paragraph" class="text-center text-white">
+        {t('cto-manual.description')}
+      </Typography>
+    </div>
+
+    <div id={embedRootId} class="clientify-embed-root flex w-full lg:w-1/2">
+      <script
+        type="text/javascript"
+        src="https://api.clientify.net/web-marketing/superforms/script/283654.js"></script>
+    </div>
+
+    <Image
+      src={images['/public/img/icons/greenCircle.webp']()}
+      alt="CTO Manual"
+      width={250}
+      height={250}
+      class="absolute right-0 top-0"
+    />
+  </div>
+</ResponsiveContainer>
+
+<script define:vars={{ embedRootId }}>
+  function getCTOManualRoot() {
+    const root = document.getElementById(embedRootId);
+
+    return root instanceof HTMLElement ? root : null;
+  }
+
+  function applyCTOManualFieldStyles(root) {
+    const fieldsStyled = root.dataset.clientifyFieldsStyled === '1';
+    const iconStyled = root.dataset.clientifyIconStyled === '1';
+
+    const inputs = root.querySelectorAll('input.form-control95');
+    const formEmbedShell = root.querySelector('[id^="_form_embedformselector"]');
+    const icon = root.querySelector('.emaildiv');
+
+    if (formEmbedShell instanceof HTMLElement) {
+      formEmbedShell.style.setProperty('max-height', '250px', 'important');
+      formEmbedShell.style.setProperty('overflow-y', 'hidden', 'important');
+    }
+
+    if (!fieldsStyled && inputs.length > 0) {
+      inputs.forEach((input) => {
+        if (input instanceof HTMLInputElement) {
+          input.style.color = '#fff';
+          input.style.borderRadius = '16px';
+          input.style.border = '1px solid rgba(255, 255, 255, 0.20)';
+          input.style.backgroundColor = 'rgba(255, 255, 255, 0.10)';
+          input.style.boxShadow = '0 5.432px 10.864px 2.716px rgba(19, 30, 41, 0.19)';
+        }
+      });
+      root.dataset.clientifyFieldsStyled = '1';
+    }
+
+    if (!iconStyled && icon instanceof HTMLElement) {
+      const innerIcon = icon.querySelector('i');
+
+      if (innerIcon instanceof HTMLElement) {
+        innerIcon.style.display = 'none';
+      }
+
+      root.dataset.clientifyIconStyled = '1';
+    }
+
+    const done =
+      root.dataset.clientifyFieldsStyled === '1' &&
+      (!icon || root.dataset.clientifyIconStyled === '1');
+
+    return {
+      hasFields: inputs.length > 0,
+      done,
+    };
+  }
+
+  function tryStyleFields() {
+    const root = getCTOManualRoot();
+
+    if (!root) {
+      return { hasFields: false, done: false };
+    }
+
+    return applyCTOManualFieldStyles(root);
+  }
+
+  function waitForCTOManualForm() {
+    let attempts = 0;
+    const maxAttempts = 20;
+    const waitTime = 250;
+
+    function run() {
+      const result = tryStyleFields();
+
+      if (result.done || result.hasFields) {
+        return;
+      }
+
+      attempts++;
+
+      if (attempts < maxAttempts) {
+        setTimeout(run, waitTime);
+      }
+    }
+
+    run();
+  }
+
+  function observeCTOManualFormChanges() {
+    let attachAttempts = 0;
+    const maxAttachAttempts = 40;
+
+    function tryAttachObserver() {
+      const root = getCTOManualRoot();
+
+      if (!root) {
+        attachAttempts++;
+
+        if (attachAttempts < maxAttachAttempts) {
+          setTimeout(tryAttachObserver, 250);
+        }
+
+        return;
+      }
+
+      const observer = new MutationObserver(() => {
+        tryStyleFields();
+      });
+
+      observer.observe(root, {
+        childList: true,
+        subtree: true,
+      });
+
+      setTimeout(() => {
+        observer.disconnect();
+      }, 10000);
+    }
+
+    tryAttachObserver();
+  }
+
+  waitForCTOManualForm();
+  observeCTOManualFormChanges();
+</script>

@@ -1,10 +1,11 @@
 ---
-import AboutUs from '@/sections/AboutUs.astro';
 import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import ReachOut from '@/sections/ReachOut.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
+import MissionVision from '@/sections/About/MissionVision.astro';
+import Values from '@/sections/About/Values.astro';
+import TheTeam from '@/sections/TheTeam.astro';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'about-page',
@@ -12,7 +13,16 @@ const pageInfo = await fetchApi<PageInfo>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      values: true,
       hero: {
+        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
+      },
+      missionVission: {
         fields: true,
         populate: {
           image: {
@@ -25,10 +35,23 @@ const pageInfo = await fetchApi<PageInfo>({
 });
 ---
 
-<Layout seo={pageInfo.data.attributes.seo}>
-  <Hero {...pageInfo.data.attributes.hero} />
+<Layout isNew seo={pageInfo.data.attributes.seo}>
+  <Hero
+    isNew
+    isCustom
+    lighten
+    sectionClass=" !h-[350px] md:!h-[450px] lg:!h-[680px] xl:!h-[550px] flex md:block justify-center items-center"
+    hiddenClutch
+    {...pageInfo.data.attributes.hero}
+  />
 
-  <AboutUs />
+  {
+    pageInfo.data.attributes.missionVission && (
+      <MissionVision missionVission={pageInfo.data.attributes.missionVission} />
+    )
+  }
 
-  <ReachOut />
+  <Values values={pageInfo.data.attributes.values} />
+
+  <TheTeam />
 </Layout>

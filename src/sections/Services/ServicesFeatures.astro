@@ -1,0 +1,30 @@
+---
+import FeatsCards from '@/components/FeatsCards.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+import type { Features } from '@/types/strapi/Service';
+
+interface Props extends Features {}
+
+const { title, subtitle, feats } = Astro.props;
+---
+
+<ResponsiveContainer background="white" class="flex flex-col gap-4 md:gap-10">
+  <Typography
+    as="h3"
+    variant="h3"
+    class="w-full bg-gradinet-font bg-clip-text font-colvetica font-bold !leading-[70px] text-transparent first-line:text-primary-blue md:w-[75%] xl:!text-[56px]"
+  >
+    {title}
+  </Typography>
+  <Typography
+    as="p"
+    variant="paragraph"
+    class="mb-20 w-full font-colvetica text-primary-blue md:w-[50%]"
+  >
+    {subtitle}
+  </Typography>
+  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {feats.map((feat) => Array.from({ length: 6 }).map((_, index) => <FeatsCards {...feat} />))}
+  </div>
+</ResponsiveContainer>

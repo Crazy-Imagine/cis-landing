@@ -7,6 +7,11 @@ import TwitterIcon from '@/icons/Twitter.astro';
 import UpworkIcon from '@/icons/Upwork.astro';
 import YoutubeIcon from '@/icons/Youtube.astro';
 
+interface Props {
+  isNew?: boolean;
+  class?: string;
+}
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -19,7 +24,9 @@ const t = useTranslations(lang);
       rel="noopener"
       aria-label={t('aria.facebook-link')}
     >
-      <FacebookIcon class="text-sky-blue transition-transform hover:scale-125" />
+      <FacebookIcon
+        class={`${Astro.props.isNew ? 'text-primary-new' : 'text-sky-blue'} transition-transform hover:scale-125`}
+      />
     </a>
   </li>
 
@@ -30,7 +37,9 @@ const t = useTranslations(lang);
       rel="noopener"
       aria-label={t('aria.twitter-link')}
     >
-      <TwitterIcon class="text-sky-blue transition-transform hover:scale-125" />
+      <TwitterIcon
+        class={`${Astro.props.isNew ? 'text-primary-new' : 'text-sky-blue'} transition-transform hover:scale-125`}
+      />
     </a>
   </li>
 
@@ -41,7 +50,9 @@ const t = useTranslations(lang);
       rel="noopener"
       aria-label={t('aria.linkedin-link')}
     >
-      <LinkedInIcon class="text-sky-blue transition-transform hover:scale-125" />
+      <LinkedInIcon
+        class={`${Astro.props.isNew ? 'text-primary-new' : 'text-sky-blue'} transition-transform hover:scale-125`}
+      />
     </a>
   </li>
 
@@ -52,7 +63,9 @@ const t = useTranslations(lang);
       rel="noopener"
       aria-label={t('aria.instagram-link')}
     >
-      <InstagramIcon class="text-sky-blue transition-transform hover:scale-125" />
+      <InstagramIcon
+        class={`${Astro.props.isNew ? 'text-primary-new' : 'text-sky-blue'} transition-transform hover:scale-125`}
+      />
     </a>
   </li>
 
@@ -63,7 +76,9 @@ const t = useTranslations(lang);
       rel="noopener"
       aria-label={t('aria.youtube-link')}
     >
-      <YoutubeIcon class="text-sky-blue transition-transform hover:scale-125" />
+      <YoutubeIcon
+        class={`${Astro.props.isNew ? 'text-primary-new' : 'text-sky-blue'} transition-transform hover:scale-125`}
+      />
     </a>
   </li>
 
@@ -74,7 +89,9 @@ const t = useTranslations(lang);
       rel="noopener"
       aria-label={t('aria.upwork-link')}
     >
-      <UpworkIcon class="text-sky-blue transition-transform hover:scale-125" />
+      <UpworkIcon
+        class={`${Astro.props.isNew ? 'text-primary-new' : 'text-sky-blue'} transition-transform hover:scale-125`}
+      />
     </a>
   </li>
 </ul>
