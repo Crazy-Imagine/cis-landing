@@ -22,6 +22,9 @@ export async function getStaticPaths() {
             image: {
               fields: ['url', 'width', 'height', 'alternativeText'],
             },
+            backgroundImage: {
+              fields: ['url', 'width', 'height', 'alternativeText'],
+            },
           },
         },
         mainContent: {
@@ -97,7 +100,7 @@ const { attributes, hrefLangSlug } = Astro.props;
     isNew
     isCustom
     hiddenClutch
-    sectionClass="sm:!h-[680px] xl:!h-[650px]"
+    sectionClass="sm:!h-[680px] xl:!h-[650px] lg:!pt-[150px]"
     {...attributes.hero}
   />
 
