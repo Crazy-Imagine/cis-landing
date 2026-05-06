@@ -130,7 +130,7 @@ const titleTypographyClass = isNew
         <div
           class:list={[
             {
-              'absolute inset-0 right-0 h-full w-full overflow-hidden opacity-25 lg:!right-0':
+              'absolute inset-0 right-0 h-full w-full overflow-hidden opacity-25 lg:right-0':
                 backgroundImage?.data,
               'absolute right-0 w-[30%] place-self-end  ': !backgroundImage?.data,
               'absolute bottom-0 lg:right-[2%] 2xl:right-[10%] ': isCustom,
@@ -147,7 +147,7 @@ const titleTypographyClass = isNew
                   !backgroundImage?.data,
               },
               {
-                'opacity-25': backgroundImage?.data,
+                'opacity-25': backgroundImage?.data && !isCustom,
                 'w-[500px]': isCustom,
                 'mix-blend-lighten': lighten,
               },
