@@ -1,5 +1,4 @@
 ---
-import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import Clutch from '@/icons/Clutch.astro';
 import { getImageUrl } from '@/utils/imageUrl';
@@ -37,7 +36,7 @@ const heroImage = backgroundImage?.data?.attributes
   ? backgroundImage?.data?.attributes
   : image?.data?.attributes;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
+const images = import.meta.glob('/src/assets/landing/*.webp') as any;
 
 const titleTypographyClass = isNew
   ? ' font-bold capitalize bg-gradinet-font bg-clip-text text-transparent first-line:text-white w-full md:w-[90%]'
@@ -131,7 +130,8 @@ const titleTypographyClass = isNew
         <div
           class:list={[
             {
-              'absolute bottom-auto left-0 top-auto  h-full opacity-25': backgroundImage?.data,
+              'absolute inset-0 right-0 h-full w-full overflow-hidden opacity-25 lg:!right-0':
+                backgroundImage?.data,
               'absolute right-0 w-[30%] place-self-end  ': !backgroundImage?.data,
               'absolute bottom-0 lg:right-[2%] 2xl:right-[10%] ': isCustom,
             },
@@ -141,7 +141,11 @@ const titleTypographyClass = isNew
         >
           <Image
             class:list={[
-              'h-auto min-h-[350px] w-full min-w-[350px] lg:min-h-min lg:min-w-[500px] xl:max-h-[550px] ',
+              {
+                'h-full w-full object-cover': backgroundImage?.data,
+                'h-auto min-h-[350px] w-full min-w-[350px] lg:min-h-min lg:min-w-[500px] xl:max-h-[550px]':
+                  !backgroundImage?.data,
+              },
               {
                 'opacity-25': backgroundImage?.data,
                 'w-[500px]': isCustom,
