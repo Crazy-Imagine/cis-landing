@@ -147,7 +147,7 @@ const titleTypographyClass = isNew
                   !backgroundImage?.data,
               },
               {
-                'opacity-25': backgroundImage?.data,
+                'opacity-25': backgroundImage?.data && !isCustom,
                 'w-[500px]': isCustom,
                 'mix-blend-lighten': lighten,
               },
