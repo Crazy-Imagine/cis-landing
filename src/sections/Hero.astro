@@ -77,6 +77,7 @@ const titleTypographyClass = isNew
         {
           'sm:pl-8 lg:pl-14 xl:pl-[100px]': !isNew,
           'w-[75%]': isCustom && heroImage?.url,
+          '!w-full': backgroundImage?.data?.attributes,
           'w-[85%]': !heroImage?.url,
           'w-[70%]': !isCustom,
         },
