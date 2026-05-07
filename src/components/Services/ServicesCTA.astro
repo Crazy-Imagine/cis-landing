@@ -2,6 +2,10 @@
 import LinkPill from '../LinkPill.astro';
 import ResponsiveContainer from '../ResponsiveContainer.astro';
 import Typography from '../Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer background="blueNew">
@@ -17,7 +21,7 @@ import Typography from '../Typography.astro';
     </Typography>
 
     <LinkPill isNew href={Astro.props.href} variant="contained" class="rounded-md">
-      Iniciar proyecto
+      {t('common.start-project')}
     </LinkPill>
   </div>
 </ResponsiveContainer>
