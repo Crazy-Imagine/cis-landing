@@ -30,7 +30,7 @@ export const SERVICES_NAV_MENU: ServiceNavRow[] = [
   {
     nameKey: 'common.crazy-partner-program',
     descKey: 'common.crazy-partner-program-description',
-    fallbackPath: 'crazy-partner-program',
+    resolveByEnSlug: 'crazy-partner-program',
   },
   {
     nameKey: 'common.outsourcing',
@@ -40,11 +40,11 @@ export const SERVICES_NAV_MENU: ServiceNavRow[] = [
   {
     nameKey: 'common.odoo',
     descKey: 'common.odoo-description',
-    fallbackPath: 'odoo',
+    resolveByEnSlug: 'odoo',
   },
   {
     nameKey: 'common.ai-agents',
     descKey: 'common.ai-agents-description',
-    fallbackPath: 'ai-agents',
+    resolveByEnSlug: 'ai-agents',
   },
 ];
