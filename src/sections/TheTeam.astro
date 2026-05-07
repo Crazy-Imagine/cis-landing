@@ -29,15 +29,21 @@ const t = useTranslations(lang);
     isNew
     as="h2"
     variant="h2"
-    class="mb-4 bg-gradinet-font bg-clip-text text-transparent"
+    class="mb-4 bg-gradinet-font bg-clip-text text-center text-transparent"
   >
     {t('about.meet-the-team-title')}
   </Typography>
-  <Typography isNew as="p" variant="paragraph" class="mb-10 text-primary-blue">
+  <Typography isNew as="p" variant="paragraph" class="mb-10 text-center text-primary-blue">
     {t('about.meet-the-team-description')}
   </Typography>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {members.data.map((member) => <MemberCard client:visible member={member} />)}
+  <div class="flex flex-wrap justify-center gap-4">
+    {
+      members.data.map((member) => (
+        <div class="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.666rem)] xl:w-[calc(25%-0.75rem)]">
+          <MemberCard client:visible member={member} />
+        </div>
+      ))
+    }
   </div>
 </ResponsiveContainer>
