@@ -166,6 +166,7 @@ export const ui = {
     'common.reach-out-subtitle':
       'From the initial idea to launch, or from an outdated system to a modern platform. We handle the technology so you can focus on your business.',
     'common.recent': 'Recent',
+    'common.follow-us': 'Follow Us',
     // CTO Manual Keys
     'cto-manual.title': 'Know our CTO Manual',
     'cto-manual.description':
@@ -584,6 +585,7 @@ export const ui = {
     'common.reach-out-subtitle':
       'De la idea inicial al lanzamiento, o de un sistema obsoleto a una plataforma moderna. Nos encargamos de la tecnología para que tú te enfoques en el negocio.',
     'common.recent': 'Reciente',
+    'common.follow-us': 'Síguenos',
     // CTO Manual Keys
     'cto-manual.title': ' Conoce nuestro Manual del CTO',
     'cto-manual.description':
