@@ -26,6 +26,8 @@ const subMenuItems = SERVICES_NAV_MENU.map((row) => ({
   href: resolveServicePath(slugPairs, lang, row.resolveByEnSlug, row.fallbackPath),
 }));
 
+console.log(subMenuItems, 'subMenuItems');
+
 const pages = [
   {
     icon: Server,

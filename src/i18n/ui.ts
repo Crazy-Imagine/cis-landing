@@ -83,6 +83,8 @@ export const ui = {
     'common.the-reviewer': 'The reviewer',
     'common.all': 'All',
     'common.featured-article': 'Featured Articles',
+    'common.staff-augmentation': 'Staff Augmentation',
+    'common.staff-augmentation-description': 'Expert talent for your teams',
     'common.recently-posted': 'Recently Posted',
     'common.page-not-found': 'Oops, page not found',
     'common-browse-all-articles': 'Browse All Articles',
@@ -134,8 +136,6 @@ export const ui = {
     'common.custom-development': 'Custom Development',
     'common.custom-development-description':
       'Collaboration designed for consultants and agencies that want to monetize their contact network',
-    'common.staff-augmentation': 'Staff Augmentation',
-    'common.staff-augmentation-description': 'Expert talent for your teams',
     'common.mobile-apps-description': 'Native and multiplatform experiences',
     'common.crazy-partner-program': 'Crazy Partner Program',
     'common.crazy-partner-program-description':
@@ -176,15 +176,6 @@ export const ui = {
       'Whether you need to upgrade your current equipment or build a product from scratch, we have the solution.',
     'services.with-deep-expertise':
       'With deep expertise that spans across the web development spectrum, we can optimize your digital presence at any level.',
-    'services.staff-augmentation': 'Staff Augmentation',
-    'services.staff-augmentation-for-whom':
-      'For companies that already have a team but need more speed and expertise.',
-    'services.staff-augmentation-for-whom-1':
-      'Is your project being held back by a lack of talent? Access Elite Talent in Days: We connect you with verified senior developers from our talent pool, eliminating months of recruitment and allowing you to accelerate your roadmap immediately.',
-    'services.staff-augmentation-for-whom-2':
-      'Need highly specific skills that you can’t find? Inject Expertise on Demand: Get the exact skills your project needs (React, Node, Python, etc.) exactly when you need them, without the fixed costs of a permanent hire.',
-    'services.staff-augmentation-for-whom-3':
-      "Does your team need to grow, but in a flexible way? Scale Your Team Without Bureaucracy: Increase or reduce your team's capacity according to the phases of your project. We give you the flexibility of a freelancer with the reliability and backing of an established company.",
     'services.user-experience': 'User Experience',
     'services.quality-support': 'Quality Support',
     'services.capabilities': 'Capabilities',
@@ -602,15 +593,6 @@ export const ui = {
       'Ya sea que necesites potenciar tu equipo actual o construir un producto desde cero, tenemos la solución.',
     'services.with-deep-expertise':
       'Con una profunda experiencia que abarca todo el espectro del desarrollo web, podemos optimizar tu presencia digital a cualquier nivel.',
-    'services.staff-augmentation': 'Aumento de Personal',
-    'services.staff-augmentation-for-whom':
-      'Para empresas que ya tienen un equipo pero necesitan más velocidad y expertise.',
-    'services.staff-augmentation-for-whom-1':
-      '¿Tu proyecto está frenado por la falta de talento? Accede a Talento de Élite en Días: Te conectamos con desarrolladores senior verificados de nuestro pool de talento, eliminando meses de reclutamiento y permitiéndote acelerar tu roadmap inmediatamente.',
-    'services.staff-augmentation-for-whom-2':
-      '¿Necesitas habilidades muy específicas que no encuentras? Inyecta Expertise Bajo Demanda: Obtén las habilidades exactas que tu proyecto necesita (React, Node, Python, etc.) justo cuando las necesitas, sin los costos fijos de una contratación permanente.',
-    'services.staff-augmentation-for-whom-3':
-      '¿Tu equipo necesita crecer, pero de manera flexible? Escala tu Equipo sin Burocratía: Aumenta o reduce la capacidad de tu equipo según las fases de tu proyecto. Te damos la flexibilidad de un freelancer con la fiabilidad y el respaldo de una empresa establecida.',
     'services.user-experience': 'Experiencia de Usuario',
     'services.quality-support': 'Control de Calidad',
     'services.capabilities': 'Capacidades',

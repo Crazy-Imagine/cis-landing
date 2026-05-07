@@ -14,13 +14,9 @@ function MemberCard({ member }: Props) {
         <div className="card-front !relative !inset-auto">
           <div className="rounded-t-xl bg-primary-blue">
             <img
-              className="rounded-3xl p-4"
+              className="w-full rounded-3xl p-4"
               src={avatar.url}
               alt={`${attributes.name} - ${attributes.role}`}
-              width={avatar.width}
-              height={avatar.height}
-              loading="lazy"
-              decoding="async"
             />
           </div>
 
