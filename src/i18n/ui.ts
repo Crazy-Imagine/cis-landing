@@ -148,6 +148,7 @@ export const ui = {
       'Collaboration designed for consultants and agencies that want to monetize their contact network',
     'common.ai-agents': 'AI Agents',
     'common.ai-agents-description': 'IA and automation of conversations',
+    'common.start-project': 'Start Project',
     'common.projects-title': 'Digital Transformations',
     'common.projects-description':
       'We transform technical visions into robust and scalable market realities.',
@@ -561,6 +562,7 @@ export const ui = {
     'common.outsourcing-description':
       'Colaboración diseñada para consultores y agencias que desean monetizar su red de contactos',
     'common.odoo': 'Odoo',
+    'common.start-project': 'Iniciar proyecto',
     'common.odoo-description':
       'Colaboración diseñada para consultores y agencias que desean monetizar su red de contactos',
     'common.ai-agents': 'Agentes IA',
