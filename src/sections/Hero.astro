@@ -15,6 +15,7 @@ interface Props extends CustomHero {
   types?: string[];
   customImageClass?: string;
   customTextClass?: string;
+  customHeight?: string;
 }
 
 const {
@@ -30,6 +31,7 @@ const {
   types,
   customImageClass,
   customTextClass,
+  customHeight,
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const heroImage = backgroundImage?.data?.attributes
@@ -39,14 +41,15 @@ const heroImage = backgroundImage?.data?.attributes
 const images = import.meta.glob('/src/assets/landing/*.webp') as any;
 
 const titleTypographyClass = isNew
-  ? ' font-bold capitalize bg-gradinet-font bg-clip-text text-transparent first-line:text-white w-full md:w-[90%]'
+  ? ' font-bold capitalize  bg-gradinet-font bg-clip-text text-transparent first-line:text-white w-full md:w-[90%]'
   : 'font-bold capitalize';
 ---
 
 <section
   class:list={[
     'second relative -mt-[var(--header-height)] h-fit w-full overflow-hidden bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
-    lang === 'es' ? 'xs:h-[850px] xl:h-[780px]' : 'sm:h-[680px] xl:h-[780px]',
+    !customHeight && title.length < 110 ? 'xl:h-[550px]' : 'xl:h-[780px]',
+    customHeight,
     {
       'bg-hero-background ': isNew,
       'md:bg-hero': !isNew,
