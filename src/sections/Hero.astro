@@ -48,7 +48,11 @@ const titleTypographyClass = isNew
 <section
   class:list={[
     'second relative -mt-[var(--header-height)] h-fit w-full overflow-hidden bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
-    !customHeight && title.length < 110 ? 'xl:h-[550px]' : 'xl:h-[780px]',
+    !customHeight && title.length > 80 && title.length < 110
+      ? 'xl:h-[650px]'
+      : title.length > 110
+        ? 'xl:h-[780px]'
+        : 'xl:h-[550px]',
     customHeight,
     {
       'bg-hero-background ': isNew,
