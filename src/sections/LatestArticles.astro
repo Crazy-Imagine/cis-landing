@@ -1,9 +1,10 @@
 ---
 import CarouselSection from './CarouselSection.astro';
-import ArticleCard from '@/components/ArticleCard.astro';
+import CardCTA from '@/components/CardCTA.astro';
+import Typography from '@/components/Typography.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleCollection } from '@/types/strapi/Article';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 interface Props {
   title: string;
@@ -44,34 +45,44 @@ const articles = await fetchApi<ArticleCollection>({
 });
 
 const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
 const t = useTranslations(lang);
 ---
 
-<CarouselSection background="bulbs" title={Astro.props.title}>
+<CarouselSection
+  background="blueNew"
+  textClass="text-white lg:w-[65%] !text-left"
+  title={Astro.props.title}
+>
   <Fragment slot="items">
     {
-      articles.data.map(
-        ({
-          attributes: {
-            image: { data: image },
-            ...article
-          },
-        }) => (
-          <ArticleCard
-            altText={article.title}
+      articles.data.map(({ attributes: article }) => (
+        <article class="latest-article-card swiper-slide !flex !h-auto flex-col justify-between gap-5 rounded-xl p-5">
+          <Typography class="text-white" as="p" variant="accent">
+            {article.title}
+          </Typography>
+
+          <CardCTA
+            isNew
+            gradient="text-[#B1D600]"
+            align="left"
+            class="!justify-self-start"
+            href={translatePath(`/blog/${article.slug}`, lang)}
+            text={t('common.read-more')}
             ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
-            class="shadow-md"
-            height={image.attributes.formats.small.height}
-            href={`/blog/${article.slug}`}
-            img={image.attributes.formats.small.url}
-            linkText={t('common.read-more')}
-            title={article.title}
-            width={image.attributes.formats.small.width}
           />
-        )
-      )
+        </article>
+      ))
     }
   </Fragment>
 
   <slot name="button" />
 </CarouselSection>
+
+<style>
+  .latest-article-card {
+    background: rgba(226, 229, 232, 0.08);
+    box-shadow: 10px 10px 100px 3px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(18.850000381469727px);
+  }
+</style>

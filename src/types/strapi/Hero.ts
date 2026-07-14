@@ -1,7 +1,7 @@
 import type { HeroImage } from '@/types/strapi/HeroImage.ts';
 
 export interface CustomHero {
-  id: number;
+  id?: number;
   title: string;
   subtitle?: string;
   image?: HeroImage;

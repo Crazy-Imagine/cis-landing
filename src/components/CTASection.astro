@@ -5,29 +5,47 @@ import Typography from './Typography.astro';
 
 interface Props {
   title: string;
-  caption: string;
+  caption?: string;
   subtitle: string;
   href: string;
   buttonText: string;
+  isCard?: boolean;
 }
 
-const { title, caption, subtitle, href, buttonText } = Astro.props;
+const { title, caption, subtitle, href, buttonText, isCard = false } = Astro.props;
 ---
 
-<ResponsiveContainer background="blueNew" containerClass="flex justify-center items-center">
+<ResponsiveContainer
+  background={isCard ? 'gray' : 'blueNew'}
+  containerClass={`flex justify-center items-center ${isCard ? '!pt-10' : ''}`}
+>
   <div
-    class="flex w-full flex-col items-center justify-center gap-10 justify-self-center lg:w-[70%]"
+    class:list={[
+      'flex w-full flex-col items-center justify-center gap-10 justify-self-center lg:w-[70%]',
+      {
+        'w-full rounded-[48px] p-10 lg:w-[90%]': isCard,
+      },
+      isCard && 'bg-primary-blue',
+    ]}
   >
     <Typography
       as="h2"
       variant="h1"
-      class="bg-gradinet-font bg-clip-text text-center text-transparent first-line:text-white lg:text-6xl"
+      class:list={[
+        'text-center text-white lg:!text-5xl',
+        !isCard &&
+          'bg-gradinet-font bg-clip-text text-center text-transparent first-line:text-white lg:!text-6xl',
+      ]}
     >
       {title}
     </Typography>
-    <Typography as="p" variant="paragraph" class="text-center text-primary-new lg:text-6xl">
-      {caption}
-    </Typography>
+    {
+      caption && (
+        <Typography as="p" variant="paragraph" class="text-center text-primary-new lg:text-6xl">
+          {caption}
+        </Typography>
+      )
+    }
     <Typography as="p" variant="paragraph" class="text-center text-sm text-white">
       {subtitle}
     </Typography>
