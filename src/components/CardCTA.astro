@@ -9,7 +9,17 @@ interface Props {
   class?: string;
   isNew?: boolean;
   textColor?: string;
+  gradient?: string;
+  align?: 'left' | 'center' | 'right';
 }
+
+const { gradient = 'bg-gradinet-font', isNew, align = isNew ? 'left' : 'center' } = Astro.props;
+
+const alignClass = {
+  left: 'justify-start',
+  center: 'justify-center',
+  right: 'justify-end',
+}[align];
 ---
 
 <Typography
@@ -28,9 +38,10 @@ interface Props {
     href={Astro.props.href}
     aria-label={Astro.props.ariaLabel}
     class:list={[
-      'group relative flex items-end justify-center',
+      'group relative flex items-end',
+      alignClass,
       {
-        'justify-start  bg-gradinet-font bg-clip-text text-transparent': Astro.props.isNew,
+        [`${gradient} bg-clip-text text-transparent`]: Astro.props.isNew,
         'after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-[] hover:after:origin-bottom-left hover:after:scale-100':
           !Astro.props.isNew,
       },

@@ -1,7 +1,6 @@
 ---
 // import { ViewTransitions } from 'astro:transitions';
 
-import '@fontsource/roboto';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Footer from '@/sections/Footer.astro';
 import Header from '@/components/Header.astro';
@@ -257,13 +256,38 @@ interface Props {
           @apply my-10;
         }
 
-        ul,
         ol {
-          @apply mb-10  pl-5 md:pl-10;
+          @apply mb-10 pl-5 md:pl-10;
           list-style: initial;
 
           & li {
             @apply mb-2.5;
+          }
+        }
+
+        ul {
+          @apply mb-10 pl-5 md:pl-10;
+          list-style: none;
+
+          & li {
+            @apply relative mb-2.5 pl-7;
+
+            &::before {
+              content: '✓';
+              position: absolute;
+              left: 0;
+              top: 0.15em;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 1.2em;
+              height: 1.2em;
+              border-radius: 9999px;
+              background-color: #b1d600;
+              color: #fff;
+              font-size: 0.75em;
+              line-height: 1;
+            }
           }
         }
       }
