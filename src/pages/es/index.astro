@@ -35,7 +35,7 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout isNew seo={pageInfo.data.attributes.seo} canonical="https://crazyimagine.com/es">
-  <Hero {...pageInfo.data.attributes.hero} isNew>
+  <Hero {...pageInfo.data.attributes.hero} isNew customHeight="sm:h-[680px] xl:h-[780px]">
     <LinkPill isNew slot="button" variant="contained" href={translatePath('/contact-us', lang)}>
       {t('common.home-hero-button')}
     </LinkPill>
