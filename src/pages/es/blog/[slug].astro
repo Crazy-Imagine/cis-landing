@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import BlogContent from '@/sections/Blog/Content.astro';
-import BlogTitle from '@/sections/Blog/Title.astro';
 import LatestArticles from '@/sections/LatestArticles.astro';
 import Layout from '@/layouts/Layout.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
@@ -9,6 +8,9 @@ import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
 import { getImageUrl } from '@/utils/imageUrl';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Hero from '@/sections/Hero.astro';
+import Typography from '@/components/Typography.astro';
+import CTASection from '@/components/CTASection.astro';
 
 export async function getStaticPaths() {
   const articleCollection = await fetchApi<ArticleCollection>({
@@ -89,15 +91,28 @@ const t = useTranslations(lang);
   }}
   image={imageToRender.attributes.formats.small.url}
   hrefLangPathname={`/blog/${hrefLangSlug}`}
+  isNew
 >
-  <BlogTitle
+  <Hero
+    {...article}
+    types={[article.category.data.attributes.name]}
+    isNew
+    isCustom
+    hiddenClutch
+    sectionClass="!h-[350px] md:!h-[450px] lg:!h-[680px] xl:!h-[550px]"
+    customTextClass="w-full"
+  />
+  <!-- <BlogTitle
     author={article.author.data.attributes.name}
     category={article.category.data.attributes.name}
     description={article.description}
     title={article.title}
-  />
+  /> -->
 
-  <ResponsiveContainer containerClass="!py-0">
+  <ResponsiveContainer background="gray" containerClass="!pb-0 !pt-10">
+    <Typography class="mb-10 border-l border-l-black pl-5" variant="accent" as="p"
+      >{article.author.data.attributes.name}</Typography
+    >
     <Image
       transition:name={`${article.title}-image`}
       src={getImageUrl(imageToRender.attributes.url)}
@@ -125,5 +140,13 @@ const t = useTranslations(lang);
     )
   }
 
-  <LatestArticles start={2} title={t('common.the-latest-in-tech-talk')} />
+  <CTASection
+    title={t('common.blog-cta-title')}
+    subtitle={t('common.blog-cta-subtitle')}
+    href="/es/contact-us"
+    buttonText={t('common.blog-cta-button')}
+    isCard
+  />
+
+  <LatestArticles start={2} title={t('common.other-articles-you-might-like')} />
 </Layout>

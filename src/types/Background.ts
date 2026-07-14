@@ -1,1 +1,1 @@
-export type Background = 'blue' | 'bulbs' | 'white' | 'blueNew' | 'contactUs' | 'blog';
+export type Background = 'blue' | 'bulbs' | 'white' | 'blueNew' | 'contactUs' | 'blog' | 'gray';

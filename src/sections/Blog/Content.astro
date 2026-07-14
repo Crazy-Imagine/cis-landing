@@ -1,6 +1,5 @@
 ---
 import { marked } from 'marked';
-import RecentlyPosted from '@/components/RecentlyPosted.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import type { Button } from '@/types/strapi/Article';
 import Typography from '@/components/Typography.astro';
@@ -11,7 +10,7 @@ interface Props {
   button?: Button[];
 }
 
-const { content, id, button } = Astro.props;
+const { content, button } = Astro.props;
 
 const parsedContent = marked(content);
 const rawButtonLink = button && button?.length > 0 ? button[0]?.link?.trim() : '';
@@ -19,9 +18,9 @@ const normalizedButtonLink =
   rawButtonLink && /^https?:\/\//i.test(rawButtonLink) ? rawButtonLink : `https://${rawButtonLink}`;
 ---
 
-<ResponsiveContainer class="flex flex-col gap-10 xl:flex-row xl:gap-40">
+<ResponsiveContainer background="gray" class="flex flex-col gap-10 xl:flex-row xl:gap-40">
   <div>
-    <article class="blog-content text-[#4f4f4f]" set:html={parsedContent} />
+    <article class="blog-content text-[#131e29;]" set:html={parsedContent} />
     {
       button && button?.length > 0 && (
         <button class="mx-auto  flex rounded-md bg-primary px-4 py-2 text-white">
@@ -35,5 +34,5 @@ const normalizedButtonLink =
     }
   </div>
 
-  <RecentlyPosted id={id} />
+  <!-- <RecentlyPosted id={id} /> -->
 </ResponsiveContainer>

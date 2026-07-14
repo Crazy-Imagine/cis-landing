@@ -100,7 +100,7 @@ const titleTypographyClass = isNew
 
       {
         types && (
-          <div class="flex flex-wrap gap-5">
+          <div class:list={['flex flex-wrap gap-5', !subtitle && 'mt-10']}>
             {types.map((type) => (
               <Typography
                 class="rounded-lg border border-solid border-primary-with-transparency bg-primary-with-transparency-white px-5 py-2 capitalize !text-white"
