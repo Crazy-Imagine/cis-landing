@@ -42,12 +42,18 @@ export function resolveServicePath(
   slugPairs: Map<string, { en: string; es: string }>,
   lang: 'en' | 'es',
   resolveByEnSlug: string | undefined,
-  fallbackPath?: string
+  fallbackPath?: string,
+  redirect?: string
 ): string {
+  if (redirect) {
+    return redirect;
+  }
+
   if (resolveByEnSlug) {
     const pair = slugPairs.get(resolveByEnSlug);
     const slug = pair ? (lang === 'en' ? pair.en : pair.es) : resolveByEnSlug;
     return `/services/${slug}`;
   }
+
   return fallbackPath ?? '/services';
 }

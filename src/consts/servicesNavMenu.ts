@@ -9,6 +9,7 @@ export interface ServiceNavRow {
   resolveByEnSlug?: string;
   /** Ruta interna (con / inicial) si no hay entrada en Strapi */
   fallbackPath?: string;
+  redirect?: string;
 }
 
 export const SERVICES_NAV_MENU: ServiceNavRow[] = [
@@ -45,6 +46,6 @@ export const SERVICES_NAV_MENU: ServiceNavRow[] = [
   {
     nameKey: 'common.ai-agents',
     descKey: 'common.ai-agents-description',
-    resolveByEnSlug: 'ai-agents',
+    redirect: 'https://crazyagents.io/',
   },
 ];
