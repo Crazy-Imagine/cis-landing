@@ -1,3 +1,6 @@
 {
-    "prettier.configPath": "prettierrc.cjs"
+    "prettier.configPath": "prettierrc.cjs",
+     "terminal.integrated.env.osx": {
+    "CLAUDE_CONFIG_DIR": "/Users/luisparra/.claude-cis"
+  }
 }
