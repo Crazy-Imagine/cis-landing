@@ -8,7 +8,8 @@ import fetchApi from '@/lib/strapi';
 import type { ArticleAttributes, ArticleCollection } from '@/types/strapi/Article';
 import { getImageUrl } from '@/utils/imageUrl';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-import Hero from '@/sections/Hero.astro';
+import HeroNew from '@/sections/HeroNew.astro';
+import { stripHighlight } from '@/utils/highlight';
 import Typography from '@/components/Typography.astro';
 import CTASection from '@/components/CTASection.astro';
 
@@ -86,22 +87,14 @@ const t = useTranslations(lang);
 
 <Layout
   seo={{
-    metaTitle: article.title,
+    metaTitle: stripHighlight(article.title),
     metaDescription: article.description,
   }}
   image={imageToRender.attributes.formats.small.url}
   hrefLangPathname={`/blog/${hrefLangSlug}`}
   isNew
 >
-  <Hero
-    {...article}
-    types={[article.category.data.attributes.name]}
-    isNew
-    isCustom
-    hiddenClutch
-    sectionClass="!h-[350px] md:!h-[450px] lg:!h-[680px] xl:!h-[550px]"
-    customTextClass="w-full"
-  />
+  <HeroNew title={article.title} tags={[article.category.data.attributes.name]} />
   <!-- <BlogTitle
     author={article.author.data.attributes.name}
     category={article.category.data.attributes.name}
@@ -116,10 +109,10 @@ const t = useTranslations(lang);
     <Image
       transition:name={`${article.title}-image`}
       src={getImageUrl(imageToRender.attributes.url)}
-      alt={imageToRender.attributes.alternativeText ?? article.title}
+      alt={imageToRender.attributes.alternativeText ?? stripHighlight(article.title)}
       width={imageToRender.attributes.width}
       height={imageToRender.attributes.height}
-      class="mx-auto"
+      class="mx-auto w-full rounded-sm grayscale"
     />
   </ResponsiveContainer>
 
@@ -131,10 +124,10 @@ const t = useTranslations(lang);
         <Image
           transition:name={`${article.title}-image`}
           src={getImageUrl(lastImageArticle.data.attributes.url)}
-          alt={lastImageArticle.data.attributes.alternativeText ?? article.title}
+          alt={lastImageArticle.data.attributes.alternativeText ?? stripHighlight(article.title)}
           width={lastImageArticle.data.attributes.width}
           height={lastImageArticle.data.attributes.height}
-          class="mx-auto"
+          class="mx-auto grayscale"
         />
       </ResponsiveContainer>
     )

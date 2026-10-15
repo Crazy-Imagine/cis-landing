@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import Clutch from '@/icons/Clutch.astro';
+import LinkPill from '@/components/LinkPill.astro';
+import Typography from '@/components/Typography.astro';
+import type { CustomHero } from '@/types/strapi/Hero';
+import { getImageUrl } from '@/utils/imageUrl';
+
+/**
+ * Hero del rediseño 2026. Todo el contenido viene de Strapi (title, subtitle, image).
+ * - El título acepta `**texto**` para resaltarlo en verde.
+ * - La imagen (`backgroundImage` o, si no hay, `image`) va en desktop pegada a la derecha, con el alto
+ *   completo del hero (pasa por detrás del header transparente) y fundida con el fondo por la izquierda
+ *   y por arriba, para que el menú se lea; en mobile cubre el hero con un velo.
+ * - El alto sale del contenido (título, subtítulo, botón); la imagen se adapta a ese alto.
+ * - `align="center"`: texto centrado y sin imagen (la de Strapi se ignora), como en el blog.
+ * - El slot por defecto va debajo del texto, dentro del hero (ej. el artículo destacado del blog).
+ * - Sin imagen, el texto alineado a la izquierda usa todo el ancho del contenedor.
+ */
+interface Props extends CustomHero {
+  /** Muestra el logo de Clutch con las estrellas sobre el título. */
+  showClutch?: boolean;
+  /** Botón principal. Si no se pasa, el hero no lleva botón. */
+  cta?: {
+    text: string;
+    href: string;
+  };
+  align?: 'left' | 'center';
+  /** Etiquetas debajo del texto, ej. la categoría de un artículo. */
+  tags?: string[];
+  /** `mono`: la imagen se ve en blanco y negro, oscurecida y teñida de azul de marca (fotos a color). */
+  imageTone?: 'original' | 'mono';
+}
+
+const {
+  title,
+  subtitle,
+  image,
+  backgroundImage,
+  showClutch = false,
+  cta,
+  align = 'left',
+  tags,
+  imageTone = 'original',
+} = Astro.props;
+
+const isCentered = align === 'center';
+const heroImage = isCentered
+  ? undefined
+  : backgroundImage?.data?.attributes ?? image?.data?.attributes;
+---
+
+<section
+  class="relative -mt-[var(--header-height)] overflow-hidden bg-primary-blue bg-hero-background bg-left-top bg-no-repeat pt-[var(--header-height)] text-white"
+>
+  {
+    heroImage && (
+      <div class="absolute inset-0 lg:left-auto">
+        <Image
+          class:list={[
+            'h-full w-full object-cover object-right lg:w-auto lg:max-w-none',
+            imageTone === 'mono' && 'brightness-[.5] contrast-[1.1] grayscale',
+          ]}
+          src={getImageUrl(heroImage.url)}
+          width={heroImage.width}
+          height={heroImage.height}
+          alt={heroImage.alternativeText ?? ''}
+          quality={100}
+          loading="eager"
+        />
+        {imageTone === 'mono' && (
+          <div class="absolute inset-0 bg-primary-blue opacity-60 mix-blend-color" />
+        )}
+        <div class="absolute inset-0 bg-primary-blue opacity-85 lg:hidden" />
+        <div class="absolute inset-y-0 left-0 hidden w-2/5 bg-gradient-to-r from-primary-blue to-transparent lg:block" />
+        <div class="absolute inset-x-0 top-0 hidden h-[calc(var(--header-height)*2)] bg-gradient-to-b from-primary-blue to-transparent lg:block" />
+      </div>
+    )
+  }
+
+  <div
+    class:list={[
+      'container relative z-10 mx-auto flex flex-col justify-center px-4 md:px-5 lg:px-10 min-[1546px]:px-0',
+      isCentered ? 'py-12 lg:pb-20 lg:pt-16' : 'py-16 lg:py-28',
+    ]}
+  >
+    <div
+      class:list={[
+        'flex w-full flex-col',
+        isCentered ? 'items-center text-center' : 'items-start',
+        !isCentered && heroImage && 'lg:w-[70%]',
+      ]}
+    >
+      {showClutch && <Clutch fill="#BFED06" />}
+
+      <Typography
+        as="h1"
+        variant="h1"
+        class:list={[
+          'w-full whitespace-pre-line font-bold text-white xl:!text-[72px] xl:!leading-[76px]',
+          isCentered && 'max-w-[700px]',
+        ]}
+      >
+        {title}
+      </Typography>
+
+      {
+        subtitle && (
+          <Typography
+            as="p"
+            variant="paragraph"
+            class:list={[
+              'text-white lg:!text-lg',
+              isCentered ? 'mt-5 max-w-[480px]' : 'mt-8 max-w-[600px]',
+            ]}
+          >
+            {subtitle}
+          </Typography>
+        )
+      }
+
+      {
+        cta && (
+          <LinkPill
+            isNew
+            variant="contained"
+            href={cta.href}
+            class="mt-8 !rounded-md !px-8 !py-4 text-lg !normal-case !tracking-normal"
+          >
+            {cta.text}
+          </LinkPill>
+        )
+      }
+
+      {
+        tags && tags.length > 0 && (
+          <ul class="mt-8 flex flex-wrap gap-3">
+            {tags.map((tag) => (
+              <li class="rounded-md bg-[rgba(226,229,232,0.08)] px-4 py-2 font-roboto text-sm text-white">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    {
+      Astro.slots.has('default') && (
+        <div class="mt-12 lg:mt-16">
+          <slot />
+        </div>
+      )
+    }
+  </div>
+</section>

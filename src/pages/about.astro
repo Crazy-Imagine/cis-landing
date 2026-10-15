@@ -1,11 +1,12 @@
 ---
-import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
+import CTOManual from '@/components/CTOManual.astro';
 import fetchApi from '@/lib/strapi';
-import type { PageInfo } from '@/types/strapi/PageInfo';
 import MissionVision from '@/sections/About/MissionVision.astro';
 import Values from '@/sections/About/Values.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 import TheTeam from '@/sections/TheTeam.astro';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'about-page',
@@ -13,6 +14,7 @@ const pageInfo = await fetchApi<PageInfo>({
     locale: Astro.currentLocale,
     populate: {
       seo: true,
+      values: true,
       hero: {
         fields: true,
         populate: {
@@ -35,14 +37,7 @@ const pageInfo = await fetchApi<PageInfo>({
 ---
 
 <Layout isNew seo={pageInfo.data.attributes.seo}>
-  <Hero
-    isNew
-    isCustom
-    lighten
-    sectionClass="sm:!h-[680px] xl:!h-[550px]"
-    hiddenClutch
-    {...pageInfo.data.attributes.hero}
-  />
+  <HeroNew {...pageInfo.data.attributes.hero} />
 
   {
     pageInfo.data.attributes.missionVission && (
@@ -57,4 +52,6 @@ const pageInfo = await fetchApi<PageInfo>({
   }
 
   <TheTeam />
+
+  <CTOManual />
 </Layout>

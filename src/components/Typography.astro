@@ -1,5 +1,6 @@
 ---
 import type { HTMLTag, Polymorphic } from 'astro/types';
+import { highlightHtml } from '@/utils/highlight';
 
 type Props<Tag extends HTMLTag> = Polymorphic<{
   as: Tag;
@@ -29,11 +30,14 @@ const variantClasses: {
 };
 
 const classes = [variantClasses[variant as keyof typeof variantClasses], className];
+
+// El texto entre `**` se pinta de verde (ver CLAUDE.md, "Texto resaltado con **").
+const content = Astro.slots.has('default')
+  ? highlightHtml(await Astro.slots.render('default'))
+  : '';
 ---
 
-<Tag class:list={classes} {...props}>
-  <slot />
-</Tag>
+<Tag class:list={classes} {...props} set:html={content} />
 
 <style>
   :global(a.custom-w-button) {

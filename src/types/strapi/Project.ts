@@ -1,5 +1,6 @@
 import type { CTA, Feats } from './Service';
 import type { Hero } from './Hero';
+import type { HeroImage } from './HeroImage';
 import type { Pagination } from '@/types/Pagination.ts';
 
 export interface ProjectCollection {
@@ -22,6 +23,8 @@ export interface ProjectAttributes {
   Key: string;
   project_types: ProjectTypes;
   images: ImagesData;
+  /** Logo de la empresa cliente; `data` es null si el proyecto no tiene logo cargado. */
+  logo?: { data: Pick<HeroImage['data'], 'id' | 'attributes'> | null };
   galleryImages: ImagesData;
   challenge: string;
   solution: string;

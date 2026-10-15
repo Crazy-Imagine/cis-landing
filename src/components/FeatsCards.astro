@@ -1,30 +1,52 @@
 ---
-import { Image } from 'astro:assets';
 import Typography from './Typography.astro';
 import { getImageUrl } from '@/utils/imageUrl';
 import type { Feats } from '@/types/strapi/Service';
 
-interface Props extends Feats {}
+interface Props extends Feats {
+  /** Versión compacta (página de proyecto): menos relleno, ícono y textos más chicos. */
+  compact?: boolean;
+}
 
-const { title, content, icon } = Astro.props;
+const { title, content, icon, compact } = Astro.props;
+
+const iconUrl = getImageUrl(icon.data.attributes.url);
 ---
 
 <div
-  class="bg-hover-slide-card relative flex flex-col gap-4 rounded bg-gray-new p-10 text-primary-blue shadow-md hover:text-white"
+  class:list={[
+    'bg-hover-slide-card group relative flex flex-col rounded bg-gray-new text-primary-blue shadow-md hover:text-white',
+    compact ? 'gap-3 p-8' : 'gap-4 p-10',
+  ]}
 >
   <div class="bg-hover-slide-layer bg-primary-blue"></div>
-  <Image
-    class="relative z-10"
-    src={getImageUrl(icon.data.attributes.url)}
-    alt={icon?.data?.attributes?.alternativeText ?? ''}
-    width={icon.data.attributes.width}
-    height={icon.data.attributes.height}
-  />
+  {
+    /* El ícono de Strapi (PNG/SVG sin fondo) se usa como máscara: toma el color de la marca y pasa a blanco en el hover. */
+  }
+  <span
+    aria-hidden="true"
+    class:list={[
+      'relative z-10 block bg-primary-blue transition-colors duration-300 group-hover:bg-white',
+      compact ? 'h-8 w-8' : 'h-12 w-12',
+    ]}
+    style={`mask: url('${iconUrl}') center / contain no-repeat; -webkit-mask: url('${iconUrl}') center / contain no-repeat;`}
+  ></span>
 
-  <Typography as="h4" variant="h4" class="relative z-10 font-colvetica font-bold">
+  <Typography
+    as="h4"
+    variant={compact ? 'h5' : 'h4'}
+    class="relative z-10 font-colvetica font-bold"
+  >
     {title}
   </Typography>
-  <Typography as="p" variant="paragraph" class="relative z-10 font-colvetica text-base lg:text-xl">
+  <Typography
+    as="p"
+    variant="paragraph"
+    class:list={[
+      'relative z-10',
+      compact ? 'font-roboto !text-sm' : 'font-colvetica text-base lg:text-xl',
+    ]}
+  >
     {content}
   </Typography>
 </div>

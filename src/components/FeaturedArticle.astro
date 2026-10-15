@@ -50,7 +50,7 @@ const publishedAtLabel = formatPublishedAt(publishedAt, lang);
 <article
   style="background-color: rgba(226, 229, 232, 0.08);"
   class:list={[
-    'my-2 !flex !h-auto max-w-[650px] flex-col rounded-xl px-14 pb-2 pt-10',
+    '!flex !h-auto w-full max-w-[770px] flex-col rounded-md p-6 text-start lg:px-14 lg:py-10',
     Astro.props.class,
     {
       'swiper-slide': isSwiperCard,
@@ -59,11 +59,11 @@ const publishedAtLabel = formatPublishedAt(publishedAt, lang);
   ]}
   {...projectType ? { 'data-project-type': projectType } : {}}
 >
-  <picture class:list={['rounded-sm p-10 pt-0']}>
+  <picture class="mx-auto block w-full max-w-[560px]">
     <Image
       transition:animate="slide"
       transition:name={`${title}-image`}
-      class="h-auto w-full rounded-sm object-cover"
+      class="aspect-[2/1] h-auto w-full rounded-sm object-cover"
       src={getImageUrl(img)}
       alt={altText}
       width={width}
@@ -71,7 +71,7 @@ const publishedAtLabel = formatPublishedAt(publishedAt, lang);
     />
   </picture>
 
-  <div class="mt-auto flex flex-col gap-5 p-5 pb-0">
+  <div class="mt-6 flex flex-col gap-4">
     <div class="flex items-center gap-4">
       <Typography
         style={'background-color: #C0FF0033;'}
@@ -86,20 +86,23 @@ const publishedAtLabel = formatPublishedAt(publishedAt, lang);
     <Typography
       transition:name={`${title}-title`}
       class:list={[
-        'line-clamp-2',
+        'line-clamp-2 font-bold',
         {
           'text-white': !isNew,
-          'bg-gradinet-font bg-clip-text text-start text-transparent': isNew,
+          'text-start text-primary-blue': isNew,
         },
       ]}
       as="p"
-      variant="h4"
+      variant="h5"
     >
       {title}
     </Typography>
 
     <CardCTA
-      class="mt-2.5 !justify-self-start"
+      isNew
+      align="center"
+      linkColor="text-primary-new"
+      class="mt-2 font-bold"
       href={translatePath(href, lang)}
       text={linkText}
       ariaLabel={ariaLabel}

@@ -1,5 +1,4 @@
 ---
-import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import fetchApi from '@/lib/strapi';
 import type { ArticleCollection } from '@/types/strapi/Article';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
@@ -41,43 +40,41 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<ResponsiveContainer background="blog">
-  <div class="flex flex-col justify-center gap-5 md:flex-row md:gap-10">
-    {
-      articles.data.map(
-        ({
-          attributes: {
-            image: { data: image },
-            ...article
-          },
-        }) => {
-          const height = image.attributes.formats?.medium
-            ? image.attributes.formats.medium.height
-            : image.attributes.height;
-          const width = image.attributes.formats?.medium
-            ? image.attributes.formats.medium.width
-            : image.attributes.width;
-          const url = image.attributes.formats?.medium
-            ? image.attributes.formats.medium.url
-            : image.attributes.url;
+<div class="flex flex-col items-center justify-center gap-5 md:flex-row md:gap-10">
+  {
+    articles.data.map(
+      ({
+        attributes: {
+          image: { data: image },
+          ...article
+        },
+      }) => {
+        const height = image.attributes.formats?.medium
+          ? image.attributes.formats.medium.height
+          : image.attributes.height;
+        const width = image.attributes.formats?.medium
+          ? image.attributes.formats.medium.width
+          : image.attributes.width;
+        const url = image.attributes.formats?.medium
+          ? image.attributes.formats.medium.url
+          : image.attributes.url;
 
-          return (
-            <FeaturedArticle
-              altText={article.title}
-              ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
-              class="shadow-md"
-              height={height}
-              href={`/blog/${article.slug}`}
-              img={url}
-              isSwiperCard={false}
-              linkText={t('common.read-more')}
-              title={article.title}
-              width={width}
-              publishedAt={article.publishedAt}
-            />
-          );
-        }
-      )
-    }
-  </div>
-</ResponsiveContainer>
+        return (
+          <FeaturedArticle
+            altText={article.title}
+            ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
+            class="shadow-md"
+            height={height}
+            href={`/blog/${article.slug}`}
+            img={url}
+            isSwiperCard={false}
+            linkText={t('blog.read-article')}
+            title={article.title}
+            width={width}
+            publishedAt={article.publishedAt}
+          />
+        );
+      }
+    )
+  }
+</div>

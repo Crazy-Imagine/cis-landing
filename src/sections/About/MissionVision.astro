@@ -16,7 +16,7 @@ const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer background="blueNew">
-  <div class:list={['flex flex-col gap-10']}>
+  <div class="flex flex-col gap-16 lg:gap-24">
     {
       Astro.props.missionVission.map((item, index) => (
         <div
@@ -35,14 +35,17 @@ const t = useTranslations(lang);
             height={item.image?.data?.attributes?.height}
             quality={100}
           />
-          <div class="flex flex-col gap-8 rounded-2xl bg-primary-with-transparency-white p-8">
-            <Typography as="h2" variant="h2" class="font-colvetica font-bold text-white">
+          <div class="flex w-full max-w-[650px] flex-col gap-5 rounded-lg border border-[rgba(255,255,255,0.08)] bg-primary-with-transparency-white p-8 shadow-[2px_2px_0_0_rgba(172,79,198,0.45)] lg:p-10">
+            <Typography as="h2" variant="h3" class="font-bold text-white">
               {item.title}
             </Typography>
-            <div class:list={['font-colvetica text-xl text-white']} set:html={marked(item.value)} />
+            <div
+              class="font-roboto text-base text-white lg:text-lg [&_p]:text-white"
+              set:html={marked(item.value)}
+            />
 
             {index % 2 !== 0 && (
-              <div class="flex items-center justify-center gap-24 ">
+              <div class="mt-2 flex items-center justify-center gap-24">
                 <div class="flex flex-col gap-2">
                   <Typography
                     isNew

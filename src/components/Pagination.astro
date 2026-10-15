@@ -218,7 +218,7 @@ const showLoadMore = variant === 'load-more' && pagination.pageCount > 1;
 
       const linkEl = document.createElement('p');
       linkEl.className =
-        'text-primary-blue px-4 py-2 rounded-md bg-gray-new text-primary-blue text-base lg:text-lg text-center';
+        'mx-auto mt-2 w-full max-w-[220px] rounded-md bg-gray-new px-4 py-2 text-center !font-colvetica text-base font-bold text-primary-blue lg:text-lg';
       linkEl.textContent = opts.linkText;
 
       body.append(dateEl, titleEl, descEl, linkEl);

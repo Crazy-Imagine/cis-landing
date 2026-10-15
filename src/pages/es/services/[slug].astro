@@ -1,5 +1,5 @@
 ---
-import Hero from '@/sections/Hero.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { ServiceAttributes, ServiceCollection } from '@/types/strapi/Service';
@@ -95,17 +95,12 @@ const { attributes, hrefLangSlug } = Astro.props;
     attributes.hero.backgroundImage?.data?.attributes?.url}
   hrefLangPathname={hrefLangSlug ? `/services/${hrefLangSlug}` : undefined}
 >
-  <Hero
-    isNew
-    isCustom
-    hiddenClutch
-    sectionClass="sm:!h-[680px] xl:!h-[650px] lg:!pt-[150px]"
-    {...attributes.hero}
-  />
+  <HeroNew {...attributes.hero} imageTone="mono" />
 
-  <ServiceMainContent {...attributes} />
+  {/* Un servicio a medio cargar en Strapi no debe romper el build: cada sección es opcional. */}
+  {attributes.mainContent && <ServiceMainContent {...attributes} />}
 
-  <ServicesFeatures {...attributes.features} />
+  {attributes.features && <ServicesFeatures {...attributes.features} />}
 
-  <ServicesCTA {...attributes.cta} />
+  {attributes.cta && <ServicesCTA {...attributes.cta} />}
 </Layout>

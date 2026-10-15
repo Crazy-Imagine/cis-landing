@@ -5,6 +5,17 @@ import type { ProjectCollection } from '@/types/strapi/Project';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 import Typography from '@/components/Typography.astro';
 import ArticleCardNew from '@/components/ArticleCardNew.astro';
+import ProjectLogoCard from '@/components/ProjectLogoCard.astro';
+
+interface Props {
+  title?: string;
+  /** `logos`: card con captura + logo del cliente (home). `default`: card con tipo, título y descripción. */
+  variant?: 'default' | 'logos';
+  limit?: number;
+}
+
+const { title, variant = 'default', limit } = Astro.props;
+const isLogos = variant === 'logos';
 
 const projects = await fetchApi<ProjectCollection>({
   endpoint: 'projects',
@@ -19,6 +30,11 @@ const projects = await fetchApi<ProjectCollection>({
       images: {
         fields: ['url', 'formats', 'width', 'height'],
       },
+      ...(isLogos && {
+        logo: {
+          fields: ['url', 'alternativeText'],
+        },
+      }),
     },
     filters: {
       title: {
@@ -28,6 +44,7 @@ const projects = await fetchApi<ProjectCollection>({
     sort: {
       createdAt: 'desc',
     },
+    ...(limit && { pagination: { limit } }),
   },
 });
 
@@ -39,15 +56,21 @@ const translatePath = useTranslatedPath(lang);
 <ResponsiveContainer>
   <Typography
     isNew
-    class={`text-primary-blue mb-10 w-[75%] text-start font-bold`}
+    class:list={[
+      'w-[75%] text-start font-bold text-primary-blue',
+      isLogos ? 'mb-12 lg:mb-20' : 'mb-10',
+    ]}
     as="h2"
     variant="h2"
   >
-    {t('common.projects-title')}
+    {title ?? t('common.projects-title')}
   </Typography>
   <div
     id="projects-container"
-    class="grid grid-cols-1 gap-5 px-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 2xl:px-20"
+    class:list={[
+      'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+      isLogos ? 'gap-6 lg:gap-10 xl:-mx-16 2xl:-mx-24' : 'gap-5 px-10 lg:gap-10 2xl:px-20',
+    ]}
   >
     {
       projects.data.map(
@@ -56,23 +79,36 @@ const translatePath = useTranslatedPath(lang);
             images: {
               data: [image],
             },
+            logo,
             ...project
           },
-        }) => (
-          <ArticleCardNew
-            projectType={project.project_types.data[0].attributes.slug}
-            altText={project.title}
-            description={project.description}
-            ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
-            class="shadow-xl"
-            height={image.attributes.formats.medium.height}
-            href={translatePath(`/projects/${project.slug}`)}
-            img={image.attributes.formats.medium.url}
-            linkText={t('common.view-project')}
-            title={project.title}
-            width={image.attributes.formats.medium.width}
-          />
-        )
+        }) =>
+          isLogos ? (
+            <ProjectLogoCard
+              title={project.title}
+              ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
+              href={translatePath(`/projects/${project.slug}`)}
+              img={image.attributes.formats.medium.url}
+              width={image.attributes.formats.medium.width}
+              height={image.attributes.formats.medium.height}
+              logo={logo?.data?.attributes}
+              projectType={project.project_types.data[0]?.attributes.slug}
+            />
+          ) : (
+            <ArticleCardNew
+              projectType={project.project_types.data[0].attributes.slug}
+              altText={project.title}
+              description={project.description}
+              ariaLabel={`${t('aria.link-to-project-page')}: "${project.title}"`}
+              class="shadow-xl"
+              height={image.attributes.formats.medium.height}
+              href={translatePath(`/projects/${project.slug}`)}
+              img={image.attributes.formats.medium.url}
+              linkText={t('common.view-project')}
+              title={project.title}
+              width={image.attributes.formats.medium.width}
+            />
+          )
       )
     }
   </div>

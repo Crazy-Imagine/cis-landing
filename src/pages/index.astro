@@ -1,12 +1,10 @@
 ---
-import Hero from '@/sections/Hero.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 import Layout from '@/layouts/Layout.astro';
-import LinkPill from '@/components/LinkPill.astro';
-import Partners from '@/sections/Partners.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
 import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
-import LatestProjectsNew from '@/sections/LatestProjectsNew.astro';
+import ProjectsList from '@/sections/Projects/ProjectsList.astro';
 import ServicesNew from '@/components/ServicesNew.astro';
 import ReachOut from '@/sections/ReachOut.astro';
 
@@ -35,19 +33,18 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <Layout isNew seo={pageInfo.data.attributes.seo} canonical="https://crazyimagine.com/es">
-  <Hero {...pageInfo.data.attributes.hero} isNew customHeight="sm:h-[680px] xl:h-[780px]">
-    <LinkPill isNew slot="button" variant="contained" href={translatePath('/contact-us', lang)}>
-      {t('common.home-hero-button')}
-    </LinkPill>
-  </Hero>
+  <HeroNew
+    {...pageInfo.data.attributes.hero}
+    showClutch
+    cta={{ text: t('common.home-hero-button'), href: translatePath('/contact-us', lang) }}
+  />
 
-  <Partners isNew title={t('common.partners-title')} />
-
-  <LatestProjectsNew title={t('common.latest-projects-title')} />
+  <ProjectsList variant="logos" limit={9} title={t('common.partners-title')} />
 
   <ServicesNew />
 
   <ReachOut
+    isNew
     background="blueNew"
     embedRootId="contact-page-reach-out"
     title={t('common.reach-out-title')}

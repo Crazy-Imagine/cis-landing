@@ -127,6 +127,14 @@ export const ui = {
     'common.blog-cta-button': 'Book a free consultation',
     'common.search': 'Search',
     'common.all-articles': 'All Articles',
+    'blog.recent-articles-title': 'Recent Articles',
+    'blog.recent-articles-subtitle':
+      'Explore our latest publications on the global tech landscape and elite development strategies.',
+    'blog.keep-reading': 'Keep reading...',
+    'blog.read-article': 'Read article',
+    'blog.load-more': 'Load more articles',
+    'blog.loading': 'Loading…',
+    'blog.no-results': 'No articles match “{search}”. Try another word or browse all articles.',
     'common.news': 'News',
     'common.news-description': 'Get all the news and updates that we have for you!',
     'common.whatsapp': 'WhatsApp',
@@ -159,7 +167,7 @@ export const ui = {
     'common.reviews-title': 'What our partners say',
     'common.challenge': 'The challenge',
     'common.solution': 'The solution',
-    'common.explore-other-projects': 'Explore other projects ->',
+    'common.explore-other-projects': 'Explore other projects',
     'common.other-projects-title': 'Empowering Other Industry Leaders',
     'common.other-projects-description':
       'Discover how we have transformed complex challenges into competitive advantages for high-level companies.',
@@ -548,6 +556,15 @@ export const ui = {
     'common.blog-cta-button': 'Agenda consultoría gratuita',
     'common.search': 'Buscar',
     'common.all-articles': 'Todos los artículos',
+    'blog.recent-articles-title': 'Artículos Recientes',
+    'blog.recent-articles-subtitle':
+      'Explora nuestras últimas publicaciones sobre el panorama tecnológico global y estrategias de desarrollo de élite.',
+    'blog.keep-reading': 'Seguir leyendo...',
+    'blog.read-article': 'Leer artículo',
+    'blog.load-more': 'Cargar más artículos',
+    'blog.loading': 'Cargando…',
+    'blog.no-results':
+      'No encontramos artículos que coincidan con “{search}”. Prueba con otra palabra o mira todos los artículos.',
     'common.news': 'Novedades',
     'common.news-description': '¡Recibe todas las noticias y novedades que tenemos para ti!',
     'common.whatsapp': 'WhatsApp',
@@ -582,7 +599,7 @@ export const ui = {
     'common.reviews-title': 'Lo que dicen nuestros socios',
     'common.challenge': 'El desafío',
     'common.solution': 'La solución',
-    'common.explore-other-projects': 'Explora otros proyectos ->',
+    'common.explore-other-projects': 'Explorar otros proyectos',
     'common.other-projects-title': 'Impulsando a otros líderes del sector',
     'common.other-projects-description':
       'Descubre cómo hemos transformado desafíos complejos en ventajas competitivas para empresas de alto nivel.',

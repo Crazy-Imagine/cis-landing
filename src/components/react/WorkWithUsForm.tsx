@@ -154,7 +154,7 @@ function WorkWithUsForm({ url }: Props) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full place-self-center rounded-lg bg-white px-5 py-10 shadow-lg md:p-10 lg:w-2/3"
+      className="w-full place-self-center rounded-[30px] bg-white px-5 py-10 shadow-lg md:p-10 lg:w-[70%]"
     >
       <div className="mb-5 flex flex-col gap-10 md:flex-row md:gap-5">
         <RHFInput

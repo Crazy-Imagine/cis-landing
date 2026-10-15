@@ -41,22 +41,23 @@ const heroImage = backgroundImage?.data?.attributes
 const images = import.meta.glob('/src/assets/landing/*.webp') as any;
 
 const titleTypographyClass = isNew
-  ? ' font-bold capitalize  bg-gradinet-font bg-clip-text text-transparent first-line:text-white w-full md:w-[90%]'
+  ? 'font-bold text-white w-full md:w-[95%]'
   : 'font-bold capitalize';
 ---
 
 <section
   class:list={[
-    'second relative -mt-[var(--header-height)] h-fit w-full overflow-hidden bg-secondary bg-cover bg-center bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
+    'second relative -mt-[var(--header-height)] h-fit w-full overflow-hidden bg-no-repeat p-4 pt-[var(--header-height)] text-white md:px-5 lg:px-10 lg:pb-[var(--header-height)] min-[1546px]:px-0',
     !customHeight && title.length > 80 && title.length < 110
       ? 'xl:h-[650px]'
       : title.length > 110
         ? 'xl:h-[780px]'
         : 'xl:h-[550px]',
+    isCustom && heroImage?.url && 'xl:h-[780px]',
     customHeight,
     {
-      'bg-hero-background ': isNew,
-      'md:bg-hero': !isNew,
+      'bg-primary-blue bg-hero-background bg-left-top': isNew,
+      'bg-secondary bg-cover bg-center md:bg-hero': !isNew,
     },
     sectionClass,
   ]}
