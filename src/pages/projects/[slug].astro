@@ -100,11 +100,9 @@ const {
 
 const translatePath = useTranslatedPath(lang);
 
-// Nombre del proyecto en blanco y su lema en verde. Si el lema ya trae `**`, se respeta tal cual.
+// Nombre del proyecto en verde y su lema debajo en blanco (si el lema trae `**`, esa parte también va en verde).
 const heroTagline = project.hero?.title ?? '';
-const heroTitle = heroTagline
-  ? `${project.title}\n${heroTagline.includes('**') ? heroTagline : `**${heroTagline}**`}`
-  : project.title;
+const heroTitle = heroTagline ? `**${project.title}**\n${heroTagline}` : `**${project.title}**`;
 ---
 
 <Layout
