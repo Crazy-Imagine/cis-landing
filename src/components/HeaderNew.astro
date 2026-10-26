@@ -13,7 +13,9 @@ const translatePath = useTranslatedPath(lang);
 ---
 
 <div
-  class:list={['sticky left-0 right-0 top-0 z-[9999999] max-h-screen bg-transparent']}
+  class:list={[
+    'sticky left-0 right-0 top-0 z-[9999999] max-h-screen bg-transparent transition-colors duration-300',
+  ]}
   id="sticky-header"
 >
   <header class="container mx-auto px-4 md:px-5 lg:px-10 min-[1546px]:px-0">

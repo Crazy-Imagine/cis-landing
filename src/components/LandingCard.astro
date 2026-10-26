@@ -1,0 +1,81 @@
+---
+import Typography from './Typography.astro';
+
+/**
+ * Tarjeta de las landings del rediseño (pasos, beneficios, preguntas).
+ * - `tone="light"`: tarjeta gris sobre fondo blanco, como `ChallengeSolution`.
+ * - `tone="dark"`: tarjeta translúcida sobre `primary-blue`, como `MissionVision`.
+ * - `icon`: ruta de un ícono de un color (sin fondo); se usa como máscara para pintarlo con la marca.
+ * - `label`: texto corto sobre el título, ej. "Fase 1".
+ * - `iconColor`: clase de fondo que pinta el ícono; por defecto, verde en oscuro y azul de marca en claro.
+ */
+interface Props {
+  title: string;
+  content?: string;
+  icon?: string;
+  label?: string;
+  tone?: 'light' | 'dark';
+  iconColor?: string;
+  class?: string;
+}
+
+const { title, content, icon, label, tone = 'light', iconColor, class: className } = Astro.props;
+const isDark = tone === 'dark';
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-4 rounded-md p-8',
+    isDark
+      ? 'border border-[rgba(255,255,255,0.08)] bg-primary-with-transparency-white shadow-[2px_2px_0_0_rgba(172,79,198,0.45)]'
+      : 'bg-gray-new shadow-md',
+    className,
+  ]}
+>
+  {
+    icon && (
+      <span
+        aria-hidden="true"
+        class:list={[
+          'block h-12 w-12',
+          iconColor ?? (isDark ? 'bg-primary-new' : 'bg-primary-blue'),
+        ]}
+        style={`mask: url('${icon}') center / contain no-repeat; -webkit-mask: url('${icon}') center / contain no-repeat;`}
+      />
+    )
+  }
+
+  {
+    label && (
+      <Typography
+        as="p"
+        variant="paragraph3"
+        class="font-bold uppercase tracking-widest text-[#AC4FC6]"
+      >
+        {label}
+      </Typography>
+    )
+  }
+
+  <Typography
+    as="h3"
+    variant="h5"
+    class:list={['font-bold', isDark ? 'text-white' : 'text-primary-blue']}
+  >
+    {title}
+  </Typography>
+
+  {
+    content && (
+      <Typography
+        as="p"
+        variant="paragraph2"
+        class:list={[isDark ? 'text-white' : 'text-primary-blue']}
+      >
+        {content}
+      </Typography>
+    )
+  }
+
+  <slot />
+</div>

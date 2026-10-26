@@ -1,40 +1,39 @@
 ---
 import Typography from './Typography.astro';
 import ChevronDown from '@/icons/ChevronDown.astro';
-import ChevronUp from '@/icons/ChevronUp.astro';
 
 interface Props {
   title: string;
   description: string;
   isHtml?: boolean;
-  customTypographyClass?: string;
 }
 ---
 
-<div class="accordion-item mb-4 border-b border-gray-300">
-  <button class="accordion-button flex w-full justify-between py-2 text-left focus:outline-none">
-    <Typography as="h3" variant="h5" class="text-secondary">{Astro.props.title}</Typography>
+<div class="accordion-item rounded-md bg-gray-new shadow-md">
+  <button
+    class="accordion-button flex w-full items-center justify-between gap-6 px-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-blue lg:px-8"
+    aria-expanded="false"
+  >
+    <Typography as="h3" variant="paragraph" class="font-bold text-primary-blue">
+      {Astro.props.title}
+    </Typography>
 
-    <ChevronDown class="arrow text-grayish" />
-    <ChevronUp class="arrow hidden text-grayish" />
+    <ChevronDown class="arrow shrink-0 text-primary-blue transition-transform duration-300" />
   </button>
   <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300">
-    {Astro.props.isHtml && <div set:html={Astro.props.description} />}
+    <div
+      class="px-6 pb-6 font-roboto text-base text-primary-blue lg:px-8 [&_*]:text-primary-blue [&_li]:mb-2 [&_ol]:mt-3 [&_ol]:list-inside [&_ol]:list-disc"
+    >
+      {Astro.props.isHtml && <div set:html={Astro.props.description} />}
 
-    {
-      !Astro.props.isHtml && (
-        <Typography
-          as="p"
-          variant="paragraph2"
-          class:list={[
-            'pb-2.5 text-grayish',
-            { [`${Astro.props.customTypographyClass}`]: Astro.props.customTypographyClass },
-          ]}
-        >
-          {Astro.props.description}
-        </Typography>
-      )
-    }
+      {
+        !Astro.props.isHtml && (
+          <Typography as="p" variant="paragraph2" class="text-primary-blue">
+            {Astro.props.description}
+          </Typography>
+        )
+      }
+    </div>
   </div>
 </div>
 
@@ -43,24 +42,17 @@ interface Props {
 
   $accordionItems.forEach((item) => {
     const $button = item.querySelector('.accordion-button');
-    const $content: any = item.querySelector('.accordion-content');
-    const $arrows = item.querySelectorAll('.arrow');
+    const $content = item.querySelector('.accordion-content') as HTMLElement | null;
+    const $arrow = item.querySelector('.arrow');
 
-    if (!$button || !$content || !$arrows) return;
+    if (!$button || !$content || !$arrow) return;
 
     $button.addEventListener('click', () => {
-      const maxHeight = $content.style.maxHeight;
-      $arrows.forEach(($arrow) => {
-        if (!$arrow) return;
-        $arrow.classList.toggle('hidden');
-      });
+      const isOpen = $button.getAttribute('aria-expanded') === 'true';
 
-      if (maxHeight === '0px' || maxHeight === '') {
-        $content.style.maxHeight = `${$content.scrollHeight}px`;
-        return;
-      }
-
-      $content.style.maxHeight = '0px';
+      $button.setAttribute('aria-expanded', String(!isOpen));
+      $arrow.classList.toggle('rotate-180', !isOpen);
+      $content.style.maxHeight = isOpen ? '0px' : `${$content.scrollHeight}px`;
     });
   });
 </script>

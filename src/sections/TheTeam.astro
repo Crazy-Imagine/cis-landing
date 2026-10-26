@@ -10,7 +10,7 @@ const members = await fetchApi<MemberCollection>({
   endpoint: 'members',
   params: {
     locale: Astro.currentLocale,
-    fields: ['name', 'role', 'cardDescription'],
+    // Sin `fields`: así llega `rol` cuando exista en Strapi (pedirlo antes de crearlo da error 400).
     populate: {
       avatar: {
         fields: ['width', 'height', 'url'],
@@ -25,23 +25,18 @@ const t = useTranslations(lang);
 ---
 
 <ResponsiveContainer background="white">
-  <Typography
-    isNew
-    as="h2"
-    variant="h2"
-    class="mb-4 bg-gradinet-font bg-clip-text text-center text-transparent"
-  >
+  <Typography as="h2" variant="h2" class="font-bold text-primary-blue">
     {t('about.meet-the-team-title')}
   </Typography>
-  <Typography isNew as="p" variant="paragraph" class="mb-10 text-center text-primary-blue">
+  <Typography as="p" variant="paragraph2" class="mb-12 mt-3 text-primary-blue">
     {t('about.meet-the-team-description')}
   </Typography>
 
-  <div class="flex flex-wrap justify-center gap-4">
+  <div class="flex flex-wrap justify-center gap-10 lg:gap-16">
     {
       members.data.map((member) => (
-        <div class="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.666rem)] xl:w-[calc(25%-0.75rem)]">
-          <MemberCard client:visible member={member} />
+        <div class="w-full max-w-[290px]">
+          <MemberCard member={member} />
         </div>
       ))
     }

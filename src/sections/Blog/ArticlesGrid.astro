@@ -1,0 +1,133 @@
+---
+import ArticleCardNew from '@/components/ArticleCardNew.astro';
+import Pagination from '@/components/Pagination.astro';
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import SearchInput from '@/components/SearchInput/SearchInput.astro';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import fetchApi from '@/lib/strapi';
+import type { ArticleCollection } from '@/types/strapi/Article';
+import { formatPublishedAt } from '@/utils/formateDate';
+import { stripHighlight } from '@/utils/highlight';
+
+/**
+ * Sección "Artículos Recientes" del blog: buscador, grilla y "Cargar más".
+ * La usan /blog (sin búsqueda, estática) y /blog/all (con `?search=`, renderizada en cada request).
+ */
+interface Props {
+  search?: string;
+}
+
+const { search = '' } = Astro.props;
+const pageSize = 9;
+
+const { data: articles, meta } = await fetchApi<ArticleCollection>({
+  endpoint: 'articles',
+  params: {
+    locale: Astro.currentLocale,
+    publicationState: 'live',
+    populate: {
+      category: {
+        fields: ['name'],
+      },
+      author: {
+        fields: ['name'],
+      },
+      image: {
+        fields: ['url', 'width', 'height', 'formats'],
+      },
+    },
+    filters: {
+      title: {
+        $notNull: true,
+        ...(search && {
+          $containsi: search,
+        }),
+      },
+    },
+    pagination: {
+      page: 1,
+      pageSize,
+    },
+    sort: {
+      createdAt: 'desc',
+    },
+  },
+});
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+const articleBasePath = translatePath('/blog');
+---
+
+<ResponsiveContainer background="gray">
+  <Typography id="articles" as="h2" variant="h3" class="font-bold text-primary-blue">
+    {t('blog.recent-articles-title')}
+  </Typography>
+  <Typography as="p" variant="paragraph2" class="mt-2 max-w-[520px] text-primary-blue">
+    {t('blog.recent-articles-subtitle')}
+  </Typography>
+
+  <SearchInput defaultValue={search} />
+
+  {
+    articles.length > 0 ? (
+      <>
+        <div id="blog-articles-grid" class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {articles.map(
+            ({
+              attributes: {
+                image: { data: image },
+                ...article
+              },
+            }) => (
+              <ArticleCardNew
+                description={article.description}
+                projectType={formatPublishedAt(article.publishedAt, lang)}
+                altText={stripHighlight(article.title)}
+                ariaLabel={`${t('aria.link-to-blog-post')}: "${stripHighlight(article.title)}"`}
+                class="shadow-md"
+                height={image.attributes.formats.small.height}
+                href={`${articleBasePath}/${article.slug}`}
+                img={image.attributes.formats.small.url}
+                linkText={t('blog.keep-reading')}
+                linkClass="mx-auto mt-2 w-full max-w-[220px] rounded-md bg-gray-new px-4 py-2 text-center !font-colvetica text-base font-bold text-primary-blue lg:text-lg"
+                title={article.title}
+                width={image.attributes.formats.small.width}
+              />
+            )
+          )}
+        </div>
+
+        <Pagination
+          variant="load-more"
+          pagination={meta.pagination}
+          loadMore={{
+            gridId: 'blog-articles-grid',
+            locale: Astro.currentLocale ?? 'en',
+            uiLang: lang,
+            search,
+            articleBasePath,
+            loadMoreLabel: t('blog.load-more'),
+            loadingLabel: t('blog.loading'),
+            linkText: t('blog.keep-reading'),
+            ariaLinkPrefix: t('aria.link-to-blog-post'),
+          }}
+        />
+      </>
+    ) : (
+      <div class="flex flex-col items-start gap-4 rounded-xl bg-white p-8 shadow-md">
+        <Typography as="p" variant="paragraph" class="text-primary-blue">
+          {t('blog.no-results').replace('{search}', search)}
+        </Typography>
+        <a
+          href={articleBasePath}
+          class="rounded-md bg-primary-blue px-6 py-3 font-roboto text-base font-medium text-white transition hover:opacity-90"
+        >
+          {t('common-browse-all-articles')}
+        </a>
+      </div>
+    )
+  }
+</ResponsiveContainer>

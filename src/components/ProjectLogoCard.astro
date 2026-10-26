@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import Typography from './Typography.astro';
+import { getImageUrl } from '@/utils/imageUrl';
+import { stripHighlight } from '@/utils/highlight';
+
+interface Props {
+  title: string;
+  href: string;
+  ariaLabel: string;
+  img: string;
+  width: number;
+  height: number;
+  logo?: {
+    url: string;
+    alternativeText?: string;
+  };
+  projectType?: string;
+}
+
+const { title, href, ariaLabel, img, width, height, logo, projectType } = Astro.props;
+---
+
+<a
+  href={href}
+  aria-label={stripHighlight(ariaLabel)}
+  class="group flex flex-col gap-6 rounded-2xl bg-gray-new p-4 shadow-[0_10px_20px_-8px_rgba(19,30,41,0.35)] transition-shadow hover:shadow-[0_14px_28px_-8px_rgba(19,30,41,0.5)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-blue sm:p-5"
+  {...projectType ? { 'data-project-type': projectType } : {}}
+>
+  <div class="aspect-[16/9] overflow-hidden rounded-md bg-white">
+    <Image
+      class="h-full w-full object-cover object-top"
+      src={getImageUrl(img)}
+      alt=""
+      width={width}
+      height={height}
+      loading="lazy"
+    />
+  </div>
+
+  <div class="flex min-h-12 items-center justify-between gap-4">
+    {
+      logo ? (
+        <img
+          class="h-10 w-auto max-w-[75%] object-contain object-left lg:h-12"
+          src={getImageUrl(logo.url)}
+          alt={logo.alternativeText || stripHighlight(title)}
+          loading="lazy"
+        />
+      ) : (
+        <Typography as="span" variant="h4" class="line-clamp-2 font-bold text-primary-blue">
+          {title}
+        </Typography>
+      )
+    }
+
+    <span
+      aria-hidden="true"
+      class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary-blue text-primary-new transition-transform group-hover:translate-x-1"
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5 12h14M13 6l6 6-6 6"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </div>
+</a>

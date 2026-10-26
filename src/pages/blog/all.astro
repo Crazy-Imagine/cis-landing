@@ -1,21 +1,15 @@
 ---
-import Pagination from '../../components/Pagination.astro';
-import ArticleCard from '@/components/ArticleCard.astro';
-import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import Typography from '@/components/Typography.astro';
+import CTOManual from '@/components/CTOManual.astro';
 import fetchApi from '@/lib/strapi';
-import type { ArticleCollection } from '@/types/strapi/Article';
+import ArticlesGrid from '@/sections/Blog/ArticlesGrid.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 import type { PageInfo } from '@/types/strapi/PageInfo';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-import ReachOut from '@/sections/ReachOut.astro';
-import SearchInput from '@/components/SearchInput/SearchInput.astro';
 
+// Resultados del buscador del blog: se renderiza en cada request para leer `?search=`.
 export const prerender = false;
-const page = Number.parseInt(Astro.url.searchParams.get('page') || '1');
+
 const search = Astro.url.searchParams.get('search') || '';
-const pageSize = 9;
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'blog',
@@ -33,82 +27,12 @@ const pageInfo = await fetchApi<PageInfo>({
     },
   },
 });
-
-const { data: articles, meta } = await fetchApi<ArticleCollection>({
-  endpoint: 'articles',
-  params: {
-    locale: Astro.currentLocale,
-    publicationState: 'live',
-    populate: {
-      category: {
-        fields: ['name'],
-      },
-      author: {
-        fields: ['name'],
-      },
-      image: {
-        fields: ['url', 'width', 'height', 'formats'],
-      },
-    },
-    filters: {
-      title: {
-        $notNull: true,
-        ...(search && {
-          $containsi: search,
-        }),
-      },
-    },
-    pagination: {
-      page,
-      pageSize,
-    },
-    sort: {
-      createdAt: 'desc',
-    },
-  },
-});
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
-<Layout seo={pageInfo.data.attributes.seo}>
-  <Hero {...pageInfo.data.attributes.hero} />
+<Layout isNew seo={pageInfo.data.attributes.seo}>
+  <HeroNew {...pageInfo.data.attributes.hero} align="center" />
 
-  <ResponsiveContainer>
-    <Typography id="articles" as="h2" variant="h4" class="text-primary"
-      >{t('common.all-articles')}</Typography
-    >
+  <ArticlesGrid search={search} />
 
-    <SearchInput defaultValue={search} />
-
-    <div class="grid grid-cols-3 gap-5">
-      {
-        articles.map(
-          ({
-            attributes: {
-              image: { data: image },
-              ...article
-            },
-          }) => (
-            <ArticleCard
-              altText={article.title}
-              ariaLabel={`${t('aria.link-to-blog-post')}: "${article.title}"`}
-              class="shadow-md"
-              height={image.attributes.formats.small.height}
-              href={`/blog/${article.slug}`}
-              img={image.attributes.formats.small.url}
-              linkText={t('common.read-more')}
-              title={article.title}
-              width={image.attributes.formats.small.width}
-            />
-          )
-        )
-      }
-    </div>
-
-    <Pagination pagination={meta.pagination} />
-  </ResponsiveContainer>
-
-  <ReachOut />
+  <CTOManual />
 </Layout>

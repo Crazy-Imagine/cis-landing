@@ -1,10 +1,10 @@
 ---
-import Hero from '@/sections/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import ReachOut from '@/sections/ReachOut.astro';
-import fetchApi from '@/lib/strapi';
-import type { PageInfo } from '@/types/strapi/PageInfo';
 import CTOManual from '@/components/CTOManual.astro';
+import fetchApi from '@/lib/strapi';
+import HeroNew from '@/sections/HeroNew.astro';
+import ReachOut from '@/sections/ReachOut.astro';
+import type { PageInfo } from '@/types/strapi/PageInfo';
 
 const pageInfo = await fetchApi<PageInfo>({
   endpoint: 'contact-page',
@@ -25,19 +25,9 @@ const pageInfo = await fetchApi<PageInfo>({
 ---
 
 <Layout isNew seo={pageInfo.data.attributes.seo}>
-  <Hero
-    isNew
-    isCustom
-    hiddenClutch
-    sectionClass="sm:!h-[680px] xl:!h-[650px]"
-    {...pageInfo.data.attributes.hero}
-  />
+  <HeroNew {...pageInfo.data.attributes.hero} />
 
-  <ReachOut embedRootId="contact-page-reach-out" />
+  <ReachOut background="blueNew" embedRootId="contact-page-reach-out" />
 
-  <CTOManual
-    embedRootId="contact-page-cto-manual"
-    containerClass="lg:-top-[30%] left-0 right-0"
-    outerAbsoluteBounds
-  />
+  <CTOManual embedRootId="contact-page-cto-manual" onDark />
 </Layout>

@@ -1,8 +1,8 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
 import ResponsiveContainer from './ResponsiveContainer.astro';
 import Typography from './Typography.astro';
+import challengeIcon from '@/assets/ui/challenge-icon.png';
+import solutionIcon from '@/assets/ui/solution-icon.png';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
@@ -12,52 +12,47 @@ interface Props {
 
 const { solution, challenge } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/ui/*.webp');
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<ResponsiveContainer background="white">
-  <div class="flex flex-col gap-10 lg:flex-row lg:items-stretch">
-    <div class="flex w-full flex-col gap-5 rounded-xl bg-gray-new px-8 py-5 lg:min-h-0 lg:flex-1">
-      <div class="flex shrink-0 items-center gap-4">
-        <Image
-          src={images['/src/assets/ui/solution.webp']()}
-          alt="The solution"
-          width={40}
-          height={40}
-          class="h-10 w-10 rounded-full object-cover"
-          quality={100}
-        />
-        <Typography
-          as="p"
-          variant="h4"
-          class="font-nexaBold text-center font-bold capitalize text-primary-blue"
-        >
-          {t('common.solution')}
-        </Typography>
-      </div>
-      <div class="min-h-0 text-base text-primary-blue lg:flex-1 lg:text-xl" set:html={solution} />
-    </div>
-    <div class="flex w-full flex-col gap-5 rounded-xl bg-gray-new px-8 py-5 lg:min-h-0 lg:flex-1">
-      <div class="flex shrink-0 items-center gap-4">
-        <Image
-          src={images['/src/assets/ui/challenge.webp']()}
-          alt="The challenge"
-          width={40}
-          height={40}
-          class="h-10 w-10 rounded-full object-cover"
-          quality={100}
-        />
-        <Typography
-          as="p"
-          variant="h4"
-          class="font-nexaBold text-center font-bold capitalize text-primary-blue"
-        >
-          {t('common.challenge')}
-        </Typography>
-      </div>
-      <div class="min-h-0 text-base text-primary-blue lg:flex-1 lg:text-xl" set:html={challenge} />
-    </div>
+<ResponsiveContainer background="white" containerClass="!pb-10">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+    {
+      [
+        {
+          key: 'challenge',
+          label: t('common.challenge'),
+          icon: challengeIcon,
+          iconColor: 'bg-primary-blue',
+          html: challenge,
+        },
+        {
+          key: 'solution',
+          label: t('common.solution'),
+          icon: solutionIcon,
+          iconColor: 'bg-[#AC4FC6]',
+          html: solution,
+        },
+      ].map((block) => (
+        <div class="flex flex-col gap-4 rounded-md bg-gray-new p-8 shadow-md">
+          <div class="flex items-center gap-3">
+            {/* Ícono sin fondo usado como máscara: toma el color de `iconColor`. */}
+            <span
+              aria-hidden="true"
+              class:list={['block h-8 w-8', block.iconColor]}
+              style={`mask: url('${block.icon.src}') center / contain no-repeat; -webkit-mask: url('${block.icon.src}') center / contain no-repeat;`}
+            />
+            <Typography as="h2" variant="h5" class="font-bold text-primary-blue">
+              {block.label}
+            </Typography>
+          </div>
+          <div
+            class="font-roboto text-base text-primary-blue [&_p]:text-primary-blue"
+            set:html={block.html}
+          />
+        </div>
+      ))
+    }
   </div>
 </ResponsiveContainer>

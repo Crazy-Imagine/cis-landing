@@ -2,9 +2,8 @@
 import { marked } from 'marked';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import type { PrivacyPolicy } from '@/types/strapi/pages/PrivacyPolicy';
-import Hero from '@/sections/Hero.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 import Layout from '@/layouts/Layout.astro';
-import ReachOut from '@/sections/ReachOut.astro';
 import fetchApi from '@/lib/strapi';
 
 const pageInfo = await fetchApi<PrivacyPolicy>({
@@ -27,12 +26,10 @@ const pageInfo = await fetchApi<PrivacyPolicy>({
 const parsedContent = marked(pageInfo.data.attributes.privacyPolicy);
 ---
 
-<Layout seo={pageInfo.data.attributes.seo}>
-  <Hero {...pageInfo.data.attributes.hero} />
+<Layout isNew seo={pageInfo.data.attributes.seo}>
+  <HeroNew {...pageInfo.data.attributes.hero} />
 
-  <ResponsiveContainer>
+  <ResponsiveContainer background="blueNew" containerClass="!pt-0">
     <article class="privacy-policy" set:html={parsedContent} />
   </ResponsiveContainer>
-
-  <ReachOut />
 </Layout>

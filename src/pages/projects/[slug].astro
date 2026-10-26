@@ -1,13 +1,12 @@
 ---
-import LatestProjects from '@/sections/LatestProjects.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { ProjectAttributes, ProjectCollection } from '@/types/strapi/Project';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
-import Hero from '@/sections/Hero.astro';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
+import HeroNew from '@/sections/HeroNew.astro';
+import RelatedProjects from '@/sections/Projects/RelatedProjects.astro';
 import ChallengeSolution from '@/components/ChallengeSolution.astro';
 import Features from '@/components/Features.astro';
-import Typography from '@/components/Typography.astro';
 import CTASection from '@/components/CTASection.astro';
 
 export async function getStaticPaths() {
@@ -98,6 +97,14 @@ const {
   },
   ...project
 } = attributes;
+
+const translatePath = useTranslatedPath(lang);
+
+// Nombre del proyecto en blanco y su lema en verde. Si el lema ya trae `**`, se respeta tal cual.
+const heroTagline = project.hero?.title ?? '';
+const heroTitle = heroTagline
+  ? `${project.title}\n${heroTagline.includes('**') ? heroTagline : `**${heroTagline}**`}`
+  : project.title;
 ---
 
 <Layout
@@ -109,43 +116,21 @@ const {
   image={image.attributes.formats.small.url}
   hrefLangPathname={hrefLangSlug ? `/es/projects/${hrefLangSlug}` : undefined}
 >
-  <Hero
-    isNew
-    hiddenClutch
-    isCustom
+  <HeroNew
     {...project.hero}
-    types={project.project_types.data.map((type) => type.attributes.name)}
-    title={`${project.title} \n ${project.hero.title}`}
-    customImageClass="!right-0 lg:w-[620px]"
+    title={heroTitle}
+    tags={project.project_types.data.map((type) => type.attributes.name)}
   />
   <ChallengeSolution solution={project.solution} challenge={project.challenge} />
   <Features feats={project.feats} />
 
-  <LatestProjects
-    isNew
-    title={t('common.other-projects-title')}
-    subtitle={t('common.other-projects-description')}
-    background="white"
-    hideAllProjects
-    projectId={id}
-    categoryId={attributes.project_types.data[0].id}
-  >
-    <a
-      slot="custom-all-button"
-      href="/es/projects"
-      class="absolute right-0 top-[30%] z-10 text-primary-blue"
-    >
-      <Typography isNew as="span" variant="p" class="font-bold text-primary-blue">
-        {t('common.explore-other-projects')}</Typography
-      >
-    </a>
-  </LatestProjects>
+  <RelatedProjects projectId={id} categoryId={attributes.project_types.data[0]?.id} />
 
   <CTASection
     title={project.cta.title}
     caption={project.cta.caption}
     subtitle={project.cta.subtitle}
-    href="/es/projects"
+    href={translatePath('/contact-us')}
     buttonText={t('common.home-hero-button')}
   />
 </Layout>
