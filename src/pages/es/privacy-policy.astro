@@ -13,7 +13,6 @@ const pageInfo = await fetchApi<PrivacyPolicy>({
     populate: {
       seo: true,
       hero: {
-        fields: true,
         populate: {
           image: {
             fields: ['url', 'width', 'height', 'formats', 'alternativeText'],

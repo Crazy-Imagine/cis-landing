@@ -18,7 +18,11 @@ const pageInfo = await fetchApi<PageInfo>({
     populate: {
       seo: true,
       hero: {
-        fields: true,
+        populate: {
+          image: {
+            fields: ['url', 'width', 'height', 'formats', 'alternativeText'],
+          },
+        },
       },
     },
   },

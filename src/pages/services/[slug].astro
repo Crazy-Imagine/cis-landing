@@ -17,7 +17,6 @@ export async function getStaticPaths() {
         seo: true,
         pricing: true,
         hero: {
-          fields: true,
           populate: {
             image: {
               fields: ['url', 'width', 'height', 'alternativeText'],
@@ -28,7 +27,7 @@ export async function getStaticPaths() {
           },
         },
         mainContent: {
-          fields: ['title', 'description', 'image', 'caption'],
+          fields: ['title', 'description', 'caption'],
           populate: {
             image: {
               fields: ['url', 'width', 'height', 'alternativeText'],
@@ -36,7 +35,7 @@ export async function getStaticPaths() {
           },
         },
         features: {
-          fields: ['title', 'subtitle', 'icon'],
+          fields: ['title', 'subtitle'],
           populate: {
             feats: {
               fields: ['title', 'content'],
