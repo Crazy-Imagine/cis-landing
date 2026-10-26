@@ -13,6 +13,8 @@ export interface Member {
 export interface MemberAttributes {
   name: string;
   role: string;
+  /** Sigla del cargo (CEO, COO...). Campo nuevo en Strapi; puede no existir todavía. */
+  rol?: string;
   cardDescription: string;
   avatar: Avatar;
 }

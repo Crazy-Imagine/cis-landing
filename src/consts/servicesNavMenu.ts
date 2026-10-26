@@ -1,8 +1,8 @@
 type UiRoot = typeof import('@/i18n/ui').ui;
 
-export type UiTextKey = keyof UiRoot['en'];
+type UiTextKey = keyof UiRoot['en'];
 
-export interface ServiceNavRow {
+interface ServiceNavRow {
   nameKey: UiTextKey;
   descKey: UiTextKey;
   /** Slug en inglés en Strapi (coincide con rutas estáticas conocidas) para emparejar por `key` y obtener el slug en ES */

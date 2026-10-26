@@ -1,0 +1,45 @@
+---
+import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import Typography from '@/components/Typography.astro';
+
+/**
+ * Formulario de Clientify de las landings, sobre fondo claro (el formulario trae sus propios estilos claros).
+ * El slot va a la izquierda del formulario en desktop (beneficios, imagen del lead magnet, etc.).
+ */
+interface Props {
+  title: string;
+  description?: string;
+  /** Número del script de Clientify, ej. `259389` para `.../superforms/script/259389.js`. */
+  formId: string;
+  /** Ancla para los botones `href="#..."` de la página. */
+  anchorId?: string;
+}
+
+const { title, description, formId, anchorId } = Astro.props;
+const formSrc = `https://api.clientify.net/web-marketing/superforms/script/${formId}.js`;
+---
+
+<ResponsiveContainer background="white">
+  <div
+    id={anchorId}
+    class="flex scroll-mt-[var(--header-height)] flex-col gap-10 lg:flex-row lg:items-center lg:gap-16"
+  >
+    <div class="flex w-full flex-col gap-6 lg:w-1/2">
+      <Typography as="h2" variant="h3" class="font-bold text-primary-blue">
+        {title}
+      </Typography>
+      {
+        description && (
+          <Typography as="p" variant="paragraph" class="text-primary-blue">
+            {description}
+          </Typography>
+        )
+      }
+      <slot />
+    </div>
+
+    <div class="w-full rounded-md bg-gray-new p-6 shadow-md lg:w-1/2 lg:p-8">
+      <script type="text/javascript" is:inline src={formSrc}></script>
+    </div>
+  </div>
+</ResponsiveContainer>

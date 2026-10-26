@@ -1,6 +1,7 @@
 ---
 import FeatsCards from './FeatsCards.astro';
 import ResponsiveContainer from './ResponsiveContainer.astro';
+import { getFeatIconColor } from '@/consts/featIconColors';
 import type { Feats } from '@/types/strapi/Service';
 
 interface Props {
@@ -11,7 +12,11 @@ const { feats } = Astro.props;
 ---
 
 <ResponsiveContainer containerClass="!py-0">
-  <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {feats.map((feat) => <FeatsCards {...feat} />)}
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {
+      feats.map((feat, index) => (
+        <FeatsCards {...feat} compact iconColor={getFeatIconColor(index)} />
+      ))
+    }
   </div>
 </ResponsiveContainer>

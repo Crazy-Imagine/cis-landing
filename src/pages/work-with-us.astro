@@ -1,5 +1,5 @@
 ---
-import Hero from '@/sections/Hero.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 import Layout from '@/layouts/Layout.astro';
 import WorkWithUsSection from '@/sections/WorkWithUs.astro';
 import fetchApi from '@/lib/strapi';
@@ -25,19 +25,9 @@ const pageInfo = await fetchApi<PageInfo>({
 ---
 
 <Layout isNew seo={pageInfo.data.attributes.seo}>
-  <Hero
-    isNew
-    isCustom
-    hiddenClutch
-    sectionClass="sm:!h-[680px] xl:!h-[650px]"
-    {...pageInfo.data.attributes.hero}
-  />
+  <HeroNew {...pageInfo.data.attributes.hero} />
 
   <WorkWithUsSection />
 
-  <CTOManual
-    embedRootId="contact-page-cto-manual"
-    containerClass="lg:-top-[30%] left-0 right-0"
-    outerAbsoluteBounds
-  />
+  <CTOManual embedRootId="work-with-us-cto-manual" onDark />
 </Layout>

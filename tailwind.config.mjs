@@ -22,11 +22,8 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'hero': "url('/img/backgrounds/hero.webp')",
         'hero-background': "url('/img/backgrounds/heroBg.webp')",
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
-        'thanks-page': "url('/img/backgrounds/satelit2.webp')",
-        'gradinet-font': 'var(--color-gradinet-font)',
         'contact-us': "url('/img/backgrounds/contact-us.webp')",
         'blog-hero': "url('/img/backgrounds/blogs.webp')",
       },
@@ -57,7 +54,6 @@ export default {
         'green-contact': 'var(--color-green-contact)',
         'gray-new': 'var(--color-gray-new)',
         'primary-new-with-transparency': 'var(--color-primary-new-with-transparency)',
-        'gradient-font': 'var(--color-gradient-font)',
         'primary-with-transparency-white': 'var(--color-primary-with-transparency-white)',
         'gray-with-transparency': 'var(--color-gray-with-transparency)',
       },

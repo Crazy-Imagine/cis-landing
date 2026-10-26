@@ -9,11 +9,12 @@ interface Props {
   class?: string;
   isNew?: boolean;
   textColor?: string;
-  gradient?: string;
+  /** Color del link cuando `isNew`. */
+  linkColor?: string;
   align?: 'left' | 'center' | 'right';
 }
 
-const { gradient = 'bg-gradinet-font', isNew, align = isNew ? 'left' : 'center' } = Astro.props;
+const { linkColor = 'text-primary-blue', isNew, align = isNew ? 'left' : 'center' } = Astro.props;
 
 const alignClass = {
   left: 'justify-start',
@@ -41,7 +42,7 @@ const alignClass = {
       'group relative flex items-end',
       alignClass,
       {
-        [`${gradient} bg-clip-text text-transparent`]: Astro.props.isNew,
+        [linkColor]: Astro.props.isNew,
         'after:absolute after:-left-0.5 after:bottom-0.5 after:h-0.5 after:w-full after:origin-bottom-right after:scale-0 after:bg-periwinkle after:transition-transform after:duration-200 after:ease-out after:content-[] hover:after:origin-bottom-left hover:after:scale-100':
           !Astro.props.isNew,
       },

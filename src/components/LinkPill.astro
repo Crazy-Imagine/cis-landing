@@ -6,6 +6,8 @@ interface Props {
   class?: string;
   variant: keyof typeof variantClasses;
   isNew?: boolean;
+  target?: '_blank' | '_self';
+  rel?: string;
 }
 
 const { class: className, variant, href, isNew, ...props } = Astro.props;

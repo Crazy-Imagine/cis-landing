@@ -64,7 +64,6 @@ interface Props {
         --color-primary-blue-with-transparency: rgba(19, 30, 41, 0.65);
         --color-blue-purple-contrast: #595dc3;
         --header-height: 90px;
-        --color-gradinet-font: linear-gradient(90deg, #b1d600 0%, #05c3dd 100%);
       }
 
       @font-face {
@@ -196,34 +195,6 @@ interface Props {
         }
       }
 
-      /* Our Process */
-      @media screen and (min-width: 1550px) {
-        .our-process-img {
-          width: 700px;
-          height: 450px;
-        }
-      }
-
-      @media screen and (max-width: 1549px) {
-        .our-process-img {
-          width: 700px;
-          height: 450px;
-        }
-      }
-
-      @media screen and (max-width: 1024px) {
-        .our-process-img {
-          width: 450px;
-          height: 450px;
-        }
-      }
-      @media screen and (max-width: 769px) {
-        .our-process-img {
-          width: 100%;
-          height: 225px;
-        }
-      }
-
       article.blog-content {
         *:not(h1, h2, h3, h4, h5, h6, code, pre) {
           @apply font-roboto text-base md:text-xl;
@@ -312,19 +283,57 @@ interface Props {
       }
 
       article.privacy-policy {
-        @apply space-y-5 font-nexaLight text-xl;
+        @apply max-w-[1000px] font-roboto text-base text-white md:text-lg;
 
         h2 {
-          @apply font-colvetica text-3xl text-primary;
+          @apply mb-5 font-colvetica text-2xl text-white md:text-3xl;
         }
 
         h3 {
-          @apply font-colvetica;
+          @apply relative mb-4 mt-12 pl-12 font-colvetica text-xl text-white md:text-2xl;
+
+          &::before {
+            content: '';
+            @apply absolute left-0 top-[0.6em] h-0.5 w-6 bg-primary-new;
+          }
+        }
+
+        p {
+          @apply mb-4 text-white;
+        }
+
+        a {
+          @apply text-primary-new underline;
+        }
+
+        u {
+          @apply no-underline;
         }
 
         ul {
-          list-style-type: initial;
-          padding-left: 16px;
+          @apply mb-4 space-y-3;
+          list-style: none;
+
+          & li {
+            @apply relative pl-8 text-white;
+
+            &::before {
+              content: '✓';
+              position: absolute;
+              left: 0;
+              top: 0.2em;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 1.2em;
+              height: 1.2em;
+              border-radius: 9999px;
+              background-color: #b1d600;
+              color: #131e29;
+              font-size: 0.8em;
+              line-height: 1;
+            }
+          }
         }
       }
     </style>

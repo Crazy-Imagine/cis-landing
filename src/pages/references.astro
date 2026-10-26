@@ -1,6 +1,7 @@
 ---
 import ClientReferences from '@/sections/ClientReferences.astro';
-import Hero from '@/sections/Hero.astro';
+import HeroNew from '@/sections/HeroNew.astro';
+import CTOManual from '@/components/CTOManual.astro';
 import Layout from '@/layouts/Layout.astro';
 import fetchApi from '@/lib/strapi';
 import type { PageInfo } from '@/types/strapi/PageInfo';
@@ -23,8 +24,10 @@ const pageInfo = await fetchApi<PageInfo>({
 });
 ---
 
-<Layout seo={pageInfo.data.attributes.seo}>
-  <Hero {...pageInfo.data.attributes.hero} />
+<Layout isNew seo={pageInfo.data.attributes.seo}>
+  <HeroNew {...pageInfo.data.attributes.hero} />
 
   <ClientReferences />
+
+  <CTOManual />
 </Layout>

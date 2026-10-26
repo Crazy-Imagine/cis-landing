@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 interface Props {
   defaultValue: string;
@@ -8,13 +8,17 @@ interface Props {
 const { defaultValue } = Astro.props as Props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <div class="my-5 w-full">
   <input
     placeholder=`${t('common.search')}`
     id="search-input"
-    class="focus:outline-solid w-full border border-[#E6E6E6] px-[26px] py-[15px] focus-visible:outline-[#d1d5db]"
+    type="search"
+    aria-label={t('common.search')}
+    data-results-path={translatePath('/blog/all')}
+    class="focus:outline-solid w-full rounded-lg border border-[#E6E6E6] px-[26px] py-[15px] focus-visible:outline-[#d1d5db]"
     value={defaultValue}
   />
 </div>
@@ -30,11 +34,11 @@ const t = useTranslations(lang);
       if (inputValue) {
         clearTimeout(inputValue);
       }
-      if (value.length === 0) {
-        location.href = `/blog/all/#articles`;
-      }
+      const resultsPath = inputSearch.dataset.resultsPath || '/blog/all';
       inputValue = setTimeout(() => {
-        location.href = `/blog/all/?search=${value}&#articles`;
+        location.href = value.trim()
+          ? `${resultsPath}?search=${encodeURIComponent(value.trim())}#articles`
+          : `${resultsPath}#articles`;
       }, 1000);
     });
   });

@@ -9,26 +9,50 @@ interface Props {
   background?: Background;
   title?: string;
   subtitle?: string;
+  /** Estilo del rediseño 2026: título más compacto, subtítulo pequeño y formulario más angosto. */
+  isNew?: boolean;
 }
 
-const { embedRootId = 'reach-out-embed', background = 'contactUs', title, subtitle } = Astro.props;
+const {
+  embedRootId = 'reach-out-embed',
+  background = 'contactUs',
+  title,
+  subtitle,
+  isNew,
+} = Astro.props;
 ---
 
 <ResponsiveContainer
-  containerClass="bg-primary-blue"
-  class="flex min-h-[500px] flex-col items-center justify-center md:gap-5 lg:gap-20"
+  containerClass={`bg-primary-blue ${title || subtitle ? '' : 'md:!pt-0'}`}
+  class:list={[
+    'flex flex-col items-center justify-center md:gap-5 lg:gap-20',
+    (title || subtitle) && 'min-h-[500px]',
+  ]}
   background={background}
 >
   {
     (title || subtitle) && (
-      <div class="flex flex-col items-center justify-center gap-10">
+      <div
+        class:list={[
+          'flex flex-col items-center justify-center',
+          isNew ? 'gap-5 pb-8 lg:pb-0' : 'gap-10',
+        ]}
+      >
         {title && (
-          <Typography as="h2" variant="h2" class="text-center text-white">
+          <Typography
+            as="h2"
+            variant="h2"
+            class:list={['text-center text-white', isNew && 'max-w-[720px] lg:!text-5xl']}
+          >
             {title}
           </Typography>
         )}
         {subtitle && (
-          <Typography as="p" variant="2" class="w-4/5 text-center text-primary-new">
+          <Typography
+            as="p"
+            variant={isNew ? 'paragraph3' : '2'}
+            class:list={['text-center text-primary-new', isNew ? 'max-w-[680px]' : 'w-4/5']}
+          >
             {subtitle}
           </Typography>
         )}
@@ -36,7 +60,13 @@ const { embedRootId = 'reach-out-embed', background = 'contactUs', title, subtit
     )
   }
 
-  <div id={embedRootId} class="clientify-embed-root w-full justify-self-center lg:w-[70%]">
+  <div
+    id={embedRootId}
+    class:list={[
+      'clientify-embed-root w-full justify-self-center',
+      isNew ? 'max-w-[680px]' : 'lg:w-[70%]',
+    ]}
+  >
     <script
       type="text/javascript"
       src="https://api.clientify.net/web-marketing/superforms/script/260234.js"></script>
