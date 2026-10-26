@@ -59,12 +59,8 @@ const actualBackground = backgroundClasses[Astro.props.background ?? 'white'];
 
 <style>
   .bg-404 {
-    background-image: linear-gradient(
-        123deg,
-        rgba(40, 64, 128, 1) 0%,
-        rgba(39, 170, 225, 1) 31%,
-        transparent 75%
-      ),
+    background-image:
+      linear-gradient(123deg, rgba(40, 64, 128, 1) 0%, rgba(39, 170, 225, 1) 31%, transparent 75%),
       url('/img/backgrounds/404.svg');
     background-size: cover;
     background-position: top;
