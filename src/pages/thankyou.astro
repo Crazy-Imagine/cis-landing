@@ -1,189 +1,103 @@
 ---
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
-import Typography from '@/components/Typography.astro';
-import Layout from '@/layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import CheckList from '@/components/CheckList.astro';
+import CTASection from '@/components/CTASection.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
-import CTAButtons from '@/components/LandingPage/CTAButtons.astro';
+import Typography from '@/components/Typography.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+import HeroNew from '@/sections/HeroNew.astro';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/landing/*.webp');
 
-const urlLang = getLangFromUrl(Astro.url);
-const t = useTranslations(urlLang);
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const SCHEDULE_URL = 'https://calendar.app.google/K5bof4rKKAzGdvUs8';
 ---
 
 <Layout
+  isNew
   seo={{
     metaTitle: 'Gracias por contactarnos',
     metaDescription: 'Gracias por contactarnos',
   }}
 >
-  <!-- Hero -->
-  <div
-    class="landing-hero-bg relative -mt-[var(--header-height)] h-full overflow-hidden !bg-hero bg-cover bg-center bg-no-repeat p-5 pt-[130px] text-white md:px-5 lg:px-10 lg:pb-10 min-[1546px]:px-0"
-  >
-    <div
-      class="relative z-10 mx-auto h-full w-full items-center rounded-xl bg-secondary 2xl:container sm:flex sm:gap-10"
-    >
-      <div class="w-full gap-10 p-4 md:p-10 lg:w-[800px] lg:gap-4 lg:p-[58px] xl:w-[80%]">
-        <Typography
-          class="text-center text-[35px] font-bold capitalize leading-[40px] tracking-[0px] md:block md:text-start md:!leading-[99px] lg:text-left lg:!text-[80px]"
-          as="h1"
-          variant="h1"
-        >
-          {t('thankyou.hero-title')}
-        </Typography>
-
-        <div class="mt-10 flex flex-col gap-10 xl:w-[60%]">
-          <Typography
-            class="font-nexaBold text-center text-[25px] md:text-start md:!text-[40px]"
-            as="p"
-            variant="h4"
-          >
-            {t('thankyou.hero-subtitle')}
-          </Typography>
-
-          <Typography
-            class="text-center font-nexaLight uppercase leading-10 md:text-start md:text-[26px]"
-            as="p"
-            variant="h5"
-          >
-            {t('thankyou.hero-caption')}
-          </Typography>
-        </div>
-      </div>
-
-      <div class="absolute bottom-0 right-0 ml-auto flex flex-shrink-0 justify-end place-self-end">
-        <Image
-          class="hidden w-full lg:block"
-          src={images['/src/assets/landing/letter.webp']()}
-          alt={'hero image'}
-        />
-      </div>
-    </div>
-  </div>
-
-  <!-- Wait section -->
-  <ResponsiveContainer containerClass="!py-0">
-    <div class="flex flex-col-reverse items-center md:flex-row md:gap-10">
-      <div class="w-[300px] md:w-[44%] xl:w-1/4">
-        <Image src={images['/src/assets/landing/consuelo.webp']()} alt={'ronald'} />
-      </div>
-      <div class="flex w-full justify-center pt-24 md:w-[60%] xl:w-3/4">
-        <div class="flex w-full flex-col gap-10 lg:w-[70%]">
-          <Typography as="h2" variant="h2" class="text-primary">
-            {t('thankyou.wait-title')}
-          </Typography>
-          <Typography as="p" variant="h4" class="text-primary">
-            {t('thankyou.wait-subtitle')}
-          </Typography>
-          <Typography as="p" variant="h5" class="font-nexaLight text-primary">
-            {t('thankyou.wait-caption-1')}
-          </Typography>
-          <Typography as="p" variant="h5" class="font-nexaLight text-primary">
-            {t('thankyou.wait-caption-2')}
-          </Typography>
-          <Typography as="p" variant="h5" class="font-nexaBold !font-bold text-primary">
-            {t('thankyou.wait-caption-3')}
-          </Typography>
-        </div>
-      </div>
-    </div>
-  </ResponsiveContainer>
-
-  <!-- Rapid diagnostic -->
-  <ResponsiveContainer
-    background="bulbs"
-    class="relative z-50 flex flex-col justify-center gap-10 lg:!px-28"
-  >
-    <Typography
-      as="h2"
-      variant="h2"
-      class="w-full self-center text-center text-secondary xl:w-[70%]"
-      >{t('thankyou.diagnostic-title')}</Typography
-    >
-    <Typography
-      as="span"
-      variant="h4"
-      class="w-full self-center text-center font-nexaLight text-white lg:!w-1/2"
-      >{t('thankyou.diagnostic-subtitle')}</Typography
-    >
-    <div class="flex justify-between gap-10">
-      <div class="flex w-full flex-col gap-5 lg:w-[70%] lg:gap-10">
-        <Typography
-          as="p"
-          variant="h5"
-          class="font-nexaBold text-white md:!text-[26px] lg:!text-[36px]"
-          >{t('thankyou.diagnostic-paragraph-1')}</Typography
-        >
-        <Typography as="p" variant="h5" class="font-nexaLight text-white"
-          >{t('thankyou.diagnostic-paragraph-2')}</Typography
-        >
-        <ul class="ml-10 w-[80%] list-decimal text-white lg:ml-20">
-          <li>
-            <Typography as="p" variant="h5" class="font-nexaLight text-white"
-              >{t('thankyou.diagnostic-list-1')}</Typography
-            >
-          </li>
-          <li>
-            <Typography as="p" variant="h5" class="mt-5 font-nexaLight text-white"
-              >{t('thankyou.diagnostic-list-2')}</Typography
-            >
-          </li>
-          <li>
-            <Typography as="p" variant="h5" class="mt-5 font-nexaLight text-white"
-              >{t('thankyou.diagnostic-list-3')}</Typography
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="flex w-[30%] items-center justify-center">
-        <Image src={images['/src/assets/landing/contactUs.webp']()} alt={'contactUs'} />
-      </div>
-    </div>
-
-    <Typography
-      as="span"
-      variant="h3"
-      class="font-nexaBold mt-5 w-full self-center text-center text-secondary lg:w-[75%] lg:!text-[48px]"
-    >
-      You will walk <Typography
-        as="span"
-        variant="h3"
-        class="font-nexaBold text-white lg:!text-[48px]">away from this call</Typography
-      >with absolute clarity. <Typography
-        as="span"
-        variant="h3"
-        class="font-nexaBold text-white lg:!text-[48px]">Zero obligation.</Typography
-      >
+  <HeroNew title={t('thankyou.hero-title')} subtitle={t('thankyou.hero-subtitle')}>
+    <Typography as="p" variant="paragraph2" class="max-w-[600px] text-white">
+      {t('thankyou.hero-caption')}
     </Typography>
-  </ResponsiveContainer>
+  </HeroNew>
 
-  <!-- Schedule section -->
-  <ResponsiveContainer>
-    <div class="flex gap-10">
-      <div class="flex w-full flex-col items-center gap-10 md:w-[55%] lg:w-[60%] lg:px-20">
-        <Typography as="h2" variant="h2" class="text-primary"
-          >{t('thankyou.schedule-title')}</Typography
-        >
-        <CTAButtons
-          text={t('thankyou.schedule-button')}
-          href={'https://calendar.app.google/K5bof4rKKAzGdvUs8'}
-          variant="outline"
-          textClass="!text-secondary lg:!text-[48px]"
-          class="w-fit"
-        />
-
-        <Typography as="p" variant="h5" class="font-nexaLight text-primary"
-          >{t('thankyou.schedule-caption')}</Typography
-        >
-      </div>
+  <ResponsiveContainer background="white" containerClass="!pb-0">
+    <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-end">
       <Image
-        class="absolute bottom-0 right-0 hidden w-[400px] md:block lg:w-[500px]"
-        src={images['/src/assets/landing/consuelo2.webp']()}
-        alt={'consuelo2'}
+        class="hidden w-full max-w-[320px] lg:block"
+        src={images['/src/assets/landing/consuelo.webp']()}
+        alt=""
       />
+      <div class="flex w-full flex-col gap-5 pb-10 lg:max-w-[700px] lg:pb-20">
+        <Typography as="h2" variant="h3" class="font-bold text-primary-blue">
+          {t('thankyou.wait-title')}
+        </Typography>
+        <Typography as="p" variant="paragraph" class="font-bold text-primary-blue">
+          {t('thankyou.wait-subtitle')}
+        </Typography>
+        <Typography as="p" variant="paragraph2" class="text-primary-blue">
+          {t('thankyou.wait-caption-1')}
+        </Typography>
+        <Typography as="p" variant="paragraph2" class="text-primary-blue">
+          {t('thankyou.wait-caption-2')}
+        </Typography>
+        <Typography as="p" variant="paragraph2" class="font-bold text-primary-blue">
+          {t('thankyou.wait-caption-3')}
+        </Typography>
+      </div>
     </div>
   </ResponsiveContainer>
+
+  <ResponsiveContainer background="blueNew">
+    <div class="mx-auto flex max-w-[1000px] flex-col gap-8">
+      <div class="flex flex-col gap-4 text-center">
+        <Typography as="h2" variant="h3" class="font-bold text-white">
+          {t('thankyou.diagnostic-title')}
+        </Typography>
+        <Typography as="p" variant="paragraph" class="text-white">
+          {t('thankyou.diagnostic-subtitle')}
+        </Typography>
+      </div>
+
+      <div
+        class="flex flex-col gap-5 rounded-lg border border-[rgba(255,255,255,0.08)] bg-primary-with-transparency-white p-8 shadow-[2px_2px_0_0_rgba(172,79,198,0.45)] lg:p-10"
+      >
+        <Typography as="p" variant="h5" class="font-bold text-white">
+          {t('thankyou.diagnostic-paragraph-1')}
+        </Typography>
+        <Typography as="p" variant="paragraph2" class="text-white">
+          {t('thankyou.diagnostic-paragraph-2')}
+        </Typography>
+        <CheckList
+          tone="dark"
+          items={[
+            t('thankyou.diagnostic-list-1'),
+            t('thankyou.diagnostic-list-2'),
+            t('thankyou.diagnostic-list-3'),
+          ]}
+        />
+      </div>
+
+      <Typography as="p" variant="h4" class="text-center font-bold text-white">
+        {t('thankyou.closing')}
+      </Typography>
+    </div>
+  </ResponsiveContainer>
+
+  <CTASection
+    isCard
+    title={t('thankyou.schedule-title')}
+    subtitle={t('thankyou.schedule-caption')}
+    href={SCHEDULE_URL}
+    buttonText={t('thankyou.schedule-button')}
+  />
 </Layout>

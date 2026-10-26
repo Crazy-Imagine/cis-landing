@@ -8,25 +8,21 @@ export function OUR_BENEFITS_CUSTOM_SOFTWARE_DEVELOPMENT(urlLang: 'es' | 'en'): 
     {
       id: 1,
       title: t('custom-development.benefits-1'),
-      image: '/landing/satelit.webp',
       content: t('custom-development.benefits-1-description'),
     },
     {
       id: 2,
       title: t('custom-development.benefits-2'),
-      image: '/landing/meteorit.webp',
       content: t('custom-development.benefits-2-description'),
     },
     {
       id: 3,
       title: t('custom-development.benefits-3'),
-      image: '/landing/repare-satelit.webp',
       content: t('custom-development.benefits-3-description'),
     },
     {
       id: 4,
       title: t('custom-development.benefits-4'),
-      image: '/landing/planeta.webp',
       content: t('custom-development.benefits-4-description'),
     },
   ];

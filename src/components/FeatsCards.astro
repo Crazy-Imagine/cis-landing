@@ -6,9 +6,11 @@ import type { Feats } from '@/types/strapi/Service';
 interface Props extends Feats {
   /** Versión compacta (página de proyecto): menos relleno, ícono y textos más chicos. */
   compact?: boolean;
+  /** Clase de fondo que pinta el ícono (ej. `bg-[#AC4FC6]`). Por defecto, el azul de marca. */
+  iconColor?: string;
 }
 
-const { title, content, icon, compact } = Astro.props;
+const { title, content, icon, compact, iconColor = 'bg-primary-blue' } = Astro.props;
 
 const iconUrl = getImageUrl(icon.data.attributes.url);
 ---
@@ -26,7 +28,8 @@ const iconUrl = getImageUrl(icon.data.attributes.url);
   <span
     aria-hidden="true"
     class:list={[
-      'relative z-10 block bg-primary-blue transition-colors duration-300 group-hover:bg-white',
+      'relative z-10 block transition-colors duration-300 group-hover:bg-white',
+      iconColor,
       compact ? 'h-8 w-8' : 'h-12 w-12',
     ]}
     style={`mask: url('${iconUrl}') center / contain no-repeat; -webkit-mask: url('${iconUrl}') center / contain no-repeat;`}

@@ -1,0 +1,36 @@
+---
+import Typography from './Typography.astro';
+
+/** Cita destacada (testimonio, palabras del CEO). Va sobre fondo `primary-blue`. */
+interface Props {
+  quote: string;
+  author: string;
+  class?: string;
+}
+
+const { quote, author, class: className } = Astro.props;
+---
+
+<figure
+  class:list={[
+    'relative mx-auto flex max-w-[900px] flex-col gap-6 rounded-lg border border-[rgba(255,255,255,0.08)] bg-primary-with-transparency-white p-8 pt-14 shadow-[2px_2px_0_0_rgba(172,79,198,0.45)] lg:p-12 lg:pt-16',
+    className,
+  ]}
+>
+  <span
+    aria-hidden="true"
+    class="absolute left-8 top-4 font-colvetica text-7xl leading-none text-primary-new lg:left-12"
+  >
+    “
+  </span>
+  <blockquote>
+    <Typography as="p" variant="paragraph" class="text-white">
+      {quote}
+    </Typography>
+  </blockquote>
+  <figcaption>
+    <Typography as="p" variant="paragraph2" class="font-bold text-primary-new">
+      {author}
+    </Typography>
+  </figcaption>
+</figure>

@@ -3,6 +3,7 @@ import FeatsCards from '@/components/FeatsCards.astro';
 import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
 import Typography from '@/components/Typography.astro';
 import type { Features } from '@/types/strapi/Service';
+import { getFeatIconColor } from '@/consts/featIconColors';
 
 interface Props extends Features {}
 
@@ -25,6 +26,6 @@ const { title, subtitle, feats } = Astro.props;
     {subtitle}
   </Typography>
   <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {feats.map((feat) => <FeatsCards {...feat} />)}
+    {feats.map((feat, index) => <FeatsCards {...feat} iconColor={getFeatIconColor(index)} />)}
   </div>
 </ResponsiveContainer>

@@ -24,21 +24,23 @@ const t = useTranslations(lang);
           key: 'challenge',
           label: t('common.challenge'),
           icon: challengeIcon,
+          iconColor: 'bg-primary-blue',
           html: challenge,
         },
         {
           key: 'solution',
           label: t('common.solution'),
           icon: solutionIcon,
+          iconColor: 'bg-[#AC4FC6]',
           html: solution,
         },
       ].map((block) => (
         <div class="flex flex-col gap-4 rounded-md bg-gray-new p-8 shadow-md">
           <div class="flex items-center gap-3">
-            {/* Ícono sin fondo usado como máscara: toma el color de la marca. */}
+            {/* Ícono sin fondo usado como máscara: toma el color de `iconColor`. */}
             <span
               aria-hidden="true"
-              class="block h-8 w-8 bg-primary-blue"
+              class:list={['block h-8 w-8', block.iconColor]}
               style={`mask: url('${block.icon.src}') center / contain no-repeat; -webkit-mask: url('${block.icon.src}') center / contain no-repeat;`}
             />
             <Typography as="h2" variant="h5" class="font-bold text-primary-blue">

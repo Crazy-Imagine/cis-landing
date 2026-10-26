@@ -47,7 +47,7 @@ const {
 const isCentered = align === 'center';
 const heroImage = isCentered
   ? undefined
-  : backgroundImage?.data?.attributes ?? image?.data?.attributes;
+  : (backgroundImage?.data?.attributes ?? image?.data?.attributes);
 ---
 
 <section

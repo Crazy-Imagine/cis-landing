@@ -1,22 +1,37 @@
 ---
-import ResponsiveContainer from '@/components/ResponsiveContainer.astro';
+import LinkPill from '@/components/LinkPill.astro';
 import Typography from '@/components/Typography.astro';
 import Layout from '@/layouts/Layout.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslatedPath, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
-<Layout seo={{ metaTitle: '404', metaDescription: '404' }}>
-  <ResponsiveContainer containerClass="-mt-[var(--header-height)] h-screen" class="h-full" is404>
-    <div
-      class="flex h-full flex-col items-center justify-center px-0 text-center sm:px-4 md:px-24 lg:px-36"
-    >
-      <Typography as="h1" variant="h2" class="text-primary">404</Typography>
-      <Typography as="h2" variant="h2" class="text-primary">
+<Layout isNew seo={{ metaTitle: '404', metaDescription: '404' }}>
+  <section
+    class="-mt-[var(--header-height)] flex min-h-screen items-center justify-center bg-primary-blue bg-hero-background bg-left-top bg-no-repeat px-4 pt-[var(--header-height)] text-center"
+  >
+    <div class="flex flex-col items-center gap-6 py-20">
+      <Typography
+        as="h1"
+        variant="h1"
+        class="font-bold text-primary-new xl:!text-[160px] xl:!leading-[160px]"
+      >
+        404
+      </Typography>
+      <Typography as="p" variant="h3" class="font-bold text-white">
         {t('common.page-not-found')}
       </Typography>
+      <LinkPill
+        isNew
+        variant="contained"
+        href={translatePath('/')}
+        class="mt-4 !rounded-md !px-8 !py-4 text-lg !normal-case !tracking-normal"
+      >
+        {t('common.back-to-home')}
+      </LinkPill>
     </div>
-  </ResponsiveContainer>
+  </section>
 </Layout>

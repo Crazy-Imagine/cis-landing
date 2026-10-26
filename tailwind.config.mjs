@@ -22,10 +22,8 @@ export default {
     },
     extend: {
       backgroundImage: {
-        'hero': "url('/img/backgrounds/hero.webp')",
         'hero-background': "url('/img/backgrounds/heroBg.webp')",
         'light-bulbs': "url('/img/backgrounds/light-bulbs.webp')",
-        'thanks-page': "url('/img/backgrounds/satelit2.webp')",
         'contact-us': "url('/img/backgrounds/contact-us.webp')",
         'blog-hero': "url('/img/backgrounds/blogs.webp')",
       },

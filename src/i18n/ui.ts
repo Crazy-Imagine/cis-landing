@@ -52,10 +52,10 @@ export const ui = {
     'common.home': 'Home',
     'common.project-category': 'Project Category',
     'common.comment-list': 'Comment List',
-    'common.the-reviewer': 'The reviewer',
     'common.staff-augmentation': 'Staff Augmentation',
     'common.staff-augmentation-description': 'Expert talent for your teams',
     'common.page-not-found': 'Oops, page not found',
+    'common.back-to-home': 'Back to home',
     'common-browse-all-articles': 'Browse All Articles',
     'common.contact-us': 'Contact Us',
     'common.terms-and-conditions': 'Terms & Conditions',
@@ -260,6 +260,8 @@ export const ui = {
       'Hand you an immediate Battle Plan to accelerate your time-to-market.',
     'thankyou.diagnostic-list-3':
       'Show you the exact framework we used to solve this same issue for fast-growing scale-ups like Clientify and Ordering.',
+    'thankyou.closing':
+      'You will walk away from this call with absolute clarity. **Zero obligation.**',
     'thankyou.schedule-title': 'Yes, I want my free action plan.',
     'thankyou.schedule-button': 'SCHEDULE AN APPOINTMENT',
     'thankyou.schedule-caption':
@@ -350,8 +352,8 @@ export const ui = {
     'common.home': 'Inicio',
     'common.project-category': 'Categoría del Proyecto',
     'common.comment-list': 'Lista de Comentarios',
-    'common.the-reviewer': 'El revisor',
     'common.page-not-found': 'Vaya, página no encontrada',
+    'common.back-to-home': 'Volver al inicio',
     'common-browse-all-articles': 'Ver todos los artículos',
     'common.contact-us': 'Contáctanos',
     'common.terms-and-conditions': 'Términos y Condiciones',
@@ -560,6 +562,7 @@ export const ui = {
       'Darte un plan de acción inmediato para acelerar tu time-to-market.',
     'thankyou.diagnostic-list-3':
       'Mostrarte cómo hemos resuelto ese mismo problema para empresas como Clientify y Ordering.',
+    'thankyou.closing': 'Saldrás de esta llamada con un plan de acción claro. **Cero compromiso.**',
     'thankyou.schedule-title': 'Si, quiero mi plan de acción gratuito.',
     'thankyou.schedule-button': 'AGENDA UNA CITA',
     'thankyou.schedule-caption':
