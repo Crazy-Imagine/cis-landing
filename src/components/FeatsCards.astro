@@ -1,5 +1,6 @@
 ---
 import Typography from './Typography.astro';
+import { toDataUri } from '@/utils/dataUri';
 import { getImageUrl } from '@/utils/imageUrl';
 import type { Feats } from '@/types/strapi/Service';
 
@@ -12,7 +13,8 @@ interface Props extends Feats {
 
 const { title, content, icon, compact, iconColor = 'bg-primary-blue' } = Astro.props;
 
-const iconUrl = getImageUrl(icon.data.attributes.url);
+// Incrustado como `data:` URI: la máscara de CSS no carga imágenes del bucket por CORS.
+const iconUrl = await toDataUri(getImageUrl(icon.data.attributes.url));
 ---
 
 <div
